@@ -2,45 +2,35 @@ import { useState } from "react";
 
 import "./index.css";
 
-import Sidebar from "./components/Sidebar";
+import AppSidebar from "./components/layout/AppSidebar";
 
 import Showcase from "./pages/Showcase";
-
 import CreativeLab from "./pages/CreativeLab";
 
 export default function App() {
 
-  const [page, setPage] = useState("showcase");
+  const [currentPage, setCurrentPage] = useState("showcase");
 
   return (
 
-    <div
-      style={{
-        display: "flex",
-        height: "100vh",
-        background: "#09090B",
-      }}
-    >
+    <div className="app">
 
-      <Sidebar
-        page={page}
-        setPage={setPage}
+      <AppSidebar
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
       />
 
-      <div
-        style={{
-          flex: 1,
-          overflow: "hidden",
-        }}
-      >
+      <main className="page-container">
 
-        {page === "showcase" ? (
+        {currentPage === "showcase" && (
           <Showcase />
-        ) : (
+        )}
+
+        {currentPage === "creative" && (
           <CreativeLab />
         )}
 
-      </div>
+      </main>
 
     </div>
 
