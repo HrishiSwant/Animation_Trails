@@ -1,4 +1,4 @@
-import "./Notes.css";
+import "./NotesSidebar.css";
 
 import SearchBar from "./SearchBar";
 import NoteCard from "./NoteCard";
