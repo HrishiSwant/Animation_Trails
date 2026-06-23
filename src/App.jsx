@@ -2,38 +2,51 @@ import { useState } from "react";
 
 import "./index.css";
 
-import AppSidebar from "./components/layout/AppSidebar";
+import Navigation from "./components/Navigation";
 
 import Showcase from "./pages/Showcase";
 import CreativeLab from "./pages/CreativeLab";
+import Presentation from "./pages/Presentation";
+import Settings from "./pages/Settings";
 
-export default function App() {
+export default function App(){
 
-  const [currentPage, setCurrentPage] = useState("showcase");
+    const [currentPage,setCurrentPage]=useState("library");
 
-  return (
+    return(
 
-    <div className="app">
+        <div
+            style={{
+                display:"flex",
+                height:"100vh",
+                background:"#09090B"
+            }}
+        >
 
-      <AppSidebar
-        currentPage={currentPage}
-        setCurrentPage={setCurrentPage}
-      />
+            <Navigation
+                currentPage={currentPage}
+                setCurrentPage={setCurrentPage}
+            />
 
-      <main className="page-container">
+            <div
+                style={{
+                    flex:1,
+                    overflow:"hidden"
+                }}
+            >
 
-        {currentPage === "showcase" && (
-          <Showcase />
-        )}
+                {currentPage==="library" && <Showcase/>}
 
-        {currentPage === "creative" && (
-          <CreativeLab />
-        )}
+                {currentPage==="workspace" && <CreativeLab/>}
 
-      </main>
+                {currentPage==="presentation" && <Presentation/>}
 
-    </div>
+                {currentPage==="settings" && <Settings/>}
 
-  );
+            </div>
+
+        </div>
+
+    );
 
 }
