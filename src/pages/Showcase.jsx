@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Menu, X } from "lucide-react";
 import "./Showcase.css";
 
 import animations from "../data/animations";
@@ -28,8 +29,7 @@ export default function Showcase() {
   return (
     <div className="showcase">
 
-      {/* Mobile Overlay */}
-
+      {/* Overlay */}
       {sidebarOpen && (
         <div
           className="overlay"
@@ -38,7 +38,6 @@ export default function Showcase() {
       )}
 
       {/* Sidebar */}
-
       <aside className={`sidebar ${sidebarOpen ? "open" : ""}`}>
 
         <div className="sidebar-header">
@@ -49,7 +48,7 @@ export default function Showcase() {
             className="close-btn"
             onClick={() => setSidebarOpen(false)}
           >
-            ✕
+            <X size={24} />
           </button>
 
         </div>
@@ -99,14 +98,13 @@ export default function Showcase() {
       </aside>
 
       {/* Preview */}
-
       <main className="preview">
 
         <button
           className="menu-btn"
           onClick={() => setSidebarOpen(true)}
         >
-          ☰
+          <Menu size={28} />
         </button>
 
         <div className="preview-header">
