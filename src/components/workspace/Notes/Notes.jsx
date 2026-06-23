@@ -1,9 +1,12 @@
 import { useEffect, useState } from "react";
 import "./Notes.css";
 
+import NotesSidebar from "./NotesSidebar";
+
 export default function Notes() {
 
   const [notes, setNotes] = useState(() => {
+
     const saved = localStorage.getItem("hrishi-notes");
 
     return saved
@@ -18,35 +21,53 @@ export default function Notes() {
             favorite: false,
             pinned: false,
             tags: [],
+            color: "default",
           },
         ];
+
   });
 
   const [selectedId, setSelectedId] = useState(notes[0].id);
 
+  const [search, setSearch] = useState("");
+
   useEffect(() => {
+
     localStorage.setItem(
       "hrishi-notes",
       JSON.stringify(notes)
     );
+
   }, [notes]);
 
   const selectedNote =
-    notes.find((note) => note.id === selectedId) || notes[0];
+    notes.find((note) => note.id === selectedId) ||
+    notes[0];
 
   function createNote() {
 
     const now = new Date().toISOString();
 
     const newNote = {
+
       id: Date.now(),
+
       title: "Untitled",
+
       content: "",
+
       createdAt: now,
+
       updatedAt: now,
+
       favorite: false,
+
       pinned: false,
+
       tags: [],
+
+      color: "default",
+
     };
 
     setNotes([newNote, ...notes]);
@@ -59,7 +80,9 @@ export default function Notes() {
 
     if (notes.length === 1) return;
 
-    const updated = notes.filter(note => note.id !== id);
+    const updated = notes.filter(
+      (note) => note.id !== id
+    );
 
     setNotes(updated);
 
@@ -67,124 +90,155 @@ export default function Notes() {
 
   }
 
-  function updateContent(value){
+  function toggleFavorite(id) {
 
     setNotes(
-      notes.map(note =>
-
-        note.id === selectedId
-
+      notes.map((note) =>
+        note.id === id
           ? {
               ...note,
-              content:value,
-              title:value.split("\n")[0].slice(0,30) || "Untitled",
-              updatedAt:new Date().toISOString()
+              favorite: !note.favorite,
             }
-
           : note
-
       )
     );
 
   }
 
-  function toggleFavorite(id){
+  function togglePinned(id) {
 
     setNotes(
-      notes.map(note=>
-
-        note.id===id
-
-          ?{
+      notes.map((note) =>
+        note.id === id
+          ? {
               ...note,
-              favorite:!note.favorite
+              pinned: !note.pinned,
             }
-
-          :note
-
+          : note
       )
     );
 
   }
+
+  function updateTitle(value) {
+
+    setNotes(
+      notes.map((note) =>
+        note.id === selectedId
+          ? {
+              ...note,
+              title: value,
+              updatedAt: new Date().toISOString(),
+            }
+          : note
+      )
+    );
+
+  }
+
+  function updateContent(value) {
+
+    setNotes(
+      notes.map((note) =>
+        note.id === selectedId
+          ? {
+              ...note,
+              content: value,
+              updatedAt: new Date().toISOString(),
+            }
+          : note
+      )
+    );
+
+  }
+
+  const wordCount = selectedNote.content
+    .trim()
+    .split(/\s+/)
+    .filter(Boolean).length;
+
+  const characterCount =
+    selectedNote.content.length;
 
   return (
 
     <div className="notes">
 
-      <div className="notes-sidebar">
+      <NotesSidebar
 
-        <button
-          className="new-note-btn"
-          onClick={createNote}
-        >
-          + New Note
-        </button>
+        notes={notes}
 
-        <div className="notes-list">
+        selectedId={selectedId}
 
-          {notes.map(note=>(
+        setSelectedId={setSelectedId}
 
-            <div
-              key={note.id}
-              className={
-                selectedId===note.id
-                  ? "note-item active"
-                  : "note-item"
-              }
-              onClick={()=>setSelectedId(note.id)}
-            >
+        search={search}
 
-              <div>
+        setSearch={setSearch}
 
-                <span>{note.title}</span>
+        createNote={createNote}
 
-                <small>
+        deleteNote={deleteNote}
 
-                  {new Date(note.updatedAt).toLocaleDateString()}
+        toggleFavorite={toggleFavorite}
 
-                </small>
+        togglePinned={togglePinned}
 
-              </div>
-
-              <div className="actions">
-
-                <button
-                  className="star-btn"
-                  onClick={(e)=>{
-                    e.stopPropagation();
-                    toggleFavorite(note.id);
-                  }}
-                >
-                  {note.favorite ? "⭐" : "☆"}
-                </button>
-
-                <button
-                  className="delete-btn"
-                  onClick={(e)=>{
-                    e.stopPropagation();
-                    deleteNote(note.id);
-                  }}
-                >
-                  ×
-                </button>
-
-              </div>
-
-            </div>
-
-          ))}
-
-        </div>
-
-      </div>
+      />
 
       <div className="editor">
 
-        <textarea
-          value={selectedNote.content}
-          onChange={(e)=>updateContent(e.target.value)}
-          placeholder="Start writing..."
+        <input
+
+          className="note-title-input"
+
+          value={selectedNote.title}
+
+          onChange={(e) =>
+            updateTitle(e.target.value)
+          }
+
+          placeholder="Title"
+
         />
+
+        <textarea
+
+          value={selectedNote.content}
+
+          onChange={(e) =>
+            updateContent(e.target.value)
+          }
+
+          placeholder="Start writing..."
+
+        />
+
+        <div className="editor-footer">
+
+          <span>
+
+            📅 Updated{" "}
+
+            {new Date(
+              selectedNote.updatedAt
+            ).toLocaleString()}
+
+          </span>
+
+          <span>
+
+            📝 {wordCount} words
+
+          </span>
+
+          <span>
+
+            🔤 {characterCount} characters
+
+          </span>
+
+        </div>
 
       </div>
 
