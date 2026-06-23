@@ -41,7 +41,7 @@ export default function Showcase() {
 
         <div className="sidebar-header">
 
-          <h1>🎨 Showcase</h1>
+          <h1>🎨 Design OS</h1>
 
           <button
             className="close-btn"
