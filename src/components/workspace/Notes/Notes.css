@@ -2,7 +2,7 @@
 
     display:flex;
 
-    height:600px;
+    height:650px;
 
     background:#141414;
 
@@ -12,15 +12,17 @@
 
     overflow:hidden;
 
+    box-shadow:0 10px 30px rgba(0,0,0,.35);
+
 }
 
-/* ===========================
-   Sidebar
-=========================== */
+/* =====================================
+   SIDEBAR
+===================================== */
 
 .notes-sidebar{
 
-    width:260px;
+    width:280px;
 
     background:#101010;
 
@@ -50,6 +52,8 @@
 
     font-size:15px;
 
+    font-weight:600;
+
     transition:.25s;
 
 }
@@ -58,11 +62,9 @@
 
     background:#1D4ED8;
 
-}
+    transform:translateY(-2px);
 
-/* ===========================
-   Notes List
-=========================== */
+}
 
 .notes-list{
 
@@ -74,25 +76,23 @@
 
 }
 
+/* =====================================
+   NOTE CARD
+===================================== */
+
 .note-item{
 
     background:#191919;
 
     border:1px solid transparent;
 
-    border-radius:12px;
+    border-radius:14px;
 
     padding:14px;
 
-    margin-bottom:10px;
+    margin-bottom:12px;
 
     cursor:pointer;
-
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:center;
 
     transition:.25s;
 
@@ -102,57 +102,106 @@
 
     border-color:#2563EB;
 
+    transform:translateY(-2px);
+
 }
 
 .note-item.active{
 
     background:#2563EB;
 
+    border-color:#2563EB;
+
 }
 
 .note-item span{
 
-    overflow:hidden;
+    display:block;
+
+    font-weight:600;
+
+    margin-bottom:6px;
 
     white-space:nowrap;
 
-    text-overflow:ellipsis;
+    overflow:hidden;
 
-    max-width:160px;
+    text-overflow:ellipsis;
 
 }
 
+.note-item small{
+
+    color:#cfcfcf;
+
+    opacity:.8;
+
+    font-size:12px;
+
+}
+
+/* =====================================
+   ACTIONS
+===================================== */
+
+.actions{
+
+    display:flex;
+
+    justify-content:flex-end;
+
+    gap:8px;
+
+    margin-top:10px;
+
+}
+
+.star-btn,
 .delete-btn{
+
+    width:32px;
+
+    height:32px;
 
     border:none;
 
-    background:none;
-
-    color:white;
+    border-radius:8px;
 
     cursor:pointer;
 
-    font-size:18px;
+    transition:.25s;
 
-    opacity:.6;
+    background:#242424;
+
+    color:white;
+
+}
+
+.star-btn:hover{
+
+    background:#FBBF24;
+
+    color:black;
 
 }
 
 .delete-btn:hover{
 
-    opacity:1;
+    background:#EF4444;
 
 }
 
-/* ===========================
-   Editor
-=========================== */
+/* =====================================
+   EDITOR
+===================================== */
 
 .editor{
 
     flex:1;
 
     padding:20px;
+
+    background:#0B0B0B;
 
 }
 
@@ -164,29 +213,55 @@
 
     resize:none;
 
-    border:none;
-
-    outline:none;
-
-    background:#0F0F0F;
+    background:#101010;
 
     color:white;
 
-    padding:20px;
+    border:1px solid #222;
 
-    border-radius:14px;
+    border-radius:16px;
+
+    outline:none;
+
+    padding:24px;
 
     font-size:16px;
 
     line-height:1.8;
 
-    font-family:inherit;
+    font-family:Inter, sans-serif;
+
+    transition:.25s;
 
 }
 
-/* ===========================
-   Mobile
-=========================== */
+.editor textarea:focus{
+
+    border-color:#2563EB;
+
+}
+
+/* =====================================
+   SCROLLBAR
+===================================== */
+
+.notes-list::-webkit-scrollbar{
+
+    width:8px;
+
+}
+
+.notes-list::-webkit-scrollbar-thumb{
+
+    background:#333;
+
+    border-radius:20px;
+
+}
+
+/* =====================================
+   MOBILE
+===================================== */
 
 @media(max-width:768px){
 
