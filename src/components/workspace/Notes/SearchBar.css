@@ -1,139 +1,45 @@
 /* ===========================================
-   NOTES SIDEBAR
+   SEARCH
 =========================================== */
 
-.notes-sidebar{
+.search-container{
 
-    width:320px;
-
-    height:100%;
-
-    background:#111111;
-
-    border-right:1px solid #252525;
-
-    display:flex;
-
-    flex-direction:column;
-
-    overflow:hidden;
+    padding:0 18px 18px;
 
 }
 
-/* ===========================================
-   NEW NOTE BUTTON
-=========================================== */
+.search-input{
 
-.new-note-btn{
+    width:100%;
 
-    margin:18px;
-
-    padding:15px;
+    padding:14px 18px;
 
     border:none;
 
+    outline:none;
+
     border-radius:14px;
 
-    background:#2563EB;
+    background:#1A1A1A;
 
     color:white;
 
     font-size:15px;
 
-    font-weight:600;
-
-    cursor:pointer;
-
     transition:.25s;
 
-}
-
-.new-note-btn:hover{
-
-    background:#1D4ED8;
-
-    transform:translateY(-2px);
+    border:1px solid transparent;
 
 }
 
-/* ===========================================
-   NOTES LIST
-=========================================== */
+.search-input:focus{
 
-.notes-list{
-
-    flex:1;
-
-    overflow-y:auto;
-
-    padding:0 15px 20px;
+    border-color:#2563EB;
 
 }
 
-.notes-list::-webkit-scrollbar{
+.search-input::placeholder{
 
-    width:8px;
-
-}
-
-.notes-list::-webkit-scrollbar-thumb{
-
-    background:#333;
-
-    border-radius:20px;
-
-}
-
-/* ===========================================
-   EMPTY STATE
-=========================================== */
-
-.empty-notes{
-
-    height:100%;
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-
-    color:#666;
-
-    font-size:15px;
-
-    text-align:center;
-
-    padding:20px;
-
-}
-
-/* ===========================================
-   RESPONSIVE
-=========================================== */
-
-@media(max-width:900px){
-
-    .notes-sidebar{
-
-        width:100%;
-
-        height:300px;
-
-        border-right:none;
-
-        border-bottom:1px solid #252525;
-
-    }
-
-}
-
-@media(max-width:600px){
-
-    .notes-sidebar{
-
-        height:250px;
-
-    }
+    color:#777;
 
 }
