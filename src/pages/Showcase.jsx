@@ -7,10 +7,10 @@ export default function Showcase() {
   const [selected, setSelected] = useState(animations[0]);
   const [search, setSearch] = useState("");
 
-  // This gets the currently selected React component
+  // Currently selected React component
   const SelectedComponent = selected.component;
 
-  // Search by name, category and tags
+  // Search animations
   const filtered = animations.filter((item) => {
     const query = search.toLowerCase();
 
@@ -20,6 +20,17 @@ export default function Showcase() {
       item.tags.some((tag) => tag.toLowerCase().includes(query))
     );
   });
+
+  // Automatically group animations by category
+  const groupedAnimations = filtered.reduce((groups, item) => {
+    if (!groups[item.category]) {
+      groups[item.category] = [];
+    }
+
+    groups[item.category].push(item);
+
+    return groups;
+  }, {});
 
   return (
     <div className="showcase">
@@ -34,23 +45,28 @@ export default function Showcase() {
         />
 
         <div className="animation-list">
-          {filtered.map((item) => (
-            <button
-              key={item.id}
-              className={
-                selected.id === item.id
-                  ? "animation-btn active"
-                  : "animation-btn"
-              }
-              onClick={() => setSelected(item)}
-            >
-              <span>{item.name}</span>
+          {Object.entries(groupedAnimations).map(([category, items]) => (
+            <div key={category} className="category-group">
+              <h3 className="category-title">{category}</h3>
 
-              <div className="meta">
-                <small>{item.category}</small>
-                <small>{item.difficulty}</small>
-              </div>
-            </button>
+              {items.map((item) => (
+                <button
+                  key={item.id}
+                  className={
+                    selected.id === item.id
+                      ? "animation-btn active"
+                      : "animation-btn"
+                  }
+                  onClick={() => setSelected(item)}
+                >
+                  <span>{item.name}</span>
+
+                  <div className="meta">
+                    <small>{item.difficulty}</small>
+                  </div>
+                </button>
+              ))}
+            </div>
           ))}
         </div>
       </aside>
