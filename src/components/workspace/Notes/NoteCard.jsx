@@ -1,4 +1,4 @@
-import "./Notes.css";
+import "./NoteCard.css";
 
 export default function NoteCard({
   note,
