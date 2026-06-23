@@ -7,3 +7,12 @@ export default [
     component: <ImageTrailDemo />,
   },
 ];
+
+
+import AuroraDemo from "./demos/AuroraDemo";
+
+{
+   name:"Aurora",
+   category:"Backgrounds",
+   component:<AuroraDemo/>
+}
