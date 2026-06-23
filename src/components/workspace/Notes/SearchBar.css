@@ -1,0 +1,139 @@
+/* ===========================================
+   NOTES SIDEBAR
+=========================================== */
+
+.notes-sidebar{
+
+    width:320px;
+
+    height:100%;
+
+    background:#111111;
+
+    border-right:1px solid #252525;
+
+    display:flex;
+
+    flex-direction:column;
+
+    overflow:hidden;
+
+}
+
+/* ===========================================
+   NEW NOTE BUTTON
+=========================================== */
+
+.new-note-btn{
+
+    margin:18px;
+
+    padding:15px;
+
+    border:none;
+
+    border-radius:14px;
+
+    background:#2563EB;
+
+    color:white;
+
+    font-size:15px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+}
+
+.new-note-btn:hover{
+
+    background:#1D4ED8;
+
+    transform:translateY(-2px);
+
+}
+
+/* ===========================================
+   NOTES LIST
+=========================================== */
+
+.notes-list{
+
+    flex:1;
+
+    overflow-y:auto;
+
+    padding:0 15px 20px;
+
+}
+
+.notes-list::-webkit-scrollbar{
+
+    width:8px;
+
+}
+
+.notes-list::-webkit-scrollbar-thumb{
+
+    background:#333;
+
+    border-radius:20px;
+
+}
+
+/* ===========================================
+   EMPTY STATE
+=========================================== */
+
+.empty-notes{
+
+    height:100%;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    color:#666;
+
+    font-size:15px;
+
+    text-align:center;
+
+    padding:20px;
+
+}
+
+/* ===========================================
+   RESPONSIVE
+=========================================== */
+
+@media(max-width:900px){
+
+    .notes-sidebar{
+
+        width:100%;
+
+        height:300px;
+
+        border-right:none;
+
+        border-bottom:1px solid #252525;
+
+    }
+
+}
+
+@media(max-width:600px){
+
+    .notes-sidebar{
+
+        height:250px;
+
+    }
+
+}
