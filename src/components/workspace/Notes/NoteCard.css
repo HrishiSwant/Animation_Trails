@@ -1,0 +1,135 @@
+/* ===========================================
+   NOTE CARD
+=========================================== */
+
+.note-card{
+
+    background:#191919;
+
+    border:1px solid transparent;
+
+    border-radius:16px;
+
+    padding:16px;
+
+    margin-bottom:14px;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+}
+
+.note-card:hover{
+
+    border-color:#2563EB;
+
+    transform:translateY(-2px);
+
+}
+
+.note-card.active{
+
+    background:#2563EB;
+
+    border-color:#2563EB;
+
+}
+
+.note-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:flex-start;
+
+    gap:12px;
+
+}
+
+.note-header h4{
+
+    margin:0;
+
+    font-size:16px;
+
+    overflow:hidden;
+
+    text-overflow:ellipsis;
+
+    white-space:nowrap;
+
+    flex:1;
+
+}
+
+.note-preview{
+
+    margin:14px 0;
+
+    color:#BBBBBB;
+
+    font-size:13px;
+
+    line-height:1.5;
+
+    height:40px;
+
+    overflow:hidden;
+
+}
+
+.note-card small{
+
+    color:#CFCFCF;
+
+    font-size:11px;
+
+}
+
+/* ===========================================
+   BUTTONS
+=========================================== */
+
+.note-buttons{
+
+    display:flex;
+
+    gap:6px;
+
+}
+
+.note-buttons button{
+
+    width:30px;
+
+    height:30px;
+
+    border:none;
+
+    border-radius:8px;
+
+    background:#252525;
+
+    color:white;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+}
+
+.note-buttons button:hover{
+
+    background:#333;
+
+    transform:scale(1.08);
+
+}
+
+.note-card.active .note-buttons button{
+
+    background:rgba(255,255,255,.18);
+
+}
