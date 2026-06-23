@@ -6,6 +6,7 @@ import animations from "../data/animations";
 export default function Showcase() {
   const [selected, setSelected] = useState(animations[0]);
   const [search, setSearch] = useState("");
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const SelectedComponent = selected.component;
 
@@ -19,19 +20,39 @@ export default function Showcase() {
   });
 
   const groupedAnimations = filtered.reduce((groups, item) => {
-    if (!groups[item.category]) {
-      groups[item.category] = [];
-    }
-
+    if (!groups[item.category]) groups[item.category] = [];
     groups[item.category].push(item);
-
     return groups;
   }, {});
 
   return (
     <div className="showcase">
-      <aside className="sidebar">
-        <h1>🎨 Showcase</h1>
+
+      {/* Mobile Overlay */}
+
+      {sidebarOpen && (
+        <div
+          className="overlay"
+          onClick={() => setSidebarOpen(false)}
+        />
+      )}
+
+      {/* Sidebar */}
+
+      <aside className={`sidebar ${sidebarOpen ? "open" : ""}`}>
+
+        <div className="sidebar-header">
+
+          <h1>🎨 Showcase</h1>
+
+          <button
+            className="close-btn"
+            onClick={() => setSidebarOpen(false)}
+          >
+            ✕
+          </button>
+
+        </div>
 
         <input
           type="text"
@@ -41,11 +62,17 @@ export default function Showcase() {
         />
 
         <div className="animation-list">
+
           {Object.entries(groupedAnimations).map(([category, items]) => (
+
             <div key={category} className="category-group">
-              <h3 className="category-title">{category}</h3>
+
+              <h3 className="category-title">
+                {category}
+              </h3>
 
               {items.map((item) => (
+
                 <button
                   key={item.id}
                   className={
@@ -53,17 +80,35 @@ export default function Showcase() {
                       ? "animation-btn active"
                       : "animation-btn"
                   }
-                  onClick={() => setSelected(item)}
+                  onClick={() => {
+                    setSelected(item);
+                    setSidebarOpen(false);
+                  }}
                 >
-                  <span>{item.name}</span>
+                  {item.name}
                 </button>
+
               ))}
+
             </div>
+
           ))}
+
         </div>
+
       </aside>
 
+      {/* Preview */}
+
       <main className="preview">
+
+        <button
+          className="menu-btn"
+          onClick={() => setSidebarOpen(true)}
+        >
+          ☰
+        </button>
+
         <div className="preview-header">
           <h2>{selected.name}</h2>
         </div>
@@ -71,7 +116,9 @@ export default function Showcase() {
         <div className="preview-window">
           <SelectedComponent />
         </div>
+
       </main>
+
     </div>
   );
 }
