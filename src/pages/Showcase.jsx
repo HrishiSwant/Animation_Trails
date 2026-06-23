@@ -3,26 +3,27 @@ import "./Showcase.css";
 
 import animations from "../data/animations";
 
-// Demo Components
-import ImageTrailDemo from "../demos/ImageTrailDemo";
-
-const componentMap = {
-  ImageTrail: <ImageTrailDemo />,
-};
-
 export default function Showcase() {
   const [selected, setSelected] = useState(animations[0]);
   const [search, setSearch] = useState("");
 
-  const filtered = animations.filter((item) =>
-    item.name.toLowerCase().includes(search.toLowerCase())
-  );
+  // This gets the currently selected React component
+  const SelectedComponent = selected.component;
+
+  // Search by name, category and tags
+  const filtered = animations.filter((item) => {
+    const query = search.toLowerCase();
+
+    return (
+      item.name.toLowerCase().includes(query) ||
+      item.category.toLowerCase().includes(query) ||
+      item.tags.some((tag) => tag.toLowerCase().includes(query))
+    );
+  });
 
   return (
     <div className="showcase">
-
       <aside className="sidebar">
-
         <h1>🎨 Showcase</h1>
 
         <input
@@ -33,9 +34,7 @@ export default function Showcase() {
         />
 
         <div className="animation-list">
-
           {filtered.map((item) => (
-
             <button
               key={item.id}
               className={
@@ -47,34 +46,31 @@ export default function Showcase() {
             >
               <span>{item.name}</span>
 
-              <small>{item.category}</small>
-
+              <div className="meta">
+                <small>{item.category}</small>
+                <small>{item.difficulty}</small>
+              </div>
             </button>
-
           ))}
-
         </div>
-
       </aside>
 
       <main className="preview">
-
         <div className="preview-header">
-
           <h2>{selected.name}</h2>
 
           <span>{selected.category}</span>
+        </div>
 
+        <div className="component-info">
+          <span>📦 {selected.dependencies.join(", ")}</span>
+          <span>⚡ {selected.source}</span>
         </div>
 
         <div className="preview-window">
-
-          {componentMap[selected.component]}
-
+          <SelectedComponent />
         </div>
-
       </main>
-
     </div>
   );
 }
