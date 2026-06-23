@@ -1,0 +1,121 @@
+.app-sidebar{
+
+    width:270px;
+
+    height:100vh;
+
+    background:#111111;
+
+    border-right:1px solid #252525;
+
+    display:flex;
+
+    flex-direction:column;
+
+    padding:25px;
+
+}
+
+.app-logo{
+
+    margin-bottom:35px;
+
+}
+
+.app-logo h1{
+
+    font-size:30px;
+
+    margin-bottom:8px;
+
+}
+
+.app-logo p{
+
+    color:#8b8b8b;
+
+    font-size:14px;
+
+}
+
+.nav-group{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:10px;
+
+    margin-bottom:30px;
+
+}
+
+.nav-title{
+
+    color:#777;
+
+    text-transform:uppercase;
+
+    font-size:12px;
+
+    letter-spacing:1px;
+
+    margin-bottom:8px;
+
+}
+
+.nav-btn{
+
+    background:#1b1b1b;
+
+    border:none;
+
+    color:white;
+
+    padding:15px;
+
+    border-radius:14px;
+
+    text-align:left;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+    font-size:15px;
+
+}
+
+.nav-btn:hover{
+
+    background:#282828;
+
+}
+
+.nav-btn.active{
+
+    background:#2563EB;
+
+}
+
+.nav-btn.disabled{
+
+    opacity:.45;
+
+    cursor:not-allowed;
+
+}
+
+.sidebar-footer{
+
+    margin-top:auto;
+
+    color:#666;
+
+    font-size:13px;
+
+    border-top:1px solid #222;
+
+    padding-top:18px;
+
+}
