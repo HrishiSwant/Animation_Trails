@@ -7,21 +7,17 @@ export default function Showcase() {
   const [selected, setSelected] = useState(animations[0]);
   const [search, setSearch] = useState("");
 
-  // Currently selected React component
   const SelectedComponent = selected.component;
 
-  // Search animations
   const filtered = animations.filter((item) => {
     const query = search.toLowerCase();
 
     return (
       item.name.toLowerCase().includes(query) ||
-      item.category.toLowerCase().includes(query) ||
       item.tags.some((tag) => tag.toLowerCase().includes(query))
     );
   });
 
-  // Automatically group animations by category
   const groupedAnimations = filtered.reduce((groups, item) => {
     if (!groups[item.category]) {
       groups[item.category] = [];
@@ -60,10 +56,6 @@ export default function Showcase() {
                   onClick={() => setSelected(item)}
                 >
                   <span>{item.name}</span>
-
-                  <div className="meta">
-                    <small>{item.difficulty}</small>
-                  </div>
                 </button>
               ))}
             </div>
@@ -74,13 +66,6 @@ export default function Showcase() {
       <main className="preview">
         <div className="preview-header">
           <h2>{selected.name}</h2>
-
-          <span>{selected.category}</span>
-        </div>
-
-        <div className="component-info">
-          <span>📦 {selected.dependencies.join(", ")}</span>
-          <span>⚡ {selected.source}</span>
         </div>
 
         <div className="preview-window">
