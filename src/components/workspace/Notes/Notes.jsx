@@ -2,12 +2,16 @@ import { useEffect, useState } from "react";
 import "./Notes.css";
 
 import NotesSidebar from "./NotesSidebar";
+import StorageManager from "../../../core/storage/StorageManager";
+import StorageKeys from "../../../core/storage/StorageKeys";
 
 export default function Notes() {
 
   const [notes, setNotes] = useState(() => {
 
-    const saved = localStorage.getItem("hrishi-notes");
+    const saved = StorageManager.load(
+      StorageKeys.NOTES
+      );
 
     return saved
       ? JSON.parse(saved)
@@ -33,10 +37,10 @@ export default function Notes() {
 
   useEffect(() => {
 
-    localStorage.setItem(
-      "hrishi-notes",
-      JSON.stringify(notes)
-    );
+    StorageManager.save(
+      StorageKeys.NOTES,
+      notes
+      );
 
   }, [notes]);
 
