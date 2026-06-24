@@ -2,28 +2,26 @@
 
     flex:1;
 
+    position:relative;
+
     background:#0E0E0E;
 
     border:1px solid #252525;
 
     border-radius:18px;
 
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-
     overflow:hidden;
-
-    position:relative;
 
 }
 
-.canvas-message{
+.canvas canvas{
 
-    color:#666;
+    width:100%;
 
-    font-size:26px;
+    height:100%;
+
+    display:block;
+
+    cursor:crosshair;
 
 }
