@@ -74,6 +74,15 @@ export default function WorkspaceDashboard({
           }
         />
 
+        <WorkspaceCard
+          title="Export"
+          description="Export workspace data."
+          icon="📤"
+          color="#06B6D4"
+          onClick={() =>
+            setCurrentTool("export")
+          }/>
+
       </div>
 
     </div>
