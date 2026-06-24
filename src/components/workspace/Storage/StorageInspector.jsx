@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 
 import StorageManager from "../../../core/storage/StorageManager";
 import StorageKeys from "../../../core/storage/StorageKeys";
+import BackupManager from "../../../core/backup/BackupManager";
 
 import "./StorageInspector.css";
 
@@ -9,6 +10,9 @@ export default function StorageInspector() {
 
   const [storageInfo, setStorageInfo] =
     useState([]);
+
+  const [backupStatus, setBackupStatus] =
+    useState("");
 
   function loadStorageInfo() {
 
@@ -113,9 +117,79 @@ export default function StorageInspector() {
 
   function resetWorkspace() {
 
+    const confirmed =
+      window.confirm(
+        "Reset entire workspace?"
+      );
+
+    if (!confirmed) return;
+
     StorageManager.clear();
 
     loadStorageInfo();
+
+  }
+
+  function downloadBackup() {
+
+    BackupManager.downloadBackup();
+
+    setBackupStatus(
+      "Backup downloaded successfully."
+    );
+
+  }
+
+  function uploadBackup(event) {
+
+    const file =
+      event.target.files?.[0];
+
+    if (!file) return;
+
+    const reader = new FileReader();
+
+    reader.onload = e => {
+
+      try {
+
+        const backup =
+          JSON.parse(
+            e.target.result
+          );
+
+        const success =
+          BackupManager.restoreBackup(
+            backup
+          );
+
+        if (success) {
+
+          setBackupStatus(
+            "Backup restored successfully. Refresh the page."
+          );
+
+          loadStorageInfo();
+
+        } else {
+
+          setBackupStatus(
+            "Invalid backup file."
+          );
+
+        }
+
+      } catch {
+
+        setBackupStatus(
+          "Failed to restore backup."
+        );
+
+      }
+
+    };
+
+    reader.readAsText(file);
 
   }
 
@@ -138,7 +212,11 @@ export default function StorageInspector() {
             className="storage-card"
           >
 
-            <h3>{item.name}</h3>
+            <h3>
+
+              {item.name}
+
+            </h3>
 
             <p>
 
@@ -179,6 +257,46 @@ export default function StorageInspector() {
           </div>
 
         ))}
+
+      </div>
+
+      <div className="backup-section">
+
+        <h2>
+
+          Backup & Recovery
+
+        </h2>
+
+        <button
+          onClick={downloadBackup}
+        >
+          📥 Download Backup
+        </button>
+
+        <label className="upload-label">
+
+          📤 Upload Backup
+
+          <input
+            type="file"
+            accept=".json"
+            onChange={
+              uploadBackup
+            }
+          />
+
+        </label>
+
+        {backupStatus && (
+
+          <p className="backup-status">
+
+            {backupStatus}
+
+          </p>
+
+        )}
 
       </div>
 
