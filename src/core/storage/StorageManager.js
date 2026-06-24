@@ -1,4 +1,5 @@
 import STORAGE_VERSION from "./StorageVersion";
+import RecoveryManager from "../recovery/RecoveryManager";
 
 export default class StorageManager {
 
@@ -23,6 +24,18 @@ export default class StorageManager {
                 JSON.stringify(payload)
 
             );
+
+            /* ===========================
+               AUTO RECOVERY SNAPSHOT
+            =========================== */
+
+            RecoveryManager.createSnapshot({
+
+                key,
+
+                payload,
+
+            });
 
             return true;
 
@@ -99,6 +112,26 @@ export default class StorageManager {
             .filter(key => key.startsWith("hrishi-studio"))
 
             .forEach(key => localStorage.removeItem(key));
+
+    }
+
+    /* ===========================
+       DEBUG / STATS
+    =========================== */
+
+    static getStorageUsage() {
+
+        let total = 0;
+
+        Object.keys(localStorage).forEach(key => {
+
+            const value = localStorage.getItem(key);
+
+            total += key.length + (value?.length || 0);
+
+        });
+
+        return total;
 
     }
 
