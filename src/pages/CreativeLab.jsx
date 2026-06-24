@@ -5,6 +5,7 @@ import WorkspaceDashboard from "../components/workspace/WorkspaceDashboard/Works
 import Notes from "../components/workspace/Notes/Notes";
 import Sketch from "../components/workspace/Sketch/Sketch";
 import StorageInspector from "../components/workspace/Storage/StorageInspector";
+import ExportCenter from "../components/workspace/Export/ExportCenter";
 
 export default function CreativeLab() {
 
@@ -45,6 +46,9 @@ export default function CreativeLab() {
             <p>Coming Soon</p>
           </div>
         );
+
+        case "export":
+        return <ExportCenter />;
 
       default:
         return (
