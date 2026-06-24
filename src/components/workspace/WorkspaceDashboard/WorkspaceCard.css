@@ -1,0 +1,53 @@
+.workspace-card{
+
+    background:#151515;
+
+    border:1px solid #262626;
+
+    border-radius:20px;
+
+    padding:28px;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:15px;
+
+    min-height:190px;
+
+}
+
+.workspace-card:hover{
+
+    transform:translateY(-8px);
+
+    border-color:#2563EB;
+
+    box-shadow:0 15px 40px rgba(0,0,0,.4);
+
+}
+
+.workspace-icon{
+
+    font-size:42px;
+
+}
+
+.workspace-card h2{
+
+    font-size:24px;
+
+}
+
+.workspace-card p{
+
+    color:#9B9B9B;
+
+    line-height:1.6;
+
+}
