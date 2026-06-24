@@ -8,22 +8,17 @@ export default class ExportManager {
 
   }
 
-  static exportJSON(filename, data) {
+  static downloadFile(
+    filename,
+    content,
+    type
+  ) {
 
     const blob = new Blob(
 
-      [
-        JSON.stringify(
-          data,
-          null,
-          2
-        )
-      ],
+      [content],
 
-      {
-        type:
-          "application/json"
-      }
+      { type }
 
     );
 
@@ -35,7 +30,8 @@ export default class ExportManager {
 
     link.href = url;
 
-    link.download = filename;
+    link.download =
+      filename;
 
     link.click();
 
@@ -43,32 +39,58 @@ export default class ExportManager {
 
   }
 
-  static exportText(filename, text) {
+  static exportJSON(
+    filename,
+    data
+  ) {
 
-    const blob = new Blob(
+    this.downloadFile(
 
-      [text],
+      filename,
 
-      {
-        type:
-          "text/plain"
-      }
+      JSON.stringify(
+        data,
+        null,
+        2
+      ),
+
+      "application/json"
 
     );
 
-    const url =
-      URL.createObjectURL(blob);
+  }
 
-    const link =
-      document.createElement("a");
+  static exportText(
+    filename,
+    text
+  ) {
 
-    link.href = url;
+    this.downloadFile(
 
-    link.download = filename;
+      filename,
 
-    link.click();
+      text,
 
-    URL.revokeObjectURL(url);
+      "text/plain"
+
+    );
+
+  }
+
+  static exportMarkdown(
+    filename,
+    markdown
+  ) {
+
+    this.downloadFile(
+
+      filename,
+
+      markdown,
+
+      "text/markdown"
+
+    );
 
   }
 
