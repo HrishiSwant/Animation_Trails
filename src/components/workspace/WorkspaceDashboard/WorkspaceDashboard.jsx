@@ -20,7 +20,7 @@ export default function WorkspaceDashboard({
       icon: "🎨",
       color: "#10B981",
       tool: "sketch",
-      enabled: false,
+      enabled: true,
     },
     {
       title: "Tasks",
