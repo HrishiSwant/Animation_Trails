@@ -202,5 +202,10 @@ export default class Engine {
         return this.strokeManager.strokeCount();
 
     }
+    getRenderer() {
+
+    return this.renderer;
+
+}
 
 }
