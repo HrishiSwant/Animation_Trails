@@ -1,5 +1,4 @@
 import "./WorkspaceDashboard.css";
-
 import WorkspaceCard from "./WorkspaceCard";
 
 export default function WorkspaceDashboard({
@@ -12,11 +11,7 @@ export default function WorkspaceDashboard({
 
         <h1>Workspace</h1>
 
-        <p>
-
-          Your personal creative operating system.
-
-        </p>
+        <p>Your personal creative operating system.</p>
 
       </div>
 
@@ -24,7 +19,7 @@ export default function WorkspaceDashboard({
 
         <WorkspaceCard
           title="Notes"
-          description="Store ideas, documentation and plans."
+          description="Write and organize ideas."
           icon="📝"
           color="#2563EB"
           onClick={() => setCurrentTool("notes")}
@@ -32,26 +27,26 @@ export default function WorkspaceDashboard({
 
         <WorkspaceCard
           title="Sketch Board"
-          description="Draw concepts and wireframes."
+          description="Draw concepts and UI."
           icon="🎨"
           color="#10B981"
           onClick={() => setCurrentTool("sketch")}
         />
 
         <WorkspaceCard
-          title="Assets"
-          description="Manage project resources."
-          icon="📁"
-          color="#F59E0B"
-          onClick={() => setCurrentTool("assets")}
-        />
-
-        <WorkspaceCard
           title="Tasks"
-          description="Track your work."
+          description="Manage your workflow."
           icon="✅"
           color="#EF4444"
           onClick={() => setCurrentTool("tasks")}
+        />
+
+        <WorkspaceCard
+          title="Assets"
+          description="Project resources."
+          icon="📁"
+          color="#F59E0B"
+          onClick={() => setCurrentTool("assets")}
         />
 
       </div>
