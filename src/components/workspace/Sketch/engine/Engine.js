@@ -29,10 +29,6 @@ export default class Engine {
 
         this.renderer = new CanvasRenderer(this.canvas);
 
-        this.restore();
-
-        this.render();
-
     }
 
     destroy() {
@@ -48,6 +44,8 @@ export default class Engine {
         if (!this.renderer) return;
 
         this.renderer.resize(width, height);
+
+        this.restore();
 
         this.render();
 
