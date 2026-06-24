@@ -1,57 +1,103 @@
 export default class HistoryManager {
 
-  constructor(limit = 50) {
+    constructor(limit = 100) {
 
-    this.limit = limit;
+        this.limit = limit;
 
-    this.undoStack = [];
+        this.undoStack = [];
 
-    this.redoStack = [];
+        this.redoStack = [];
 
-  }
-
-  save(snapshot) {
-
-    this.undoStack.push(snapshot);
-
-    if (this.undoStack.length > this.limit) {
-      this.undoStack.shift();
     }
 
-    this.redoStack = [];
+    clone(strokes) {
 
-  }
+        return structuredClone(strokes);
 
-  undo(currentSnapshot) {
-
-    if (this.undoStack.length === 0) {
-      return null;
     }
 
-    this.redoStack.push(currentSnapshot);
+    save(strokes) {
 
-    return this.undoStack.pop();
+        const snapshot = this.clone(strokes);
 
-  }
+        this.undoStack.push(snapshot);
 
-  redo(currentSnapshot) {
+        if (this.undoStack.length > this.limit) {
 
-    if (this.redoStack.length === 0) {
-      return null;
+            this.undoStack.shift();
+
+        }
+
+        this.redoStack = [];
+
     }
 
-    this.undoStack.push(currentSnapshot);
+    undo(currentStrokes) {
 
-    return this.redoStack.pop();
+        if (!this.canUndo()) {
 
-  }
+            return null;
 
-  clear() {
+        }
 
-    this.undoStack = [];
+        this.redoStack.push(
 
-    this.redoStack = [];
+            this.clone(currentStrokes)
 
-  }
+        );
+
+        return this.undoStack.pop();
+
+    }
+
+    redo(currentStrokes) {
+
+        if (!this.canRedo()) {
+
+            return null;
+
+        }
+
+        this.undoStack.push(
+
+            this.clone(currentStrokes)
+
+        );
+
+        return this.redoStack.pop();
+
+    }
+
+    canUndo() {
+
+        return this.undoStack.length > 0;
+
+    }
+
+    canRedo() {
+
+        return this.redoStack.length > 0;
+
+    }
+
+    clear() {
+
+        this.undoStack = [];
+
+        this.redoStack = [];
+
+    }
+
+    getUndoCount() {
+
+        return this.undoStack.length;
+
+    }
+
+    getRedoCount() {
+
+        return this.redoStack.length;
+
+    }
 
 }
