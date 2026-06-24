@@ -9,6 +9,7 @@ export default function Canvas({
   color,
   brushSize,
   clearTrigger,
+  onEngineReady,
 }) {
 
   const containerRef = useRef(null);
@@ -27,6 +28,8 @@ export default function Canvas({
 
     const container = containerRef.current;
 
+    if (!canvas || !container) return;
+
     const engine = new Engine(canvas);
 
     engine.initialize();
@@ -37,19 +40,20 @@ export default function Canvas({
 
     engineRef.current = engine;
 
-    inputRef.current = new InputManager(
-      canvas,
-      engine
-    );
+    // Give Sketch.jsx access to the engine
+    if (onEngineReady) {
+      onEngineReady(engine);
+    }
+
+    const input = new InputManager(canvas, engine);
+
+    inputRef.current = input;
 
     function resizeCanvas() {
 
       engine.resize(
-
         container.clientWidth,
-
         container.clientHeight
-
       );
 
     }
@@ -68,7 +72,7 @@ export default function Canvas({
         resizeCanvas
       );
 
-      inputRef.current?.destroy();
+      input.destroy();
 
       engine.destroy();
 
@@ -105,7 +109,7 @@ export default function Canvas({
   }, [brushSize]);
 
   /* ===========================
-      CLEAR
+      CLEAR CANVAS
   =========================== */
 
   useEffect(() => {
