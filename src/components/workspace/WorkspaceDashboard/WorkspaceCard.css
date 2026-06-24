@@ -1,53 +1,205 @@
-.workspace-card{
+.workspace-dashboard{
 
-    background:#151515;
+    width:100%;
 
-    border:1px solid #262626;
+    min-height:100%;
 
-    border-radius:20px;
+    color:white;
 
-    padding:28px;
+}
 
-    cursor:pointer;
+/* ==================================
+   HEADER
+================================== */
 
-    transition:.3s;
+.dashboard-header{
+
+    margin-bottom:40px;
+
+}
+
+.dashboard-header h1{
+
+    font-size:48px;
+
+    margin:0;
+
+    margin-bottom:10px;
+
+    font-weight:700;
+
+}
+
+.dashboard-header p{
+
+    color:#8d8d8d;
+
+    font-size:18px;
+
+    margin:0;
+
+}
+
+/* ==================================
+   GRID
+================================== */
+
+.dashboard-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+
+    gap:24px;
+
+    margin-bottom:35px;
+
+}
+
+/* ==================================
+   INFO SECTION
+================================== */
+
+.workspace-info{
+
+    display:grid;
+
+    grid-template-columns:2fr 1fr;
+
+    gap:25px;
+
+}
+
+/* ==================================
+   INFO CARD
+================================== */
+
+.info-card{
+
+    background:#141414;
+
+    border:1px solid #252525;
+
+    border-radius:18px;
+
+    padding:25px;
+
+}
+
+.info-card h3{
+
+    margin:0;
+
+    margin-bottom:18px;
+
+    font-size:22px;
+
+}
+
+/* ==================================
+   RECENT ACTIVITY
+================================== */
+
+.info-card ul{
+
+    list-style:none;
+
+    padding:0;
+
+    margin:0;
+
+}
+
+.info-card li{
+
+    padding:12px 0;
+
+    border-bottom:1px solid #252525;
+
+    color:#b8b8b8;
+
+}
+
+.info-card li:last-child{
+
+    border-bottom:none;
+
+}
+
+/* ==================================
+   STATS
+================================== */
+
+.stats{
+
+    display:grid;
+
+    gap:18px;
+
+}
+
+.stats div{
 
     display:flex;
 
-    flex-direction:column;
+    justify-content:space-between;
 
-    gap:15px;
+    align-items:center;
 
-    min-height:190px;
+    background:#1A1A1A;
 
-}
+    padding:16px;
 
-.workspace-card:hover{
-
-    transform:translateY(-8px);
-
-    border-color:#2563EB;
-
-    box-shadow:0 15px 40px rgba(0,0,0,.4);
+    border-radius:12px;
 
 }
 
-.workspace-icon{
+.stats span{
 
-    font-size:42px;
-
-}
-
-.workspace-card h2{
-
-    font-size:24px;
+    color:#999;
 
 }
 
-.workspace-card p{
+.stats strong{
 
-    color:#9B9B9B;
+    font-size:18px;
 
-    line-height:1.6;
+    color:white;
+
+}
+
+/* ==================================
+   RESPONSIVE
+================================== */
+
+@media(max-width:900px){
+
+    .workspace-info{
+
+        grid-template-columns:1fr;
+
+    }
+
+}
+
+@media(max-width:768px){
+
+    .dashboard-header h1{
+
+        font-size:34px;
+
+    }
+
+    .dashboard-header p{
+
+        font-size:16px;
+
+    }
+
+    .dashboard-grid{
+
+        grid-template-columns:1fr;
+
+    }
 
 }
