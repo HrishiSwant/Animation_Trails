@@ -23,7 +23,7 @@ export default class Engine {
     }
 
     /* ===========================
-       ENGINE LIFECYCLE
+       ENGINE
     =========================== */
 
     initialize() {
@@ -80,6 +80,11 @@ export default class Engine {
 
     startStroke(point) {
 
+        // Save the canvas BEFORE adding a new stroke
+        this.history.save(
+            this.strokeManager.getStrokes()
+        );
+
         this.strokeManager.startStroke(
 
             this.tool,
@@ -108,12 +113,6 @@ export default class Engine {
 
         this.strokeManager.finishStroke();
 
-        this.history.save(
-
-            this.strokeManager.getStrokes()
-
-        );
-
         this.render();
 
     }
@@ -125,9 +124,7 @@ export default class Engine {
     undo() {
 
         const previous = this.history.undo(
-
             this.strokeManager.getStrokes()
-
         );
 
         if (!previous) return;
@@ -141,9 +138,7 @@ export default class Engine {
     redo() {
 
         const next = this.history.redo(
-
             this.strokeManager.getStrokes()
-
         );
 
         if (!next) return;
@@ -160,9 +155,11 @@ export default class Engine {
 
     clear() {
 
-        this.strokeManager.clear();
+        this.history.save(
+            this.strokeManager.getStrokes()
+        );
 
-        this.history.clear();
+        this.strokeManager.clear();
 
         this.render();
 
@@ -185,12 +182,6 @@ export default class Engine {
     /* ===========================
        GETTERS
     =========================== */
-
-    getCanvas() {
-
-        return this.canvas;
-
-    }
 
     getStrokeCount() {
 
