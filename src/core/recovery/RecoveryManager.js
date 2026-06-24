@@ -66,6 +66,8 @@ export default class RecoveryManager {
 
         id: Date.now(),
 
+        type: "module",
+
         createdAt:
           new Date().toISOString(),
 
@@ -105,6 +107,180 @@ export default class RecoveryManager {
         })
 
       );
+
+      return true;
+
+    } catch (error) {
+
+      console.error(
+
+        "[RecoveryManager]",
+
+        error
+
+      );
+
+      return false;
+
+    }
+
+  }
+
+  static createWorkspaceSnapshot() {
+
+    try {
+
+      const snapshots =
+        this.getSnapshots();
+
+      snapshots.unshift({
+
+        id: Date.now(),
+
+        type: "workspace",
+
+        createdAt:
+          new Date().toISOString(),
+
+        workspace: {
+
+          notes:
+            localStorage.getItem(
+              "hrishi-studio:workspace:notes"
+            ),
+
+          sketch:
+            localStorage.getItem(
+              "hrishi-studio:workspace:sketch"
+            ),
+
+          tasks:
+            localStorage.getItem(
+              "hrishi-studio:workspace:tasks"
+            ),
+
+          assets:
+            localStorage.getItem(
+              "hrishi-studio:workspace:assets"
+            ),
+
+        },
+
+      });
+
+      if (
+        snapshots.length >
+        MAX_RECOVERY_POINTS
+      ) {
+
+        snapshots.length =
+          MAX_RECOVERY_POINTS;
+
+      }
+
+      localStorage.setItem(
+
+        RECOVERY_KEY,
+
+        JSON.stringify(
+          snapshots
+        )
+
+      );
+
+      return true;
+
+    } catch (error) {
+
+      console.error(
+
+        "[RecoveryManager]",
+
+        error
+
+      );
+
+      return false;
+
+    }
+
+  }
+
+  static rollbackWorkspace(id) {
+
+    try {
+
+      const snapshot =
+        this.getSnapshots().find(
+
+          item =>
+            item.id === id
+
+        );
+
+      if (
+        !snapshot ||
+        !snapshot.workspace
+      ) {
+
+        return false;
+
+      }
+
+      const {
+        notes,
+        sketch,
+        tasks,
+        assets,
+      } = snapshot.workspace;
+
+      if (notes) {
+
+        localStorage.setItem(
+
+          "hrishi-studio:workspace:notes",
+
+          notes
+
+        );
+
+      }
+
+      if (sketch) {
+
+        localStorage.setItem(
+
+          "hrishi-studio:workspace:sketch",
+
+          sketch
+
+        );
+
+      }
+
+      if (tasks) {
+
+        localStorage.setItem(
+
+          "hrishi-studio:workspace:tasks",
+
+          tasks
+
+        );
+
+      }
+
+      if (assets) {
+
+        localStorage.setItem(
+
+          "hrishi-studio:workspace:assets",
+
+          assets
+
+        );
+
+      }
 
       return true;
 
