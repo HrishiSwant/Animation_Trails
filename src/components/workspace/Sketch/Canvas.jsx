@@ -1,17 +1,18 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import "./Canvas.css";
 
-export default function Canvas() {
+export default function Canvas({
+  tool,
+  color,
+  brushSize,
+  clearTrigger,
+}) {
 
   const canvasRef = useRef(null);
 
   const containerRef = useRef(null);
 
   const drawing = useRef(false);
-
-  const [color] = useState("#ffffff");
-
-  const [brushSize] = useState(4);
 
   useEffect(() => {
 
@@ -35,7 +36,10 @@ export default function Canvas() {
 
     resizeCanvas();
 
-    window.addEventListener("resize", resizeCanvas);
+    window.addEventListener(
+      "resize",
+      resizeCanvas
+    );
 
     return () =>
       window.removeEventListener(
@@ -45,7 +49,22 @@ export default function Canvas() {
 
   }, []);
 
-  function getPosition(e) {
+  useEffect(() => {
+
+    const canvas = canvasRef.current;
+
+    const ctx = canvas.getContext("2d");
+
+    ctx.clearRect(
+      0,
+      0,
+      canvas.width,
+      canvas.height
+    );
+
+  }, [clearTrigger]);
+
+  function getPos(e) {
 
     const rect =
       canvasRef.current.getBoundingClientRect();
@@ -60,14 +79,14 @@ export default function Canvas() {
 
   }
 
-  function startDrawing(e) {
+  function start(e) {
 
     drawing.current = true;
 
     const ctx =
       canvasRef.current.getContext("2d");
 
-    const pos = getPosition(e);
+    const pos = getPos(e);
 
     ctx.beginPath();
 
@@ -82,11 +101,14 @@ export default function Canvas() {
     const ctx =
       canvasRef.current.getContext("2d");
 
-    const pos = getPosition(e);
-
-    ctx.strokeStyle = color;
+    const pos = getPos(e);
 
     ctx.lineWidth = brushSize;
+
+    ctx.strokeStyle =
+      tool === "eraser"
+        ? "#0E0E0E"
+        : color;
 
     ctx.lineTo(pos.x, pos.y);
 
@@ -94,7 +116,7 @@ export default function Canvas() {
 
   }
 
-  function stopDrawing() {
+  function stop() {
 
     drawing.current = false;
 
@@ -108,17 +130,11 @@ export default function Canvas() {
     >
 
       <canvas
-
         ref={canvasRef}
-
-        onMouseDown={startDrawing}
-
+        onMouseDown={start}
         onMouseMove={draw}
-
-        onMouseUp={stopDrawing}
-
-        onMouseLeave={stopDrawing}
-
+        onMouseUp={stop}
+        onMouseLeave={stop}
       />
 
     </div>
