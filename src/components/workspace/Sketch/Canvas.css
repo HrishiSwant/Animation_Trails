@@ -1,0 +1,29 @@
+.canvas{
+
+    flex:1;
+
+    background:#0E0E0E;
+
+    border:1px solid #252525;
+
+    border-radius:18px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    overflow:hidden;
+
+    position:relative;
+
+}
+
+.canvas-message{
+
+    color:#666;
+
+    font-size:26px;
+
+}
