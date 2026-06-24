@@ -5,6 +5,7 @@ import StorageKeys from "../../../core/storage/StorageKeys";
 import BackupManager from "../../../core/backup/BackupManager";
 import RecoveryCenter from "./RecoveryCenter";
 import "./StorageInspector.css";
+import WorkspaceRecoveryCenter from "./WorkspaceRecoveryCenter";
 
 export default function StorageInspector() {
 
@@ -301,6 +302,8 @@ export default function StorageInspector() {
       </div>
 
       <RecoveryCenter />
+
+      <WorkspaceRecoveryCenter />
 
       <button
         className="reset-workspace"
