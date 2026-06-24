@@ -6,11 +6,18 @@ import Notes from "../components/workspace/Notes/Notes";
 
 export default function CreativeLab() {
 
-  const [currentTool, setCurrentTool] = useState(null);
+  const [currentTool, setCurrentTool] = useState("dashboard");
 
   function renderTool() {
 
     switch (currentTool) {
+
+      case "dashboard":
+        return (
+          <WorkspaceDashboard
+            setCurrentTool={setCurrentTool}
+          />
+        );
 
       case "notes":
         return <Notes />;
@@ -18,24 +25,24 @@ export default function CreativeLab() {
       case "sketch":
         return (
           <div className="coming-soon">
-            <h2>🎨 Sketch Board</h2>
-            <p>Coming Soon...</p>
-          </div>
-        );
-
-      case "assets":
-        return (
-          <div className="coming-soon">
-            <h2>📁 Assets</h2>
-            <p>Coming Soon...</p>
+            <h1>🎨 Sketch Board</h1>
+            <p>Coming in Workspace Pack 4</p>
           </div>
         );
 
       case "tasks":
         return (
           <div className="coming-soon">
-            <h2>✅ Tasks</h2>
-            <p>Coming Soon...</p>
+            <h1>✅ Tasks</h1>
+            <p>Coming Soon</p>
+          </div>
+        );
+
+      case "assets":
+        return (
+          <div className="coming-soon">
+            <h1>📁 Assets</h1>
+            <p>Coming Soon</p>
           </div>
         );
 
@@ -54,14 +61,25 @@ export default function CreativeLab() {
 
     <div className="creative-lab">
 
-      {currentTool && (
+      {currentTool !== "dashboard" && (
 
-        <button
-          className="back-button"
-          onClick={() => setCurrentTool(null)}
-        >
-          ← Back to Workspace
-        </button>
+        <div className="toolbar">
+
+          <button
+            className="back-button"
+            onClick={() => setCurrentTool("dashboard")}
+          >
+            ← Workspace
+          </button>
+
+          <span className="tool-title">
+
+            {currentTool.charAt(0).toUpperCase() +
+              currentTool.slice(1)}
+
+          </span>
+
+        </div>
 
       )}
 
