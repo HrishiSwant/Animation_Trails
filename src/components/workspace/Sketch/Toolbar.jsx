@@ -1,15 +1,29 @@
 import "./Toolbar.css";
 
 export default function Toolbar({
+
   tool,
+
   setTool,
+
   color,
+
   setColor,
+
   brushSize,
+
   setBrushSize,
+
   clearCanvas,
+
+  undo,
+
+  redo,
+
 }) {
+
   return (
+
     <div className="toolbar-sketch">
 
       <button
@@ -24,6 +38,14 @@ export default function Toolbar({
         onClick={() => setTool("eraser")}
       >
         🧽 Eraser
+      </button>
+
+      <button onClick={undo}>
+        ↶ Undo
+      </button>
+
+      <button onClick={redo}>
+        ↷ Redo
       </button>
 
       <input
@@ -47,5 +69,7 @@ export default function Toolbar({
       </button>
 
     </div>
+
   );
+
 }
