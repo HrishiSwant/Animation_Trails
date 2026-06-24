@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import StorageManager from "../../../core/storage/StorageManager";
 import StorageKeys from "../../../core/storage/StorageKeys";
 import BackupManager from "../../../core/backup/BackupManager";
-
+import RecoveryCenter from "./RecoveryCenter";
 import "./StorageInspector.css";
 
 export default function StorageInspector() {
@@ -299,6 +299,8 @@ export default function StorageInspector() {
         )}
 
       </div>
+
+      <RecoveryCenter />
 
       <button
         className="reset-workspace"
