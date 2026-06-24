@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./CreativeLab.css";
 
-import WorkspaceDashboard from "../components/workspace/WorkspaceDashboard/WorkspaceDashboard";
+import WorkspaceDashboard from "../components/workspace/Notes/WorkspaceDashboard/WorkspaceDashboard";
 import Notes from "../components/workspace/Notes/Notes";
 
 export default function CreativeLab() {
