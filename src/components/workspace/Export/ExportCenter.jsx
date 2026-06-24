@@ -1,4 +1,5 @@
 import ExportManager from "../../../core/export/ExportManager";
+import "./ExportCenter.css";
 
 export default function ExportCenter() {
 
