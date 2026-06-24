@@ -3,6 +3,7 @@ import "./Canvas.css";
 
 import Engine from "./engine/Engine";
 import InputManager from "./engine/InputManager";
+import SketchRegistry from "../../../core/sketch/SketchRegistry";
 
 export default function Canvas({
   tool,
@@ -41,6 +42,10 @@ export default function Canvas({
     engine.setBrushSize(brushSize);
 
     engineRef.current = engine;
+
+    SketchRegistry.setEngine(
+      engine
+      );
 
     if (onEngineReady) {
       onEngineReady(engine);
