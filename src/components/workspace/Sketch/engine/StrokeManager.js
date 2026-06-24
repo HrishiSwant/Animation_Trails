@@ -56,13 +56,15 @@ export default class StrokeManager {
 
     getStrokes() {
 
-        return this.strokes;
+        return structuredClone(this.strokes);
 
     }
 
     setStrokes(strokes) {
 
-        this.strokes = [...strokes];
+        this.strokes = structuredClone(strokes);
+
+        this.currentStroke = null;
 
     }
 
@@ -71,22 +73,6 @@ export default class StrokeManager {
         this.strokes = [];
 
         this.currentStroke = null;
-
-    }
-
-    removeLastStroke() {
-
-        if (this.strokes.length === 0) return null;
-
-        return this.strokes.pop();
-
-    }
-
-    addStroke(stroke) {
-
-        if (!stroke) return;
-
-        this.strokes.push(stroke);
 
     }
 
