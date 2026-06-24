@@ -18,6 +18,8 @@ export default function Canvas({
   const engineRef = useRef(null);
   const inputRef = useRef(null);
 
+  const hasMountedRef = useRef(false);
+
   /* ===========================
       INITIALIZE ENGINE
   =========================== */
@@ -40,12 +42,14 @@ export default function Canvas({
 
     engineRef.current = engine;
 
-    // Give Sketch.jsx access to the engine
     if (onEngineReady) {
       onEngineReady(engine);
     }
 
-    const input = new InputManager(canvas, engine);
+    const input = new InputManager(
+      canvas,
+      engine
+    );
 
     inputRef.current = input;
 
@@ -116,9 +120,21 @@ export default function Canvas({
 
     if (!engineRef.current) return;
 
+    if (!hasMountedRef.current) {
+
+      hasMountedRef.current = true;
+
+      return;
+
+    }
+
     engineRef.current.clear();
 
   }, [clearTrigger]);
+
+  /* ===========================
+      RENDER
+  =========================== */
 
   return (
 
