@@ -8,11 +8,23 @@ export default function Canvas({
   clearTrigger,
 }) {
 
+  /* ===========================
+      REFERENCES
+  =========================== */
+
   const canvasRef = useRef(null);
 
   const containerRef = useRef(null);
 
   const drawing = useRef(false);
+
+  const strokes = useRef([]);
+
+  const currentStroke = useRef(null);
+
+  /* ===========================
+      INITIALIZE CANVAS
+  =========================== */
 
   useEffect(() => {
 
@@ -32,6 +44,8 @@ export default function Canvas({
 
       ctx.lineJoin = "round";
 
+      renderCanvas();
+
     }
 
     resizeCanvas();
@@ -41,17 +55,40 @@ export default function Canvas({
       resizeCanvas
     );
 
-    return () =>
+    return () => {
+
       window.removeEventListener(
         "resize",
         resizeCanvas
       );
 
+    };
+
   }, []);
+
+  /* ===========================
+      CLEAR CANVAS
+  =========================== */
 
   useEffect(() => {
 
+    strokes.current = [];
+
+    currentStroke.current = null;
+
+    renderCanvas();
+
+  }, [clearTrigger]);
+
+  /* ===========================
+      RENDER ENGINE
+  =========================== */
+
+  function renderCanvas() {
+
     const canvas = canvasRef.current;
+
+    if (!canvas) return;
 
     const ctx = canvas.getContext("2d");
 
@@ -62,9 +99,54 @@ export default function Canvas({
       canvas.height
     );
 
-  }, [clearTrigger]);
+    strokes.current.forEach(drawStroke);
 
-  function getPos(e) {
+    if (currentStroke.current) {
+
+      drawStroke(currentStroke.current);
+
+    }
+
+  }
+
+  function drawStroke(stroke) {
+
+    const canvas = canvasRef.current;
+
+    const ctx = canvas.getContext("2d");
+
+    if (stroke.points.length < 2) return;
+
+    ctx.beginPath();
+
+    ctx.lineWidth = stroke.size;
+
+    ctx.strokeStyle = stroke.color;
+
+    ctx.lineCap = "round";
+
+    ctx.lineJoin = "round";
+
+    ctx.moveTo(
+      stroke.points[0].x,
+      stroke.points[0].y
+    );
+
+    stroke.points.forEach(point => {
+
+      ctx.lineTo(point.x, point.y);
+
+    });
+
+    ctx.stroke();
+
+  }
+
+  /* ===========================
+      POSITION
+  =========================== */
+
+  function getMousePosition(e) {
 
     const rect =
       canvasRef.current.getBoundingClientRect();
@@ -79,48 +161,25 @@ export default function Canvas({
 
   }
 
-  function start(e) {
+  function getTouchPosition(e) {
 
-    drawing.current = true;
+    const rect =
+      canvasRef.current.getBoundingClientRect();
 
-    const ctx =
-      canvasRef.current.getContext("2d");
+    return {
 
-    const pos = getPos(e);
+      x: e.touches[0].clientX - rect.left,
 
-    ctx.beginPath();
+      y: e.touches[0].clientY - rect.top,
 
-    ctx.moveTo(pos.x, pos.y);
-
-  }
-
-  function draw(e) {
-
-    if (!drawing.current) return;
-
-    const ctx =
-      canvasRef.current.getContext("2d");
-
-    const pos = getPos(e);
-
-    ctx.lineWidth = brushSize;
-
-    ctx.strokeStyle =
-      tool === "eraser"
-        ? "#0E0E0E"
-        : color;
-
-    ctx.lineTo(pos.x, pos.y);
-
-    ctx.stroke();
+    };
 
   }
 
-  function stop() {
-
-    drawing.current = false;
-
-  }
+  /* ===========================
+      PART 1B
+      (Drawing Logic)
+  =========================== */
 
   return (
 
@@ -131,10 +190,6 @@ export default function Canvas({
 
       <canvas
         ref={canvasRef}
-        onMouseDown={start}
-        onMouseMove={draw}
-        onMouseUp={stop}
-        onMouseLeave={stop}
       />
 
     </div>
