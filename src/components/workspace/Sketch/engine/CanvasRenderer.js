@@ -111,7 +111,7 @@ export default class CanvasRenderer {
 
     exportPNG(){
 
-        return this.canvas.toDataURL("image/png");
+        return this.canvas.toDataURL("image/jpeg",0.95);
 
     }
 
