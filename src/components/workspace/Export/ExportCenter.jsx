@@ -5,6 +5,9 @@ import ExportManager from "../../../core/export/ExportManager";
 import StorageManager from "../../../core/storage/StorageManager";
 import StorageKeys from "../../../core/storage/StorageKeys";
 
+import SketchRegistry from "../../../core/sketch/SketchRegistry";
+import SketchExportManager from "../../../core/export/SketchExportManager";
+
 export default function ExportCenter() {
 
   function exportWorkspace() {
@@ -22,11 +25,8 @@ export default function ExportCenter() {
       );
 
     ExportManager.exportJSON(
-
       "notes.json",
-
       notes
-
     );
 
   }
@@ -53,11 +53,8 @@ ${note.content}
         .join("\n\n");
 
     ExportManager.exportText(
-
       "notes.txt",
-
       text
-
     );
 
   }
@@ -84,11 +81,84 @@ ${note.content}
         .join("\n\n");
 
     ExportManager.exportMarkdown(
-
       "notes.md",
-
       markdown
+    );
 
+  }
+
+  function exportSketchPNG() {
+
+    const engine =
+      SketchRegistry.getEngine();
+
+    if (!engine) {
+
+      alert(
+        "Open Sketch first and draw something."
+      );
+
+      return;
+
+    }
+
+    const renderer =
+      engine.getRenderer();
+
+    if (!renderer) {
+
+      alert(
+        "Sketch renderer not available."
+      );
+
+      return;
+
+    }
+
+    const png =
+      renderer.exportPNG();
+
+    SketchExportManager.downloadImage(
+      png,
+      "sketch.png"
+    );
+
+  }
+
+  function exportSketchJPG() {
+
+    const engine =
+      SketchRegistry.getEngine();
+
+    if (!engine) {
+
+      alert(
+        "Open Sketch first and draw something."
+      );
+
+      return;
+
+    }
+
+    const renderer =
+      engine.getRenderer();
+
+    if (!renderer) {
+
+      alert(
+        "Sketch renderer not available."
+      );
+
+      return;
+
+    }
+
+    const jpg =
+      renderer.exportJPG();
+
+    SketchExportManager.downloadImage(
+      jpg,
+      "sketch.jpg"
     );
 
   }
@@ -133,6 +203,18 @@ ${note.content}
           onClick={exportNotesMD}
         >
           📘 Notes Markdown
+        </button>
+
+        <button
+          onClick={exportSketchPNG}
+        >
+          🎨 Sketch PNG
+        </button>
+
+        <button
+          onClick={exportSketchJPG}
+        >
+          🖼️ Sketch JPG
         </button>
 
       </div>
