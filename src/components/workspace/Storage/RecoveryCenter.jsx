@@ -21,6 +21,44 @@ export default function RecoveryCenter() {
 
   }, []);
 
+  function getModuleName(key) {
+
+    if (
+      key.includes("notes")
+    ) {
+
+      return "📝 Notes";
+
+    }
+
+    if (
+      key.includes("sketch")
+    ) {
+
+      return "🎨 Sketch";
+
+    }
+
+    if (
+      key.includes("tasks")
+    ) {
+
+      return "✅ Tasks";
+
+    }
+
+    if (
+      key.includes("assets")
+    ) {
+
+      return "📁 Assets";
+
+    }
+
+    return "📦 Workspace";
+
+  }
+
   function deleteSnapshot(id) {
 
     RecoveryManager.deleteSnapshot(id);
@@ -86,7 +124,7 @@ export default function RecoveryCenter() {
 
       <h2>
 
-        Recovery Center
+        Recovery Timeline
 
       </h2>
 
@@ -100,7 +138,7 @@ export default function RecoveryCenter() {
 
       )}
 
-      {snapshots.map(snapshot => (
+      {snapshots.map((snapshot, index) => (
 
         <div
           key={snapshot.id}
@@ -111,11 +149,21 @@ export default function RecoveryCenter() {
 
             <strong>
 
-              {snapshot.data.key}
+              {getModuleName(
+                snapshot.data.key
+              )}
 
             </strong>
 
-            <p>
+            <p className="timeline-version">
+
+              Version #
+
+              {snapshots.length - index}
+
+            </p>
+
+            <p className="timeline-date">
 
               {new Date(
                 snapshot.createdAt
