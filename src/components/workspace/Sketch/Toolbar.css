@@ -2,7 +2,9 @@
 
     display:flex;
 
-    gap:12px;
+    align-items:center;
+
+    gap:15px;
 
     flex-wrap:wrap;
 
@@ -31,5 +33,31 @@
 .toolbar-sketch button:hover{
 
     background:#2563EB;
+
+}
+
+.toolbar-sketch button.active{
+
+    background:#2563EB;
+
+}
+
+.toolbar-sketch input[type="color"]{
+
+    width:45px;
+
+    height:45px;
+
+    border:none;
+
+    background:none;
+
+    cursor:pointer;
+
+}
+
+.toolbar-sketch input[type="range"]{
+
+    width:160px;
 
 }
