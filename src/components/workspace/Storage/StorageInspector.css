@@ -142,3 +142,64 @@
   color: #22c55e;
 
 }
+.recovery-center {
+
+  margin-top: 40px;
+
+}
+
+.recovery-card {
+
+  background: #171717;
+
+  border: 1px solid #262626;
+
+  border-radius: 12px;
+
+  padding: 16px;
+
+  margin-bottom: 12px;
+
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+}
+
+.recovery-actions {
+
+  display: flex;
+
+  gap: 10px;
+
+}
+
+.recovery-actions button {
+
+  padding: 8px 14px;
+
+  border: none;
+
+  border-radius: 8px;
+
+  cursor: pointer;
+
+}
+
+.clear-recovery {
+
+  margin-top: 16px;
+
+  width: 100%;
+
+  padding: 12px;
+
+  border: none;
+
+  border-radius: 10px;
+
+  cursor: pointer;
+
+}
