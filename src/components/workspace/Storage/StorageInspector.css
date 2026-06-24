@@ -203,3 +203,49 @@
   cursor: pointer;
 
 }
+
+.timeline-version {
+
+  color: #cbd5e1;
+
+  font-size: 13px;
+
+  margin-top: 4px;
+
+}
+
+.timeline-date {
+
+  color: #a1a1aa;
+
+  font-size: 12px;
+
+  margin-top: 4px;
+
+}
+
+.recovery-card {
+
+  position: relative;
+
+  overflow: hidden;
+
+}
+
+.recovery-card::before {
+
+  content: "";
+
+  position: absolute;
+
+  left: 0;
+
+  top: 0;
+
+  bottom: 0;
+
+  width: 4px;
+
+  background: #8b5cf6;
+
+}
