@@ -2,6 +2,9 @@ import StrokeManager from "./StrokeManager";
 import CanvasRenderer from "./CanvasRenderer";
 import HistoryManager from "./HistoryManager";
 
+import StorageManager from "../../../../core/storage/StorageManager";
+import StorageKeys from "../../../../core/storage/StorageKeys";
+
 export default class Engine {
 
     constructor(canvas) {
@@ -22,13 +25,11 @@ export default class Engine {
 
     }
 
-    /* ===========================
-       ENGINE
-    =========================== */
-
     initialize() {
 
         this.renderer = new CanvasRenderer(this.canvas);
+
+        this.restore();
 
         this.render();
 
@@ -52,10 +53,6 @@ export default class Engine {
 
     }
 
-    /* ===========================
-       SETTINGS
-    =========================== */
-
     setTool(tool) {
 
         this.tool = tool;
@@ -74,27 +71,17 @@ export default class Engine {
 
     }
 
-    /* ===========================
-       DRAWING
-    =========================== */
-
     startStroke(point) {
 
-        // Save the canvas BEFORE adding a new stroke
         this.history.save(
             this.strokeManager.getStrokes()
         );
 
         this.strokeManager.startStroke(
-
             this.tool,
-
             this.color,
-
             this.size,
-
             point
-
         );
 
         this.render();
@@ -113,13 +100,11 @@ export default class Engine {
 
         this.strokeManager.finishStroke();
 
+        this.save();
+
         this.render();
 
     }
-
-    /* ===========================
-       HISTORY
-    =========================== */
 
     undo() {
 
@@ -130,6 +115,8 @@ export default class Engine {
         if (!previous) return;
 
         this.strokeManager.setStrokes(previous);
+
+        this.save();
 
         this.render();
 
@@ -145,13 +132,11 @@ export default class Engine {
 
         this.strokeManager.setStrokes(next);
 
+        this.save();
+
         this.render();
 
     }
-
-    /* ===========================
-       CANVAS
-    =========================== */
 
     clear() {
 
@@ -160,6 +145,8 @@ export default class Engine {
         );
 
         this.strokeManager.clear();
+
+        this.save();
 
         this.render();
 
@@ -170,18 +157,40 @@ export default class Engine {
         if (!this.renderer) return;
 
         this.renderer.render(
-
             this.strokeManager.getStrokes(),
-
             this.strokeManager.getCurrentStroke()
-
         );
 
     }
 
-    /* ===========================
-       GETTERS
-    =========================== */
+    save() {
+
+        StorageManager.save(
+            StorageKeys.SKETCH,
+            {
+                strokes:
+                    this.strokeManager.getStrokes()
+            }
+        );
+
+    }
+
+    restore() {
+
+        const saved =
+            StorageManager.load(
+                StorageKeys.SKETCH
+            );
+
+        if (!saved) return;
+
+        if (!saved.strokes) return;
+
+        this.strokeManager.setStrokes(
+            saved.strokes
+        );
+
+    }
 
     getStrokeCount() {
 
