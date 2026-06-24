@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
+import HistoryManager from "./HistoryManager";
 import "./Sketch.css";
 
 import Toolbar from "./Toolbar";
@@ -14,8 +15,28 @@ export default function Sketch() {
 
   const [clearTrigger, setClearTrigger] = useState(0);
 
+  // History Manager
+  const history = useRef(new HistoryManager());
+
   function clearCanvas() {
     setClearTrigger((prev) => prev + 1);
+
+    // Clear history when canvas is cleared
+    history.current.clear();
+  }
+
+  // STEP 3 - Placeholder Undo
+  function undo() {
+
+    console.log("Undo");
+
+  }
+
+  // STEP 3 - Placeholder Redo
+  function redo() {
+
+    console.log("Redo");
+
   }
 
   return (
@@ -29,6 +50,8 @@ export default function Sketch() {
         brushSize={brushSize}
         setBrushSize={setBrushSize}
         clearCanvas={clearCanvas}
+        undo={undo}
+        redo={redo}
       />
 
       <Canvas
