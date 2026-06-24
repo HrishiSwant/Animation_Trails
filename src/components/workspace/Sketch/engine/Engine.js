@@ -4,13 +4,13 @@ import HistoryManager from "./HistoryManager";
 
 export default class Engine {
 
-    constructor(canvas){
+    constructor(canvas) {
 
         this.canvas = canvas;
 
         this.strokeManager = new StrokeManager();
 
-        this.renderer = new CanvasRenderer(canvas);
+        this.renderer = null;
 
         this.history = new HistoryManager();
 
@@ -22,69 +22,180 @@ export default class Engine {
 
     }
 
-    setTool(tool){
+    /* ===========================
+       ENGINE LIFECYCLE
+    =========================== */
+
+    initialize() {
+
+        this.renderer = new CanvasRenderer(this.canvas);
+
+        this.render();
+
+    }
+
+    destroy() {
+
+        this.strokeManager.clear();
+
+        this.history.clear();
+
+    }
+
+    resize(width, height) {
+
+        if (!this.renderer) return;
+
+        this.renderer.resize(width, height);
+
+        this.render();
+
+    }
+
+    /* ===========================
+       SETTINGS
+    =========================== */
+
+    setTool(tool) {
 
         this.tool = tool;
 
     }
 
-    setColor(color){
+    setColor(color) {
 
         this.color = color;
 
     }
 
-    setBrushSize(size){
+    setBrushSize(size) {
 
         this.size = size;
 
     }
 
-}
-startStroke(point){
+    /* ===========================
+       DRAWING
+    =========================== */
 
-    this.strokeManager.startStroke(
+    startStroke(point) {
 
-        this.tool,
+        this.strokeManager.startStroke(
 
-        this.color,
+            this.tool,
 
-        this.size,
+            this.color,
 
-        point
+            this.size,
 
-    );
+            point
 
-}
-addPoint(point){
+        );
 
-    this.strokeManager.addPoint(point);
+        this.render();
 
-    this.render();
+    }
 
-}
-finishStroke(){
+    addPoint(point) {
 
-    this.strokeManager.finishStroke();
+        this.strokeManager.addPoint(point);
 
-    this.render();
+        this.render();
 
-}
-render(){
+    }
 
-    this.renderer.render(
+    finishStroke() {
 
-        this.strokeManager.getStrokes(),
+        this.strokeManager.finishStroke();
 
-        this.strokeManager.getCurrentStroke()
+        this.history.save(
 
-    );
+            this.strokeManager.getStrokes()
 
-}
-clear(){
+        );
 
-    this.strokeManager.clear();
+        this.render();
 
-    this.render();
+    }
+
+    /* ===========================
+       HISTORY
+    =========================== */
+
+    undo() {
+
+        const previous = this.history.undo(
+
+            this.strokeManager.getStrokes()
+
+        );
+
+        if (!previous) return;
+
+        this.strokeManager.setStrokes(previous);
+
+        this.render();
+
+    }
+
+    redo() {
+
+        const next = this.history.redo(
+
+            this.strokeManager.getStrokes()
+
+        );
+
+        if (!next) return;
+
+        this.strokeManager.setStrokes(next);
+
+        this.render();
+
+    }
+
+    /* ===========================
+       CANVAS
+    =========================== */
+
+    clear() {
+
+        this.strokeManager.clear();
+
+        this.history.clear();
+
+        this.render();
+
+    }
+
+    render() {
+
+        if (!this.renderer) return;
+
+        this.renderer.render(
+
+            this.strokeManager.getStrokes(),
+
+            this.strokeManager.getCurrentStroke()
+
+        );
+
+    }
+
+    /* ===========================
+       GETTERS
+    =========================== */
+
+    getCanvas() {
+
+        return this.canvas;
+
+    }
+
+    getStrokeCount() {
+
+        return this.strokeManager.strokeCount();
+
+    }
 
 }
