@@ -1,0 +1,35 @@
+.toolbar-sketch{
+
+    display:flex;
+
+    gap:12px;
+
+    flex-wrap:wrap;
+
+    margin-bottom:20px;
+
+}
+
+.toolbar-sketch button{
+
+    background:#181818;
+
+    color:white;
+
+    border:none;
+
+    border-radius:12px;
+
+    padding:12px 18px;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+}
+
+.toolbar-sketch button:hover{
+
+    background:#2563EB;
+
+}
