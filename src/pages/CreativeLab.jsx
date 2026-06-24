@@ -4,6 +4,7 @@ import "./CreativeLab.css";
 import WorkspaceDashboard from "../components/workspace/WorkspaceDashboard/WorkspaceDashboard";
 import Notes from "../components/workspace/Notes/Notes";
 import Sketch from "../components/workspace/Sketch/Sketch";
+import StorageInspector from "../components/workspace/Storage/StorageInspector";
 
 export default function CreativeLab() {
 
@@ -25,6 +26,9 @@ export default function CreativeLab() {
 
       case "sketch":
         return <Sketch />;
+
+      case "storage":
+        return <StorageInspector />;
 
       case "tasks":
         return (
@@ -70,8 +74,10 @@ export default function CreativeLab() {
 
           <span className="tool-title">
 
-            {currentTool.charAt(0).toUpperCase() +
-              currentTool.slice(1)}
+            {currentTool === "storage"
+              ? "Storage Inspector"
+              : currentTool.charAt(0).toUpperCase() +
+                currentTool.slice(1)}
 
           </span>
 
