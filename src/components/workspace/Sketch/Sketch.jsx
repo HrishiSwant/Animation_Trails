@@ -1,10 +1,20 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import "./Sketch.css";
 
 import Toolbar from "./Toolbar";
 import Canvas from "./Canvas";
 
 export default function Sketch() {
+
+  /* ===========================
+      ENGINE
+  =========================== */
+
+  const engineRef = useRef(null);
+
+  /* ===========================
+      DRAWING SETTINGS
+  =========================== */
 
   const [tool, setTool] = useState("pencil");
 
@@ -14,25 +24,48 @@ export default function Sketch() {
 
   const [clearTrigger, setClearTrigger] = useState(0);
 
-  function clearCanvas() {
-    setClearTrigger((prev) => prev + 1);
+  /* ===========================
+      ENGINE READY
+  =========================== */
+
+  function handleEngineReady(engine) {
+
+    engineRef.current = engine;
+
   }
 
-  // STEP 3 - Placeholder Undo
+  /* ===========================
+      ACTIONS
+  =========================== */
+
+  function clearCanvas() {
+
+    setClearTrigger(prev => prev + 1);
+
+  }
+
   function undo() {
 
-    console.log("Undo");
+    if (!engineRef.current) return;
+
+    engineRef.current.undo();
 
   }
 
-  // STEP 3 - Placeholder Redo
   function redo() {
 
-    console.log("Redo");
+    if (!engineRef.current) return;
+
+    engineRef.current.redo();
 
   }
 
+  /* ===========================
+      UI
+  =========================== */
+
   return (
+
     <div className="sketch">
 
       <Toolbar
@@ -52,8 +85,11 @@ export default function Sketch() {
         color={color}
         brushSize={brushSize}
         clearTrigger={clearTrigger}
+        onEngineReady={handleEngineReady}
       />
 
     </div>
+
   );
+
 }
