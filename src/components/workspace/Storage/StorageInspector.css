@@ -80,3 +80,65 @@
   cursor: pointer;
 
 }
+
+.backup-section {
+
+  margin-top: 40px;
+
+  padding: 20px;
+
+  border: 1px solid #262626;
+
+  border-radius: 16px;
+
+  background: #171717;
+
+}
+
+.backup-section h2 {
+
+  margin-bottom: 16px;
+
+}
+
+.backup-section button {
+
+  margin-right: 12px;
+
+  padding: 10px 16px;
+
+  border: none;
+
+  border-radius: 10px;
+
+  cursor: pointer;
+
+}
+
+.upload-label {
+
+  display: inline-block;
+
+  cursor: pointer;
+
+  padding: 10px 16px;
+
+  border-radius: 10px;
+
+  background: #262626;
+
+}
+
+.upload-label input {
+
+  display: none;
+
+}
+
+.backup-status {
+
+  margin-top: 16px;
+
+  color: #22c55e;
+
+}
