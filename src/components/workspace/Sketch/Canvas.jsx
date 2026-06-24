@@ -1,6 +1,9 @@
 import { useEffect, useRef } from "react";
 import "./Canvas.css";
 
+import Engine from "./engine/Engine";
+import InputManager from "./engine/InputManager";
+
 export default function Canvas({
   tool,
   color,
@@ -8,22 +11,14 @@ export default function Canvas({
   clearTrigger,
 }) {
 
-  /* ===========================
-      REFERENCES
-  =========================== */
-
+  const containerRef = useRef(null);
   const canvasRef = useRef(null);
 
-  const containerRef = useRef(null);
-
-  const drawing = useRef(false);
-
-  const strokes = useRef([]);
-
-  const currentStroke = useRef(null);
+  const engineRef = useRef(null);
+  const inputRef = useRef(null);
 
   /* ===========================
-      INITIALIZE CANVAS
+      INITIALIZE ENGINE
   =========================== */
 
   useEffect(() => {
@@ -32,19 +27,30 @@ export default function Canvas({
 
     const container = containerRef.current;
 
-    const ctx = canvas.getContext("2d");
+    const engine = new Engine(canvas);
+
+    engine.initialize();
+
+    engine.setTool(tool);
+    engine.setColor(color);
+    engine.setBrushSize(brushSize);
+
+    engineRef.current = engine;
+
+    inputRef.current = new InputManager(
+      canvas,
+      engine
+    );
 
     function resizeCanvas() {
 
-      canvas.width = container.clientWidth;
+      engine.resize(
 
-      canvas.height = container.clientHeight;
+        container.clientWidth,
 
-      ctx.lineCap = "round";
+        container.clientHeight
 
-      ctx.lineJoin = "round";
-
-      renderCanvas();
+      );
 
     }
 
@@ -62,124 +68,53 @@ export default function Canvas({
         resizeCanvas
       );
 
+      inputRef.current?.destroy();
+
+      engine.destroy();
+
     };
 
   }, []);
 
   /* ===========================
-      CLEAR CANVAS
+      TOOL CHANGES
   =========================== */
 
   useEffect(() => {
 
-    strokes.current = [];
+    if (!engineRef.current) return;
 
-    currentStroke.current = null;
+    engineRef.current.setTool(tool);
 
-    renderCanvas();
+  }, [tool]);
+
+  useEffect(() => {
+
+    if (!engineRef.current) return;
+
+    engineRef.current.setColor(color);
+
+  }, [color]);
+
+  useEffect(() => {
+
+    if (!engineRef.current) return;
+
+    engineRef.current.setBrushSize(brushSize);
+
+  }, [brushSize]);
+
+  /* ===========================
+      CLEAR
+  =========================== */
+
+  useEffect(() => {
+
+    if (!engineRef.current) return;
+
+    engineRef.current.clear();
 
   }, [clearTrigger]);
-
-  /* ===========================
-      RENDER ENGINE
-  =========================== */
-
-  function renderCanvas() {
-
-    const canvas = canvasRef.current;
-
-    if (!canvas) return;
-
-    const ctx = canvas.getContext("2d");
-
-    ctx.clearRect(
-      0,
-      0,
-      canvas.width,
-      canvas.height
-    );
-
-    strokes.current.forEach(drawStroke);
-
-    if (currentStroke.current) {
-
-      drawStroke(currentStroke.current);
-
-    }
-
-  }
-
-  function drawStroke(stroke) {
-
-    const canvas = canvasRef.current;
-
-    const ctx = canvas.getContext("2d");
-
-    if (stroke.points.length < 2) return;
-
-    ctx.beginPath();
-
-    ctx.lineWidth = stroke.size;
-
-    ctx.strokeStyle = stroke.color;
-
-    ctx.lineCap = "round";
-
-    ctx.lineJoin = "round";
-
-    ctx.moveTo(
-      stroke.points[0].x,
-      stroke.points[0].y
-    );
-
-    stroke.points.forEach(point => {
-
-      ctx.lineTo(point.x, point.y);
-
-    });
-
-    ctx.stroke();
-
-  }
-
-  /* ===========================
-      POSITION
-  =========================== */
-
-  function getMousePosition(e) {
-
-    const rect =
-      canvasRef.current.getBoundingClientRect();
-
-    return {
-
-      x: e.clientX - rect.left,
-
-      y: e.clientY - rect.top,
-
-    };
-
-  }
-
-  function getTouchPosition(e) {
-
-    const rect =
-      canvasRef.current.getBoundingClientRect();
-
-    return {
-
-      x: e.touches[0].clientX - rect.left,
-
-      y: e.touches[0].clientY - rect.top,
-
-    };
-
-  }
-
-  /* ===========================
-      PART 1B
-      (Drawing Logic)
-  =========================== */
 
   return (
 
