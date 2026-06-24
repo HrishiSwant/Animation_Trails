@@ -3,6 +3,7 @@ import "./CreativeLab.css";
 
 import WorkspaceDashboard from "../components/workspace/WorkspaceDashboard/WorkspaceDashboard";
 import Notes from "../components/workspace/Notes/Notes";
+import Sketch from "../components/workspace/Sketch/Sketch";
 
 export default function CreativeLab() {
 
@@ -23,12 +24,7 @@ export default function CreativeLab() {
         return <Notes />;
 
       case "sketch":
-        return (
-          <div className="coming-soon">
-            <h1>🎨 Sketch Board</h1>
-            <p>Coming in Workspace Pack 4</p>
-          </div>
-        );
+        return <Sketch />;
 
       case "tasks":
         return (
