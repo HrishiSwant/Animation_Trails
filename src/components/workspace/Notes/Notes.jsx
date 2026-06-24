@@ -13,9 +13,7 @@ export default function Notes() {
       StorageKeys.NOTES
       );
 
-    return saved
-      ? JSON.parse(saved)
-      : [
+    return saved || [
           {
             id: Date.now(),
             title: "Welcome",
