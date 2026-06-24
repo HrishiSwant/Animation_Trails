@@ -30,21 +30,26 @@ export default class CanvasRenderer {
 
     render(strokes,currentStroke){
 
-        this.clear();
+        console.log(
+        "Renderer:",
+        strokes.length
+    );
 
-        strokes.forEach(stroke=>{
+    this.clear();
 
-            this.drawStroke(stroke);
+    strokes.forEach(stroke=>{
 
-        });
+        this.drawStroke(stroke);
 
-        if(currentStroke){
+    });
 
-            this.drawStroke(currentStroke);
+    if(currentStroke){
 
-        }
+        this.drawStroke(currentStroke);
 
     }
+
+}
 
     drawStroke(stroke){
 
