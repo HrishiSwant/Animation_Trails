@@ -1,0 +1,27 @@
+.export-center {
+
+  padding: 24px;
+
+}
+
+.export-grid {
+
+  display: flex;
+
+  gap: 16px;
+
+  margin-top: 20px;
+
+}
+
+.export-grid button {
+
+  padding: 14px 20px;
+
+  border: none;
+
+  border-radius: 12px;
+
+  cursor: pointer;
+
+}
