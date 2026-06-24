@@ -96,6 +96,12 @@ export default class CanvasRenderer {
 
         this.canvas.height=height;
 
+        this.ctx = this.canvas.getContext("2d");
+
+        this.ctx.lineCap = "round";
+
+        this.ctx.lineJoin = "round";
+
     }
 
     exportPNG(){
