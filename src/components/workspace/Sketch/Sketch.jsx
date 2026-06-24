@@ -1,20 +1,43 @@
+import { useState } from "react";
 import "./Sketch.css";
 
 import Toolbar from "./Toolbar";
 import Canvas from "./Canvas";
 
-export default function Sketch(){
+export default function Sketch() {
 
-    return(
+  const [tool, setTool] = useState("pencil");
 
-        <div className="sketch">
+  const [color, setColor] = useState("#ffffff");
 
-            <Toolbar/>
+  const [brushSize, setBrushSize] = useState(4);
 
-            <Canvas/>
+  const [clearTrigger, setClearTrigger] = useState(0);
 
-        </div>
+  function clearCanvas() {
+    setClearTrigger((prev) => prev + 1);
+  }
 
-    );
+  return (
+    <div className="sketch">
 
+      <Toolbar
+        tool={tool}
+        setTool={setTool}
+        color={color}
+        setColor={setColor}
+        brushSize={brushSize}
+        setBrushSize={setBrushSize}
+        clearCanvas={clearCanvas}
+      />
+
+      <Canvas
+        tool={tool}
+        color={color}
+        brushSize={brushSize}
+        clearTrigger={clearTrigger}
+      />
+
+    </div>
+  );
 }
