@@ -41,3 +41,50 @@ export default class Engine {
     }
 
 }
+startStroke(point){
+
+    this.strokeManager.startStroke(
+
+        this.tool,
+
+        this.color,
+
+        this.size,
+
+        point
+
+    );
+
+}
+addPoint(point){
+
+    this.strokeManager.addPoint(point);
+
+    this.render();
+
+}
+finishStroke(){
+
+    this.strokeManager.finishStroke();
+
+    this.render();
+
+}
+render(){
+
+    this.renderer.render(
+
+        this.strokeManager.getStrokes(),
+
+        this.strokeManager.getCurrentStroke()
+
+    );
+
+}
+clear(){
+
+    this.strokeManager.clear();
+
+    this.render();
+
+}
