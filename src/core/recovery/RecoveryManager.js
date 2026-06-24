@@ -1,11 +1,61 @@
 const RECOVERY_KEY =
   "hrishi-studio:recovery";
 
+const RECOVERY_META_KEY =
+  "hrishi-studio:recovery-meta";
+
 const MAX_RECOVERY_POINTS = 10;
+
+const SNAPSHOT_INTERVAL =
+  30000;
 
 export default class RecoveryManager {
 
+  static shouldCreateSnapshot() {
+
+    try {
+
+      const raw =
+        localStorage.getItem(
+          RECOVERY_META_KEY
+        );
+
+      if (!raw) {
+
+        return true;
+
+      }
+
+      const meta =
+        JSON.parse(raw);
+
+      const now = Date.now();
+
+      return (
+
+        now - meta.lastSnapshot >
+
+        SNAPSHOT_INTERVAL
+
+      );
+
+    } catch {
+
+      return true;
+
+    }
+
+  }
+
   static createSnapshot(data) {
+
+    if (
+      !this.shouldCreateSnapshot()
+    ) {
+
+      return false;
+
+    }
 
     try {
 
@@ -37,7 +87,22 @@ export default class RecoveryManager {
 
         RECOVERY_KEY,
 
-        JSON.stringify(snapshots)
+        JSON.stringify(
+          snapshots
+        )
+
+      );
+
+      localStorage.setItem(
+
+        RECOVERY_META_KEY,
+
+        JSON.stringify({
+
+          lastSnapshot:
+            Date.now(),
+
+        })
 
       );
 
@@ -124,6 +189,10 @@ export default class RecoveryManager {
 
     localStorage.removeItem(
       RECOVERY_KEY
+    );
+
+    localStorage.removeItem(
+      RECOVERY_META_KEY
     );
 
   }
