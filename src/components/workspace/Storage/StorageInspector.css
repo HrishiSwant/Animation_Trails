@@ -249,3 +249,51 @@
   background: #8b5cf6;
 
 }
+
+.workspace-recovery-center {
+
+  margin-top: 40px;
+
+}
+
+.workspace-snapshot-card {
+
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  padding: 16px;
+
+  margin-top: 12px;
+
+  border-radius: 12px;
+
+  background: #171717;
+
+  border: 1px solid #262626;
+
+}
+
+.workspace-snapshot-card p {
+
+  color: #a1a1aa;
+
+  margin-top: 4px;
+
+}
+
+.workspace-snapshot-card button {
+
+  margin-left: 10px;
+
+}
+
+.clear-workspace-history {
+
+  margin-top: 16px;
+
+  width: 100%;
+
+}
