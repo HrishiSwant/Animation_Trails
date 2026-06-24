@@ -175,21 +175,28 @@ export default class Engine {
 
     restore() {
 
-        const saved =
-            StorageManager.load(
-                StorageKeys.SKETCH
-            );
-
-        if (!saved) return;
-
-        if (!saved.strokes) return;
-
-        this.strokeManager.setStrokes(
-            saved.strokes
+    const saved =
+        StorageManager.load(
+            StorageKeys.SKETCH
         );
 
-    }
+    console.log("RESTORE DATA:", saved);
 
+    if (!saved) return;
+
+    if (!saved.strokes) return;
+
+    console.log(
+        "RESTORING",
+        saved.strokes.length,
+        "strokes"
+    );
+
+    this.strokeManager.setStrokes(
+        saved.strokes
+    );
+
+}
     getStrokeCount() {
 
         return this.strokeManager.strokeCount();
