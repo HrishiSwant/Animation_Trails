@@ -1,5 +1,9 @@
 import "./CommandItem.css";
 
+import FavoriteButton from "./FavoriteButton";
+
+import useFavoriteCommands from "../../../hooks/workspace/useFavoriteCommands";
+
 export default function CommandItem({
 
   command,
@@ -9,6 +13,14 @@ export default function CommandItem({
   onClick,
 
 }) {
+
+  const {
+
+    isFavorite,
+
+    toggleFavorite,
+
+  } = useFavoriteCommands();
 
   return (
 
@@ -27,6 +39,30 @@ export default function CommandItem({
       onClick={onClick}
 
     >
+
+      <FavoriteButton
+
+        favorite={
+
+          isFavorite(
+
+            command.id
+
+          )
+
+        }
+
+        onToggle={() =>
+
+          toggleFavorite(
+
+            command.id
+
+          )
+
+        }
+
+      />
 
       <div className="command-icon">
 
