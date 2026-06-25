@@ -1,1 +1,119 @@
+.asset-card {
 
+  background: #171717;
+
+  border: 1px solid #2a2a2a;
+
+  border-radius: 16px;
+
+  overflow: hidden;
+
+  transition: 0.25s;
+
+}
+
+.asset-card:hover {
+
+  transform: translateY(-4px);
+
+  border-color: #3b82f6;
+
+}
+
+.asset-preview {
+
+  height: 180px;
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  background: #0f0f0f;
+
+}
+
+.asset-image {
+
+  width: 100%;
+
+  height: 100%;
+
+  object-fit: cover;
+
+}
+
+.asset-icon {
+
+  font-size: 30px;
+
+  color: #d1d5db;
+
+}
+
+.asset-card h3 {
+
+  padding: 12px;
+
+  margin: 0;
+
+  font-size: 16px;
+
+  overflow: hidden;
+
+  text-overflow: ellipsis;
+
+  white-space: nowrap;
+
+}
+
+.asset-card p {
+
+  padding: 0 12px;
+
+  color: #9ca3af;
+
+  font-size: 13px;
+
+}
+
+.asset-card button {
+
+  margin: 12px;
+
+  width: calc(100% - 24px);
+
+}
+
+.asset-content {
+
+  padding: 14px;
+
+}
+
+.asset-content p {
+
+  margin: 6px 0;
+
+  color: #9ca3af;
+
+  font-size: 13px;
+
+}
+
+.asset-actions {
+
+  display: flex;
+
+  gap: 10px;
+
+  margin-top: 14px;
+
+}
+
+.asset-actions button {
+
+  flex: 1;
+
+}
