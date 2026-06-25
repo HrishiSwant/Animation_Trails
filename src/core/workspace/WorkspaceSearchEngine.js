@@ -1,57 +1,103 @@
+import SearchIndex from "./SearchIndex";
+import WorkspaceSearchScorer from "./WorkspaceSearchScorer";
+
 export default class WorkspaceSearchEngine {
 
-  static search(
+  /*
+  ==========================
+      SEARCH
+  ==========================
+  */
 
-    items,
+  static search({
 
-    query
+    providers = [],
 
-  ) {
+    query = "",
 
-    if (!query) {
+  }) {
+
+    if (
+
+      !query.trim()
+
+    ) {
 
       return [];
 
     }
 
-    const search =
-      query.toLowerCase();
+    /*
+    ==========================
+        BUILD INDEX
+    ==========================
+    */
 
-    return items.filter(item => {
+    const index =
+      SearchIndex.create();
 
-      const title =
+    providers.forEach(
 
-        item.title ||
+      provider => {
 
-        item.name ||
+        const entries =
 
-        "";
+          provider.getEntries();
 
-      const content =
+        SearchIndex.add(
 
-        item.content ||
+          index,
 
-        "";
+          entries
 
-      return (
+        );
 
-        title
+      }
 
-          .toLowerCase()
+    );
 
-          .includes(search)
+    /*
+    ==========================
+        SCORE RESULTS
+    ==========================
+    */
 
-        ||
+    const results =
+      index
 
-        content
+        .map(item => ({
 
-          .toLowerCase()
+          ...item,
 
-          .includes(search)
+          score:
 
-      );
+            WorkspaceSearchScorer.score(
 
-    });
+              item,
+
+              query
+
+            ),
+
+        }))
+
+        .filter(item =>
+
+          item.score > 0
+
+        )
+
+        .sort(
+
+          (a, b) =>
+
+            b.score -
+
+            a.score
+
+        );
+
+    return results;
 
   }
 
