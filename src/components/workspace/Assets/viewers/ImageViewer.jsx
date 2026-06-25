@@ -1,74 +1,268 @@
+import { useState } from "react";
+
 export default function ImageViewer({
 
   asset,
 
-  zoom,
-
-  position,
-
-  dragging,
-
-  wheelZoom,
-
-  mouseDown,
-
-  mouseMove,
-
-  mouseUp,
-
-  doubleClick,
-
 }) {
+
+  const [zoom, setZoom] =
+    useState(1);
+
+  const [position, setPosition] =
+    useState({
+
+      x: 0,
+
+      y: 0,
+
+    });
+
+  const [dragging, setDragging] =
+    useState(false);
+
+  const [startPoint, setStartPoint] =
+    useState({
+
+      x: 0,
+
+      y: 0,
+
+    });
+
+  function wheelZoom(event) {
+
+    event.preventDefault();
+
+    const delta =
+
+      event.deltaY < 0
+
+        ? 0.15
+
+        : -0.15;
+
+    setZoom(previous =>
+
+      Math.max(
+
+        0.25,
+
+        Math.min(
+
+          6,
+
+          previous + delta
+
+        )
+
+      )
+
+    );
+
+  }
+
+  function mouseDown(event) {
+
+    setDragging(true);
+
+    setStartPoint({
+
+      x:
+
+        event.clientX -
+
+        position.x,
+
+      y:
+
+        event.clientY -
+
+        position.y,
+
+    });
+
+  }
+
+  function mouseMove(event) {
+
+    if (!dragging) return;
+
+    setPosition({
+
+      x:
+
+        event.clientX -
+
+        startPoint.x,
+
+      y:
+
+        event.clientY -
+
+        startPoint.y,
+
+    });
+
+  }
+
+  function mouseUp() {
+
+    setDragging(false);
+
+  }
+
+  function resetView() {
+
+    setZoom(1);
+
+    setPosition({
+
+      x: 0,
+
+      y: 0,
+
+    });
+
+  }
+
+  function doubleClick() {
+
+    if (zoom === 1) {
+
+      setZoom(2);
+
+    }
+
+    else {
+
+      resetView();
+
+    }
+
+  }
 
   return (
 
-    <img
+    <div
+      className="image-viewer"
+    >
 
-      src={asset.data}
+      <div
+        className="image-toolbar"
+      >
 
-      alt={asset.name}
+        <button
+          onClick={() =>
+            setZoom(z =>
+              Math.min(
+                6,
+                z + 0.25
+              )
+            )
+          }
+        >
 
-      className="viewer-image"
+          ＋
 
-      draggable={false}
+        </button>
 
-      onWheel={wheelZoom}
+        <button
+          onClick={() =>
+            setZoom(z =>
+              Math.max(
+                0.25,
+                z - 0.25
+              )
+            )
+          }
+        >
 
-      onMouseDown={mouseDown}
+          －
 
-      onMouseMove={mouseMove}
+        </button>
 
-      onMouseUp={mouseUp}
+        <button
+          onClick={resetView}
+        >
 
-      onMouseLeave={mouseUp}
+          Reset
 
-      onDoubleClick={doubleClick}
+        </button>
 
-      style={{
+        <div
+          className="zoom-indicator"
+        >
 
-        transform:
+          {
 
-          `translate(
+            Math.round(
 
-            ${position.x}px,
+              zoom * 100
 
-            ${position.y}px
+            )
 
-          )
+          }%
 
-          scale(${zoom})`,
+        </div>
 
-        cursor:
+      </div>
 
-          dragging
+      <div
+        className="image-stage"
+      >
 
-            ? "grabbing"
+        <img
 
-            : "grab",
+          src={asset.data}
 
-      }}
+          alt={asset.name}
 
-    />
+          draggable={false}
+
+          onWheel={wheelZoom}
+
+          onMouseDown={mouseDown}
+
+          onMouseMove={mouseMove}
+
+          onMouseUp={mouseUp}
+
+          onMouseLeave={mouseUp}
+
+          onDoubleClick={doubleClick}
+
+          className="viewer-image"
+
+          style={{
+
+            transform:
+
+              `translate(
+
+                ${position.x}px,
+
+                ${position.y}px
+
+              )
+
+              scale(${zoom})`,
+
+            cursor:
+
+              dragging
+
+                ? "grabbing"
+
+                : "grab",
+
+          }}
+
+        />
+
+      </div>
+
+    </div>
 
   );
 
