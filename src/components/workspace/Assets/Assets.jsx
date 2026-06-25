@@ -2,10 +2,9 @@ import { useState } from "react";
 
 import "./Assets.css";
 
-import AssetManager from "../../../core/assets/AssetManager";
-
 import useAssets from "../../../hooks/assets/useAssets";
 import useAssetUpload from "../../../hooks/assets/useAssetUpload";
+import useAssetFilters from "../../../hooks/assets/useAssetFilters";
 
 import AssetCard from "./AssetCard";
 import AssetViewer from "./AssetViewer";
@@ -15,14 +14,11 @@ export default function Assets() {
   const [selectedIndex, setSelectedIndex] =
     useState(-1);
 
-  const [search, setSearch] =
-    useState("");
-
-  const [filter, setFilter] =
-    useState("all");
-
-  const [sort, setSort] =
-    useState("newest");
+  /*
+  ==========================
+      ASSET STATE
+  ==========================
+  */
 
   const {
 
@@ -36,6 +32,12 @@ export default function Assets() {
 
   } = useAssets();
 
+  /*
+  ==========================
+      UPLOAD
+  ==========================
+  */
+
   const {
 
     upload,
@@ -45,6 +47,40 @@ export default function Assets() {
     refreshAssets,
 
   });
+
+  /*
+  ==========================
+      SEARCH / FILTER / SORT
+  ==========================
+  */
+
+  const {
+
+    search,
+
+    setSearch,
+
+    filter,
+
+    setFilter,
+
+    sort,
+
+    setSort,
+
+    filteredAssets,
+
+  } = useAssetFilters(
+
+    assets
+
+  );
+
+  /*
+  ==========================
+      DELETE
+  ==========================
+  */
 
   function handleDelete(id) {
 
@@ -64,18 +100,11 @@ export default function Assets() {
 
   }
 
-  const filteredAssets =
-    AssetManager.filterAssets(
-
-      assets,
-
-      search,
-
-      filter,
-
-      sort
-
-    );
+  /*
+  ==========================
+      UI
+  ==========================
+  */
 
   return (
 
@@ -108,7 +137,9 @@ export default function Assets() {
           onChange={(e) =>
 
             setSearch(
+
               e.target.value
+
             )
 
           }
@@ -122,7 +153,9 @@ export default function Assets() {
           onChange={(e) =>
 
             setFilter(
+
               e.target.value
+
             )
 
           }
@@ -174,7 +207,9 @@ export default function Assets() {
           onChange={(e) =>
 
             setSort(
+
               e.target.value
+
             )
 
           }
