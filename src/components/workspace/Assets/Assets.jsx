@@ -1,124 +1,14 @@
 import "./Assets.css";
 
-import useAssets from "../../../hooks/assets/useAssets";
-import useAssetUpload from "../../../hooks/assets/useAssetUpload";
-import useAssetFilters from "../../../hooks/assets/useAssetFilters";
-import useGallery from "../../../hooks/assets/useGallery";
+import useAssetsWorkspace from "../../../hooks/assets/useAssetsWorkspace";
 
 import AssetCard from "./AssetCard";
 import AssetViewer from "./AssetViewer";
 
 export default function Assets() {
 
-  /*
-  ==========================
-      ASSET STATE
-  ==========================
-  */
-
-  const {
-
-    assets,
-
-    refreshAssets,
-
-    deleteAsset,
-
-    toggleFavorite,
-
-  } = useAssets();
-
-  /*
-  ==========================
-      UPLOAD
-  ==========================
-  */
-
-  const {
-
-    upload,
-
-  } = useAssetUpload({
-
-    refreshAssets,
-
-  });
-
-  /*
-  ==========================
-      SEARCH / FILTER / SORT
-  ==========================
-  */
-
-  const {
-
-    search,
-
-    setSearch,
-
-    filter,
-
-    setFilter,
-
-    sort,
-
-    setSort,
-
-    filteredAssets,
-
-  } = useAssetFilters(
-
-    assets
-
-  );
-
-  /*
-  ==========================
-      GALLERY
-  ==========================
-  */
-
-  const {
-
-    currentIndex,
-
-    open,
-
-    close,
-
-    navigate,
-
-  } = useGallery();
-
-  /*
-  ==========================
-      DELETE
-  ==========================
-  */
-
-  function handleDelete(id) {
-
-    deleteAsset(id);
-
-    if (
-
-      currentIndex !== -1 &&
-
-      filteredAssets[currentIndex]?.id === id
-
-    ) {
-
-      close();
-
-    }
-
-  }
-
-  /*
-  ==========================
-      UI
-  ==========================
-  */
+  const workspace =
+    useAssetsWorkspace();
 
   return (
 
@@ -134,7 +24,7 @@ export default function Assets() {
 
         type="file"
 
-        onChange={upload}
+        onChange={workspace.upload}
 
       />
 
@@ -146,11 +36,11 @@ export default function Assets() {
 
           placeholder="🔍 Search assets..."
 
-          value={search}
+          value={workspace.search}
 
-          onChange={(e) =>
+          onChange={(e)=>
 
-            setSearch(
+            workspace.setSearch(
 
               e.target.value
 
@@ -162,11 +52,11 @@ export default function Assets() {
 
         <select
 
-          value={filter}
+          value={workspace.filter}
 
-          onChange={(e) =>
+          onChange={(e)=>
 
-            setFilter(
+            workspace.setFilter(
 
               e.target.value
 
@@ -216,11 +106,11 @@ export default function Assets() {
 
         <select
 
-          value={sort}
+          value={workspace.sort}
 
-          onChange={(e) =>
+          onChange={(e)=>
 
-            setSort(
+            workspace.setSort(
 
               e.target.value
 
@@ -258,63 +148,79 @@ export default function Assets() {
 
       </div>
 
-      {filteredAssets.length === 0 ? (
+      {
 
-        <div className="empty-assets">
+        workspace.filteredAssets.length === 0
 
-          <h3>
+        ? (
 
-            No assets found
+          <div className="empty-assets">
 
-          </h3>
+            <h3>
 
-          <p>
+              No assets found
 
-            Upload a file or adjust your search or filter.
+            </h3>
 
-          </p>
+            <p>
 
-        </div>
+              Upload a file or adjust your search/filter.
 
-      ) : (
+            </p>
 
-        <div className="asset-grid">
+          </div>
 
-          {filteredAssets.map((asset, index) => (
+        )
 
-            <AssetCard
+        : (
 
-              key={asset.id}
+          <div className="asset-grid">
 
-              asset={asset}
+            {
 
-              onDelete={handleDelete}
+              workspace.filteredAssets.map(
 
-              onFavorite={toggleFavorite}
+                (asset,index)=>(
 
-              onOpen={() =>
+                  <AssetCard
 
-                open(index)
+                    key={asset.id}
 
-              }
+                    asset={asset}
 
-            />
+                    onDelete={workspace.handleDelete}
 
-          ))}
+                    onFavorite={workspace.toggleFavorite}
 
-        </div>
+                    onOpen={()=>
 
-      )}
+                      workspace.open(index)
+
+                    }
+
+                  />
+
+                )
+
+              )
+
+            }
+
+          </div>
+
+        )
+
+      }
 
       <AssetViewer
 
-        assets={filteredAssets}
+        assets={workspace.filteredAssets}
 
-        currentIndex={currentIndex}
+        currentIndex={workspace.currentIndex}
 
-        onNavigate={navigate}
+        onNavigate={workspace.navigate}
 
-        onClose={close}
+        onClose={workspace.close}
 
       />
 
