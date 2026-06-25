@@ -1,4 +1,12 @@
-import { useMemo, useState } from "react";
+import {
+
+  useEffect,
+
+  useMemo,
+
+  useState,
+
+} from "react";
 
 import CommandRegistry from "../../core/workspace/CommandRegistry";
 
@@ -12,6 +20,9 @@ export default function useCommandPalette({
 
   const [query, setQuery] =
     useState("");
+
+  const [selectedIndex, setSelectedIndex] =
+    useState(0);
 
   const commands =
     useMemo(() => {
@@ -48,7 +59,23 @@ export default function useCommandPalette({
 
     ]);
 
+  useEffect(() => {
+
+    setSelectedIndex(0);
+
+  }, [
+
+    query,
+
+  ]);
+
   function execute(command) {
+
+    if (!command) {
+
+      return;
+
+    }
 
     onCommand(
 
@@ -58,6 +85,8 @@ export default function useCommandPalette({
 
     setQuery("");
 
+    setSelectedIndex(0);
+
     onClose();
 
   }
@@ -65,6 +94,8 @@ export default function useCommandPalette({
   function clearSearch() {
 
     setQuery("");
+
+    setSelectedIndex(0);
 
   }
 
@@ -79,6 +110,10 @@ export default function useCommandPalette({
     execute,
 
     clearSearch,
+
+    selectedIndex,
+
+    setSelectedIndex,
 
   };
 
