@@ -72,6 +72,18 @@ export default function Assets() {
 
   }
 
+  function toggleFavorite(id) {
+
+  AssetManager.toggleFavorite(
+    id
+  );
+
+  setAssets(
+    AssetManager.getAssets()
+  );
+
+}
+
   return (
 
     <div className="assets">
@@ -100,9 +112,9 @@ export default function Assets() {
 
             asset={asset}
 
-            onDelete={
-              deleteAsset
-            }
+            onDelete={deleteAsset}
+
+            onFavorite={toggleFavorite}
 
           />
 
