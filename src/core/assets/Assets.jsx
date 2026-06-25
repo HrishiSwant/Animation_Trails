@@ -1,11 +1,15 @@
 import { useState } from "react";
 
 import "./Assets.css";
+import AssetViewer from "./AssetViewer";
 
 import AssetManager from "../../../core/assets/AssetManager";
 import AssetCard from "./AssetCard";
 
 export default function Assets() {
+
+  const [selectedAsset,setSelectedAsset]=
+    useState(null);
 
   const [assets, setAssets] =
     useState(
@@ -266,7 +270,17 @@ export default function Assets() {
 
               onFavorite={toggleFavorite}
 
+              onOpen={setSelectedAsset}
+
             />
+
+          <AssetViewer
+
+          asset={selectedAsset}
+
+          onClose={()=>setSelectedAsset(null)}
+
+          />
 
           ))}
 
