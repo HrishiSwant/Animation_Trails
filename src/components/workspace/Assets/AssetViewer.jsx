@@ -11,7 +11,9 @@ import UnknownViewer from "./viewers/UnknownViewer";
 
 export default function AssetViewer({
 
-  asset,
+  assets,
+
+  currentIndex,
 
   onClose,
 
@@ -20,11 +22,22 @@ export default function AssetViewer({
   const [zoom, setZoom] =
     useState(1);
 
-  if (!asset) {
+  if (
+
+    currentIndex === -1 ||
+
+    !assets ||
+
+    assets.length === 0
+
+  ) {
 
     return null;
 
   }
+
+  const asset =
+    assets[currentIndex];
 
   function renderPreview() {
 
@@ -257,7 +270,7 @@ export default function AssetViewer({
 
               setZoom(
 
-                zoom + 0.25
+                z => z + 0.25
 
               )
 
@@ -275,11 +288,11 @@ export default function AssetViewer({
 
               setZoom(
 
-                Math.max(
+                z => Math.max(
 
                   0.25,
 
-                  zoom - 0.25
+                  z - 0.25
 
                 )
 
