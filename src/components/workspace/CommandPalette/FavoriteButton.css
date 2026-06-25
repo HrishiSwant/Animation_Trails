@@ -1,0 +1,21 @@
+.favorite-button{
+
+  border:none;
+
+  background:transparent;
+
+  cursor:pointer;
+
+  font-size:18px;
+
+  margin-right:10px;
+
+  transition:.2s;
+
+}
+
+.favorite-button:hover{
+
+  transform:scale(1.2);
+
+}
