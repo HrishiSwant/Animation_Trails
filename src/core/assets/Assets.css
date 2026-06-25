@@ -20,3 +20,30 @@
   margin-top: 30px;
 
 }
+.asset-toolbar {
+
+  display: flex;
+
+  gap: 16px;
+
+  margin: 20px 0;
+
+  flex-wrap: wrap;
+
+}
+
+.asset-toolbar input {
+
+  flex: 1;
+
+  min-width: 220px;
+
+  padding: 12px;
+
+}
+
+.asset-toolbar select {
+
+  padding: 12px;
+
+}
