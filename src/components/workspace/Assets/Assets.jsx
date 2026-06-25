@@ -1,411 +1,317 @@
 import { useState } from "react";
 
-import "./AssetViewer.css";
+import "./Assets.css";
 
-import ImageViewer from "./viewers/ImageViewer";
-import PDFViewer from "./viewers/PDFViewer";
-import VideoViewer from "./viewers/VideoViewer";
-import AudioViewer from "./viewers/AudioViewer";
-import TextViewer from "./viewers/TextViewer";
-import UnknownViewer from "./viewers/UnknownViewer";
+import AssetManager from "../../../core/assets/AssetManager";
 
-export default function AssetViewer({
+import AssetCard from "./AssetCard";
+import AssetViewer from "./AssetViewer";
 
-  asset,
+export default function Assets() {
 
-  onClose,
+  const [selectedIndex, setSelectedIndex] =
+    useState(-1);
 
-}) {
+  const [assets, setAssets] =
+    useState(
+      AssetManager.getAssets()
+    );
 
-  const [zoom, setZoom] =
-    useState(1);
+  const [search, setSearch] =
+    useState("");
 
-  if (!asset) {
+  const [filter, setFilter] =
+    useState("all");
 
-    return null;
+  const [sort, setSort] =
+    useState("newest");
 
-  }
+  function upload(event) {
 
-  function renderPreview() {
+    const file =
+      event.target.files?.[0];
 
-    if (
+    if (!file) return;
 
-      asset.type.startsWith("image/")
+    const reader =
+      new FileReader();
 
-    ) {
+    reader.onload = () => {
 
-      return (
+      const asset = {
 
-        <ImageViewer
+        id: Date.now(),
 
-          asset={asset}
+        name: file.name,
 
-          zoom={zoom}
+        type: file.type,
 
-        />
+        size: file.size,
 
-      );
+        createdAt:
+          new Date().toISOString(),
 
-    }
+        data:
+          reader.result,
 
-    if (
+      };
 
-      asset.type ===
-      "application/pdf"
+      AssetManager.addAsset(asset);
 
-    ) {
+      const updatedAssets =
+        AssetManager.getAssets();
 
-      return (
+      setAssets(updatedAssets);
 
-        <PDFViewer
+      event.target.value = "";
 
-          asset={asset}
+    };
 
-        />
-
-      );
-
-    }
-
-    if (
-
-      asset.type.startsWith("video/")
-
-    ) {
-
-      return (
-
-        <VideoViewer
-
-          asset={asset}
-
-        />
-
-      );
-
-    }
-
-    if (
-
-      asset.type.startsWith("audio/")
-
-    ) {
-
-      return (
-
-        <AudioViewer
-
-          asset={asset}
-
-        />
-
-      );
-
-    }
-
-    if (
-
-      asset.type.startsWith("text/") ||
-
-      asset.type ===
-      "application/json"
-
-    ) {
-
-      return (
-
-        <TextViewer
-
-          asset={asset}
-
-        />
-
-      );
-
-    }
-
-    return <UnknownViewer />;
+    reader.readAsDataURL(file);
 
   }
 
-  function formatSize(bytes) {
+  function deleteAsset(id) {
 
-    if (bytes < 1024) {
+    AssetManager.deleteAsset(id);
 
-      return `${bytes} B`;
+    const updatedAssets =
+      AssetManager.getAssets();
+
+    setAssets(updatedAssets);
+
+    if (
+
+      selectedIndex !== -1 &&
+
+      filteredAssets[selectedIndex]?.id === id
+
+    ) {
+
+      setSelectedIndex(-1);
 
     }
 
-    if (bytes < 1024 * 1024) {
-
-      return `${(
-
-        bytes / 1024
-
-      ).toFixed(1)} KB`;
-
-    }
-
-    return `${(
-
-      bytes /
-
-      (1024 * 1024)
-
-    ).toFixed(2)} MB`;
-
   }
 
-  function downloadAsset() {
+  function toggleFavorite(id) {
 
-    const link =
-      document.createElement("a");
+    AssetManager.toggleFavorite(id);
 
-    link.href = asset.data;
-
-    link.download = asset.name;
-
-    link.click();
-
-  }
-
-  function openInNewTab() {
-
-    window.open(
-
-      asset.data,
-
-      "_blank"
-
+    setAssets(
+      AssetManager.getAssets()
     );
 
   }
 
-  async function copyFilename() {
+  const filteredAssets =
+    AssetManager.filterAssets(
 
-    try {
+      assets,
 
-      await navigator.clipboard.writeText(
+      search,
 
-        asset.name
+      filter,
 
-      );
+      sort
 
-      alert(
-
-        "Filename copied."
-
-      );
-
-    } catch {
-
-      alert(
-
-        "Copy failed."
-
-      );
-
-    }
-
-  }
+    );
 
   return (
 
-    <div
+    <div className="assets">
 
-      className="asset-viewer-overlay"
+      <h1>
 
-      onClick={onClose}
+        Asset Manager
 
-    >
+      </h1>
 
-      <div
+      <input
 
-        className="asset-viewer"
+        type="file"
 
-        onClick={(e) =>
+        onChange={upload}
 
-          e.stopPropagation()
+      />
 
-        }
+      <div className="asset-toolbar">
 
-      >
+        <input
 
-        <button
+          type="text"
 
-          className="close-viewer"
+          placeholder="🔍 Search assets..."
 
-          onClick={onClose}
+          value={search}
+
+          onChange={(e) =>
+
+            setSearch(
+              e.target.value
+            )
+
+          }
+
+        />
+
+        <select
+
+          value={filter}
+
+          onChange={(e) =>
+
+            setFilter(
+              e.target.value
+            )
+
+          }
 
         >
 
-          ✕
+          <option value="all">
 
-        </button>
+            All Files
 
-        <h2>
+          </option>
 
-          {asset.name}
+          <option value="images">
 
-        </h2>
+            Images
 
-        <div className="viewer-toolbar">
+          </option>
 
-          <button
+          <option value="video">
 
-            onClick={() =>
+            Videos
 
-              setZoom(
+          </option>
 
-                zoom + 0.25
+          <option value="audio">
 
-              )
+            Audio
 
-            }
+          </option>
 
-          >
+          <option value="pdf">
 
-            ＋
+            PDFs
 
-          </button>
+          </option>
 
-          <button
+          <option value="favorites">
 
-            onClick={() =>
+            Favorites
 
-              setZoom(
+          </option>
 
-                Math.max(
+        </select>
 
-                  0.25,
+        <select
 
-                  zoom - 0.25
+          value={sort}
 
-                )
+          onChange={(e) =>
 
-              )
+            setSort(
+              e.target.value
+            )
 
-            }
+          }
 
-          >
+        >
 
-            －
+          <option value="newest">
 
-          </button>
+            Newest
 
-          <button
+          </option>
 
-            onClick={() =>
+          <option value="oldest">
 
-              setZoom(1)
+            Oldest
 
-            }
+          </option>
 
-          >
+          <option value="name">
 
-            Reset
+            Name
 
-          </button>
+          </option>
 
-          <button
+          <option value="size">
 
-            onClick={downloadAsset}
+            File Size
 
-          >
+          </option>
 
-            Download
-
-          </button>
-
-          <button
-
-            onClick={openInNewTab}
-
-          >
-
-            Open
-
-          </button>
-
-          <button
-
-            onClick={copyFilename}
-
-          >
-
-            Copy Name
-
-          </button>
-
-          <div className="zoom-level">
-
-            {Math.round(
-
-              zoom * 100
-
-            )}%
-
-          </div>
-
-        </div>
-
-        {renderPreview()}
-
-        <div className="viewer-info">
-
-          <p>
-
-            <strong>
-
-              Type:
-
-            </strong>
-
-            {" "}
-
-            {asset.type}
-
-          </p>
-
-          <p>
-
-            <strong>
-
-              Size:
-
-            </strong>
-
-            {" "}
-
-            {formatSize(asset.size)}
-
-          </p>
-
-          <p>
-
-            <strong>
-
-              Uploaded:
-
-            </strong>
-
-            {" "}
-
-            {
-
-              new Date(
-
-                asset.createdAt
-
-              ).toLocaleString()
-
-            }
-
-          </p>
-
-        </div>
+        </select>
 
       </div>
+
+      {filteredAssets.length === 0 ? (
+
+        <div className="empty-assets">
+
+          <h3>
+
+            No assets found
+
+          </h3>
+
+          <p>
+
+            Upload a file or adjust your search/filter.
+
+          </p>
+
+        </div>
+
+      ) : (
+
+        <div className="asset-grid">
+
+          {filteredAssets.map((asset, index) => (
+
+            <AssetCard
+
+              key={asset.id}
+
+              asset={asset}
+
+              onDelete={deleteAsset}
+
+              onFavorite={toggleFavorite}
+
+              onOpen={() =>
+
+                setSelectedIndex(index)
+
+              }
+
+            />
+
+          ))}
+
+        </div>
+
+      )}
+
+      <AssetViewer
+
+        assets={filteredAssets}
+
+        currentIndex={selectedIndex}
+
+        onNavigate={setSelectedIndex}
+
+        onClose={() =>
+
+          setSelectedIndex(-1)
+
+        }
+
+      />
 
     </div>
 
