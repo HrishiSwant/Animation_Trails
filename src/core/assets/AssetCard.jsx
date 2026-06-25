@@ -6,6 +6,8 @@ export default function AssetCard({
 
   onDelete,
 
+  onFavorite,
+
 }) {
 
   function renderPreview() {
@@ -91,6 +93,34 @@ export default function AssetCard({
 
   }
 
+  function formatSize(bytes) {
+
+    if (bytes < 1024) {
+
+      return `${bytes} B`;
+
+    }
+
+    if (bytes < 1024 * 1024) {
+
+      return `${(
+
+        bytes / 1024
+
+      ).toFixed(1)} KB`;
+
+    }
+
+    return `${(
+
+      bytes /
+
+      (1024 * 1024)
+
+    ).toFixed(2)} MB`;
+
+  }
+
   return (
 
     <div className="asset-card">
@@ -101,31 +131,81 @@ export default function AssetCard({
 
       </div>
 
-      <h3>
+      <div className="asset-content">
 
-        {asset.name}
+        <h3>
 
-      </h3>
+          {asset.name}
 
-      <p>
+        </h3>
 
-        {asset.type}
+        <p>
 
-      </p>
+          {asset.type}
 
-      <button
+        </p>
 
-        onClick={() =>
-          onDelete(
-            asset.id
-          )
-        }
+        <p>
 
-      >
+          📏 {formatSize(asset.size)}
 
-        Delete
+        </p>
 
-      </button>
+        <p>
+
+          📅 {
+
+            new Date(
+
+              asset.createdAt
+
+            ).toLocaleDateString()
+
+          }
+
+        </p>
+
+        <div className="asset-actions">
+
+          <button
+
+            onClick={() =>
+              onFavorite(
+                asset.id
+              )
+            }
+
+          >
+
+            {
+
+              asset.favorite
+
+                ? "⭐"
+
+                : "☆"
+
+            }
+
+          </button>
+
+          <button
+
+            onClick={() =>
+              onDelete(
+                asset.id
+              )
+            }
+
+          >
+
+            🗑 Delete
+
+          </button>
+
+        </div>
+
+      </div>
 
     </div>
 
