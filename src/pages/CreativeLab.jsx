@@ -5,7 +5,7 @@ import WorkspaceDashboard from "../components/workspace/WorkspaceDashboard/Works
 
 import Notes from "../components/workspace/Notes/Notes";
 import Sketch from "../components/workspace/Sketch/Sketch";
-import Assets from "../core/assets/Assets";
+import Assets from "../components/workspace/Assets/Assets";;
 
 import StorageInspector from "../components/workspace/Storage/StorageInspector";
 import ExportCenter from "../components/workspace/Export/ExportCenter";
