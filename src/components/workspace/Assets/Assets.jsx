@@ -1,14 +1,15 @@
 import { useState } from "react";
 
 import "./Assets.css";
-import AssetViewer from "./AssetViewer";
 
 import AssetManager from "../../../core/assets/AssetManager";
+
 import AssetCard from "./AssetCard";
+import AssetViewer from "./AssetViewer";
 
 export default function Assets() {
 
-  const [selectedAsset,setSelectedAsset]=
+  const [selectedAsset, setSelectedAsset] =
     useState(null);
 
   const [assets, setAssets] =
@@ -67,29 +68,32 @@ export default function Assets() {
 
     };
 
-    reader.readAsDataURL(
-      file
-    );
+    reader.readAsDataURL(file);
 
   }
 
   function deleteAsset(id) {
 
-    AssetManager.deleteAsset(
-      id
-    );
+    AssetManager.deleteAsset(id);
 
     setAssets(
       AssetManager.getAssets()
     );
 
+    if (
+      selectedAsset &&
+      selectedAsset.id === id
+    ) {
+
+      setSelectedAsset(null);
+
+    }
+
   }
 
   function toggleFavorite(id) {
 
-    AssetManager.toggleFavorite(
-      id
-    );
+    AssetManager.toggleFavorite(id);
 
     setAssets(
       AssetManager.getAssets()
@@ -121,11 +125,8 @@ export default function Assets() {
       </h1>
 
       <input
-
         type="file"
-
         onChange={upload}
-
       />
 
       <div className="asset-toolbar">
@@ -274,19 +275,21 @@ export default function Assets() {
 
             />
 
-          <AssetViewer
-
-          asset={selectedAsset}
-
-          onClose={()=>setSelectedAsset(null)}
-
-          />
-
           ))}
 
         </div>
 
       )}
+
+      <AssetViewer
+
+        asset={selectedAsset}
+
+        onClose={() =>
+          setSelectedAsset(null)
+        }
+
+      />
 
     </div>
 
