@@ -11,6 +11,8 @@ import {
 import CommandRegistry from "../../core/workspace/CommandRegistry";
 import CommandCategories from "../../core/workspace/CommandCategories";
 
+import useRecentCommands from "./useRecentCommands";
+
 export default function useCommandPalette({
 
   onCommand,
@@ -27,6 +29,22 @@ export default function useCommandPalette({
 
   /*
   ==========================
+      RECENT COMMANDS
+  ==========================
+  */
+
+  const {
+
+    recentCommands,
+
+    addRecent,
+
+    clearRecent,
+
+  } = useRecentCommands();
+
+  /*
+  ==========================
       FILTERED COMMANDS
   ==========================
   */
@@ -35,22 +53,18 @@ export default function useCommandPalette({
     useMemo(() => {
 
       const search =
-        query.toLowerCase();
+        query.trim().toLowerCase();
 
       return CommandRegistry.filter(
 
         command =>
 
           command.title
-
             .toLowerCase()
-
             .includes(search) ||
 
           command.category
-
             .toLowerCase()
-
             .includes(search)
 
       );
@@ -83,7 +97,6 @@ export default function useCommandPalette({
               command =>
 
                 command.category ===
-
                 category
 
             ),
@@ -122,7 +135,7 @@ export default function useCommandPalette({
 
   /*
   ==========================
-      EXECUTE
+      EXECUTE COMMAND
   ==========================
   */
 
@@ -133,6 +146,8 @@ export default function useCommandPalette({
       return;
 
     }
+
+    addRecent(command);
 
     onCommand(
 
@@ -179,6 +194,10 @@ export default function useCommandPalette({
     selectedIndex,
 
     setSelectedIndex,
+
+    recentCommands,
+
+    clearRecent,
 
   };
 
