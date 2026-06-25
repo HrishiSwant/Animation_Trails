@@ -1,1 +1,77 @@
+.asset-viewer-overlay{
 
+    position:fixed;
+
+    inset:0;
+
+    background:rgba(0,0,0,.75);
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    z-index:1000;
+
+}
+
+.asset-viewer{
+
+    width:min(900px,90vw);
+
+    max-height:90vh;
+
+    overflow:auto;
+
+    background:#18181b;
+
+    border-radius:18px;
+
+    padding:24px;
+
+    position:relative;
+
+}
+
+.close-viewer{
+
+    position:absolute;
+
+    right:20px;
+
+    top:20px;
+
+}
+
+.viewer-image{
+
+    width:100%;
+
+    border-radius:12px;
+
+    margin:20px 0;
+
+}
+
+.viewer-placeholder{
+
+    height:400px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    border:2px dashed #555;
+
+    margin:20px 0;
+
+}
+
+.viewer-info{
+
+    color:#d4d4d8;
+
+}
