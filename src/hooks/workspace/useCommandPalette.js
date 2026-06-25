@@ -10,6 +10,7 @@ import {
 
 import CommandRegistry from "../../core/workspace/CommandRegistry";
 import CommandCategories from "../../core/workspace/CommandCategories";
+import CommandSearchEngine from "../../core/workspace/CommandSearchEngine";
 
 import useRecentCommands from "./useRecentCommands";
 
@@ -45,27 +46,18 @@ export default function useCommandPalette({
 
   /*
   ==========================
-      FILTERED COMMANDS
+      SEARCH ENGINE
   ==========================
   */
 
   const commands =
     useMemo(() => {
 
-      const search =
-        query.trim().toLowerCase();
+      return CommandSearchEngine.search(
 
-      return CommandRegistry.filter(
+        CommandRegistry,
 
-        command =>
-
-          command.title
-            .toLowerCase()
-            .includes(search) ||
-
-          command.category
-            .toLowerCase()
-            .includes(search)
+        query
 
       );
 
@@ -84,9 +76,9 @@ export default function useCommandPalette({
   const groupedCommands =
     useMemo(() => {
 
-      return CommandCategories.map(
+      return CommandCategories
 
-        category => ({
+        .map(category => ({
 
           category,
 
@@ -97,19 +89,18 @@ export default function useCommandPalette({
               command =>
 
                 command.category ===
+
                 category
 
             ),
 
-        })
+        }))
 
-      ).filter(
-
-        group =>
+        .filter(group =>
 
           group.commands.length > 0
 
-      );
+        );
 
     }, [
 
@@ -135,7 +126,7 @@ export default function useCommandPalette({
 
   /*
   ==========================
-      EXECUTE COMMAND
+      EXECUTE
   ==========================
   */
 
