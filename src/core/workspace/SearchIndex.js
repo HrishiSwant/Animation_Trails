@@ -1,32 +1,34 @@
 export default class SearchIndex {
 
-  static build({
+  static create() {
 
-    notes = [],
+    return [];
 
-    assets = [],
+  }
 
-    sketches = [],
+  static add(
 
-    tasks = [],
+    index,
 
-    exports = [],
+    entries
 
-  }) {
+  ) {
 
-    return [
+    if (
 
-      ...notes,
+      Array.isArray(entries)
 
-      ...assets,
+    ) {
 
-      ...sketches,
+      index.push(
 
-      ...tasks,
+        ...entries
 
-      ...exports,
+      );
 
-    ];
+    }
+
+    return index;
 
   }
 
