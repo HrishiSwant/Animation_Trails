@@ -2,6 +2,13 @@ import { useState } from "react";
 
 import "./AssetViewer.css";
 
+import ImageViewer from "./viewers/ImageViewer";
+import PDFViewer from "./viewers/PDFViewer";
+import VideoViewer from "./viewers/VideoViewer";
+import AudioViewer from "./viewers/AudioViewer";
+import TextViewer from "./viewers/TextViewer";
+import UnknownViewer from "./viewers/UnknownViewer";
+
 export default function AssetViewer({
 
   asset,
@@ -29,21 +36,11 @@ export default function AssetViewer({
 
       return (
 
-        <img
+        <ImageViewer
 
-          src={asset.data}
+          asset={asset}
 
-          alt={asset.name}
-
-          className="viewer-image"
-
-          style={{
-
-            transform:
-
-              `scale(${zoom})`
-
-          }}
+          zoom={zoom}
 
         />
 
@@ -60,13 +57,9 @@ export default function AssetViewer({
 
       return (
 
-        <iframe
+        <PDFViewer
 
-          src={asset.data}
-
-          title={asset.name}
-
-          className="viewer-frame"
+          asset={asset}
 
         />
 
@@ -82,23 +75,11 @@ export default function AssetViewer({
 
       return (
 
-        <video
+        <VideoViewer
 
-          controls
+          asset={asset}
 
-          className="viewer-video"
-
-        >
-
-          <source
-
-            src={asset.data}
-
-            type={asset.type}
-
-          />
-
-        </video>
+        />
 
       );
 
@@ -112,23 +93,11 @@ export default function AssetViewer({
 
       return (
 
-        <audio
+        <AudioViewer
 
-          controls
+          asset={asset}
 
-          className="viewer-audio"
-
-        >
-
-          <source
-
-            src={asset.data}
-
-            type={asset.type}
-
-          />
-
-        </audio>
+        />
 
       );
 
@@ -143,67 +112,39 @@ export default function AssetViewer({
 
     ) {
 
-      try {
+      return (
 
-        return (
+        <TextViewer
 
-          <pre className="viewer-text">
+          asset={asset}
 
-            {atob(
+        />
 
-              asset.data.split(",")[1]
-
-            )}
-
-          </pre>
-
-        );
-
-      } catch {
-
-        return (
-
-          <div className="viewer-placeholder">
-
-            Unable to preview file.
-
-          </div>
-
-        );
-
-      }
+      );
 
     }
 
-    return (
-
-      <div className="viewer-placeholder">
-
-        📦
-
-        <br />
-
-        Preview unavailable
-
-      </div>
-
-    );
+    return <UnknownViewer />;
 
   }
 
   function formatSize(bytes) {
 
-    if (bytes < 1024)
+    if (bytes < 1024) {
 
       return `${bytes} B`;
 
-    if (bytes < 1024 * 1024)
+    }
+
+    if (bytes < 1024 * 1024) {
 
       return `${(
 
         bytes / 1024
 
       ).toFixed(1)} KB`;
+
+    }
 
     return `${(
 
@@ -282,7 +223,7 @@ export default function AssetViewer({
 
         className="asset-viewer"
 
-        onClick={(e)=>
+        onClick={(e) =>
 
           e.stopPropagation()
 
@@ -312,7 +253,7 @@ export default function AssetViewer({
 
           <button
 
-            onClick={()=>
+            onClick={() =>
 
               setZoom(
 
@@ -330,7 +271,7 @@ export default function AssetViewer({
 
           <button
 
-            onClick={()=>
+            onClick={() =>
 
               setZoom(
 
@@ -354,7 +295,7 @@ export default function AssetViewer({
 
           <button
 
-            onClick={()=>
+            onClick={() =>
 
               setZoom(1)
 
@@ -396,6 +337,16 @@ export default function AssetViewer({
 
           </button>
 
+          <div className="zoom-level">
+
+            {Math.round(
+
+              zoom * 100
+
+            )}%
+
+          </div>
+
         </div>
 
         {renderPreview()}
@@ -404,7 +355,11 @@ export default function AssetViewer({
 
           <p>
 
-            <strong>Type:</strong>
+            <strong>
+
+              Type:
+
+            </strong>
 
             {" "}
 
@@ -414,7 +369,11 @@ export default function AssetViewer({
 
           <p>
 
-            <strong>Size:</strong>
+            <strong>
+
+              Size:
+
+            </strong>
 
             {" "}
 
@@ -424,7 +383,11 @@ export default function AssetViewer({
 
           <p>
 
-            <strong>Uploaded:</strong>
+            <strong>
+
+              Uploaded:
+
+            </strong>
 
             {" "}
 
