@@ -1,12 +1,15 @@
 import "./CommandPalette.css";
 
 import useCommandPalette from "../../../hooks/workspace/useCommandPalette";
+import useCommandShortcuts from "../../../hooks/workspace/useCommandShortcuts";
 
 import CommandItem from "./CommandItem";
 
 export default function CommandPalette({
 
   visible,
+
+  setVisible,
 
   onClose,
 
@@ -24,11 +27,33 @@ export default function CommandPalette({
 
     execute,
 
+    selectedIndex,
+
+    setSelectedIndex,
+
   } = useCommandPalette({
 
     onCommand,
 
     onClose,
+
+  });
+
+  useCommandShortcuts({
+
+    visible,
+
+    commands,
+
+    execute,
+
+    onClose,
+
+    selectedIndex,
+
+    setSelectedIndex,
+
+    setVisible,
 
   });
 
@@ -92,25 +117,35 @@ export default function CommandPalette({
 
           ) : (
 
-            commands.map(command => (
+            commands.map(
 
-              <CommandItem
+              (command, index) => (
 
-                key={command.id}
+                <CommandItem
 
-                command={command}
+                  key={command.id}
 
-                selected={false}
+                  command={command}
 
-                onClick={() =>
+                  selected={
 
-                  execute(command)
+                    index ===
 
-                }
+                    selectedIndex
 
-              />
+                  }
 
-            ))
+                  onClick={() =>
+
+                    execute(command)
+
+                  }
+
+                />
+
+              )
+
+            )
 
           )}
 
