@@ -4,6 +4,7 @@ import useCommandPalette from "../../../hooks/workspace/useCommandPalette";
 import useCommandShortcuts from "../../../hooks/workspace/useCommandShortcuts";
 
 import CommandItem from "./CommandItem";
+import CommandCategory from "./CommandCategory";
 
 export default function CommandPalette({
 
@@ -24,6 +25,8 @@ export default function CommandPalette({
     setQuery,
 
     commands,
+
+    groupedCommands,
 
     execute,
 
@@ -62,6 +65,8 @@ export default function CommandPalette({
     return null;
 
   }
+
+  let commandIndex = -1;
 
   return (
 
@@ -107,7 +112,7 @@ export default function CommandPalette({
 
         <div className="command-results">
 
-          {commands.length === 0 ? (
+          {groupedCommands.length === 0 ? (
 
             <div className="no-results">
 
@@ -117,35 +122,57 @@ export default function CommandPalette({
 
           ) : (
 
-            commands.map(
+            groupedCommands.map(group => (
 
-              (command, index) => (
+              <div
 
-                <CommandItem
+                key={group.category}
 
-                  key={command.id}
+                className="command-group"
 
-                  command={command}
+              >
 
-                  selected={
+                <CommandCategory
 
-                    index ===
-
-                    selectedIndex
-
-                  }
-
-                  onClick={() =>
-
-                    execute(command)
-
-                  }
+                  title={group.category}
 
                 />
 
-              )
+                {group.commands.map(command => {
 
-            )
+                  commandIndex++;
+
+                  return (
+
+                    <CommandItem
+
+                      key={command.id}
+
+                      command={command}
+
+                      selected={
+
+                        commandIndex ===
+
+                        selectedIndex
+
+                      }
+
+                      onClick={() =>
+
+                        execute(command)
+
+                      }
+
+                    />
+
+                  );
+
+                })}
+
+              </div>
+
+            ))
 
           )}
 
