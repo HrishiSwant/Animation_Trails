@@ -4,6 +4,9 @@ import "./Assets.css";
 
 import AssetManager from "../../../core/assets/AssetManager";
 
+import useAssets from "../../../hooks/assets/useAssets";
+import useAssetUpload from "../../../hooks/assets/useAssetUpload";
+
 import AssetCard from "./AssetCard";
 import AssetViewer from "./AssetViewer";
 
@@ -11,11 +14,6 @@ export default function Assets() {
 
   const [selectedIndex, setSelectedIndex] =
     useState(-1);
-
-  const [assets, setAssets] =
-    useState(
-      AssetManager.getAssets()
-    );
 
   const [search, setSearch] =
     useState("");
@@ -26,59 +24,31 @@ export default function Assets() {
   const [sort, setSort] =
     useState("newest");
 
-  function upload(event) {
+  const {
 
-    const file =
-      event.target.files?.[0];
+    assets,
 
-    if (!file) return;
+    refreshAssets,
 
-    const reader =
-      new FileReader();
+    deleteAsset,
 
-    reader.onload = () => {
+    toggleFavorite,
 
-      const asset = {
+  } = useAssets();
 
-        id: Date.now(),
+  const {
 
-        name: file.name,
+    upload,
 
-        type: file.type,
+  } = useAssetUpload({
 
-        size: file.size,
+    refreshAssets,
 
-        createdAt:
-          new Date().toISOString(),
+  });
 
-        data:
-          reader.result,
+  function handleDelete(id) {
 
-      };
-
-      AssetManager.addAsset(asset);
-
-      const updatedAssets =
-        AssetManager.getAssets();
-
-      setAssets(updatedAssets);
-
-      event.target.value = "";
-
-    };
-
-    reader.readAsDataURL(file);
-
-  }
-
-  function deleteAsset(id) {
-
-    AssetManager.deleteAsset(id);
-
-    const updatedAssets =
-      AssetManager.getAssets();
-
-    setAssets(updatedAssets);
+    deleteAsset(id);
 
     if (
 
@@ -91,16 +61,6 @@ export default function Assets() {
       setSelectedIndex(-1);
 
     }
-
-  }
-
-  function toggleFavorite(id) {
-
-    AssetManager.toggleFavorite(id);
-
-    setAssets(
-      AssetManager.getAssets()
-    );
 
   }
 
@@ -279,7 +239,7 @@ export default function Assets() {
 
               asset={asset}
 
-              onDelete={deleteAsset}
+              onDelete={handleDelete}
 
               onFavorite={toggleFavorite}
 
