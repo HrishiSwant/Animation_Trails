@@ -28,6 +28,8 @@ export default function CommandPalette({
 
     groupedCommands,
 
+    recentCommands,
+
     execute,
 
     selectedIndex,
@@ -112,6 +114,48 @@ export default function CommandPalette({
 
         <div className="command-results">
 
+          {recentCommands.length > 0 && (
+
+            <div className="command-group">
+
+              <CommandCategory
+
+                title="Recent"
+
+              />
+
+              {recentCommands.map(
+
+                command => (
+
+                  <CommandItem
+
+                    key={
+
+                      `recent-${command.id}`
+
+                    }
+
+                    command={command}
+
+                    selected={false}
+
+                    onClick={() =>
+
+                      execute(command)
+
+                    }
+
+                  />
+
+                )
+
+              )}
+
+            </div>
+
+          )}
+
           {groupedCommands.length === 0 ? (
 
             <div className="no-results">
@@ -122,57 +166,65 @@ export default function CommandPalette({
 
           ) : (
 
-            groupedCommands.map(group => (
+            groupedCommands.map(
 
-              <div
+              group => (
 
-                key={group.category}
+                <div
 
-                className="command-group"
+                  key={group.category}
 
-              >
+                  className="command-group"
 
-                <CommandCategory
+                >
 
-                  title={group.category}
+                  <CommandCategory
 
-                />
+                    title={group.category}
 
-                {group.commands.map(command => {
+                  />
 
-                  commandIndex++;
+                  {group.commands.map(
 
-                  return (
+                    command => {
 
-                    <CommandItem
+                      commandIndex++;
 
-                      key={command.id}
+                      return (
 
-                      command={command}
+                        <CommandItem
 
-                      selected={
+                          key={command.id}
 
-                        commandIndex ===
+                          command={command}
 
-                        selectedIndex
+                          selected={
 
-                      }
+                            commandIndex ===
 
-                      onClick={() =>
+                            selectedIndex
 
-                        execute(command)
+                          }
 
-                      }
+                          onClick={() =>
 
-                    />
+                            execute(command)
 
-                  );
+                          }
 
-                })}
+                        />
 
-              </div>
+                      );
 
-            ))
+                    }
+
+                  )}
+
+                </div>
+
+              )
+
+            )
 
           )}
 
