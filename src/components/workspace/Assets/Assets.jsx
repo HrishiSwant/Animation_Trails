@@ -1,18 +1,14 @@
-import { useState } from "react";
-
 import "./Assets.css";
 
 import useAssets from "../../../hooks/assets/useAssets";
 import useAssetUpload from "../../../hooks/assets/useAssetUpload";
 import useAssetFilters from "../../../hooks/assets/useAssetFilters";
+import useGallery from "../../../hooks/assets/useGallery";
 
 import AssetCard from "./AssetCard";
 import AssetViewer from "./AssetViewer";
 
 export default function Assets() {
-
-  const [selectedIndex, setSelectedIndex] =
-    useState(-1);
 
   /*
   ==========================
@@ -78,6 +74,24 @@ export default function Assets() {
 
   /*
   ==========================
+      GALLERY
+  ==========================
+  */
+
+  const {
+
+    currentIndex,
+
+    open,
+
+    close,
+
+    navigate,
+
+  } = useGallery();
+
+  /*
+  ==========================
       DELETE
   ==========================
   */
@@ -88,13 +102,13 @@ export default function Assets() {
 
     if (
 
-      selectedIndex !== -1 &&
+      currentIndex !== -1 &&
 
-      filteredAssets[selectedIndex]?.id === id
+      filteredAssets[currentIndex]?.id === id
 
     ) {
 
-      setSelectedIndex(-1);
+      close();
 
     }
 
@@ -256,7 +270,7 @@ export default function Assets() {
 
           <p>
 
-            Upload a file or adjust your search/filter.
+            Upload a file or adjust your search or filter.
 
           </p>
 
@@ -280,7 +294,7 @@ export default function Assets() {
 
               onOpen={() =>
 
-                setSelectedIndex(index)
+                open(index)
 
               }
 
@@ -296,15 +310,11 @@ export default function Assets() {
 
         assets={filteredAssets}
 
-        currentIndex={selectedIndex}
+        currentIndex={currentIndex}
 
-        onNavigate={setSelectedIndex}
+        onNavigate={navigate}
 
-        onClose={() =>
-
-          setSelectedIndex(-1)
-
-        }
+        onClose={close}
 
       />
 
