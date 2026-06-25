@@ -195,3 +195,69 @@
     cursor:grabbing;
 
 }
+
+.image-viewer{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:20px;
+
+}
+
+.image-toolbar{
+
+    display:flex;
+
+    gap:10px;
+
+    align-items:center;
+
+}
+
+.image-toolbar button{
+
+    border:none;
+
+    border-radius:10px;
+
+    padding:10px 16px;
+
+    cursor:pointer;
+
+}
+
+.image-stage{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    overflow:hidden;
+
+    min-height:60vh;
+
+}
+
+.viewer-image{
+
+    max-width:none;
+
+    transition:transform .12s linear;
+
+    user-select:none;
+
+    will-change:transform;
+
+}
+
+.zoom-indicator{
+
+    margin-left:auto;
+
+    font-weight:700;
+
+}
