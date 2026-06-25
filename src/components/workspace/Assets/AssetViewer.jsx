@@ -15,6 +15,8 @@ export default function AssetViewer({
 
   currentIndex,
 
+  onNavigate,
+
   onClose,
 
 }) {
@@ -38,6 +40,37 @@ export default function AssetViewer({
 
   const asset =
     assets[currentIndex];
+
+  const isFirst =
+    currentIndex === 0;
+
+  const isLast =
+    currentIndex ===
+    assets.length - 1;
+
+  function previousAsset() {
+
+    if (isFirst) return;
+
+    setZoom(1);
+
+    onNavigate(
+      currentIndex - 1
+    );
+
+  }
+
+  function nextAsset() {
+
+    if (isLast) return;
+
+    setZoom(1);
+
+    onNavigate(
+      currentIndex + 1
+    );
+
+  }
 
   function renderPreview() {
 
@@ -322,6 +355,30 @@ export default function AssetViewer({
 
           <button
 
+            disabled={isFirst}
+
+            onClick={previousAsset}
+
+          >
+
+            ⬅ Previous
+
+          </button>
+
+          <button
+
+            disabled={isLast}
+
+            onClick={nextAsset}
+
+          >
+
+            Next ➡
+
+          </button>
+
+          <button
+
             onClick={downloadAsset}
 
           >
@@ -357,6 +414,16 @@ export default function AssetViewer({
               zoom * 100
 
             )}%
+
+          </div>
+
+          <div className="gallery-counter">
+
+            {currentIndex + 1}
+
+            {" / "}
+
+            {assets.length}
 
           </div>
 
