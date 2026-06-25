@@ -32,7 +32,13 @@ export default class AssetManager {
     const assets =
       this.getAssets();
 
-    assets.unshift(asset);
+    assets.unshift({
+
+      ...asset,
+
+      favorite: false,
+
+    });
 
     this.saveAssets(
       assets
@@ -47,6 +53,34 @@ export default class AssetManager {
 
         asset =>
           asset.id !== id
+
+      );
+
+    this.saveAssets(
+      assets
+    );
+
+  }
+
+  static toggleFavorite(id) {
+
+    const assets =
+      this.getAssets().map(
+
+        asset =>
+
+          asset.id === id
+
+            ? {
+
+                ...asset,
+
+                favorite:
+                  !asset.favorite,
+
+              }
+
+            : asset
 
       );
 
