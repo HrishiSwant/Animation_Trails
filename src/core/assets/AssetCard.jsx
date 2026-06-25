@@ -8,6 +8,8 @@ export default function AssetCard({
 
   onFavorite,
 
+  onOpen,
+
 }) {
 
   function renderPreview() {
@@ -125,7 +127,14 @@ export default function AssetCard({
 
     <div className="asset-card">
 
-      <div className="asset-preview">
+      <div className="asset-preview"
+        onClick={()=>
+
+          onOpen(asset)
+
+          }
+
+        >
 
         {renderPreview()}
 
