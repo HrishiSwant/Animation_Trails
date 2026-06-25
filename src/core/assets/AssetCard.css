@@ -85,3 +85,35 @@
   width: calc(100% - 24px);
 
 }
+
+.asset-content {
+
+  padding: 14px;
+
+}
+
+.asset-content p {
+
+  margin: 6px 0;
+
+  color: #9ca3af;
+
+  font-size: 13px;
+
+}
+
+.asset-actions {
+
+  display: flex;
+
+  gap: 10px;
+
+  margin-top: 14px;
+
+}
+
+.asset-actions button {
+
+  flex: 1;
+
+}
