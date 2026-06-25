@@ -10,6 +10,8 @@ const SearchResultTypes = {
 
   EXPORT: "export",
 
+  SETTING: "setting",
+
 };
 
 export default SearchResultTypes;
