@@ -9,6 +9,7 @@ import {
 } from "react";
 
 import CommandRegistry from "../../core/workspace/CommandRegistry";
+import CommandCategories from "../../core/workspace/CommandCategories";
 
 export default function useCommandPalette({
 
@@ -24,8 +25,17 @@ export default function useCommandPalette({
   const [selectedIndex, setSelectedIndex] =
     useState(0);
 
+  /*
+  ==========================
+      FILTERED COMMANDS
+  ==========================
+  */
+
   const commands =
     useMemo(() => {
+
+      const search =
+        query.toLowerCase();
 
       return CommandRegistry.filter(
 
@@ -35,21 +45,13 @@ export default function useCommandPalette({
 
             .toLowerCase()
 
-            .includes(
-
-              query.toLowerCase()
-
-            ) ||
+            .includes(search) ||
 
           command.category
 
             .toLowerCase()
 
-            .includes(
-
-              query.toLowerCase()
-
-            )
+            .includes(search)
 
       );
 
@@ -58,6 +60,55 @@ export default function useCommandPalette({
       query,
 
     ]);
+
+  /*
+  ==========================
+      GROUPED COMMANDS
+  ==========================
+  */
+
+  const groupedCommands =
+    useMemo(() => {
+
+      return CommandCategories.map(
+
+        category => ({
+
+          category,
+
+          commands:
+
+            commands.filter(
+
+              command =>
+
+                command.category ===
+
+                category
+
+            ),
+
+        })
+
+      ).filter(
+
+        group =>
+
+          group.commands.length > 0
+
+      );
+
+    }, [
+
+      commands,
+
+    ]);
+
+  /*
+  ==========================
+      RESET SELECTION
+  ==========================
+  */
 
   useEffect(() => {
 
@@ -68,6 +119,12 @@ export default function useCommandPalette({
     query,
 
   ]);
+
+  /*
+  ==========================
+      EXECUTE
+  ==========================
+  */
 
   function execute(command) {
 
@@ -91,6 +148,12 @@ export default function useCommandPalette({
 
   }
 
+  /*
+  ==========================
+      CLEAR SEARCH
+  ==========================
+  */
+
   function clearSearch() {
 
     setQuery("");
@@ -106,6 +169,8 @@ export default function useCommandPalette({
     setQuery,
 
     commands,
+
+    groupedCommands,
 
     execute,
 
