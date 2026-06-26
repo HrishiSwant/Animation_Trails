@@ -1,4 +1,5 @@
 import { useState } from "react";
+
 import "./CreativeLab.css";
 
 import WorkspaceDashboard from "../components/workspace/WorkspaceDashboard/WorkspaceDashboard";
@@ -11,12 +12,45 @@ import Tasks from "../components/workspace/Tasks/Tasks";
 import StorageInspector from "../components/workspace/Storage/StorageInspector";
 import ExportCenter from "../components/workspace/Export/ExportCenter";
 
+import PresentationMode from "../components/presentation/PresentationMode";
+
 export default function CreativeLab() {
 
-  const [currentTool, setCurrentTool] =
-    useState("dashboard");
+  const [
+
+    currentTool,
+
+    setCurrentTool,
+
+  ] = useState("dashboard");
+
+  const [
+
+    presentation,
+
+    setPresentation,
+
+  ] = useState(false);
 
   function renderTool() {
+
+    if (presentation) {
+
+      return (
+
+        <PresentationMode
+
+          onExit={() =>
+
+            setPresentation(false)
+
+          }
+
+        />
+
+      );
+
+    }
 
     switch (currentTool) {
 
@@ -25,7 +59,19 @@ export default function CreativeLab() {
         return (
 
           <WorkspaceDashboard
-            setCurrentTool={setCurrentTool}
+
+            setCurrentTool={
+
+              setCurrentTool
+
+            }
+
+            startPresentation={() =>
+
+              setPresentation(true)
+
+            }
+
           />
 
         );
@@ -59,50 +105,20 @@ export default function CreativeLab() {
         return (
 
           <WorkspaceDashboard
-            setCurrentTool={setCurrentTool}
+
+            setCurrentTool={
+
+              setCurrentTool
+
+            }
+
+            startPresentation={() =>
+
+              setPresentation(true)
+
+            }
+
           />
-
-        );
-
-    }
-
-  }
-
-  function getToolTitle() {
-
-    switch (currentTool) {
-
-      case "storage":
-
-        return "Storage Inspector";
-
-      case "export":
-
-        return "Export Center";
-
-      case "assets":
-
-        return "Asset Manager";
-
-      case "tasks":
-
-        return "Task Manager";
-
-      case "notes":
-
-        return "Notes";
-
-      case "sketch":
-
-        return "Sketch";
-
-      default:
-
-        return (
-
-          currentTool.charAt(0).toUpperCase() +
-
-          currentTool.slice(1)
 
         );
 
@@ -114,35 +130,75 @@ export default function CreativeLab() {
 
     <div className="creative-lab">
 
-      {currentTool !== "dashboard" && (
+      {
 
-        <div className="toolbar">
+        !presentation &&
 
-          <button
+        currentTool !== "dashboard" && (
 
-            className="back-button"
+          <div className="toolbar">
 
-            onClick={() =>
+            <button
 
-              setCurrentTool("dashboard")
+              className="back-button"
 
-            }
+              onClick={() =>
 
-          >
+                setCurrentTool(
 
-            ← Workspace
+                  "dashboard"
 
-          </button>
+                )
 
-          <span className="tool-title">
+              }
 
-            {getToolTitle()}
+            >
 
-          </span>
+              ← Workspace
 
-        </div>
+            </button>
 
-      )}
+            <span className="tool-title">
+
+              {
+
+                currentTool === "storage"
+
+                  ? "Storage Inspector"
+
+                  : currentTool === "export"
+
+                  ? "Export Center"
+
+                  : currentTool === "assets"
+
+                  ? "Asset Manager"
+
+                  : currentTool === "tasks"
+
+                  ? "Task Manager"
+
+                  : currentTool === "sketch"
+
+                  ? "Sketch Board"
+
+                  : currentTool
+
+                      .charAt(0)
+
+                      .toUpperCase() +
+
+                    currentTool.slice(1)
+
+              }
+
+            </span>
+
+          </div>
+
+        )
+
+      }
 
       {renderTool()}
 
