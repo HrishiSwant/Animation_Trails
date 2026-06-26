@@ -372,3 +372,59 @@
     cursor:not-allowed;
 
 }
+
+/* =====================================
+   SETTINGS INPUT
+===================================== */
+
+.settings-input{
+
+    min-width:180px;
+
+    padding:10px 14px;
+
+    border:1px solid #d1d5db;
+
+    border-radius:10px;
+
+    background:#ffffff;
+
+    color:#111827;
+
+    font-size:15px;
+
+    outline:none;
+
+    transition:
+
+        border-color .2s,
+
+        box-shadow .2s;
+
+}
+
+.settings-input:hover{
+
+    border-color:#2563eb;
+
+}
+
+.settings-input:focus{
+
+    border-color:#2563eb;
+
+    box-shadow:
+
+        0 0 0 3px
+
+        rgba(37,99,235,.15);
+
+}
+
+.settings-input:disabled{
+
+    opacity:.5;
+
+    cursor:not-allowed;
+
+}
