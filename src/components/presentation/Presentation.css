@@ -163,3 +163,127 @@
     opacity:.75;
 
 }
+
+.presentation-overlay{
+
+    position:fixed;
+
+    inset:0;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:rgba(15,23,42,.65);
+
+    backdrop-filter:blur(10px);
+
+    z-index:2000;
+
+    animation:fadeIn .35s ease;
+
+}
+
+.presentation-overlay-card{
+
+    width:min(560px,90vw);
+
+    background:#1e293b;
+
+    border:1px solid rgba(255,255,255,.08);
+
+    border-radius:22px;
+
+    padding:36px;
+
+    text-align:center;
+
+    color:white;
+
+    box-shadow:
+
+        0 20px 50px rgba(0,0,0,.35);
+
+}
+
+.presentation-overlay-card h1{
+
+    margin:0;
+
+    font-size:38px;
+
+}
+
+.presentation-overlay-card p{
+
+    margin:18px 0 28px;
+
+    opacity:.8;
+
+}
+
+.presentation-shortcuts{
+
+    display:grid;
+
+    grid-template-columns:
+
+        repeat(2,1fr);
+
+    gap:14px;
+
+    margin-bottom:24px;
+
+}
+
+.presentation-shortcuts div{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:14px 18px;
+
+    border-radius:12px;
+
+    background:rgba(255,255,255,.05);
+
+}
+
+.presentation-shortcuts strong{
+
+    font-size:18px;
+
+    color:#60a5fa;
+
+}
+
+.presentation-overlay-card small{
+
+    opacity:.65;
+
+}
+
+@keyframes fadeIn{
+
+    from{
+
+        opacity:0;
+
+        transform:scale(.97);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:scale(1);
+
+    }
+
+}
