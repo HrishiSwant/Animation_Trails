@@ -12,6 +12,8 @@ export default function WorkspaceDashboard({
 
   setCurrentTool,
 
+  startPresentation,
+
 }) {
 
   const dashboard =
@@ -20,6 +22,10 @@ export default function WorkspaceDashboard({
   return (
 
     <div className="workspace-dashboard">
+
+      {/* ==========================
+            HEADER
+      ========================== */}
 
       <div className="dashboard-header">
 
@@ -70,6 +76,26 @@ export default function WorkspaceDashboard({
         summary={dashboard.summary}
 
       />
+
+      {/* ==========================
+            PRESENTATION MODE
+      ========================== */}
+
+      <div className="dashboard-presentation">
+
+        <button
+
+          className="presentation-button"
+
+          onClick={startPresentation}
+
+        >
+
+          🎬 Start Presentation Mode
+
+        </button>
+
+      </div>
 
       {/* ==========================
             WORKSPACE MODULES
