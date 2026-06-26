@@ -12,6 +12,8 @@ import Tasks from "../components/workspace/Tasks/Tasks";
 import StorageInspector from "../components/workspace/Storage/StorageInspector";
 import ExportCenter from "../components/workspace/Export/ExportCenter";
 
+import Settings from "../components/workspace/Settings/Settings";
+
 import PresentationMode from "../components/presentation/PresentationMode";
 
 export default function CreativeLab() {
@@ -100,6 +102,10 @@ export default function CreativeLab() {
 
         return <ExportCenter />;
 
+      case "settings":
+
+        return <Settings />;
+
       default:
 
         return (
@@ -121,6 +127,46 @@ export default function CreativeLab() {
           />
 
         );
+
+    }
+
+  }
+
+  function getToolTitle() {
+
+    switch (currentTool) {
+
+      case "notes":
+
+        return "Notes";
+
+      case "sketch":
+
+        return "Sketch Board";
+
+      case "assets":
+
+        return "Asset Manager";
+
+      case "tasks":
+
+        return "Task Manager";
+
+      case "storage":
+
+        return "Storage Inspector";
+
+      case "export":
+
+        return "Export Center";
+
+      case "settings":
+
+        return "Settings";
+
+      default:
+
+        return "Workspace";
 
     }
 
@@ -160,37 +206,7 @@ export default function CreativeLab() {
 
             <span className="tool-title">
 
-              {
-
-                currentTool === "storage"
-
-                  ? "Storage Inspector"
-
-                  : currentTool === "export"
-
-                  ? "Export Center"
-
-                  : currentTool === "assets"
-
-                  ? "Asset Manager"
-
-                  : currentTool === "tasks"
-
-                  ? "Task Manager"
-
-                  : currentTool === "sketch"
-
-                  ? "Sketch Board"
-
-                  : currentTool
-
-                      .charAt(0)
-
-                      .toUpperCase() +
-
-                    currentTool.slice(1)
-
-              }
+              {getToolTitle()}
 
             </span>
 
