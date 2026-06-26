@@ -1,12 +1,10 @@
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 export default function useAutoPlay({
 
-  enabled = false,
-
-  interval = 5000,
-
   next,
+
+  initialInterval = 5000,
 
 }) {
 
@@ -14,7 +12,68 @@ export default function useAutoPlay({
     useRef(null);
 
   const [isPlaying, setIsPlaying] =
-    useState(enabled);
+    useState(false);
+
+  const [interval, setIntervalTime] =
+    useState(initialInterval);
+
+  const stop =
+    useCallback(() => {
+
+      if (timer.current) {
+
+        clearInterval(timer.current);
+
+        timer.current = null;
+
+      }
+
+      setIsPlaying(false);
+
+    }, []);
+
+  const start =
+    useCallback(() => {
+
+      setIsPlaying(true);
+
+    }, []);
+
+  const pause =
+    useCallback(() => {
+
+      stop();
+
+    }, [stop]);
+
+  const resume =
+    useCallback(() => {
+
+      start();
+
+    }, [start]);
+
+  const toggle =
+    useCallback(() => {
+
+      setIsPlaying(previous =>
+
+        !previous
+
+      );
+
+    }, []);
+
+  const setSpeed =
+    useCallback((milliseconds) => {
+
+      setIntervalTime(
+
+        milliseconds
+
+      );
+
+    }, []);
 
   useEffect(() => {
 
@@ -38,11 +97,15 @@ export default function useAutoPlay({
 
     return () => {
 
-      clearInterval(
+      if (timer.current) {
 
-        timer.current
+        clearInterval(
 
-      );
+          timer.current
+
+        );
+
+      }
 
     };
 
@@ -56,62 +119,6 @@ export default function useAutoPlay({
 
   ]);
 
-  function start() {
-
-    setIsPlaying(true);
-
-  }
-
-  function pause() {
-
-    setIsPlaying(false);
-
-  }
-
-  function resume() {
-
-    setIsPlaying(true);
-
-  }
-
-  function stop() {
-
-    clearInterval(
-
-      timer.current
-
-    );
-
-    setIsPlaying(false);
-
-  }
-
-  function toggle() {
-
-    setIsPlaying(
-
-      previous =>
-
-        !previous
-
-    );
-
-  }
-
-  function setSpeed(ms) {
-
-    stop();
-
-    setTimeout(() => {
-
-      setIsPlaying(true);
-
-    }, 0);
-
-    return ms;
-
-  }
-
   return {
 
     isPlaying,
@@ -120,11 +127,11 @@ export default function useAutoPlay({
 
     start,
 
+    stop,
+
     pause,
 
     resume,
-
-    stop,
 
     toggle,
 
