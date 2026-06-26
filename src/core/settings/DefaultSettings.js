@@ -68,6 +68,8 @@ const DefaultSettings = {
 
     wordWrap: true,
 
+    defaultSort: "newest",
+
   },
 
   /*
