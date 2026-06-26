@@ -1,22 +1,7 @@
-export default function Settings(){
+import SettingsWorkspace from "../components/workspace/Settings/Settings";
 
-    return(
+export default function Settings() {
 
-        <div
-            style={{
-                display:"flex",
-                justifyContent:"center",
-                alignItems:"center",
-                height:"100%",
-                color:"white",
-                fontSize:"40px"
-            }}
-        >
-
-            ⚙ Settings
-
-        </div>
-
-    );
+  return <SettingsWorkspace />;
 
 }
