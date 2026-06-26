@@ -12,17 +12,19 @@
 
     color:white;
 
-    overflow:hidden;
+    overflow:auto;
 
     display:flex;
 
     flex-direction:column;
 
-    justify-content:center;
-
     align-items:center;
 
     font-family:Inter,sans-serif;
+
+    padding:120px 40px 120px;
+
+    box-sizing:border-box;
 
 }
 
@@ -32,23 +34,15 @@
 
 .presentation-slide{
 
-    width:min(1200px,92vw);
-
-    min-height:70vh;
+    width:min(1400px,96vw);
 
     display:flex;
 
     flex-direction:column;
 
-    justify-content:center;
-
     align-items:center;
 
     text-align:center;
-
-    padding:50px;
-
-    box-sizing:border-box;
 
 }
 
@@ -84,23 +78,31 @@
 
 }
 
+/* =====================================
+   LIVE PREVIEW
+===================================== */
+
 .presentation-preview{
 
-    margin-top:55px;
+    margin-top:50px;
 
     width:100%;
 
-    max-width:980px;
+    max-width:1400px;
 
-    min-height:280px;
+    min-height:600px;
+
+    max-height:65vh;
+
+    overflow:auto;
 
     display:flex;
 
-    flex-direction:column;
-
     justify-content:center;
 
-    align-items:center;
+    align-items:flex-start;
+
+    padding:30px;
 
     border-radius:20px;
 
@@ -108,25 +110,15 @@
 
     background:rgba(255,255,255,.05);
 
-    backdrop-filter:blur(12px);
-
-    padding:40px;
+    backdrop-filter:blur(16px);
 
     box-sizing:border-box;
 
 }
 
-.presentation-preview h3{
+.presentation-preview>*{
 
-    margin:0 0 18px;
-
-}
-
-.presentation-preview p{
-
-    opacity:.75;
-
-    line-height:1.6;
+    width:100%;
 
 }
 
@@ -138,7 +130,7 @@
 
     position:fixed;
 
-    bottom:24px;
+    bottom:20px;
 
     left:50%;
 
@@ -154,6 +146,8 @@
 
     padding:16px 20px;
 
+    max-width:95vw;
+
     border-radius:18px;
 
     background:rgba(30,41,59,.92);
@@ -161,6 +155,8 @@
     backdrop-filter:blur(18px);
 
     border:1px solid rgba(255,255,255,.08);
+
+    box-shadow:0 10px 40px rgba(0,0,0,.35);
 
     z-index:1000;
 
@@ -186,7 +182,13 @@
 
     font-weight:600;
 
-    transition:all .25s ease;
+    transition:
+
+        background .25s,
+
+        transform .25s,
+
+        box-shadow .25s;
 
 }
 
@@ -195,6 +197,8 @@
     background:#3b82f6;
 
     transform:translateY(-2px);
+
+    box-shadow:0 8px 24px rgba(59,130,246,.35);
 
 }
 
@@ -205,6 +209,8 @@
     cursor:not-allowed;
 
     transform:none;
+
+    box-shadow:none;
 
 }
 
@@ -228,13 +234,13 @@
 
     position:fixed;
 
-    top:24px;
+    top:20px;
 
     left:50%;
 
     transform:translateX(-50%);
 
-    width:min(720px,90vw);
+    width:min(760px,92vw);
 
     padding:18px;
 
@@ -245,6 +251,8 @@
     backdrop-filter:blur(18px);
 
     border:1px solid rgba(255,255,255,.08);
+
+    box-shadow:0 12px 40px rgba(0,0,0,.25);
 
     z-index:1000;
 
@@ -340,6 +348,10 @@
 
     width:min(560px,90vw);
 
+    max-height:80vh;
+
+    overflow:auto;
+
     padding:36px;
 
     border-radius:24px;
@@ -350,9 +362,7 @@
 
     text-align:center;
 
-    box-shadow:
-
-        0 24px 60px rgba(0,0,0,.4);
+    box-shadow:0 24px 60px rgba(0,0,0,.40);
 
 }
 
@@ -376,9 +386,7 @@
 
     display:grid;
 
-    grid-template-columns:
-
-        repeat(2,1fr);
+    grid-template-columns:repeat(2,1fr);
 
     gap:14px;
 
@@ -441,14 +449,50 @@
 }
 
 /* =====================================
+   SCROLLBAR
+===================================== */
+
+.presentation-preview::-webkit-scrollbar{
+
+    width:10px;
+
+}
+
+.presentation-preview::-webkit-scrollbar-thumb{
+
+    background:#475569;
+
+    border-radius:999px;
+
+}
+
+.presentation-preview::-webkit-scrollbar-track{
+
+    background:transparent;
+
+}
+
+/* =====================================
    RESPONSIVE
 ===================================== */
 
 @media (max-width:768px){
 
+    .presentation-mode{
+
+        padding:100px 16px 110px;
+
+    }
+
     .presentation-slide{
 
-        padding:25px;
+        width:100%;
+
+    }
+
+    .presentation-slide-icon{
+
+        font-size:64px;
 
     }
 
@@ -464,9 +508,19 @@
 
     }
 
-    .presentation-slide-icon{
+    .presentation-preview{
 
-        font-size:64px;
+        min-height:400px;
+
+        max-height:none;
+
+        padding:20px;
+
+    }
+
+    .presentation-progress{
+
+        width:95%;
 
     }
 
