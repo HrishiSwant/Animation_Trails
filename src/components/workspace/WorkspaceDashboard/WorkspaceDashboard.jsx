@@ -4,6 +4,7 @@ import useDashboard from "../../../hooks/dashboard/useDashboard";
 
 import DashboardOverview from "./DashboardOverview";
 import DashboardQuickActions from "./DashboardQuickActions";
+import DashboardStats from "./DashboardStats";
 
 import WorkspaceCard from "./WorkspaceCard";
 
@@ -36,11 +37,19 @@ export default function WorkspaceDashboard({
 
       </div>
 
+      {/* ==========================
+            LIVE OVERVIEW
+      ========================== */}
+
       <DashboardOverview
 
         overview={dashboard.overview}
 
       />
+
+      {/* ==========================
+            QUICK ACTIONS
+      ========================== */}
 
       <DashboardQuickActions
 
@@ -49,6 +58,22 @@ export default function WorkspaceDashboard({
         setCurrentTool={setCurrentTool}
 
       />
+
+      {/* ==========================
+            LIVE STATISTICS
+      ========================== */}
+
+      <DashboardStats
+
+        stats={dashboard.stats}
+
+        summary={dashboard.summary}
+
+      />
+
+      {/* ==========================
+            WORKSPACE MODULES
+      ========================== */}
 
       <div className="dashboard-section">
 
