@@ -1,8 +1,144 @@
+/* =====================================
+   PRESENTATION MODE
+===================================== */
+
+.presentation-mode{
+
+    position:fixed;
+
+    inset:0;
+
+    background:#0f172a;
+
+    color:white;
+
+    overflow:hidden;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-family:Inter,sans-serif;
+
+}
+
+/* =====================================
+   SLIDE
+===================================== */
+
+.presentation-slide{
+
+    width:min(1200px,92vw);
+
+    min-height:70vh;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    text-align:center;
+
+    padding:50px;
+
+    box-sizing:border-box;
+
+}
+
+.presentation-slide-icon{
+
+    font-size:88px;
+
+    margin-bottom:24px;
+
+}
+
+.presentation-slide-title{
+
+    margin:0;
+
+    font-size:56px;
+
+    font-weight:700;
+
+}
+
+.presentation-slide-description{
+
+    margin-top:18px;
+
+    max-width:900px;
+
+    font-size:21px;
+
+    line-height:1.7;
+
+    opacity:.82;
+
+}
+
+.presentation-preview{
+
+    margin-top:55px;
+
+    width:100%;
+
+    max-width:980px;
+
+    min-height:280px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    border-radius:20px;
+
+    border:1px solid rgba(255,255,255,.08);
+
+    background:rgba(255,255,255,.05);
+
+    backdrop-filter:blur(12px);
+
+    padding:40px;
+
+    box-sizing:border-box;
+
+}
+
+.presentation-preview h3{
+
+    margin:0 0 18px;
+
+}
+
+.presentation-preview p{
+
+    opacity:.75;
+
+    line-height:1.6;
+
+}
+
+/* =====================================
+   TOOLBAR
+===================================== */
+
 .presentation-toolbar{
 
     position:fixed;
 
-    bottom:20px;
+    bottom:24px;
 
     left:50%;
 
@@ -10,19 +146,21 @@
 
     display:flex;
 
-    align-items:center;
+    flex-wrap:wrap;
+
+    justify-content:center;
 
     gap:12px;
 
-    padding:14px 18px;
+    padding:16px 20px;
+
+    border-radius:18px;
 
     background:rgba(30,41,59,.92);
 
-    backdrop-filter:blur(14px);
+    backdrop-filter:blur(18px);
 
     border:1px solid rgba(255,255,255,.08);
-
-    border-radius:16px;
 
     z-index:1000;
 
@@ -34,27 +172,29 @@
 
     outline:none;
 
-    padding:10px 18px;
-
-    border-radius:10px;
-
     cursor:pointer;
+
+    padding:11px 20px;
+
+    border-radius:12px;
+
+    background:#334155;
+
+    color:white;
 
     font-size:15px;
 
     font-weight:600;
 
-    transition:.25s;
-
-    background:#334155;
-
-    color:white;
+    transition:all .25s ease;
 
 }
 
 .presentation-toolbar button:hover:not(:disabled){
 
     background:#3b82f6;
+
+    transform:translateY(-2px);
 
 }
 
@@ -63,6 +203,8 @@
     opacity:.35;
 
     cursor:not-allowed;
+
+    transform:none;
 
 }
 
@@ -78,6 +220,10 @@
 
 }
 
+/* =====================================
+   PROGRESS
+===================================== */
+
 .presentation-progress{
 
     position:fixed;
@@ -90,15 +236,15 @@
 
     width:min(720px,90vw);
 
+    padding:18px;
+
+    border-radius:18px;
+
     background:rgba(30,41,59,.92);
 
-    backdrop-filter:blur(14px);
+    backdrop-filter:blur(18px);
 
     border:1px solid rgba(255,255,255,.08);
-
-    border-radius:16px;
-
-    padding:18px;
 
     z-index:1000;
 
@@ -136,6 +282,8 @@
 
     height:100%;
 
+    border-radius:999px;
+
     background:linear-gradient(
 
         90deg,
@@ -145,8 +293,6 @@
         #3b82f6
 
     );
-
-    border-radius:999px;
 
     transition:width .35s ease;
 
@@ -160,9 +306,13 @@
 
     font-size:13px;
 
-    opacity:.75;
+    opacity:.7;
 
 }
+
+/* =====================================
+   OVERLAY
+===================================== */
 
 .presentation-overlay{
 
@@ -172,11 +322,11 @@
 
     display:flex;
 
-    align-items:center;
-
     justify-content:center;
 
-    background:rgba(15,23,42,.65);
+    align-items:center;
+
+    background:rgba(15,23,42,.72);
 
     backdrop-filter:blur(10px);
 
@@ -190,21 +340,19 @@
 
     width:min(560px,90vw);
 
+    padding:36px;
+
+    border-radius:24px;
+
     background:#1e293b;
 
     border:1px solid rgba(255,255,255,.08);
 
-    border-radius:22px;
-
-    padding:36px;
-
     text-align:center;
-
-    color:white;
 
     box-shadow:
 
-        0 20px 50px rgba(0,0,0,.35);
+        0 24px 60px rgba(0,0,0,.4);
 
 }
 
@@ -212,13 +360,13 @@
 
     margin:0;
 
-    font-size:38px;
+    font-size:40px;
 
 }
 
 .presentation-overlay-card p{
 
-    margin:18px 0 28px;
+    margin:20px 0 30px;
 
     opacity:.8;
 
@@ -234,7 +382,7 @@
 
     gap:14px;
 
-    margin-bottom:24px;
+    margin-bottom:26px;
 
 }
 
@@ -256,9 +404,9 @@
 
 .presentation-shortcuts strong{
 
-    font-size:18px;
-
     color:#60a5fa;
+
+    font-size:18px;
 
 }
 
@@ -268,13 +416,17 @@
 
 }
 
+/* =====================================
+   ANIMATIONS
+===================================== */
+
 @keyframes fadeIn{
 
     from{
 
         opacity:0;
 
-        transform:scale(.97);
+        transform:scale(.96);
 
     }
 
@@ -283,6 +435,60 @@
         opacity:1;
 
         transform:scale(1);
+
+    }
+
+}
+
+/* =====================================
+   RESPONSIVE
+===================================== */
+
+@media (max-width:768px){
+
+    .presentation-slide{
+
+        padding:25px;
+
+    }
+
+    .presentation-slide-title{
+
+        font-size:38px;
+
+    }
+
+    .presentation-slide-description{
+
+        font-size:17px;
+
+    }
+
+    .presentation-slide-icon{
+
+        font-size:64px;
+
+    }
+
+    .presentation-shortcuts{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .presentation-toolbar{
+
+        width:95%;
+
+        bottom:12px;
+
+    }
+
+    .presentation-toolbar button{
+
+        flex:1;
+
+        min-width:120px;
 
     }
 
