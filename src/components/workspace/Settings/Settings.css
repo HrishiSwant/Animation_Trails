@@ -143,3 +143,39 @@
     overflow:auto;
 
 }
+
+/* =====================================
+   SETTINGS SECTION
+===================================== */
+
+.settings-section{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:16px;
+
+}
+
+.settings-section h2{
+
+    margin:0;
+
+    font-size:30px;
+
+    color:#111827;
+
+}
+
+.settings-section p{
+
+    margin:0;
+
+    color:#6b7280;
+
+    font-size:16px;
+
+    line-height:1.7;
+
+}
