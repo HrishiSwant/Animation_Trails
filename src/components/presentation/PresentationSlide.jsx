@@ -1,5 +1,7 @@
 import "./Presentation.css";
 
+import PresentationRenderer from "./PresentationRenderer";
+
 export default function PresentationSlide({
 
   slide,
@@ -48,31 +50,13 @@ export default function PresentationSlide({
 
       <div className="presentation-preview">
 
-        <h3>
+    <PresentationRenderer
 
-          Live Preview
+        tool={slide.tool}
 
-        </h3>
+    />
 
-        <p>
-
-          Presentation preview for
-
-          {" "}
-
-          <strong>
-
-            {slide.title}
-
-          </strong>
-
-          {" "}
-
-          will appear here.
-
-        </p>
-
-      </div>
+</div>
 
     </div>
 
