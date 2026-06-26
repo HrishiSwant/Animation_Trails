@@ -2,6 +2,15 @@ import "./Settings.css";
 
 import AppearanceSettings from "./AppearanceSettings";
 import WorkspaceSettings from "./WorkspaceSettings";
+import PresentationSettings from "./PresentationSettings";
+import PresentationSettings from "./NotesSettings";
+import PresentationSettings from "./SketchSetting";
+import PresentationSettings from "./AssetsSetting";
+import PresentationSettings from "./TasksSettings";
+import PresentationSettings from "./StorageSettings";
+import PresentationSettings from "./AccesibilitySettings";
+import PresentationSettings from "./DeveloperSettings";
+import PresentationSettings from "./About";
 
 export default function SettingsSection({
 
@@ -39,25 +48,7 @@ export default function SettingsSection({
 
     case "presentation":
 
-      return (
-
-        <div className="settings-section">
-
-          <h2>
-
-            🎬 Presentation
-
-          </h2>
-
-          <p>
-
-            Configure presentation behavior.
-
-          </p>
-
-        </div>
-
-      );
+      return <PresentationSettings />;
 
     /*
     ==========================
@@ -67,25 +58,7 @@ export default function SettingsSection({
 
     case "notes":
 
-      return (
-
-        <div className="settings-section">
-
-          <h2>
-
-            📝 Notes
-
-          </h2>
-
-          <p>
-
-            Configure the Notes module.
-
-          </p>
-
-        </div>
-
-      );
+      return <NotesSettings />;
 
     /*
     ==========================
@@ -95,25 +68,7 @@ export default function SettingsSection({
 
     case "sketch":
 
-      return (
-
-        <div className="settings-section">
-
-          <h2>
-
-            ✏️ Sketch
-
-          </h2>
-
-          <p>
-
-            Configure the Sketch Board.
-
-          </p>
-
-        </div>
-
-      );
+      return <SketchSettings />;
 
     /*
     ==========================
@@ -123,25 +78,7 @@ export default function SettingsSection({
 
     case "assets":
 
-      return (
-
-        <div className="settings-section">
-
-          <h2>
-
-            📁 Assets
-
-          </h2>
-
-          <p>
-
-            Configure Asset Manager settings.
-
-          </p>
-
-        </div>
-
-      );
+      return <AssetsSettings />;
 
     /*
     ==========================
@@ -151,25 +88,7 @@ export default function SettingsSection({
 
     case "tasks":
 
-      return (
-
-        <div className="settings-section">
-
-          <h2>
-
-            ✅ Tasks
-
-          </h2>
-
-          <p>
-
-            Configure Task Manager settings.
-
-          </p>
-
-        </div>
-
-      );
+      return <TasksSettings />;
 
     /*
     ==========================
@@ -179,25 +98,7 @@ export default function SettingsSection({
 
     case "storage":
 
-      return (
-
-        <div className="settings-section">
-
-          <h2>
-
-            💾 Storage
-
-          </h2>
-
-          <p>
-
-            Manage storage usage and backups.
-
-          </p>
-
-        </div>
-
-      );
+      return <StorageSettings />;
 
     /*
     ==========================
@@ -207,25 +108,7 @@ export default function SettingsSection({
 
     case "accessibility":
 
-      return (
-
-        <div className="settings-section">
-
-          <h2>
-
-            ♿ Accessibility
-
-          </h2>
-
-          <p>
-
-            Improve accessibility and usability.
-
-          </p>
-
-        </div>
-
-      );
+      return <AccesibilitySettings />;
 
     /*
     ==========================
@@ -235,25 +118,7 @@ export default function SettingsSection({
 
     case "developer":
 
-      return (
-
-        <div className="settings-section">
-
-          <h2>
-
-            ⚙️ Developer
-
-          </h2>
-
-          <p>
-
-            Developer tools and debugging options.
-
-          </p>
-
-        </div>
-
-      );
+      return <DeveloperSettings />;
 
     /*
     ==========================
@@ -263,25 +128,7 @@ export default function SettingsSection({
 
     case "about":
 
-      return (
-
-        <div className="settings-section">
-
-          <h2>
-
-            ℹ️ About
-
-          </h2>
-
-          <p>
-
-            Information about Hrishi Studio.
-
-          </p>
-
-        </div>
-
-      );
+      return <About />;
 
     /*
     ==========================
