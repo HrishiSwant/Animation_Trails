@@ -179,3 +179,138 @@
     line-height:1.7;
 
 }
+/* =====================================
+   SETTINGS CONTROL
+===================================== */
+
+.settings-control{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:24px;
+
+    padding:20px;
+
+    border:1px solid #e5e7eb;
+
+    border-radius:14px;
+
+    background:#ffffff;
+
+}
+
+.settings-control-info{
+
+    flex:1;
+
+}
+
+.settings-control-info h4{
+
+    margin:0;
+
+    font-size:17px;
+
+    color:#111827;
+
+}
+
+.settings-control-info p{
+
+    margin:6px 0 0;
+
+    color:#6b7280;
+
+    font-size:14px;
+
+    line-height:1.5;
+
+}
+
+/* =====================================
+   SWITCH
+===================================== */
+
+.settings-switch{
+
+    position:relative;
+
+    width:52px;
+
+    height:30px;
+
+    flex-shrink:0;
+
+}
+
+.settings-switch input{
+
+    display:none;
+
+}
+
+.settings-slider{
+
+    position:absolute;
+
+    inset:0;
+
+    cursor:pointer;
+
+    background:#cbd5e1;
+
+    border-radius:999px;
+
+    transition:.25s;
+
+}
+
+.settings-slider::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:22px;
+
+    height:22px;
+
+    left:4px;
+
+    top:4px;
+
+    border-radius:50%;
+
+    background:white;
+
+    transition:.25s;
+
+    box-shadow:
+
+        0 2px 8px rgba(0,0,0,.18);
+
+}
+
+.settings-switch input:checked + .settings-slider{
+
+    background:#2563eb;
+
+}
+
+.settings-switch input:checked + .settings-slider::before{
+
+    transform:translateX(22px);
+
+}
+
+.settings-switch input:disabled + .settings-slider{
+
+    opacity:.45;
+
+    cursor:not-allowed;
+
+}
