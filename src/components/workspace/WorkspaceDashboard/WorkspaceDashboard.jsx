@@ -23,10 +23,6 @@ export default function WorkspaceDashboard({
 
     <div className="workspace-dashboard">
 
-      {/* ==========================
-            HEADER
-      ========================== */}
-
       <div className="dashboard-header">
 
         <h1>
@@ -43,19 +39,11 @@ export default function WorkspaceDashboard({
 
       </div>
 
-      {/* ==========================
-            LIVE OVERVIEW
-      ========================== */}
-
       <DashboardOverview
 
         overview={dashboard.overview}
 
       />
-
-      {/* ==========================
-            QUICK ACTIONS
-      ========================== */}
 
       <DashboardQuickActions
 
@@ -65,10 +53,6 @@ export default function WorkspaceDashboard({
 
       />
 
-      {/* ==========================
-            LIVE STATISTICS
-      ========================== */}
-
       <DashboardStats
 
         stats={dashboard.stats}
@@ -76,10 +60,6 @@ export default function WorkspaceDashboard({
         summary={dashboard.summary}
 
       />
-
-      {/* ==========================
-            PRESENTATION MODE
-      ========================== */}
 
       <div className="dashboard-presentation">
 
@@ -96,10 +76,6 @@ export default function WorkspaceDashboard({
         </button>
 
       </div>
-
-      {/* ==========================
-            WORKSPACE MODULES
-      ========================== */}
 
       <div className="dashboard-section">
 
@@ -222,6 +198,24 @@ export default function WorkspaceDashboard({
           onClick={() =>
 
             setCurrentTool("export")
+
+          }
+
+        />
+
+        <WorkspaceCard
+
+          title="Settings"
+
+          description="Customize Hrishi Studio."
+
+          icon="⚙️"
+
+          color="#64748B"
+
+          onClick={() =>
+
+            setCurrentTool("settings")
 
           }
 
