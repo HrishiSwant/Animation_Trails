@@ -5,7 +5,8 @@ import WorkspaceDashboard from "../components/workspace/WorkspaceDashboard/Works
 
 import Notes from "../components/workspace/Notes/Notes";
 import Sketch from "../components/workspace/Sketch/Sketch";
-import Assets from "../components/workspace/Assets/Assets";;
+import Assets from "../components/workspace/Assets/Assets";
+import Tasks from "../components/workspace/Tasks/Tasks";
 
 import StorageInspector from "../components/workspace/Storage/StorageInspector";
 import ExportCenter from "../components/workspace/Export/ExportCenter";
@@ -41,6 +42,10 @@ export default function CreativeLab() {
 
         return <Assets />;
 
+      case "tasks":
+
+        return <Tasks />;
+
       case "storage":
 
         return <StorageInspector />;
@@ -49,28 +54,6 @@ export default function CreativeLab() {
 
         return <ExportCenter />;
 
-      case "tasks":
-
-        return (
-
-          <div className="coming-soon">
-
-            <h1>
-
-              ✅ Tasks
-
-            </h1>
-
-            <p>
-
-              Coming Soon
-
-            </p>
-
-          </div>
-
-        );
-
       default:
 
         return (
@@ -78,6 +61,48 @@ export default function CreativeLab() {
           <WorkspaceDashboard
             setCurrentTool={setCurrentTool}
           />
+
+        );
+
+    }
+
+  }
+
+  function getToolTitle() {
+
+    switch (currentTool) {
+
+      case "storage":
+
+        return "Storage Inspector";
+
+      case "export":
+
+        return "Export Center";
+
+      case "assets":
+
+        return "Asset Manager";
+
+      case "tasks":
+
+        return "Task Manager";
+
+      case "notes":
+
+        return "Notes";
+
+      case "sketch":
+
+        return "Sketch";
+
+      default:
+
+        return (
+
+          currentTool.charAt(0).toUpperCase() +
+
+          currentTool.slice(1)
 
         );
 
@@ -94,10 +119,15 @@ export default function CreativeLab() {
         <div className="toolbar">
 
           <button
+
             className="back-button"
+
             onClick={() =>
+
               setCurrentTool("dashboard")
+
             }
+
           >
 
             ← Workspace
@@ -106,24 +136,7 @@ export default function CreativeLab() {
 
           <span className="tool-title">
 
-            {
-
-              currentTool === "storage"
-
-                ? "Storage Inspector"
-
-                : currentTool === "export"
-
-                ? "Export Center"
-
-                : currentTool === "assets"
-
-                ? "Asset Manager"
-
-                : currentTool.charAt(0).toUpperCase() +
-                  currentTool.slice(1)
-
-            }
+            {getToolTitle()}
 
           </span>
 
