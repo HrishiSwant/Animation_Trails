@@ -203,3 +203,55 @@
     }
 
 }
+
+.dashboard-presentation{
+
+    display:flex;
+
+    justify-content:center;
+
+    margin:40px 0;
+
+}
+
+.presentation-button{
+
+    border:none;
+
+    cursor:pointer;
+
+    padding:18px 40px;
+
+    border-radius:14px;
+
+    font-size:18px;
+
+    font-weight:700;
+
+    color:white;
+
+    background:linear-gradient(
+
+        135deg,
+
+        #2563eb,
+
+        #7c3aed
+
+    );
+
+    transition:.3s;
+
+}
+
+.presentation-button:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:
+
+        0 10px 30px
+
+        rgba(59,130,246,.35);
+
+}
