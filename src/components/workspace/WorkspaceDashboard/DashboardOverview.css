@@ -1,1 +1,41 @@
+.dashboard-overview{
 
+    width:100%;
+
+    margin-bottom:32px;
+
+}
+
+.dashboard-overview-header{
+
+    margin-bottom:22px;
+
+}
+
+.dashboard-overview-header h2{
+
+    margin:0;
+
+    font-size:30px;
+
+}
+
+.dashboard-overview-header p{
+
+    margin-top:8px;
+
+    opacity:.7;
+
+}
+
+.dashboard-overview-grid{
+
+    display:grid;
+
+    grid-template-columns:
+
+        repeat(auto-fit,minmax(260px,1fr));
+
+    gap:20px;
+
+}
