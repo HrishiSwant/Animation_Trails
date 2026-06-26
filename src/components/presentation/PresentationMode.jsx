@@ -60,6 +60,12 @@ export default function PresentationMode({
 
         total={presentation.total}
 
+        title={
+
+          presentation.current?.title
+
+          }
+
       />
 
       <PresentationToolbar
