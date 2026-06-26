@@ -1,5 +1,7 @@
 import "./Settings.css";
 
+import AppearanceSettings from "./AppearanceSettings";
+
 export default function SettingsSection({
 
   activeSection,
@@ -16,25 +18,7 @@ export default function SettingsSection({
 
     case "appearance":
 
-      return (
-
-        <div className="settings-section">
-
-          <h2>
-
-            🎨 Appearance
-
-          </h2>
-
-          <p>
-
-            Customize the look and feel of Hrishi Studio.
-
-          </p>
-
-        </div>
-
-      );
+      return <AppearanceSettings />;
 
     /*
     ==========================
