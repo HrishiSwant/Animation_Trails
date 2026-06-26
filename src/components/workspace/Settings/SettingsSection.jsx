@@ -1,6 +1,7 @@
 import "./Settings.css";
 
 import AppearanceSettings from "./AppearanceSettings";
+import WorkspaceSettings from "./WorkspaceSettings";
 
 export default function SettingsSection({
 
@@ -28,25 +29,7 @@ export default function SettingsSection({
 
     case "workspace":
 
-      return (
-
-        <div className="settings-section">
-
-          <h2>
-
-            🖥️ Workspace
-
-          </h2>
-
-          <p>
-
-            Configure your workspace preferences.
-
-          </p>
-
-        </div>
-
-      );
+      return <WorkspaceSettings />;
 
     /*
     ==========================
