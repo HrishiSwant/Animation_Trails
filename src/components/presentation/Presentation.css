@@ -1,1 +1,79 @@
+.presentation-toolbar{
 
+    position:fixed;
+
+    bottom:20px;
+
+    left:50%;
+
+    transform:translateX(-50%);
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    padding:14px 18px;
+
+    background:rgba(30,41,59,.92);
+
+    backdrop-filter:blur(14px);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    border-radius:16px;
+
+    z-index:1000;
+
+}
+
+.presentation-toolbar button{
+
+    border:none;
+
+    outline:none;
+
+    padding:10px 18px;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+    font-size:15px;
+
+    font-weight:600;
+
+    transition:.25s;
+
+    background:#334155;
+
+    color:white;
+
+}
+
+.presentation-toolbar button:hover:not(:disabled){
+
+    background:#3b82f6;
+
+}
+
+.presentation-toolbar button:disabled{
+
+    opacity:.35;
+
+    cursor:not-allowed;
+
+}
+
+.presentation-exit{
+
+    background:#dc2626 !important;
+
+}
+
+.presentation-exit:hover{
+
+    background:#ef4444 !important;
+
+}
