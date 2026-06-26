@@ -1,1 +1,133 @@
+.task-editor{
 
+    background:rgba(255,255,255,.04);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    border-radius:16px;
+
+    padding:24px;
+
+    margin-bottom:24px;
+
+}
+
+.task-editor h2{
+
+    margin:0 0 20px;
+
+}
+
+.task-editor-form{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:14px;
+
+}
+
+.task-editor label{
+
+    font-size:14px;
+
+    font-weight:600;
+
+}
+
+.task-editor input,
+
+.task-editor textarea,
+
+.task-editor select{
+
+    width:100%;
+
+    padding:12px;
+
+    border-radius:10px;
+
+    border:1px solid rgba(255,255,255,.12);
+
+    background:#1f1f1f;
+
+    color:#fff;
+
+    box-sizing:border-box;
+
+    outline:none;
+
+}
+
+.task-editor textarea{
+
+    resize:vertical;
+
+    min-height:100px;
+
+}
+
+.task-editor input:focus,
+
+.task-editor textarea:focus,
+
+.task-editor select:focus{
+
+    border-color:#3b82f6;
+
+}
+
+.task-editor-actions{
+
+    display:flex;
+
+    gap:12px;
+
+    margin-top:10px;
+
+}
+
+.save-task{
+
+    background:#3b82f6;
+
+    color:#fff;
+
+    border:none;
+
+    border-radius:10px;
+
+    padding:12px 20px;
+
+    cursor:pointer;
+
+}
+
+.save-task:hover{
+
+    background:#2563eb;
+
+}
+
+.cancel-task{
+
+    background:#333;
+
+    color:#fff;
+
+    border:none;
+
+    border-radius:10px;
+
+    padding:12px 20px;
+
+    cursor:pointer;
+
+}
+
+.cancel-task:hover{
+
+    background:#555;
+
+}
