@@ -428,3 +428,80 @@
     cursor:not-allowed;
 
 }
+/* =====================================
+   COLOR PICKER
+===================================== */
+
+.settings-color-picker{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:14px;
+
+}
+
+.settings-color-input{
+
+    width:52px;
+
+    height:52px;
+
+    padding:0;
+
+    border:none;
+
+    background:transparent;
+
+    cursor:pointer;
+
+}
+
+.settings-color-input::-webkit-color-swatch-wrapper{
+
+    padding:0;
+
+}
+
+.settings-color-input::-webkit-color-swatch{
+
+    border:none;
+
+    border-radius:12px;
+
+    box-shadow:
+
+        0 2px 8px rgba(0,0,0,.15);
+
+}
+
+.settings-color-value{
+
+    min-width:95px;
+
+    padding:8px 12px;
+
+    border-radius:10px;
+
+    background:#f3f4f6;
+
+    font-family:monospace;
+
+    font-size:14px;
+
+    color:#374151;
+
+    text-align:center;
+
+    user-select:all;
+
+}
+
+.settings-color-input:disabled{
+
+    opacity:.5;
+
+    cursor:not-allowed;
+
+}
