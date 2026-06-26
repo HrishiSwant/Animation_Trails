@@ -1,14 +1,19 @@
 const StorageKeys = {
 
-    NOTES: "hrishi-studio:workspace:notes",
+  NOTES:
+    "hrishi-studio:workspace:notes",
 
-    SKETCH: "hrishi-studio:workspace:sketch",
+  SKETCH:
+    "hrishi-studio:workspace:sketch",
 
-    TASKS: "hrishi-studio:workspace:tasks",
+  TASKS:
+    "hrishi-studio:workspace:tasks",
 
-    ASSETS: "hrishi-studio:workspace:assets",
+  ASSETS:
+    "hrishi-studio:workspace:assets",
 
-    SETTINGS: "hrishi-studio:settings",
+  SETTINGS:
+    "hrishi-studio:settings",
 
 };
 
