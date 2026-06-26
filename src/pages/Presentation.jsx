@@ -1,22 +1,11 @@
-export default function Presentation(){
+import PresentationMode from "../components/presentation/PresentationMode";
 
-    return(
+export default function Presentation() {
 
-        <div
-            style={{
-                display:"flex",
-                justifyContent:"center",
-                alignItems:"center",
-                height:"100%",
-                color:"white",
-                fontSize:"40px"
-            }}
-        >
+  return (
 
-            🎭 Presentation Mode
+    <PresentationMode />
 
-        </div>
-
-    );
+  );
 
 }
