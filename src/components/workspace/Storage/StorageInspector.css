@@ -1,299 +1,456 @@
-.storage-inspector {
+/* ===========================================
+   STORAGE INSPECTOR
+=========================================== */
 
-  padding: 24px;
+.storage-inspector{
 
-  color: white;
+    padding:24px;
 
-}
+    color:var(--color-text);
 
-.storage-inspector h2 {
-
-  margin-bottom: 24px;
-
-}
-
-.storage-list {
-
-  display: grid;
-
-  grid-template-columns:
-    repeat(auto-fit,minmax(250px,1fr));
-
-  gap: 20px;
+    transition:
+        color var(--transition-medium);
 
 }
 
-.storage-card {
+.storage-inspector h2{
 
-  background: #171717;
+    margin-bottom:24px;
 
-  border: 1px solid #262626;
+    color:var(--color-text);
 
-  border-radius: 16px;
+    font-size:28px;
 
-  padding: 18px;
-
-}
-
-.storage-card h3 {
-
-  margin-bottom: 10px;
+    transition:
+        color var(--transition-medium);
 
 }
 
-.storage-card p {
+/* ===========================================
+   STORAGE GRID
+=========================================== */
 
-  color: #a1a1aa;
+.storage-list{
 
-  margin: 8px 0;
+    display:grid;
 
-}
+    grid-template-columns:
+        repeat(auto-fit,minmax(250px,1fr));
 
-.storage-card button {
-
-  margin-top: 12px;
-
-  width: 100%;
-
-  padding: 10px;
-
-  border: none;
-
-  border-radius: 10px;
-
-  cursor: pointer;
+    gap:20px;
 
 }
 
-.reset-workspace {
+/* ===========================================
+   STORAGE CARD
+=========================================== */
 
-  margin-top: 30px;
+.storage-card{
 
-  width: 100%;
+    padding:18px;
 
-  padding: 14px;
+    border:1px solid var(--color-border);
 
-  border: none;
+    border-radius:16px;
 
-  border-radius: 12px;
+    background:var(--color-surface);
 
-  cursor: pointer;
+    transition:
 
-}
+        background-color var(--transition-medium),
 
-.backup-section {
+        border-color var(--transition-medium),
 
-  margin-top: 40px;
+        transform var(--transition-fast),
 
-  padding: 20px;
-
-  border: 1px solid #262626;
-
-  border-radius: 16px;
-
-  background: #171717;
+        box-shadow var(--transition-medium);
 
 }
 
-.backup-section h2 {
+.storage-card:hover{
 
-  margin-bottom: 16px;
+    transform:translateY(-3px);
 
-}
+    border-color:var(--color-primary);
 
-.backup-section button {
-
-  margin-right: 12px;
-
-  padding: 10px 16px;
-
-  border: none;
-
-  border-radius: 10px;
-
-  cursor: pointer;
+    box-shadow:var(--shadow-small);
 
 }
 
-.upload-label {
+.storage-card h3{
 
-  display: inline-block;
+    margin-bottom:10px;
 
-  cursor: pointer;
-
-  padding: 10px 16px;
-
-  border-radius: 10px;
-
-  background: #262626;
+    color:var(--color-text);
 
 }
 
-.upload-label input {
+.storage-card p{
 
-  display: none;
+    margin:8px 0;
 
-}
+    color:var(--color-text-secondary);
 
-.backup-status {
-
-  margin-top: 16px;
-
-  color: #22c55e;
-
-}
-.recovery-center {
-
-  margin-top: 40px;
+    line-height:1.6;
 
 }
 
-.recovery-card {
+/* ===========================================
+   STORAGE BUTTONS
+=========================================== */
 
-  background: #171717;
+.storage-card button,
 
-  border: 1px solid #262626;
+.backup-section button,
 
-  border-radius: 12px;
+.reset-workspace,
 
-  padding: 16px;
+.clear-recovery,
 
-  margin-bottom: 12px;
+.workspace-snapshot-card button,
 
-  display: flex;
+.clear-workspace-history{
 
-  justify-content: space-between;
+    padding:10px 16px;
 
-  align-items: center;
+    border:none;
 
-}
+    border-radius:10px;
 
-.recovery-actions {
+    background:var(--color-primary);
 
-  display: flex;
+    color:#FFFFFF;
 
-  gap: 10px;
+    cursor:pointer;
 
-}
+    font-size:14px;
 
-.recovery-actions button {
+    font-weight:600;
 
-  padding: 8px 14px;
+    transition:
 
-  border: none;
+        background-color var(--transition-medium),
 
-  border-radius: 8px;
+        transform var(--transition-fast),
 
-  cursor: pointer;
-
-}
-
-.clear-recovery {
-
-  margin-top: 16px;
-
-  width: 100%;
-
-  padding: 12px;
-
-  border: none;
-
-  border-radius: 10px;
-
-  cursor: pointer;
+        box-shadow var(--transition-medium);
 
 }
 
-.timeline-version {
+.storage-card button{
 
-  color: #cbd5e1;
+    width:100%;
 
-  font-size: 13px;
-
-  margin-top: 4px;
+    margin-top:12px;
 
 }
 
-.timeline-date {
+.storage-card button:hover,
 
-  color: #a1a1aa;
+.backup-section button:hover,
 
-  font-size: 12px;
+.reset-workspace:hover,
 
-  margin-top: 4px;
+.clear-recovery:hover,
 
-}
+.workspace-snapshot-card button:hover,
 
-.recovery-card {
+.clear-workspace-history:hover{
 
-  position: relative;
+    transform:translateY(-2px);
 
-  overflow: hidden;
+    box-shadow:var(--shadow-small);
 
-}
-
-.recovery-card::before {
-
-  content: "";
-
-  position: absolute;
-
-  left: 0;
-
-  top: 0;
-
-  bottom: 0;
-
-  width: 4px;
-
-  background: #8b5cf6;
+    filter:brightness(.95);
 
 }
 
-.workspace-recovery-center {
+.storage-card button:active,
 
-  margin-top: 40px;
+.backup-section button:active,
 
-}
+.reset-workspace:active,
 
-.workspace-snapshot-card {
+.clear-recovery:active,
 
-  display: flex;
+.workspace-snapshot-card button:active,
 
-  justify-content: space-between;
+.clear-workspace-history:active{
 
-  align-items: center;
-
-  padding: 16px;
-
-  margin-top: 12px;
-
-  border-radius: 12px;
-
-  background: #171717;
-
-  border: 1px solid #262626;
+    transform:translateY(0);
 
 }
 
-.workspace-snapshot-card p {
+/* ===========================================
+   RESET BUTTON
+=========================================== */
 
-  color: #a1a1aa;
+.reset-workspace{
 
-  margin-top: 4px;
+    width:100%;
 
-}
-
-.workspace-snapshot-card button {
-
-  margin-left: 10px;
+    margin-top:30px;
 
 }
 
-.clear-workspace-history {
+/* ===========================================
+   BACKUP
+=========================================== */
 
-  margin-top: 16px;
+.backup-section{
 
-  width: 100%;
+    margin-top:40px;
+
+    padding:20px;
+
+    border:1px solid var(--color-border);
+
+    border-radius:16px;
+
+    background:var(--color-surface);
+
+    transition:
+
+        background-color var(--transition-medium),
+
+        border-color var(--transition-medium);
+
+}
+
+.backup-section h2{
+
+    margin-bottom:16px;
+
+}
+
+.upload-label{
+
+    display:inline-block;
+
+    padding:10px 16px;
+
+    border-radius:10px;
+
+    background:var(--color-surface-secondary);
+
+    color:var(--color-text);
+
+    cursor:pointer;
+
+    transition:
+
+        background-color var(--transition-medium),
+
+        color var(--transition-medium);
+
+}
+
+.upload-label:hover{
+
+    background:var(--color-border);
+
+}
+
+.upload-label input{
+
+    display:none;
+
+}
+
+.backup-status{
+
+    margin-top:16px;
+
+    color:#22c55e;
+
+    font-weight:600;
+
+}
+
+/* ===========================================
+   RECOVERY
+=========================================== */
+
+.recovery-center{
+
+    margin-top:40px;
+
+}
+
+.recovery-card{
+
+    position:relative;
+
+    overflow:hidden;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:16px;
+
+    margin-bottom:12px;
+
+    border:1px solid var(--color-border);
+
+    border-radius:12px;
+
+    background:var(--color-surface);
+
+    transition:
+
+        background-color var(--transition-medium),
+
+        border-color var(--transition-medium);
+
+}
+
+.recovery-card::before{
+
+    content:"";
+
+    position:absolute;
+
+    left:0;
+
+    top:0;
+
+    bottom:0;
+
+    width:4px;
+
+    background:#8b5cf6;
+
+}
+
+.recovery-actions{
+
+    display:flex;
+
+    gap:10px;
+
+}
+
+.timeline-version{
+
+    margin-top:4px;
+
+    font-size:13px;
+
+    color:var(--color-text);
+
+}
+
+.timeline-date{
+
+    margin-top:4px;
+
+    font-size:12px;
+
+    color:var(--color-text-secondary);
+
+}
+
+/* ===========================================
+   WORKSPACE RECOVERY
+=========================================== */
+
+.workspace-recovery-center{
+
+    margin-top:40px;
+
+}
+
+.workspace-snapshot-card{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-top:12px;
+
+    padding:16px;
+
+    border:1px solid var(--color-border);
+
+    border-radius:12px;
+
+    background:var(--color-surface);
+
+    transition:
+
+        background-color var(--transition-medium),
+
+        border-color var(--transition-medium);
+
+}
+
+.workspace-snapshot-card p{
+
+    margin-top:4px;
+
+    color:var(--color-text-secondary);
+
+}
+
+.clear-workspace-history{
+
+    width:100%;
+
+    margin-top:16px;
+
+}
+
+/* ===========================================
+   RESPONSIVE
+=========================================== */
+
+@media(max-width:768px){
+
+    .storage-list{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .recovery-card,
+
+    .workspace-snapshot-card{
+
+        flex-direction:column;
+
+        align-items:flex-start;
+
+        gap:14px;
+
+    }
+
+    .recovery-actions{
+
+        width:100%;
+
+        flex-wrap:wrap;
+
+    }
+
+}
+
+@media(max-width:600px){
+
+    .storage-inspector{
+
+        padding:16px;
+
+    }
+
+    .backup-section{
+
+        padding:16px;
+
+    }
 
 }
