@@ -43,3 +43,23 @@ body,
   background:#09090B;
 
 }
+
+/* ==========================
+   FONT SCALE
+========================== */
+
+--font-xs:13px;
+
+--font-sm:14px;
+
+--font-md:15px;
+
+--font-lg:18px;
+
+--font-xl:22px;
+
+--font-2xl:30px;
+
+--font-3xl:40px;
+
+--font-4xl:50px;
