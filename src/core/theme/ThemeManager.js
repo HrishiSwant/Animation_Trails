@@ -1,9 +1,12 @@
 import ThemeRegistry from "./ThemeRegistry";
 import ThemeStorage from "./ThemeStorage";
+import applyTheme from "./applyTheme";
 
 class ThemeManager {
 
   constructor() {
+
+    this.listeners = [];
 
     this.currentTheme =
 
@@ -12,6 +15,12 @@ class ThemeManager {
         ThemeStorage.load(),
 
       );
+
+    applyTheme(
+
+      this.currentTheme,
+
+    );
 
   }
 
@@ -47,6 +56,14 @@ class ThemeManager {
 
     );
 
+    applyTheme(
+
+      theme,
+
+    );
+
+    this.notify();
+
     return theme;
 
   }
@@ -63,6 +80,14 @@ class ThemeManager {
 
       );
 
+    applyTheme(
+
+      this.currentTheme,
+
+    );
+
+    this.notify();
+
     return this.currentTheme;
 
   }
@@ -78,6 +103,46 @@ class ThemeManager {
     return ThemeRegistry.has(
 
       themeId,
+
+    );
+
+  }
+
+  subscribe(listener) {
+
+    this.listeners.push(
+
+      listener,
+
+    );
+
+    return () => {
+
+      this.listeners =
+
+        this.listeners.filter(
+
+          (item) =>
+
+            item !== listener,
+
+        );
+
+    };
+
+  }
+
+  notify() {
+
+    this.listeners.forEach(
+
+      (listener) =>
+
+        listener(
+
+          this.currentTheme,
+
+        ),
 
     );
 
