@@ -141,12 +141,13 @@ transition:color var(--transition-medium);
     padding:28px;
 
     box-shadow:
-
         0 8px 24px rgba(0,0,0,.08);
 
-    min-height:700px;
+    height:100%;
 
-    overflow:auto;
+    overflow-y:auto;
+
+    overflow-x:hidden;
 
 }
 
@@ -600,5 +601,35 @@ border-color var(--transition-medium);
     flex-direction:column;
 
     gap:8px;
+
+}
+
+/* =====================================
+   SCROLLBAR
+===================================== */
+
+.settings-content::-webkit-scrollbar{
+
+    width:10px;
+
+}
+
+.settings-content::-webkit-scrollbar-track{
+
+    background:transparent;
+
+}
+
+.settings-content::-webkit-scrollbar-thumb{
+
+    background:var(--color-border);
+
+    border-radius:999px;
+
+}
+
+.settings-content::-webkit-scrollbar-thumb:hover{
+
+    background:var(--color-primary);
 
 }
