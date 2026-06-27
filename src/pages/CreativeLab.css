@@ -6,9 +6,17 @@
 
     padding:35px;
 
-    color:white;
+    color:var(--color-text);
 
-    overflow:auto;
+    background:var(--color-background);
+
+    display:flex;
+
+    flex-direction:column;
+
+    overflow:hidden;
+
+    box-sizing:border-box;
 
 }
 
@@ -26,11 +34,13 @@
 
     margin-bottom:25px;
 
+    flex-shrink:0;
+
 }
 
 .back-button{
 
-    background:#2563EB;
+    background:var(--color-primary);
 
     color:white;
 
@@ -42,23 +52,65 @@
 
     cursor:pointer;
 
-    transition:.25s;
+    font-size:var(--font-md);
 
-    font-size:15px;
+    transition:
+        background-color var(--transition-medium),
+        transform var(--transition-fast);
 
 }
 
 .back-button:hover{
 
-    background:#1D4ED8;
+    filter:brightness(1.08);
+
+    transform:translateY(-2px);
 
 }
 
 .tool-title{
 
-    color:#999;
+    color:var(--color-text-secondary);
 
-    font-size:15px;
+    font-size:var(--font-md);
+
+}
+
+/* ==================================
+   WORKSPACE CONTENT
+================================== */
+
+.creative-lab > :last-child{
+
+    flex:1;
+
+    min-height:0;
+
+    overflow:auto;
+
+}
+
+/* ==================================
+   SCROLLBAR
+================================== */
+
+.creative-lab > :last-child::-webkit-scrollbar{
+
+    width:10px;
+
+}
+
+.creative-lab > :last-child::-webkit-scrollbar-thumb{
+
+    background:var(--color-border);
+
+    border-radius:999px;
+
+}
+
+.creative-lab > :last-child::-webkit-scrollbar-thumb:hover{
+
+    background:var(--color-primary);
 
 }
 
@@ -84,7 +136,7 @@
 
 .coming-soon h1{
 
-    font-size:42px;
+    font-size:var(--font-3xl);
 
     margin-bottom:15px;
 
@@ -92,9 +144,9 @@
 
 .coming-soon p{
 
-    color:#777;
+    color:var(--color-text-secondary);
 
-    font-size:18px;
+    font-size:var(--font-lg);
 
 }
 
