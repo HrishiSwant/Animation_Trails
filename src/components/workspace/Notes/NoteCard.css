@@ -4,7 +4,7 @@
 
 .note-card{
 
-    background:#191919;
+    background:var(--color-surface-secondary);
 
     border:1px solid transparent;
 
@@ -16,25 +16,43 @@
 
     cursor:pointer;
 
-    transition:.25s;
+    transition:
+
+        background-color var(--transition-medium),
+
+        border-color var(--transition-medium),
+
+        color var(--transition-medium),
+
+        transform var(--transition-fast),
+
+        box-shadow var(--transition-medium);
 
 }
 
 .note-card:hover{
 
-    border-color:#2563EB;
+    border-color:var(--color-primary);
 
     transform:translateY(-2px);
+
+    box-shadow:var(--shadow-small);
 
 }
 
 .note-card.active{
 
-    background:#2563EB;
+    background:var(--color-primary);
 
-    border-color:#2563EB;
+    border-color:var(--color-primary);
+
+    color:#FFFFFF;
 
 }
+
+/* ===========================================
+   HEADER
+=========================================== */
 
 .note-header{
 
@@ -52,7 +70,7 @@
 
     margin:0;
 
-    font-size:16px;
+    flex:1;
 
     overflow:hidden;
 
@@ -60,15 +78,23 @@
 
     white-space:nowrap;
 
-    flex:1;
+    font-size:16px;
+
+    color:inherit;
+
+    transition:
+
+        color var(--transition-medium);
 
 }
+
+/* ===========================================
+   PREVIEW
+=========================================== */
 
 .note-preview{
 
     margin:14px 0;
-
-    color:#BBBBBB;
 
     font-size:13px;
 
@@ -78,18 +104,44 @@
 
     overflow:hidden;
 
+    color:var(--color-text-secondary);
+
+    transition:
+
+        color var(--transition-medium);
+
 }
 
-.note-card small{
+.note-card.active .note-preview{
 
-    color:#CFCFCF;
-
-    font-size:11px;
+    color:rgba(255,255,255,.92);
 
 }
 
 /* ===========================================
-   BUTTONS
+   DATE
+=========================================== */
+
+.note-card small{
+
+    font-size:11px;
+
+    color:var(--color-text-secondary);
+
+    transition:
+
+        color var(--transition-medium);
+
+}
+
+.note-card.active small{
+
+    color:rgba(255,255,255,.82);
+
+}
+
+/* ===========================================
+   ACTION BUTTONS
 =========================================== */
 
 .note-buttons{
@@ -106,30 +158,112 @@
 
     height:30px;
 
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
     border:none;
+
+    outline:none;
 
     border-radius:8px;
 
-    background:#252525;
+    background:var(--color-surface);
 
-    color:white;
+    color:var(--color-text);
 
     cursor:pointer;
 
-    transition:.25s;
+    transition:
+
+        background-color var(--transition-medium),
+
+        color var(--transition-medium),
+
+        transform var(--transition-fast);
 
 }
 
 .note-buttons button:hover{
 
-    background:#333;
+    background:var(--color-border);
 
     transform:scale(1.08);
 
 }
 
+.note-buttons button:active{
+
+    transform:scale(.96);
+
+}
+
+.note-buttons button:focus-visible{
+
+    outline:2px solid var(--color-primary);
+
+    outline-offset:2px;
+
+}
+
+/* ===========================================
+   ACTIVE CARD BUTTONS
+=========================================== */
+
 .note-card.active .note-buttons button{
 
     background:rgba(255,255,255,.18);
+
+    color:#FFFFFF;
+
+}
+
+.note-card.active .note-buttons button:hover{
+
+    background:rgba(255,255,255,.28);
+
+}
+
+/* ===========================================
+   RESPONSIVE
+=========================================== */
+
+@media(max-width:600px){
+
+    .note-card{
+
+        padding:14px;
+
+    }
+
+    .note-header{
+
+        gap:8px;
+
+    }
+
+    .note-header h4{
+
+        font-size:15px;
+
+    }
+
+    .note-buttons{
+
+        gap:4px;
+
+    }
+
+    .note-buttons button{
+
+        width:28px;
+
+        height:28px;
+
+        font-size:13px;
+
+    }
 
 }
