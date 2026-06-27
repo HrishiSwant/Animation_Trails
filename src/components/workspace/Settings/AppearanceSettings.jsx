@@ -1,4 +1,8 @@
+import { useEffect } from "react";
+
 import useAppearance from "../../../hooks/settings/useAppearance";
+
+import ThemeManager from "../../../core/theme/ThemeManager";
 
 import SettingsSelect from "./SettingsSelect";
 import SettingsToggle from "./SettingsToggle";
@@ -39,8 +43,43 @@ const fontSizeOptions = [
 
 export default function AppearanceSettings() {
 
-  const appearance =
-    useAppearance();
+  const appearance = useAppearance();
+
+  /*
+  ==========================
+      THEME SYNC
+  ==========================
+  */
+
+  useEffect(() => {
+
+    const unsubscribe = ThemeManager.subscribe((theme) => {
+
+      if (appearance.theme !== theme.id) {
+
+        appearance.setTheme(theme.id);
+
+      }
+
+    });
+
+    return unsubscribe;
+
+  }, [appearance]);
+
+  /*
+  ==========================
+      HANDLERS
+  ==========================
+  */
+
+  function handleThemeChange(themeId) {
+
+    ThemeManager.setTheme(themeId);
+
+    appearance.setTheme(themeId);
+
+  }
 
   return (
 
@@ -68,7 +107,7 @@ export default function AppearanceSettings() {
 
         options={themeOptions}
 
-        onChange={appearance.setTheme}
+        onChange={handleThemeChange}
 
       />
 
