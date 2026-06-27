@@ -1,18 +1,34 @@
 .navigation{
 
     width:250px;
+
     height:100vh;
 
-    background:#101010;
+    background:var(--color-surface);
 
-    border-right:1px solid #232323;
+    border-right:1px solid var(--color-border);
 
     display:flex;
+
     flex-direction:column;
 
     padding:24px;
 
+    color:var(--color-text);
+
+    transition:
+
+        background-color var(--transition-medium),
+
+        border-color var(--transition-medium),
+
+        color var(--transition-medium);
+
 }
+
+/* =====================================
+   LOGO
+===================================== */
 
 .navigation-logo{
 
@@ -22,70 +38,112 @@
 
 .navigation-logo h1{
 
+    margin:0 0 8px;
+
     font-size:28px;
-    margin-bottom:8px;
+
+    color:var(--color-text);
+
+    transition:color var(--transition-medium);
 
 }
 
 .navigation-logo p{
 
-    color:#8a8a8a;
+    margin:0;
+
+    color:var(--color-text-secondary);
+
     font-size:13px;
 
+    transition:color var(--transition-medium);
+
 }
+
+/* =====================================
+   MENU
+===================================== */
 
 .navigation-menu{
 
     display:flex;
+
     flex-direction:column;
+
     gap:12px;
 
 }
+
+/* =====================================
+   BUTTON
+===================================== */
 
 .nav-item{
 
     border:none;
 
-    background:#1B1B1B;
+    outline:none;
 
-    color:white;
+    background:var(--color-surface-secondary);
+
+    color:var(--color-text);
 
     padding:15px;
 
-    border-radius:14px;
+    border-radius:var(--radius-medium);
 
     text-align:left;
 
     cursor:pointer;
 
-    transition:.25s;
-
     font-size:15px;
+
+    transition:
+
+        background-color var(--transition-medium),
+
+        color var(--transition-medium),
+
+        transform var(--transition-fast);
 
 }
 
 .nav-item:hover{
 
-    background:#282828;
+    background:var(--color-border);
+
+    transform:translateY(-2px);
 
 }
 
 .nav-item.active{
 
-    background:#2563EB;
+    background:var(--color-primary);
+
+    color:#FFFFFF;
 
 }
+
+/* =====================================
+   FOOTER
+===================================== */
 
 .navigation-footer{
 
     margin-top:auto;
 
-    color:#666;
-
-    border-top:1px solid #232323;
-
     padding-top:20px;
 
     font-size:13px;
+
+    color:var(--color-text-secondary);
+
+    border-top:1px solid var(--color-border);
+
+    transition:
+
+        color var(--transition-medium),
+
+        border-color var(--transition-medium);
 
 }
