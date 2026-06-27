@@ -8,10 +8,11 @@ class ThemeManager {
 
     this.listeners = [];
 
-    this.currentTheme =
-      ThemeRegistry.get(
-        ThemeStorage.load(),
-      );
+    this.currentTheme = ThemeRegistry.get(
+      ThemeStorage.load(),
+    );
+
+    this.initialized = false;
 
   }
 
@@ -23,11 +24,15 @@ class ThemeManager {
 
   initialize() {
 
-    applyTheme(
+    if (this.initialized) {
 
-      this.currentTheme,
+      return;
 
-    );
+    }
+
+    applyTheme(this.currentTheme);
+
+    this.initialized = true;
 
   }
 
@@ -57,11 +62,7 @@ class ThemeManager {
 
   hasTheme(themeId) {
 
-    return ThemeRegistry.has(
-
-      themeId,
-
-    );
+    return ThemeRegistry.has(themeId);
 
   }
 
@@ -73,25 +74,25 @@ class ThemeManager {
 
   setTheme(themeId) {
 
-    const theme =
-      ThemeRegistry.get(
-        themeId,
-      );
+    if (!ThemeRegistry.has(themeId)) {
 
-    this.currentTheme =
-      theme;
+      return this.currentTheme;
 
-    ThemeStorage.save(
+    }
 
-      theme.id,
+    if (this.currentTheme.id === themeId) {
 
-    );
+      return this.currentTheme;
 
-    applyTheme(
+    }
 
-      theme,
+    const theme = ThemeRegistry.get(themeId);
 
-    );
+    this.currentTheme = theme;
+
+    ThemeStorage.save(theme.id);
+
+    applyTheme(theme);
 
     this.notify();
 
@@ -103,22 +104,7 @@ class ThemeManager {
 
     ThemeStorage.clear();
 
-    this.currentTheme =
-      ThemeRegistry.get(
-
-        "dark",
-
-      );
-
-    applyTheme(
-
-      this.currentTheme,
-
-    );
-
-    this.notify();
-
-    return this.currentTheme;
+    return this.setTheme("dark");
 
   }
 
@@ -130,7 +116,7 @@ class ThemeManager {
 
         ? "light"
 
-        : "dark",
+        : "dark"
 
     );
 
@@ -144,22 +130,21 @@ class ThemeManager {
 
   subscribe(listener) {
 
-    this.listeners.push(
+    if (typeof listener !== "function") {
 
-      listener,
+      return () => {};
 
-    );
+    }
+
+    this.listeners.push(listener);
 
     return () => {
 
-      this.listeners =
-        this.listeners.filter(
+      this.listeners = this.listeners.filter(
 
-          (item) =>
+        (item) => item !== listener
 
-            item !== listener,
-
-        );
+      );
 
     };
 
@@ -167,23 +152,16 @@ class ThemeManager {
 
   notify() {
 
-    this.listeners.forEach(
+    this.listeners.forEach((listener) => {
 
-      (listener) =>
+      listener(this.currentTheme);
 
-        listener(
-
-          this.currentTheme,
-
-        ),
-
-    );
+    });
 
   }
 
 }
 
-const manager =
-  new ThemeManager();
+const manager = new ThemeManager();
 
 export default manager;
