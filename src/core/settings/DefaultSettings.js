@@ -44,13 +44,15 @@ const DefaultSettings = {
 
   presentation: {
 
-    autoplay: false,
+    fullscreen: false,
+
+    autoPlay: false,
 
     interval: 5000,
 
-    fullscreen: false,
+    transition: "fade",
 
-    showOverlay: true,
+    showProgress: true,
 
   },
 
@@ -80,11 +82,13 @@ const DefaultSettings = {
 
   sketch: {
 
+    defaultTool: "pen",
+
     showGrid: true,
 
-    snapToGrid: true,
+    snapToGrid: false,
 
-    brushSize: 5,
+    smoothDrawing: true,
 
   },
 
@@ -96,11 +100,13 @@ const DefaultSettings = {
 
   assets: {
 
-    thumbnailSize: "medium",
+    showPreview: true,
+
+    confirmDelete: true,
 
     showHidden: false,
 
-    sort: "newest",
+    defaultSort: "newest",
 
   },
 
@@ -114,9 +120,11 @@ const DefaultSettings = {
 
     showCompleted: true,
 
-    defaultSort: "priority",
-
     confirmDelete: true,
+
+    showStatistics: true,
+
+    defaultSort: "newest",
 
   },
 
@@ -128,9 +136,13 @@ const DefaultSettings = {
 
   storage: {
 
-    showUsage: true,
+    showStatistics: true,
+
+    confirmClear: true,
 
     autoCleanup: false,
+
+    unit: "mb",
 
   },
 
@@ -156,11 +168,13 @@ const DefaultSettings = {
 
   accessibility: {
 
-    highContrast: false,
-
     reduceMotion: false,
 
     largeText: false,
+
+    showFocus: true,
+
+    contrast: "normal",
 
   },
 
@@ -172,9 +186,13 @@ const DefaultSettings = {
 
   developer: {
 
-    debugMode: false,
+    developerMode: false,
 
-    showLogs: false,
+    showDebugInfo: false,
+
+    performanceMonitor: false,
+
+    logLevel: "error",
 
   },
 
