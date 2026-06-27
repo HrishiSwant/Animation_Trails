@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import "./index.css";
 
@@ -9,44 +9,104 @@ import CreativeLab from "./pages/CreativeLab";
 import Presentation from "./pages/Presentation";
 import Settings from "./pages/Settings";
 
-export default function App(){
+import ThemeManager from "./core/theme/ThemeManager";
 
-    const [currentPage,setCurrentPage]=useState("library");
+export default function App() {
 
-    return(
+  const [
 
-        <div
-            style={{
-                display:"flex",
-                height:"100vh",
-                background:"#09090B"
-            }}
-        >
+    currentPage,
 
-            <Navigation
-                currentPage={currentPage}
-                setCurrentPage={setCurrentPage}
-            />
+    setCurrentPage,
 
-            <div
-                style={{
-                    flex:1,
-                    overflow:"hidden"
-                }}
-            >
+  ] = useState("library");
 
-                {currentPage==="library" && <Showcase/>}
+  /*
+  ==========================
+      INITIALIZE APP
+  ==========================
+  */
 
-                {currentPage==="workspace" && <CreativeLab/>}
+  useEffect(() => {
 
-                {currentPage==="presentation" && <Presentation/>}
+    ThemeManager.initialize();
 
-                {currentPage==="settings" && <Settings/>}
+  }, []);
 
-            </div>
+  return (
 
-        </div>
+    <div
 
-    );
+      style={{
+
+        display: "flex",
+
+        height: "100vh",
+
+        background: "var(--color-background)",
+
+        color: "var(--color-text)",
+
+      }}
+
+    >
+
+      <Navigation
+
+        currentPage={currentPage}
+
+        setCurrentPage={setCurrentPage}
+
+      />
+
+      <div
+
+        style={{
+
+          flex: 1,
+
+          overflow: "hidden",
+
+        }}
+
+      >
+
+        {
+
+          currentPage === "library" &&
+
+          <Showcase />
+
+        }
+
+        {
+
+          currentPage === "workspace" &&
+
+          <CreativeLab />
+
+        }
+
+        {
+
+          currentPage === "presentation" &&
+
+          <Presentation />
+
+        }
+
+        {
+
+          currentPage === "settings" &&
+
+          <Settings />
+
+        }
+
+      </div>
+
+    </div>
+
+  );
 
 }
