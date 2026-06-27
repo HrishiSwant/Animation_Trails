@@ -55,8 +55,10 @@ export default function App() {
       <div
         style={{
           flex: 1,
-          overflow: "hidden",
-        }}
+          minWidth: 0,
+          minHeight: 0,
+          overflow: "auto",
+          }}
       >
 
         {
