@@ -6,15 +6,17 @@
 
     padding:35px;
 
-    box-sizing:border-box;
-
     color:var(--color-text);
 
     background:var(--color-background);
 
-    overflow-y:auto;
+    overflow:auto;
 
-    overflow-x:hidden;
+    box-sizing:border-box;
+
+    transition:
+        background-color var(--transition-medium),
+        color var(--transition-medium);
 
 }
 
@@ -32,15 +34,13 @@
 
     margin-bottom:25px;
 
-    flex-shrink:0;
-
 }
 
 .back-button{
 
     background:var(--color-primary);
 
-    color:white;
+    color:#ffffff;
 
     border:none;
 
@@ -75,44 +75,6 @@
 }
 
 /* ==================================
-   WORKSPACE CONTENT
-================================== */
-
-.creative-lab > :last-child{
-
-    flex:1;
-
-    min-height:0;
-
-    overflow:auto;
-
-}
-
-/* ==================================
-   SCROLLBAR
-================================== */
-
-.creative-lab > :last-child::-webkit-scrollbar{
-
-    width:10px;
-
-}
-
-.creative-lab > :last-child::-webkit-scrollbar-thumb{
-
-    background:var(--color-border);
-
-    border-radius:999px;
-
-}
-
-.creative-lab > :last-child::-webkit-scrollbar-thumb:hover{
-
-    background:var(--color-primary);
-
-}
-
-/* ==================================
    Coming Soon
 ================================== */
 
@@ -137,6 +99,8 @@
     font-size:var(--font-3xl);
 
     margin-bottom:15px;
+
+    color:var(--color-text);
 
 }
 
