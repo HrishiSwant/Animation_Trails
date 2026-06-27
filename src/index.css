@@ -1,65 +1,75 @@
 *{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+/* ==========================
+   GLOBAL VARIABLES
+========================== */
+
+:root{
+
+    /* ======================
+       FONT SCALE
+    ====================== */
+
+    --font-xs:13px;
+
+    --font-sm:14px;
+
+    --font-md:15px;
+
+    --font-lg:18px;
+
+    --font-xl:22px;
+
+    --font-2xl:30px;
+
+    --font-3xl:40px;
+
+    --font-4xl:50px;
+
 }
 
 html,
 body,
 #root{
 
-  width:100%;
-  height:100%;
+    width:100%;
+    height:100%;
 
-  overflow:hidden;
+    overflow:hidden;
 
-  background:#09090B;
+    background:#09090B;
 
-  font-family:
-  Inter,
-  system-ui,
-  sans-serif;
+    font-family:
+        Inter,
+        system-ui,
+        sans-serif;
 
-  color:white;
+    font-size:var(--font-md);
+
+    color:white;
 
 }
 
 .app{
 
-  width:100%;
+    width:100%;
 
-  height:100%;
+    height:100%;
 
-  display:flex;
+    display:flex;
 
 }
 
 .page-container{
 
-  flex:1;
+    flex:1;
 
-  overflow:hidden;
+    overflow:hidden;
 
-  background:#09090B;
+    background:#09090B;
 
 }
-
-/* ==========================
-   FONT SCALE
-========================== */
-
---font-xs:13px;
-
---font-sm:14px;
-
---font-md:15px;
-
---font-lg:18px;
-
---font-xl:22px;
-
---font-2xl:30px;
-
---font-3xl:40px;
-
---font-4xl:50px;
