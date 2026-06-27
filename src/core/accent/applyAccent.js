@@ -6,7 +6,11 @@ export default function applyAccent(color) {
 
   }
 
-  document.documentElement.style.setProperty(
+  const root =
+
+    document.documentElement;
+
+  root.style.setProperty(
 
     "--color-primary",
 
