@@ -1,24 +1,47 @@
-.task-card {
+/* ===========================================
+   TASK CARD
+=========================================== */
 
-    background: rgba(255,255,255,.04);
+.task-card{
 
-    border: 1px solid rgba(255,255,255,.08);
+    display:flex;
 
-    border-radius: 14px;
+    flex-direction:column;
 
-    padding: 18px;
+    gap:16px;
 
-    margin-bottom: 16px;
+    padding:18px;
 
-    transition: .2s;
+    margin-bottom:16px;
+
+    border:1px solid var(--color-border);
+
+    border-radius:14px;
+
+    background:var(--color-surface);
+
+    transition:
+        background-color var(--transition-medium),
+        border-color var(--transition-medium),
+        color var(--transition-medium),
+        transform var(--transition-fast),
+        box-shadow var(--transition-medium);
 
 }
 
 .task-card:hover{
 
-    border-color:#4da3ff;
+    transform:translateY(-3px);
+
+    border-color:var(--color-primary);
+
+    box-shadow:var(--shadow-small);
 
 }
+
+/* ===========================================
+   STATES
+=========================================== */
 
 .task-card.completed{
 
@@ -28,17 +51,35 @@
 
 .task-card.overdue{
 
-    border-color:#ff5555;
+    border-color:#ef4444;
 
 }
+
+/* ===========================================
+   HEADER
+=========================================== */
 
 .task-header{
 
     display:flex;
 
+    align-items:flex-start;
+
     gap:14px;
 
-    align-items:flex-start;
+}
+
+.task-header input[type="checkbox"]{
+
+    width:18px;
+
+    height:18px;
+
+    margin-top:3px;
+
+    accent-color:var(--color-primary);
+
+    cursor:pointer;
 
 }
 
@@ -54,31 +95,69 @@
 
     font-size:18px;
 
+    font-weight:600;
+
+    color:var(--color-text);
+
+    transition:color var(--transition-medium);
+
 }
 
 .task-main p{
 
     margin-top:6px;
 
-    opacity:.8;
+    color:var(--color-text-secondary);
+
+    line-height:1.6;
+
+    transition:color var(--transition-medium);
 
 }
+
+.task-card.completed .task-main h3{
+
+    text-decoration:line-through;
+
+}
+
+/* ===========================================
+   META
+=========================================== */
 
 .task-meta{
 
     display:flex;
 
-    gap:18px;
-
     flex-wrap:wrap;
 
-    margin-top:14px;
+    gap:18px;
+
+    color:var(--color-text-secondary);
 
     font-size:13px;
 
-    opacity:.8;
+    transition:color var(--transition-medium);
 
 }
+
+.task-priority,
+
+.task-category,
+
+.task-date{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:6px;
+
+}
+
+/* ===========================================
+   ACTIONS
+=========================================== */
 
 .task-actions{
 
@@ -86,30 +165,114 @@
 
     gap:10px;
 
-    margin-top:18px;
-
 }
 
 .task-actions button{
 
-    cursor:pointer;
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    min-width:42px;
+
+    height:42px;
+
+    padding:0 14px;
 
     border:none;
 
-    background:#2b2b2b;
+    border-radius:10px;
 
-    color:white;
+    background:var(--color-surface-secondary);
 
-    border-radius:8px;
+    color:var(--color-text);
 
-    padding:8px 12px;
+    cursor:pointer;
 
-    transition:.2s;
+    font-size:15px;
+
+    transition:
+        background-color var(--transition-medium),
+        color var(--transition-medium),
+        transform var(--transition-fast),
+        box-shadow var(--transition-medium);
 
 }
 
 .task-actions button:hover{
 
-    background:#3b82f6;
+    background:var(--color-primary);
+
+    color:#ffffff;
+
+    transform:translateY(-2px);
+
+    box-shadow:var(--shadow-small);
+
+}
+
+.task-actions button:active{
+
+    transform:translateY(0);
+
+}
+
+.task-actions button:focus-visible{
+
+    outline:2px solid var(--color-primary);
+
+    outline-offset:2px;
+
+}
+
+/* ===========================================
+   RESPONSIVE
+=========================================== */
+
+@media(max-width:768px){
+
+    .task-card{
+
+        padding:16px;
+
+    }
+
+    .task-meta{
+
+        gap:12px;
+
+    }
+
+}
+
+@media(max-width:600px){
+
+    .task-header{
+
+        flex-direction:column;
+
+    }
+
+    .task-meta{
+
+        flex-direction:column;
+
+        gap:8px;
+
+    }
+
+    .task-actions{
+
+        flex-wrap:wrap;
+
+    }
+
+    .task-actions button{
+
+        flex:1;
+
+    }
 
 }
