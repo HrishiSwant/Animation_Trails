@@ -1,3 +1,7 @@
+/* ===========================================
+   TASKS LAYOUT
+=========================================== */
+
 .tasks{
 
     width:100%;
@@ -10,7 +14,17 @@
 
     box-sizing:border-box;
 
+    color:var(--color-text);
+
+    transition:
+
+        color var(--transition-medium);
+
 }
+
+/* ===========================================
+   TASK LIST
+=========================================== */
 
 .tasks-list{
 
@@ -24,6 +38,10 @@
 
 }
 
+/* ===========================================
+   EMPTY STATE
+=========================================== */
+
 .tasks-empty{
 
     margin-top:40px;
@@ -34,20 +52,78 @@
 
     border-radius:16px;
 
-    background:rgba(255,255,255,.04);
+    background:var(--color-surface);
 
-    border:1px solid rgba(255,255,255,.08);
+    border:1px solid var(--color-border);
+
+    transition:
+
+        background-color var(--transition-medium),
+
+        border-color var(--transition-medium);
 
 }
 
 .tasks-empty h2{
 
-    margin-bottom:12px;
+    margin:0 0 12px;
+
+    color:var(--color-text);
+
+    font-size:28px;
+
+    transition:
+
+        color var(--transition-medium);
 
 }
 
 .tasks-empty p{
 
-    opacity:.7;
+    margin:0;
+
+    color:var(--color-text-secondary);
+
+    line-height:1.7;
+
+    transition:
+
+        color var(--transition-medium);
+
+}
+
+/* ===========================================
+   RESPONSIVE
+=========================================== */
+
+@media(max-width:900px){
+
+    .tasks{
+
+        padding:20px;
+
+    }
+
+}
+
+@media(max-width:600px){
+
+    .tasks{
+
+        padding:16px;
+
+    }
+
+    .tasks-empty{
+
+        padding:40px 20px;
+
+    }
+
+    .tasks-empty h2{
+
+        font-size:24px;
+
+    }
 
 }
