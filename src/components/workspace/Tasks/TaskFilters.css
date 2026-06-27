@@ -1,3 +1,7 @@
+/* ===========================================
+   TASK FILTERS
+=========================================== */
+
 .task-filters{
 
     display:grid;
@@ -11,32 +15,129 @@
 
 }
 
+/* ===========================================
+   INPUTS & SELECTS
+=========================================== */
+
 .task-filters input,
 
 .task-filters select{
 
     width:100%;
 
-    padding:12px;
+    padding:12px 14px;
+
+    border:1px solid var(--color-border);
 
     border-radius:10px;
 
-    border:1px solid rgba(255,255,255,.12);
+    background:var(--color-surface);
 
-    background:#1f1f1f;
+    color:var(--color-text);
 
-    color:white;
+    font-size:15px;
+
+    font-family:var(--font-family);
 
     box-sizing:border-box;
 
     outline:none;
 
+    transition:
+
+        background-color var(--transition-medium),
+
+        border-color var(--transition-medium),
+
+        color var(--transition-medium),
+
+        box-shadow var(--transition-medium);
+
 }
+
+/* ===========================================
+   PLACEHOLDER
+=========================================== */
+
+.task-filters input::placeholder{
+
+    color:var(--color-text-secondary);
+
+}
+
+/* ===========================================
+   HOVER
+=========================================== */
+
+.task-filters input:hover,
+
+.task-filters select:hover{
+
+    border-color:var(--color-primary);
+
+}
+
+/* ===========================================
+   FOCUS
+=========================================== */
 
 .task-filters input:focus,
 
 .task-filters select:focus{
 
-    border-color:#3b82f6;
+    border-color:var(--color-primary);
+
+    box-shadow:
+        0 0 0 3px rgba(37,99,235,.15);
+
+}
+
+/* ===========================================
+   DISABLED
+=========================================== */
+
+.task-filters input:disabled,
+
+.task-filters select:disabled{
+
+    opacity:.55;
+
+    cursor:not-allowed;
+
+}
+
+/* ===========================================
+   RESPONSIVE
+=========================================== */
+
+@media(max-width:768px){
+
+    .task-filters{
+
+        grid-template-columns:1fr;
+
+        gap:14px;
+
+    }
+
+}
+
+@media(max-width:600px){
+
+    .task-filters{
+
+        margin-bottom:20px;
+
+    }
+
+    .task-filters input,
+
+    .task-filters select{
+
+        font-size:14px;
+
+        padding:11px 12px;
+
+    }
 
 }
