@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 
+import "./styles/theme.css";
 import "./index.css";
 
 import Navigation from "./components/Navigation";
@@ -41,11 +42,16 @@ export default function App() {
 
         display: "flex",
 
-        height: "100vh",
+        minHeight: "100vh",
 
         background: "var(--color-background)",
 
         color: "var(--color-text)",
+
+        fontFamily: "var(--font-family)",
+
+        transition:
+          "background-color var(--transition-medium), color var(--transition-medium)",
 
       }}
 
@@ -59,7 +65,7 @@ export default function App() {
 
       />
 
-      <div
+      <main
 
         style={{
 
@@ -67,43 +73,55 @@ export default function App() {
 
           overflow: "hidden",
 
+          background: "var(--color-background)",
+
+          color: "inherit",
+
         }}
 
       >
 
         {
 
-          currentPage === "library" &&
+          currentPage === "library" && (
 
-          <Showcase />
+            <Showcase />
 
-        }
-
-        {
-
-          currentPage === "workspace" &&
-
-          <CreativeLab />
+          )
 
         }
 
         {
 
-          currentPage === "presentation" &&
+          currentPage === "workspace" && (
 
-          <Presentation />
+            <CreativeLab />
+
+          )
 
         }
 
         {
 
-          currentPage === "settings" &&
+          currentPage === "presentation" && (
 
-          <Settings />
+            <Presentation />
+
+          )
 
         }
 
-      </div>
+        {
+
+          currentPage === "settings" && (
+
+            <Settings />
+
+          )
+
+        }
+
+      </main>
 
     </div>
 
