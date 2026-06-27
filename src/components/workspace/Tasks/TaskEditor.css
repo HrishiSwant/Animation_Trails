@@ -1,8 +1,12 @@
+/* ===========================================
+   TASK EDITOR
+=========================================== */
+
 .task-editor{
 
-    background:rgba(255,255,255,.04);
+    background:var(--color-surface);
 
-    border:1px solid rgba(255,255,255,.08);
+    border:1px solid var(--color-border);
 
     border-radius:16px;
 
@@ -10,13 +14,35 @@
 
     margin-bottom:24px;
 
+    transition:
+
+        background-color var(--transition-medium),
+
+        border-color var(--transition-medium);
+
 }
+
+/* ===========================================
+   HEADER
+=========================================== */
 
 .task-editor h2{
 
     margin:0 0 20px;
 
+    font-size:26px;
+
+    font-weight:700;
+
+    color:var(--color-text);
+
+    transition:color var(--transition-medium);
+
 }
+
+/* ===========================================
+   FORM
+=========================================== */
 
 .task-editor-form{
 
@@ -34,7 +60,15 @@
 
     font-weight:600;
 
+    color:var(--color-text);
+
+    transition:color var(--transition-medium);
+
 }
+
+/* ===========================================
+   INPUTS
+=========================================== */
 
 .task-editor input,
 
@@ -44,19 +78,41 @@
 
     width:100%;
 
-    padding:12px;
+    padding:12px 14px;
+
+    border:1px solid var(--color-border);
 
     border-radius:10px;
 
-    border:1px solid rgba(255,255,255,.12);
+    background:var(--color-surface-secondary);
 
-    background:#1f1f1f;
+    color:var(--color-text);
 
-    color:#fff;
+    font-size:15px;
+
+    font-family:var(--font-family);
 
     box-sizing:border-box;
 
     outline:none;
+
+    transition:
+
+        background-color var(--transition-medium),
+
+        border-color var(--transition-medium),
+
+        color var(--transition-medium),
+
+        box-shadow var(--transition-medium);
+
+}
+
+.task-editor input::placeholder,
+
+.task-editor textarea::placeholder{
+
+    color:var(--color-text-secondary);
 
 }
 
@@ -66,6 +122,18 @@
 
     min-height:100px;
 
+    line-height:1.7;
+
+}
+
+.task-editor input:hover,
+
+.task-editor textarea:hover,
+
+.task-editor select:hover{
+
+    border-color:var(--color-primary);
+
 }
 
 .task-editor input:focus,
@@ -74,9 +142,17 @@
 
 .task-editor select:focus{
 
-    border-color:#3b82f6;
+    border-color:var(--color-primary);
+
+    box-shadow:
+
+        0 0 0 3px rgba(37,99,235,.15);
 
 }
+
+/* ===========================================
+   ACTIONS
+=========================================== */
 
 .task-editor-actions{
 
@@ -88,11 +164,13 @@
 
 }
 
+/* ===========================================
+   SAVE BUTTON
+=========================================== */
+
 .save-task{
 
-    background:#3b82f6;
-
-    color:#fff;
+    flex:1;
 
     border:none;
 
@@ -100,21 +178,57 @@
 
     padding:12px 20px;
 
+    background:var(--color-primary);
+
+    color:#FFFFFF;
+
+    font-size:15px;
+
+    font-weight:600;
+
     cursor:pointer;
+
+    transition:
+
+        background-color var(--transition-medium),
+
+        transform var(--transition-fast),
+
+        box-shadow var(--transition-medium);
 
 }
 
 .save-task:hover{
 
-    background:#2563eb;
+    transform:translateY(-2px);
+
+    box-shadow:var(--shadow-small);
+
+    filter:brightness(.95);
 
 }
 
+.save-task:active{
+
+    transform:translateY(0);
+
+}
+
+.save-task:focus-visible{
+
+    outline:2px solid var(--color-primary);
+
+    outline-offset:2px;
+
+}
+
+/* ===========================================
+   CANCEL BUTTON
+=========================================== */
+
 .cancel-task{
 
-    background:#333;
-
-    color:#fff;
+    flex:1;
 
     border:none;
 
@@ -122,12 +236,84 @@
 
     padding:12px 20px;
 
+    background:var(--color-surface-secondary);
+
+    color:var(--color-text);
+
+    font-size:15px;
+
+    font-weight:600;
+
     cursor:pointer;
+
+    transition:
+
+        background-color var(--transition-medium),
+
+        color var(--transition-medium),
+
+        transform var(--transition-fast),
+
+        box-shadow var(--transition-medium);
 
 }
 
 .cancel-task:hover{
 
-    background:#555;
+    background:var(--color-border);
+
+    transform:translateY(-2px);
+
+    box-shadow:var(--shadow-small);
+
+}
+
+.cancel-task:active{
+
+    transform:translateY(0);
+
+}
+
+.cancel-task:focus-visible{
+
+    outline:2px solid var(--color-primary);
+
+    outline-offset:2px;
+
+}
+
+/* ===========================================
+   RESPONSIVE
+=========================================== */
+
+@media(max-width:768px){
+
+    .task-editor{
+
+        padding:20px;
+
+    }
+
+    .task-editor-actions{
+
+        flex-direction:column;
+
+    }
+
+}
+
+@media(max-width:600px){
+
+    .task-editor{
+
+        padding:16px;
+
+    }
+
+    .task-editor h2{
+
+        font-size:22px;
+
+    }
 
 }
