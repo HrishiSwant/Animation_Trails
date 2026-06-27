@@ -17,11 +17,8 @@
     color:var(--color-text);
 
     transition:
-
         background-color var(--transition-medium),
-
         border-color var(--transition-medium),
-
         color var(--transition-medium);
 
 }
@@ -40,7 +37,7 @@
 
     margin:0 0 8px;
 
-    font-size:28px;
+    font-size:var(--font-2xl);
 
     color:var(--color-text);
 
@@ -54,7 +51,7 @@
 
     color:var(--color-text-secondary);
 
-    font-size:13px;
+    font-size:var(--font-xs);
 
     transition:color var(--transition-medium);
 
@@ -96,14 +93,11 @@
 
     cursor:pointer;
 
-    font-size:15px;
+    font-size:var(--font-md);
 
     transition:
-
         background-color var(--transition-medium),
-
         color var(--transition-medium),
-
         transform var(--transition-fast);
 
 }
@@ -134,16 +128,14 @@
 
     padding-top:20px;
 
-    font-size:13px;
+    font-size:var(--font-xs);
 
     color:var(--color-text-secondary);
 
     border-top:1px solid var(--color-border);
 
     transition:
-
         color var(--transition-medium),
-
         border-color var(--transition-medium);
 
 }
