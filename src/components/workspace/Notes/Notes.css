@@ -70,7 +70,7 @@
 
     color:var(--color-text);
 
-    font-size:28px;
+    font-size:var(--font-2xl);
 
     font-weight:700;
 
@@ -116,7 +116,7 @@
 
     color:var(--color-text);
 
-    font-size:17px;
+    font-size:var(--font-lg);
 
     line-height:1.8;
 
@@ -162,7 +162,7 @@
 
     color:var(--color-text-secondary);
 
-    font-size:13px;
+    font-size:var(--font-xs);
 
     transition:
 
@@ -236,7 +236,7 @@
 
     .note-title-input{
 
-        font-size:22px;
+        font-size:var(--font-xl);
 
     }
 
@@ -254,7 +254,7 @@
 
         padding:20px;
 
-        font-size:20px;
+        font-size:var(--font-xl);
 
     }
 
@@ -262,7 +262,7 @@
 
         padding:20px;
 
-        font-size:15px;
+        font-size:var(--font-md);
 
     }
 
