@@ -1,0 +1,103 @@
+/* =====================================
+   THEME VARIABLES
+===================================== */
+
+:root{
+
+    /*
+    ==========================
+        COLORS
+    ==========================
+    */
+
+    --color-background:#0F172A;
+
+    --color-surface:#1E293B;
+
+    --color-surface-secondary:#334155;
+
+    --color-text:#F8FAFC;
+
+    --color-text-secondary:#CBD5E1;
+
+    --color-border:#475569;
+
+    --color-primary:#2563EB;
+
+    --color-success:#10B981;
+
+    --color-warning:#F59E0B;
+
+    --color-danger:#EF4444;
+
+    /*
+    ==========================
+        TYPOGRAPHY
+    ==========================
+    */
+
+    --font-family:
+
+        Inter,
+
+        sans-serif;
+
+    --font-size-small:14px;
+
+    --font-size-medium:16px;
+
+    --font-size-large:20px;
+
+    --font-size-title:32px;
+
+    /*
+    ==========================
+        BORDER RADIUS
+    ==========================
+    */
+
+    --radius-small:8px;
+
+    --radius-medium:12px;
+
+    --radius-large:18px;
+
+    --radius-xl:24px;
+
+    /*
+    ==========================
+        SHADOWS
+    ==========================
+    */
+
+    --shadow-small:
+
+        0 2px 8px rgba(0,0,0,.15);
+
+    --shadow-medium:
+
+        0 8px 24px rgba(0,0,0,.2);
+
+    --shadow-large:
+
+        0 20px 48px rgba(0,0,0,.3);
+
+    /*
+    ==========================
+        TRANSITIONS
+    ==========================
+    */
+
+    --transition-fast:
+
+        .15s ease;
+
+    --transition-medium:
+
+        .25s ease;
+
+    --transition-slow:
+
+        .4s ease;
+
+}
