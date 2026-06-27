@@ -11,6 +11,7 @@ import Settings from "./pages/Settings";
 
 import ThemeManager from "./core/theme/ThemeManager";
 import AccentManager from "./core/accent/AccentManager";
+import FontManager from "./core/font/FontManager";
 
 export default function App() {
 
@@ -30,6 +31,8 @@ export default function App() {
     ThemeManager.initialize();
 
     AccentManager.initialize();
+
+    FontManager.initialize();
 
   }, []);
 
@@ -57,23 +60,35 @@ export default function App() {
       >
 
         {
+
           currentPage === "library" &&
+
           <Showcase />
+
         }
 
         {
+
           currentPage === "workspace" &&
+
           <CreativeLab />
+
         }
 
         {
+
           currentPage === "presentation" &&
+
           <Presentation />
+
         }
 
         {
+
           currentPage === "settings" &&
+
           <Settings />
+
         }
 
       </div>
