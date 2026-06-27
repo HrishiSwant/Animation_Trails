@@ -1,5 +1,7 @@
 import useSettings from "./useSettings";
 
+import ThemeManager from "../../core/theme/ThemeManager";
+
 export default function useAppearance() {
 
   /*
@@ -8,11 +10,9 @@ export default function useAppearance() {
   ==========================
   */
 
-  const settings =
-    useSettings();
+  const settings = useSettings();
 
-  const appearance =
-    settings.settings.appearance;
+  const appearance = settings.settings.appearance;
 
   /*
   ==========================
@@ -47,6 +47,16 @@ export default function useAppearance() {
   */
 
   function setTheme(theme) {
+
+    /*
+    Apply theme immediately
+    */
+
+    ThemeManager.setTheme(theme);
+
+    /*
+    Save into settings
+    */
 
     update(
 
