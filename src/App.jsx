@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 
-import "./styles/theme.css";
 import "./index.css";
 
 import Navigation from "./components/Navigation";
@@ -11,15 +10,13 @@ import Presentation from "./pages/Presentation";
 import Settings from "./pages/Settings";
 
 import ThemeManager from "./core/theme/ThemeManager";
+import AccentManager from "./core/accent/AccentManager";
 
 export default function App() {
 
   const [
-
     currentPage,
-
     setCurrentPage,
-
   ] = useState("library");
 
   /*
@@ -32,96 +29,54 @@ export default function App() {
 
     ThemeManager.initialize();
 
+    AccentManager.initialize();
+
   }, []);
 
   return (
 
     <div
-
       style={{
-
         display: "flex",
-
-        minHeight: "100vh",
-
+        height: "100vh",
         background: "var(--color-background)",
-
         color: "var(--color-text)",
-
-        fontFamily: "var(--font-family)",
-
-        transition:
-          "background-color var(--transition-medium), color var(--transition-medium)",
-
       }}
-
     >
 
       <Navigation
-
         currentPage={currentPage}
-
         setCurrentPage={setCurrentPage}
-
       />
 
-      <main
-
+      <div
         style={{
-
           flex: 1,
-
           overflow: "hidden",
-
-          background: "var(--color-background)",
-
-          color: "inherit",
-
         }}
-
       >
 
         {
-
-          currentPage === "library" && (
-
-            <Showcase />
-
-          )
-
+          currentPage === "library" &&
+          <Showcase />
         }
 
         {
-
-          currentPage === "workspace" && (
-
-            <CreativeLab />
-
-          )
-
+          currentPage === "workspace" &&
+          <CreativeLab />
         }
 
         {
-
-          currentPage === "presentation" && (
-
-            <Presentation />
-
-          )
-
+          currentPage === "presentation" &&
+          <Presentation />
         }
 
         {
-
-          currentPage === "settings" && (
-
-            <Settings />
-
-          )
-
+          currentPage === "settings" &&
+          <Settings />
         }
 
-      </main>
+      </div>
 
     </div>
 
