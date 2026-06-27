@@ -6,17 +6,15 @@
 
     padding:35px;
 
+    box-sizing:border-box;
+
     color:var(--color-text);
 
     background:var(--color-background);
 
-    display:flex;
+    overflow-y:auto;
 
-    flex-direction:column;
-
-    overflow:hidden;
-
-    box-sizing:border-box;
+    overflow-x:hidden;
 
 }
 
