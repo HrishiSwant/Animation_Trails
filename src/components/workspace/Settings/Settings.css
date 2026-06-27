@@ -505,3 +505,78 @@
     cursor:not-allowed;
 
 }
+/* =====================================
+   ABOUT
+===================================== */
+
+.settings-info-card{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:12px;
+
+    padding:20px;
+
+    border:1px solid #e5e7eb;
+
+    border-radius:14px;
+
+    background:#ffffff;
+
+}
+
+.settings-info-row{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:8px 0;
+
+    border-bottom:1px solid #f3f4f6;
+
+}
+
+.settings-info-row:last-child{
+
+    border-bottom:none;
+
+}
+
+.settings-about-description{
+
+    margin-top:24px;
+
+}
+
+.settings-about-description h3{
+
+    margin-bottom:12px;
+
+    font-size:18px;
+
+}
+
+.settings-about-description p{
+
+    line-height:1.7;
+
+}
+
+.settings-about-description ul{
+
+    margin:0;
+
+    padding-left:20px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:8px;
+
+}
