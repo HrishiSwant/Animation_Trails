@@ -1,5 +1,5 @@
 /* ===========================================
-   SEARCH
+   SEARCH CONTAINER
 =========================================== */
 
 .search-container{
@@ -8,38 +8,92 @@
 
 }
 
+/* ===========================================
+   SEARCH INPUT
+=========================================== */
+
 .search-input{
 
     width:100%;
 
     padding:14px 18px;
 
-    border:none;
+    border:1px solid transparent;
 
     outline:none;
 
     border-radius:14px;
 
-    background:#1A1A1A;
+    background:var(--color-surface-secondary);
 
-    color:white;
+    color:var(--color-text);
 
     font-size:15px;
 
-    transition:.25s;
+    font-family:var(--font-family);
 
-    border:1px solid transparent;
+    box-sizing:border-box;
+
+    transition:
+
+        background-color var(--transition-medium),
+
+        color var(--transition-medium),
+
+        border-color var(--transition-medium),
+
+        box-shadow var(--transition-medium);
+
+}
+
+.search-input:hover{
+
+    border-color:var(--color-border);
 
 }
 
 .search-input:focus{
 
-    border-color:#2563EB;
+    border-color:var(--color-primary);
+
+    box-shadow:
+
+        0 0 0 3px rgba(37,99,235,.15);
 
 }
 
 .search-input::placeholder{
 
-    color:#777;
+    color:var(--color-text-secondary);
+
+    transition:
+
+        color var(--transition-medium);
+
+}
+
+.search-input:disabled{
+
+    opacity:.6;
+
+    cursor:not-allowed;
+
+}
+
+/* ===========================================
+   AUTOFILL
+=========================================== */
+
+.search-input:-webkit-autofill,
+
+.search-input:-webkit-autofill:hover,
+
+.search-input:-webkit-autofill:focus{
+
+    -webkit-text-fill-color:var(--color-text);
+
+    -webkit-box-shadow:0 0 0px 1000px var(--color-surface-secondary) inset;
+
+    transition:background-color 9999s ease-in-out 0s;
 
 }
