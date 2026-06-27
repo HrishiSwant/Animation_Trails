@@ -16,13 +16,19 @@
 
     font-size:28px;
 
+    color:var(--color-text);
+
+    transition:color var(--transition-medium);
+
 }
 
 .dashboard-section-header p{
 
     margin-top:8px;
 
-    opacity:.7;
+    color:var(--color-text-secondary);
+
+    transition:color var(--transition-medium);
 
 }
 
@@ -54,13 +60,23 @@
 
     border-radius:16px;
 
-    border:1px solid rgba(255,255,255,.08);
+    border:1px solid var(--color-border);
 
-    background:rgba(255,255,255,.04);
+    background:var(--color-surface);
+
+    color:var(--color-text);
 
     cursor:pointer;
 
-    transition:.25s;
+    transition:
+
+        background-color var(--transition-medium),
+
+        border-color var(--transition-medium),
+
+        color var(--transition-medium),
+
+        transform var(--transition-medium);
 
 }
 
@@ -68,9 +84,9 @@
 
     transform:translateY(-4px);
 
-    border-color:#4da3ff;
+    border-color:var(--color-primary);
 
-    background:rgba(77,163,255,.08);
+    background:var(--color-surface-secondary);
 
 }
 
