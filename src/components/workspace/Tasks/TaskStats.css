@@ -1,3 +1,7 @@
+/* ===========================================
+   TASK STATS
+=========================================== */
+
 .task-stats{
 
     display:grid;
@@ -11,17 +15,45 @@
 
 }
 
+/* ===========================================
+   STAT CARD
+=========================================== */
+
 .task-stat-card{
 
-    background:rgba(255,255,255,.04);
+    display:flex;
 
-    border:1px solid rgba(255,255,255,.08);
+    flex-direction:column;
 
-    border-radius:14px;
+    justify-content:center;
+
+    align-items:center;
 
     padding:18px;
 
+    border:1px solid var(--color-border);
+
+    border-radius:14px;
+
+    background:var(--color-surface);
+
     text-align:center;
+
+    transition:
+        background-color var(--transition-medium),
+        border-color var(--transition-medium),
+        transform var(--transition-fast),
+        box-shadow var(--transition-medium);
+
+}
+
+.task-stat-card:hover{
+
+    transform:translateY(-3px);
+
+    border-color:var(--color-primary);
+
+    box-shadow:var(--shadow-small);
 
 }
 
@@ -31,29 +63,45 @@
 
     font-size:15px;
 
-    opacity:.8;
+    font-weight:600;
+
+    color:var(--color-text-secondary);
+
+    transition:color var(--transition-medium);
 
 }
 
 .task-stat-card span{
 
-    font-size:28px;
+    font-size:30px;
 
     font-weight:700;
 
+    color:var(--color-text);
+
+    transition:color var(--transition-medium);
+
 }
+
+/* ===========================================
+   PROGRESS
+=========================================== */
 
 .task-progress{
 
     grid-column:1/-1;
 
-    background:rgba(255,255,255,.04);
+    padding:18px;
 
-    border:1px solid rgba(255,255,255,.08);
+    border:1px solid var(--color-border);
 
     border-radius:14px;
 
-    padding:18px;
+    background:var(--color-surface);
+
+    transition:
+        background-color var(--transition-medium),
+        border-color var(--transition-medium);
 
 }
 
@@ -63,11 +111,21 @@
 
     justify-content:space-between;
 
+    align-items:center;
+
     margin-bottom:12px;
 
     font-weight:600;
 
+    color:var(--color-text);
+
+    transition:color var(--transition-medium);
+
 }
+
+/* ===========================================
+   PROGRESS BAR
+=========================================== */
 
 .task-progress-bar{
 
@@ -75,11 +133,14 @@
 
     height:12px;
 
-    background:#2c2c2c;
+    overflow:hidden;
 
     border-radius:999px;
 
-    overflow:hidden;
+    background:var(--color-surface-secondary);
+
+    transition:
+        background-color var(--transition-medium);
 
 }
 
@@ -87,10 +148,57 @@
 
     height:100%;
 
-    background:#3b82f6;
-
     border-radius:999px;
 
-    transition:width .3s ease;
+    background:var(--color-primary);
+
+    transition:
+        width .35s ease,
+        background-color var(--transition-medium);
+
+}
+
+/* ===========================================
+   RESPONSIVE
+=========================================== */
+
+@media(max-width:768px){
+
+    .task-stats{
+
+        grid-template-columns:
+            repeat(auto-fit,minmax(140px,1fr));
+
+        gap:16px;
+
+    }
+
+    .task-stat-card{
+
+        padding:16px;
+
+    }
+
+    .task-stat-card span{
+
+        font-size:26px;
+
+    }
+
+}
+
+@media(max-width:600px){
+
+    .task-stats{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .task-progress{
+
+        padding:16px;
+
+    }
 
 }
