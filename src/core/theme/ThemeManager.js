@@ -9,12 +9,19 @@ class ThemeManager {
     this.listeners = [];
 
     this.currentTheme =
-
       ThemeRegistry.get(
-
         ThemeStorage.load(),
-
       );
+
+  }
+
+  /*
+  ==========================
+      INITIALIZATION
+  ==========================
+  */
+
+  initialize() {
 
     applyTheme(
 
@@ -23,6 +30,12 @@ class ThemeManager {
     );
 
   }
+
+  /*
+  ==========================
+      GETTERS
+  ==========================
+  */
 
   getTheme() {
 
@@ -36,18 +49,36 @@ class ThemeManager {
 
   }
 
+  getThemes() {
+
+    return ThemeRegistry.getAll();
+
+  }
+
+  hasTheme(themeId) {
+
+    return ThemeRegistry.has(
+
+      themeId,
+
+    );
+
+  }
+
+  /*
+  ==========================
+      SETTERS
+  ==========================
+  */
+
   setTheme(themeId) {
 
     const theme =
-
       ThemeRegistry.get(
-
         themeId,
-
       );
 
     this.currentTheme =
-
       theme;
 
     ThemeStorage.save(
@@ -73,7 +104,6 @@ class ThemeManager {
     ThemeStorage.clear();
 
     this.currentTheme =
-
       ThemeRegistry.get(
 
         "dark",
@@ -92,21 +122,25 @@ class ThemeManager {
 
   }
 
-  getThemes() {
+  toggleTheme() {
 
-    return ThemeRegistry.getAll();
+    return this.setTheme(
 
-  }
+      this.currentTheme.id === "dark"
 
-  hasTheme(themeId) {
+        ? "light"
 
-    return ThemeRegistry.has(
-
-      themeId,
+        : "dark",
 
     );
 
   }
+
+  /*
+  ==========================
+      EVENTS
+  ==========================
+  */
 
   subscribe(listener) {
 
@@ -119,7 +153,6 @@ class ThemeManager {
     return () => {
 
       this.listeners =
-
         this.listeners.filter(
 
           (item) =>
@@ -151,7 +184,6 @@ class ThemeManager {
 }
 
 const manager =
-
   new ThemeManager();
 
 export default manager;
