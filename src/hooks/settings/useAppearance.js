@@ -4,6 +4,7 @@ import useSettings from "./useSettings";
 
 import ThemeManager from "../../core/theme/ThemeManager";
 import AccentManager from "../../core/accent/AccentManager";
+import FontManager from "../../core/font/FontManager";
 
 export default function useAppearance() {
 
@@ -56,6 +57,26 @@ export default function useAppearance() {
   }, [
 
     appearance.accent,
+
+  ]);
+
+  /*
+  ==========================
+      SYNC FONT SIZE
+  ==========================
+  */
+
+  useEffect(() => {
+
+    FontManager.setFontSize(
+
+      appearance.fontSize
+
+    );
+
+  }, [
+
+    appearance.fontSize,
 
   ]);
 
