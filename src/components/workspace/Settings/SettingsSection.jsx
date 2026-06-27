@@ -3,14 +3,14 @@ import "./Settings.css";
 import AppearanceSettings from "./AppearanceSettings";
 import WorkspaceSettings from "./WorkspaceSettings";
 import PresentationSettings from "./PresentationSettings";
-import PresentationSettings from "./NotesSettings";
-import PresentationSettings from "./SketchSetting";
-import PresentationSettings from "./AssetsSetting";
-import PresentationSettings from "./TasksSettings";
-import PresentationSettings from "./StorageSettings";
-import PresentationSettings from "./AccesibilitySettings";
-import PresentationSettings from "./DeveloperSettings";
-import PresentationSettings from "./About";
+import NotesSettings from "./NotesSettings";
+import SketchSettings from "./SketchSettings";
+import AssetsSettings from "./AssetsSettings";
+import TasksSettings from "./TasksSettings";
+import StorageSettings from "./StorageSettings";
+import AccessibilitySettings from "./AccessibilitySettings";
+import DeveloperSettings from "./DeveloperSettings";
+import AboutSettings from "./AboutSettings";
 
 export default function SettingsSection({
 
@@ -108,7 +108,7 @@ export default function SettingsSection({
 
     case "accessibility":
 
-      return <AccesibilitySettings />;
+      return <AccessibilitySettings />;
 
     /*
     ==========================
@@ -128,7 +128,7 @@ export default function SettingsSection({
 
     case "about":
 
-      return <About />;
+      return <AboutSettings />;
 
     /*
     ==========================
