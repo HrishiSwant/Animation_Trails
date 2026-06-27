@@ -1,6 +1,9 @@
+import { useEffect } from "react";
+
 import useSettings from "./useSettings";
 
 import ThemeManager from "../../core/theme/ThemeManager";
+import AccentManager from "../../core/accent/AccentManager";
 
 export default function useAppearance() {
 
@@ -10,9 +13,51 @@ export default function useAppearance() {
   ==========================
   */
 
-  const settings = useSettings();
+  const settings =
+    useSettings();
 
-  const appearance = settings.settings.appearance;
+  const appearance =
+    settings.settings.appearance;
+
+  /*
+  ==========================
+      SYNC THEME
+  ==========================
+  */
+
+  useEffect(() => {
+
+    ThemeManager.setTheme(
+
+      appearance.theme
+
+    );
+
+  }, [
+
+    appearance.theme,
+
+  ]);
+
+  /*
+  ==========================
+      SYNC ACCENT
+  ==========================
+  */
+
+  useEffect(() => {
+
+    AccentManager.setAccent(
+
+      appearance.accent
+
+    );
+
+  }, [
+
+    appearance.accent,
+
+  ]);
 
   /*
   ==========================
@@ -47,16 +92,6 @@ export default function useAppearance() {
   */
 
   function setTheme(theme) {
-
-    /*
-    Apply theme immediately
-    */
-
-    ThemeManager.setTheme(theme);
-
-    /*
-    Save into settings
-    */
 
     update(
 
