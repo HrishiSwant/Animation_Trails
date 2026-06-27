@@ -51,7 +51,17 @@ class AccentManager {
 
   setAccent(color) {
 
-    if (!color) return;
+    if (!color) {
+
+      return;
+
+    }
+
+    if (color === this.currentAccent) {
+
+      return;
+
+    }
 
     this.currentAccent = color;
 
@@ -96,7 +106,11 @@ class AccentManager {
 
   subscribe(listener) {
 
-    this.listeners.push(listener);
+    this.listeners.push(
+
+      listener
+
+    );
 
     return () => {
 
