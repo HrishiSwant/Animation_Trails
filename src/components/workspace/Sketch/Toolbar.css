@@ -1,3 +1,7 @@
+/* ===========================================
+   SKETCH TOOLBAR
+=========================================== */
+
 .toolbar-sketch{
 
     display:flex;
@@ -12,35 +16,79 @@
 
 }
 
+/* ===========================================
+   BUTTONS
+=========================================== */
+
 .toolbar-sketch button{
-
-    background:#181818;
-
-    color:white;
-
-    border:none;
-
-    border-radius:12px;
 
     padding:12px 18px;
 
+    border:none;
+
+    outline:none;
+
+    border-radius:12px;
+
+    background:var(--color-surface);
+
+    color:var(--color-text);
+
     cursor:pointer;
 
-    transition:.25s;
+    font-size:15px;
+
+    font-family:var(--font-family);
+
+    transition:
+
+        background-color var(--transition-medium),
+
+        color var(--transition-medium),
+
+        transform var(--transition-fast),
+
+        box-shadow var(--transition-medium);
 
 }
 
 .toolbar-sketch button:hover{
 
-    background:#2563EB;
+    background:var(--color-primary);
+
+    color:#FFFFFF;
+
+    transform:translateY(-2px);
+
+    box-shadow:var(--shadow-small);
 
 }
 
 .toolbar-sketch button.active{
 
-    background:#2563EB;
+    background:var(--color-primary);
+
+    color:#FFFFFF;
 
 }
+
+.toolbar-sketch button:active{
+
+    transform:translateY(0);
+
+}
+
+.toolbar-sketch button:focus-visible{
+
+    outline:2px solid var(--color-primary);
+
+    outline-offset:3px;
+
+}
+
+/* ===========================================
+   COLOR PICKER
+=========================================== */
 
 .toolbar-sketch input[type="color"]{
 
@@ -48,16 +96,40 @@
 
     height:45px;
 
+    padding:0;
+
     border:none;
 
-    background:none;
+    background:transparent;
 
     cursor:pointer;
 
 }
 
+.toolbar-sketch input[type="color"]::-webkit-color-swatch-wrapper{
+
+    padding:0;
+
+}
+
+.toolbar-sketch input[type="color"]::-webkit-color-swatch{
+
+    border:none;
+
+    border-radius:10px;
+
+}
+
+/* ===========================================
+   RANGE
+=========================================== */
+
 .toolbar-sketch input[type="range"]{
 
     width:160px;
+
+    accent-color:var(--color-primary);
+
+    cursor:pointer;
 
 }
