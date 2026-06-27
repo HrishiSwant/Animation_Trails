@@ -18,13 +18,19 @@
 
     font-size:30px;
 
+    color:var(--color-text);
+
+    transition:color var(--transition-medium);
+
 }
 
 .dashboard-overview-header p{
 
     margin-top:8px;
 
-    opacity:.7;
+    color:var(--color-text-secondary);
+
+    transition:color var(--transition-medium);
 
 }
 
