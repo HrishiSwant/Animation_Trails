@@ -10,6 +10,8 @@ export default function WorkspaceToolbar() {
 
     toggleInspector,
 
+    setPreset,
+
   } = useLayout();
 
   return (
@@ -21,6 +23,58 @@ export default function WorkspaceToolbar() {
         Workspace
 
       </h3>
+
+      <select
+
+        className="layout-select"
+
+        value={
+
+          layout.preset ||
+
+          "default"
+
+        }
+
+        onChange={event =>
+
+          setPreset(
+
+            event.target.value,
+
+          )
+
+        }
+
+        title="Workspace Layout"
+
+      >
+
+        <option value="default">
+
+          Default
+
+        </option>
+
+        <option value="focus">
+
+          Focus
+
+        </option>
+
+        <option value="presentation">
+
+          Presentation
+
+        </option>
+
+        <option value="developer">
+
+          Developer
+
+        </option>
+
+      </select>
 
       <button
 
