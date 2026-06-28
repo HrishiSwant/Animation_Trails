@@ -16,6 +16,9 @@ import AnimationManager from "./core/animation/AnimationManager";
 import CompactManager from "./core/compact/CompactManager";
 import AccessibilityManager from "./core/accessibility/AccessibilityManager";
 
+import CommandPalette from "./components/command/CommandPalette";
+import useCommandPalette from "./hooks/useCommandPalette";
+
 export default function App() {
 
   const [
@@ -23,88 +26,113 @@ export default function App() {
     setCurrentPage,
   ] = useState("library");
 
-/*
-==========================
-    INITIALIZE APP
-==========================
-*/
+  /*
+  ==========================
+      COMMAND PALETTE
+  ==========================
+  */
 
-useEffect(() => {
+  const commandPalette =
+    useCommandPalette();
 
-  ThemeManager.initialize();
+  /*
+  ==========================
+      INITIALIZE APP
+  ==========================
+  */
 
-  AccentManager.initialize();
+  useEffect(() => {
 
-  FontManager.initialize();
+    ThemeManager.initialize();
 
-  AnimationManager.initialize();
+    AccentManager.initialize();
 
-  CompactManager.initialize();
+    FontManager.initialize();
 
-  AccessibilityManager.initialize();
+    AnimationManager.initialize();
 
-}, []);
+    CompactManager.initialize();
+
+    AccessibilityManager.initialize();
+
+  }, []);
 
   return (
 
-    <div
-      style={{
-        display: "flex",
-        height: "100vh",
-        background: "var(--color-background)",
-        color: "var(--color-text)",
-      }}
-    >
-
-      <Navigation
-        currentPage={currentPage}
-        setCurrentPage={setCurrentPage}
-      />
+    <>
 
       <div
         style={{
-          flex: 1,
-          minWidth: 0,
-          minHeight: 0,
-          overflow: "auto",
+          display: "flex",
+          height: "100vh",
+          background: "var(--color-background)",
+          color: "var(--color-text)",
         }}
       >
 
-        {
+        <Navigation
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+        />
 
-          currentPage === "library" &&
+        <div
+          style={{
+            flex: 1,
+            minWidth: 0,
+            minHeight: 0,
+            overflow: "auto",
+          }}
+        >
 
-          <Showcase />
+          {
 
-        }
+            currentPage === "library" &&
 
-        {
+            <Showcase />
 
-          currentPage === "workspace" &&
+          }
 
-          <CreativeLab />
+          {
 
-        }
+            currentPage === "workspace" &&
 
-        {
+            <CreativeLab />
 
-          currentPage === "presentation" &&
+          }
 
-          <Presentation />
+          {
 
-        }
+            currentPage === "presentation" &&
 
-        {
+            <Presentation />
 
-          currentPage === "settings" &&
+          }
 
-          <Settings />
+          {
 
-        }
+            currentPage === "settings" &&
+
+            <Settings />
+
+          }
+
+        </div>
 
       </div>
 
-    </div>
+      <CommandPalette
+
+        open={
+          commandPalette.open
+        }
+
+        onClose={
+          commandPalette.closePalette
+        }
+
+      />
+
+    </>
 
   );
 
