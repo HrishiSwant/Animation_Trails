@@ -53,6 +53,32 @@
 
     --hover-scale:scale(1.05);
 
+    /* ======================
+       COMPACT VARIABLES
+    ====================== */
+
+    --spacing-xs:6px;
+
+    --spacing-sm:12px;
+
+    --spacing-md:18px;
+
+    --spacing-lg:24px;
+
+    --spacing-xl:32px;
+
+    --card-padding:20px;
+
+    --section-padding:28px;
+
+    --radius-small:10px;
+
+    --radius-medium:14px;
+
+    --radius-large:20px;
+
+    --control-height:48px;
+
 }
 
 /* ==========================
