@@ -81,6 +81,20 @@
 
 }
 
+/* ======================
+   ACCESSIBILITY
+====================== */
+
+--contrast-multiplier:1;
+
+--click-target-size:44px;
+
+--focus-ring-width:3px;
+
+--focus-ring-offset:3px;
+
+--focus-ring-color:var(--color-primary);
+
 /* ==========================
    ROOT
 ========================== */
@@ -129,5 +143,35 @@ body,
     overflow:hidden;
 
     background:#09090B;
+
+}
+
+/* ==========================
+   GLOBAL FOCUS
+========================== */
+
+:focus-visible{
+
+    outline:
+        var(--focus-ring-width)
+        solid
+        var(--focus-ring-color);
+
+    outline-offset:
+        var(--focus-ring-offset);
+
+}
+
+/* ==========================
+   REDUCE MOTION
+========================== */
+
+html[data-reduce-motion="on"] *{
+
+    animation:none !important;
+
+    transition:none !important;
+
+    scroll-behavior:auto !important;
 
 }
