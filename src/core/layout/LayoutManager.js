@@ -1,4 +1,4 @@
-import defaultLayout from "./defaultLayout";
+import defaultLayout from "./defaultLayouts";
 import LayoutStorage from "./LayoutStorage";
 
 class LayoutManager {
