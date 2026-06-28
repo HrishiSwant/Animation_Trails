@@ -14,6 +14,18 @@
 
     margin-bottom:20px;
 
+    padding:18px;
+
+    border:1px solid var(--color-border);
+
+    border-radius:16px;
+
+    background:var(--color-surface);
+
+    transition:
+        background-color var(--transition-medium),
+        border-color var(--transition-medium);
+
 }
 
 /* ===========================================
@@ -22,33 +34,37 @@
 
 .toolbar-sketch button{
 
-    padding:12px 18px;
+    display:flex;
 
-    border:none;
+    align-items:center;
 
-    outline:none;
+    justify-content:center;
 
-    border-radius:12px;
+    gap:8px;
 
-    background:var(--color-surface);
+    background:var(--color-surface-secondary);
 
     color:var(--color-text);
 
+    border:1px solid transparent;
+
+    border-radius:12px;
+
+    padding:12px 18px;
+
     cursor:pointer;
 
-    font-size:15px;
+    font-size:var(--font-md);
+
+    font-weight:500;
 
     font-family:var(--font-family);
 
     transition:
-
         background-color var(--transition-medium),
-
         color var(--transition-medium),
-
-        transform var(--transition-fast),
-
-        box-shadow var(--transition-medium);
+        border-color var(--transition-medium),
+        transform var(--transition-fast);
 
 }
 
@@ -56,11 +72,9 @@
 
     background:var(--color-primary);
 
-    color:#FFFFFF;
+    color:#ffffff;
 
     transform:translateY(-2px);
-
-    box-shadow:var(--shadow-small);
 
 }
 
@@ -68,13 +82,7 @@
 
     background:var(--color-primary);
 
-    color:#FFFFFF;
-
-}
-
-.toolbar-sketch button:active{
-
-    transform:translateY(0);
+    color:#ffffff;
 
 }
 
@@ -82,7 +90,7 @@
 
     outline:2px solid var(--color-primary);
 
-    outline-offset:3px;
+    outline-offset:2px;
 
 }
 
@@ -99,6 +107,8 @@
     padding:0;
 
     border:none;
+
+    border-radius:10px;
 
     background:transparent;
 
@@ -121,7 +131,7 @@
 }
 
 /* ===========================================
-   RANGE
+   BRUSH SIZE
 =========================================== */
 
 .toolbar-sketch input[type="range"]{
@@ -130,6 +140,34 @@
 
     accent-color:var(--color-primary);
 
-    cursor:pointer;
+}
+
+/* ===========================================
+   RESPONSIVE
+=========================================== */
+
+@media(max-width:768px){
+
+    .toolbar-sketch{
+
+        gap:10px;
+
+        padding:14px;
+
+    }
+
+    .toolbar-sketch button{
+
+        font-size:var(--font-sm);
+
+        padding:10px 14px;
+
+    }
+
+    .toolbar-sketch input[type="range"]{
+
+        width:120px;
+
+    }
 
 }
