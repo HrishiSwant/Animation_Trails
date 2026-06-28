@@ -1,104 +1,28 @@
-/* ===========================================
-   ASSETS PAGE
-=========================================== */
-
 .assets{
 
     display:flex;
 
     flex-direction:column;
 
-    width:100%;
+    gap:24px;
 
-    min-height:100%;
+    width:100%;
 
     color:var(--color-text);
 
-    transition:
-
-        background-color var(--transition-medium),
-
-        color var(--transition-medium);
-
 }
-
-/* ===========================================
-   HEADER
-=========================================== */
 
 .assets h1{
 
-    margin:0 0 24px;
+    margin:0;
 
-    font-size:42px;
+    font-size:var(--font-3xl);
 
     font-weight:700;
 
     color:var(--color-text);
 
-    transition:
-
-        color var(--transition-medium);
-
 }
-
-/* ===========================================
-   UPLOAD INPUT
-=========================================== */
-
-.assets input[type="file"]{
-
-    margin-bottom:24px;
-
-    color:var(--color-text);
-
-    font-family:var(--font-family);
-
-}
-
-.assets input[type="file"]::file-selector-button{
-
-    margin-right:16px;
-
-    padding:10px 18px;
-
-    border:none;
-
-    border-radius:12px;
-
-    background:var(--color-primary);
-
-    color:#FFFFFF;
-
-    font-size:14px;
-
-    font-weight:600;
-
-    cursor:pointer;
-
-    transition:
-
-        background-color var(--transition-medium),
-
-        transform var(--transition-fast),
-
-        box-shadow var(--transition-medium);
-
-}
-
-.assets input[type="file"]::file-selector-button:hover{
-
-    transform:translateY(-2px);
-
-    box-shadow:var(--shadow-small);
-
-    filter:brightness(.92);
-
-}
-
-/* ===========================================
-   TOOLBAR
-=========================================== */
 
 .asset-toolbar{
 
@@ -106,9 +30,34 @@
 
     gap:16px;
 
-    margin-bottom:28px;
-
     flex-wrap:wrap;
+
+}
+
+.asset-toolbar input,
+
+.asset-toolbar select{
+
+    padding:12px 16px;
+
+    border-radius:12px;
+
+    border:1px solid var(--color-border);
+
+    background:var(--color-surface);
+
+    color:var(--color-text);
+
+    font-size:var(--font-md);
+
+    font-family:var(--font-family);
+
+    outline:none;
+
+    transition:
+        background-color var(--transition-medium),
+        border-color var(--transition-medium),
+        color var(--transition-medium);
 
 }
 
@@ -116,133 +65,28 @@
 
     flex:1;
 
-    min-width:240px;
-
-    padding:12px 16px;
-
-    border:1px solid var(--color-border);
-
-    border-radius:12px;
-
-    outline:none;
-
-    background:var(--color-surface);
-
-    color:var(--color-text);
-
-    font-size:15px;
-
-    font-family:var(--font-family);
-
-    transition:
-
-        background-color var(--transition-medium),
-
-        border-color var(--transition-medium),
-
-        color var(--transition-medium),
-
-        box-shadow var(--transition-medium);
+    min-width:220px;
 
 }
 
-.asset-toolbar input:hover{
-
-    border-color:var(--color-primary);
-
-}
-
-.asset-toolbar input:focus{
-
-    border-color:var(--color-primary);
-
-    box-shadow:
-
-        0 0 0 3px rgba(37,99,235,.15);
-
-}
-
-.asset-toolbar input::placeholder{
-
-    color:var(--color-text-secondary);
-
-}
-
-.asset-toolbar select{
-
-    min-width:170px;
-
-    padding:12px 16px;
-
-    border:1px solid var(--color-border);
-
-    border-radius:12px;
-
-    outline:none;
-
-    background:var(--color-surface);
-
-    color:var(--color-text);
-
-    font-size:15px;
-
-    font-family:var(--font-family);
-
-    cursor:pointer;
-
-    transition:
-
-        background-color var(--transition-medium),
-
-        border-color var(--transition-medium),
-
-        color var(--transition-medium),
-
-        box-shadow var(--transition-medium);
-
-}
-
-.asset-toolbar select:hover{
-
-    border-color:var(--color-primary);
-
-}
+.asset-toolbar input:focus,
 
 .asset-toolbar select:focus{
 
     border-color:var(--color-primary);
 
-    box-shadow:
-
-        0 0 0 3px rgba(37,99,235,.15);
-
 }
-
-/* ===========================================
-   GRID
-=========================================== */
 
 .asset-grid{
 
     display:grid;
 
     grid-template-columns:
+        repeat(auto-fill,minmax(260px,1fr));
 
-        repeat(
-
-            auto-fill,
-
-            minmax(260px,1fr)
-
-        );
-
-    gap:22px;
+    gap:24px;
 
 }
-
-/* ===========================================
-   EMPTY STATE
-=========================================== */
 
 .empty-assets{
 
@@ -254,29 +98,23 @@
 
     align-items:center;
 
-    text-align:center;
-
     padding:80px 20px;
 
-    border:2px dashed var(--color-border);
+    border:1px dashed var(--color-border);
 
-    border-radius:18px;
+    border-radius:20px;
 
-    background:var(--color-surface);
+    color:var(--color-text-secondary);
 
-    transition:
-
-        background-color var(--transition-medium),
-
-        border-color var(--transition-medium);
+    text-align:center;
 
 }
 
 .empty-assets h3{
 
-    margin:0 0 12px;
+    margin-bottom:12px;
 
-    font-size:24px;
+    font-size:var(--font-xl);
 
     color:var(--color-text);
 
@@ -284,58 +122,6 @@
 
 .empty-assets p{
 
-    margin:0;
-
-    max-width:420px;
-
-    color:var(--color-text-secondary);
-
-    line-height:1.7;
-
-}
-
-/* ===========================================
-   RESPONSIVE
-=========================================== */
-
-@media(max-width:900px){
-
-    .assets h1{
-
-        font-size:34px;
-
-    }
-
-    .asset-toolbar{
-
-        flex-direction:column;
-
-    }
-
-    .asset-toolbar input,
-
-    .asset-toolbar select{
-
-        width:100%;
-
-        min-width:unset;
-
-    }
-
-}
-
-@media(max-width:600px){
-
-    .assets h1{
-
-        font-size:28px;
-
-    }
-
-    .asset-grid{
-
-        grid-template-columns:1fr;
-
-    }
+    font-size:var(--font-md);
 
 }
