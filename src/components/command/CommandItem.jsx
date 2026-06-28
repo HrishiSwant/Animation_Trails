@@ -32,27 +32,37 @@ export default function CommandItem({
 
     >
 
-      <div className="command-info">
+      <div className="command-left">
 
-        <h4>
+        <span className="command-icon">
 
-          {command.title}
+          {command.icon || "•"}
 
-        </h4>
+        </span>
 
-        {
+        <div className="command-info">
 
-          command.description && (
+          <h4>
 
-            <p>
+            {command.title}
 
-              {command.description}
+          </h4>
 
-            </p>
+          {
 
-          )
+            command.description && (
 
-        }
+              <p>
+
+                {command.description}
+
+              </p>
+
+            )
+
+          }
+
+        </div>
 
       </div>
 
