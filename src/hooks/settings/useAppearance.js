@@ -23,66 +23,6 @@ export default function useAppearance() {
 
   /*
   ==========================
-      SYNC THEME
-  ==========================
-  */
-
-  useEffect(() => {
-
-    ThemeManager.setTheme(
-
-      appearance.theme
-
-    );
-
-  }, [
-
-    appearance.theme,
-
-  ]);
-
-  /*
-  ==========================
-      SYNC ACCENT
-  ==========================
-  */
-
-  useEffect(() => {
-
-    AccentManager.setAccent(
-
-      appearance.accent
-
-    );
-
-  }, [
-
-    appearance.accent,
-
-  ]);
-
-  /*
-  ==========================
-      SYNC FONT SIZE
-  ==========================
-  */
-
-  useEffect(() => {
-
-    FontManager.setFontSize(
-
-      appearance.fontSize
-
-    );
-
-  }, [
-
-    appearance.fontSize,
-
-  ]);
-
-  /*
-  ==========================
       UPDATE
   ==========================
   */
@@ -106,6 +46,170 @@ export default function useAppearance() {
     );
 
   }
+
+  /*
+  ==========================
+      SYNC THEME
+  ==========================
+  */
+
+  useEffect(() => {
+
+    if (
+
+      ThemeManager.getThemeId() !==
+
+      appearance.theme
+
+    ) {
+
+      ThemeManager.setTheme(
+
+        appearance.theme
+
+      );
+
+    }
+
+  }, [
+
+    appearance.theme,
+
+  ]);
+
+  /*
+  ==========================
+      SYNC ACCENT
+  ==========================
+  */
+
+  useEffect(() => {
+
+    if (
+
+      AccentManager.getAccent() !==
+
+      appearance.accent
+
+    ) {
+
+      AccentManager.setAccent(
+
+        appearance.accent
+
+      );
+
+    }
+
+  }, [
+
+    appearance.accent,
+
+  ]);
+
+  /*
+  ==========================
+      SYNC FONT
+  ==========================
+  */
+
+  useEffect(() => {
+
+    if (
+
+      FontManager.getFontSize() !==
+
+      appearance.fontSize
+
+    ) {
+
+      FontManager.setFontSize(
+
+        appearance.fontSize
+
+      );
+
+    }
+
+  }, [
+
+    appearance.fontSize,
+
+  ]);
+
+  /*
+  ==========================
+      SYNC ANIMATIONS
+  ==========================
+  */
+
+  useEffect(() => {
+
+    if (
+
+      AnimationManager.isEnabled() !==
+
+      appearance.animations
+
+    ) {
+
+      AnimationManager.setEnabled(
+
+        appearance.animations
+
+      );
+
+    }
+
+  }, [
+
+    appearance.animations,
+
+  ]);
+
+  /*
+  ==========================
+      SUBSCRIBE
+  ==========================
+  */
+
+  useEffect(() => {
+
+    const unsubscribe =
+
+      AnimationManager.subscribe(
+
+        enabled => {
+
+          if (
+
+            enabled !==
+
+            appearance.animations
+
+          ) {
+
+            update(
+
+              "animations",
+
+              enabled,
+
+            );
+
+          }
+
+        }
+
+      );
+
+    return unsubscribe;
+
+  }, [
+
+    appearance.animations,
+
+  ]);
 
   /*
   ==========================
@@ -149,23 +253,23 @@ export default function useAppearance() {
 
   }
 
-function setAnimations(enabled) {
+  function setAnimations(enabled) {
 
-  AnimationManager.setEnabled(
+    AnimationManager.setEnabled(
 
-    enabled
+      enabled,
 
-  );
+    );
 
-  update(
+    update(
 
-    "animations",
+      "animations",
 
-    enabled
+      enabled,
 
-  );
+    );
 
-}
+  }
 
   function setCompactMode(enabled) {
 
