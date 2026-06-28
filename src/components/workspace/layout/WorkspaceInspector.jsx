@@ -1,15 +1,29 @@
 import "./WorkspaceInspector.css";
 
-export default function WorkspaceInspector() {
+export default function WorkspaceInspector({
 
-  return (
+    width,
 
-    <aside className="workspace-inspector">
+}){
 
-      Inspector
+    return(
 
-    </aside>
+        <aside
 
-  );
+            className="workspace-inspector"
+
+            style={{
+
+                width,
+
+            }}
+
+        >
+
+            Inspector
+
+        </aside>
+
+    );
 
 }
