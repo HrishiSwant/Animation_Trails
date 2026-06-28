@@ -25,6 +25,34 @@ class LayoutManager {
 
   }
 
+  toggleInspector() {
+
+  this.layout = {
+
+    ...this.layout,
+
+    inspector: {
+
+      ...this.layout.inspector,
+
+      visible:
+
+        !this.layout.inspector.visible,
+
+    },
+
+  };
+
+  LayoutStorage.save(
+
+    this.layout,
+
+  );
+
+  this.notify();
+
+}
+
   getLayout() {
 
     return this.layout;
