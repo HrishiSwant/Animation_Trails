@@ -3,18 +3,17 @@ import { useState } from "react";
 import "./CreativeLab.css";
 
 import WorkspaceDashboard from "../components/workspace/WorkspaceDashboard/WorkspaceDashboard";
-
 import Notes from "../components/workspace/Notes/Notes";
 import Sketch from "../components/workspace/Sketch/Sketch";
 import Assets from "../components/workspace/Assets/Assets";
 import Tasks from "../components/workspace/Tasks/Tasks";
-
 import StorageInspector from "../components/workspace/Storage/StorageInspector";
 import ExportCenter from "../components/workspace/Export/ExportCenter";
-
 import Settings from "../components/workspace/Settings/Settings";
 
 import PresentationMode from "../components/presentation/PresentationMode";
+
+import WorkspaceShell from "../components/workspace/layout/WorkspaceShell";
 
 export default function CreativeLab() {
 
@@ -33,6 +32,12 @@ export default function CreativeLab() {
     setPresentation,
 
   ] = useState(false);
+
+  /*
+  ==========================
+      RENDER TOOL
+  ==========================
+  */
 
   function renderTool() {
 
@@ -132,6 +137,12 @@ export default function CreativeLab() {
 
   }
 
+  /*
+  ==========================
+      TOOL TITLE
+  ==========================
+  */
+
   function getToolTitle() {
 
     switch (currentTool) {
@@ -174,51 +185,55 @@ export default function CreativeLab() {
 
   return (
 
-    <div className="creative-lab">
+    <WorkspaceShell>
 
-      {
+      <div className="creative-lab">
 
-        !presentation &&
+        {
 
-        currentTool !== "dashboard" && (
+          !presentation &&
 
-          <div className="toolbar">
+          currentTool !== "dashboard" && (
 
-            <button
+            <div className="toolbar">
 
-              className="back-button"
+              <button
 
-              onClick={() =>
+                className="back-button"
 
-                setCurrentTool(
+                onClick={() =>
 
-                  "dashboard"
+                  setCurrentTool(
 
-                )
+                    "dashboard"
 
-              }
+                  )
 
-            >
+                }
 
-              ← Workspace
+              >
 
-            </button>
+                ← Workspace
 
-            <span className="tool-title">
+              </button>
 
-              {getToolTitle()}
+              <span className="tool-title">
 
-            </span>
+                {getToolTitle()}
 
-          </div>
+              </span>
 
-        )
+            </div>
 
-      }
+          )
 
-      {renderTool()}
+        }
 
-    </div>
+        {renderTool()}
+
+      </div>
+
+    </WorkspaceShell>
 
   );
 
