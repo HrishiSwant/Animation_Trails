@@ -16,8 +16,7 @@ class CommandRegistry {
 
       !command.title ||
 
-      typeof command.action !==
-        "function"
+      typeof command.action !== "function"
 
     ) {
 
@@ -26,6 +25,7 @@ class CommandRegistry {
     }
 
     const exists =
+
       this.commands.some(
 
         item =>
@@ -47,6 +47,7 @@ class CommandRegistry {
   unregister(id) {
 
     this.commands =
+
       this.commands.filter(
 
         item =>
@@ -59,7 +60,11 @@ class CommandRegistry {
 
   getAll() {
 
-    return [...this.commands];
+    return [
+
+      ...this.commands,
+
+    ];
 
   }
 
@@ -75,6 +80,12 @@ class CommandRegistry {
 
   }
 
+  /*
+  ==========================
+      SEARCH
+  ==========================
+  */
+
   search(query) {
 
     if (!query) {
@@ -84,27 +95,197 @@ class CommandRegistry {
     }
 
     const value =
-      query.toLowerCase();
 
-    return this.commands.filter(
+      query
+        .toLowerCase()
+        .trim();
 
-      command =>
+    return this.commands
 
-        command.title
-          .toLowerCase()
-          .includes(value) ||
+      .map(command => {
 
-        command.category
-          ?.toLowerCase()
-          .includes(value),
+        const title =
 
-    );
+          command.title
+            .toLowerCase();
+
+        const category =
+
+          (
+            command.category ||
+
+            ""
+
+          ).toLowerCase();
+
+        let score = 0;
+
+        /*
+        ==========================
+            EXACT MATCH
+        ==========================
+        */
+
+        if (
+
+          title === value
+
+        ) {
+
+          score += 1000;
+
+        }
+
+        /*
+        ==========================
+            STARTS WITH
+        ==========================
+        */
+
+        if (
+
+          title.startsWith(
+
+            value,
+
+          )
+
+        ) {
+
+          score += 500;
+
+        }
+
+        /*
+        ==========================
+            CONTAINS
+        ==========================
+        */
+
+        if (
+
+          title.includes(
+
+            value,
+
+          )
+
+        ) {
+
+          score += 250;
+
+        }
+
+        /*
+        ==========================
+            CATEGORY MATCH
+        ==========================
+        */
+
+        if (
+
+          category.includes(
+
+            value,
+
+          )
+
+        ) {
+
+          score += 120;
+
+        }
+
+        /*
+        ==========================
+            FUZZY MATCH
+        ==========================
+        */
+
+        let position = 0;
+
+        let matched = 0;
+
+        for (
+
+          const character of value
+
+        ) {
+
+          const found =
+
+            title.indexOf(
+
+              character,
+
+              position,
+
+            );
+
+          if (
+
+            found === -1
+
+          ) {
+
+            matched = -999;
+
+            break;
+
+          }
+
+          matched += 25;
+
+          position =
+
+            found + 1;
+
+        }
+
+        score += matched;
+
+        return {
+
+          command,
+
+          score,
+
+        };
+
+      })
+
+      .filter(
+
+        item =>
+
+          item.score > 0,
+
+      )
+
+      .sort(
+
+        (a, b) =>
+
+          b.score -
+
+          a.score,
+
+      )
+
+      .map(
+
+        item =>
+
+          item.command,
+
+      );
 
   }
 
 }
 
 const registry =
+
   new CommandRegistry();
 
 export default registry;
