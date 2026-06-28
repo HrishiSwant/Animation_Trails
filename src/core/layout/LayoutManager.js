@@ -5,39 +5,23 @@ class LayoutManager {
 
   constructor() {
 
-    this.layout = defaultLayout;
+    this.layout = {
+
+      ...layouts.default,
+
+      preset: "default",
+
+    };
 
     this.listeners = [];
 
   }
 
-  setPreset(name) {
-
-  if (
-
-    !layouts[name]
-
-  ) {
-
-    return;
-
-  }
-
-  this.layout = {
-
-    ...layouts[name],
-
-  };
-
-  LayoutStorage.save(
-
-    this.layout,
-
-  );
-
-  this.notify();
-
-}
+  /*
+  ==========================
+      INITIALIZE
+  ==========================
+  */
 
   initialize() {
 
@@ -49,37 +33,101 @@ class LayoutManager {
 
       this.layout = saved;
 
+    } else {
+
+      this.layout = {
+
+        ...layouts.default,
+
+        preset: "default",
+
+      };
+
+      LayoutStorage.save(
+
+        this.layout,
+
+      );
+
     }
 
   }
 
+  /*
+  ==========================
+      PRESET
+  ==========================
+  */
+
+  setPreset(name) {
+
+    if (
+
+      !layouts[name]
+
+    ) {
+
+      return;
+
+    }
+
+    this.layout = {
+
+      ...layouts[name],
+
+      preset: name,
+
+    };
+
+    LayoutStorage.save(
+
+      this.layout,
+
+    );
+
+    this.notify();
+
+  }
+
+  /*
+  ==========================
+      INSPECTOR
+  ==========================
+  */
+
   toggleInspector() {
 
-  this.layout = {
+    this.layout = {
 
-    ...this.layout,
+      ...this.layout,
 
-    inspector: {
+      inspector: {
 
-      ...this.layout.inspector,
+        ...this.layout.inspector,
 
-      visible:
+        visible:
 
-        !this.layout.inspector.visible,
+          !this.layout.inspector.visible,
 
-    },
+      },
 
-  };
+    };
 
-  LayoutStorage.save(
+    LayoutStorage.save(
 
-    this.layout,
+      this.layout,
 
-  );
+    );
 
-  this.notify();
+    this.notify();
 
-}
+  }
+
+  /*
+  ==========================
+      GET
+  ==========================
+  */
 
   getLayout() {
 
@@ -87,7 +135,19 @@ class LayoutManager {
 
   }
 
-  update(part, value) {
+  /*
+  ==========================
+      UPDATE
+  ==========================
+  */
+
+  update(
+
+    part,
+
+    value,
+
+  ) {
 
     this.layout = {
 
@@ -113,6 +173,12 @@ class LayoutManager {
 
   }
 
+  /*
+  ==========================
+      SUBSCRIBE
+  ==========================
+  */
+
   subscribe(listener) {
 
     this.listeners.push(
@@ -127,13 +193,21 @@ class LayoutManager {
 
         this.listeners.filter(
 
-          l => l !== listener,
+          item =>
+
+            item !== listener,
 
         );
 
     };
 
   }
+
+  /*
+  ==========================
+      NOTIFY
+  ==========================
+  */
 
   notify() {
 
