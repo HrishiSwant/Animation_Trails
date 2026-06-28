@@ -1,26 +1,11 @@
-import useAccessibilitySettings from "../../../hooks/settings/useAccessibilitySettings";
+import useAccessibility from "../../../hooks/settings/useAccessibility";
 
 import SettingsToggle from "./SettingsToggle";
-import SettingsSelect from "./SettingsSelect";
-
-const contrastOptions = [
-
-  {
-    value: "normal",
-    label: "Normal",
-  },
-
-  {
-    value: "high",
-    label: "High Contrast",
-  },
-
-];
 
 export default function AccessibilitySettings() {
 
   const accessibility =
-    useAccessibilitySettings();
+    useAccessibility();
 
   return (
 
@@ -34,57 +19,87 @@ export default function AccessibilitySettings() {
 
       <p>
 
-        Improve usability and accessibility throughout Hrishi Studio.
+        Configure accessibility options for the application.
 
       </p>
 
       <SettingsToggle
 
+        label="High Contrast"
+
+        description="Increase contrast for better readability."
+
+        checked={
+          accessibility.accessibility.highContrast
+        }
+
+        onChange={
+          accessibility.setHighContrast
+        }
+
+      />
+
+      <SettingsToggle
+
         label="Reduce Motion"
 
-        description="Reduce interface animations for a more comfortable experience."
+        description="Reduce interface animations."
 
-        checked={accessibility.reduceMotion}
+        checked={
+          accessibility.accessibility.reduceMotion
+        }
 
-        onChange={accessibility.setReduceMotion}
-
-      />
-
-      <SettingsToggle
-
-        label="Large Interface Text"
-
-        description="Increase text size across the application."
-
-        checked={accessibility.largeText}
-
-        onChange={accessibility.setLargeText}
+        onChange={
+          accessibility.setReduceMotion
+        }
 
       />
 
       <SettingsToggle
 
-        label="Show Focus Indicators"
+        label="Large Click Targets"
 
-        description="Highlight keyboard focus for easier navigation."
+        description="Increase the size of interactive controls."
 
-        checked={accessibility.showFocus}
+        checked={
+          accessibility.accessibility.largeClickTargets
+        }
 
-        onChange={accessibility.setShowFocus}
+        onChange={
+          accessibility.setLargeClickTargets
+        }
 
       />
 
-      <SettingsSelect
+      <SettingsToggle
 
-        label="Contrast Mode"
+        label="Keyboard Navigation"
 
-        description="Choose the preferred contrast level."
+        description="Enable enhanced keyboard navigation."
 
-        value={accessibility.contrast}
+        checked={
+          accessibility.accessibility.keyboardNavigation
+        }
 
-        options={contrastOptions}
+        onChange={
+          accessibility.setKeyboardNavigation
+        }
 
-        onChange={accessibility.setContrast}
+      />
+
+      <SettingsToggle
+
+        label="Focus Indicators"
+
+        description="Always display visible focus outlines."
+
+        checked={
+          accessibility.accessibility.focusIndicators
+        }
+
+        onChange={
+          accessibility.setFocusIndicators
+        }
 
       />
 
