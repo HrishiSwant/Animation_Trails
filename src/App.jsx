@@ -12,6 +12,7 @@ import Settings from "./pages/Settings";
 import ThemeManager from "./core/theme/ThemeManager";
 import AccentManager from "./core/accent/AccentManager";
 import FontManager from "./core/font/FontManager";
+import AnimationManager from "./core/animation/AnimationManager";
 
 export default function App() {
 
@@ -33,6 +34,8 @@ export default function App() {
     AccentManager.initialize();
 
     FontManager.initialize();
+
+    AnimationManager.initialize();
 
   }, []);
 
@@ -58,7 +61,7 @@ export default function App() {
           minWidth: 0,
           minHeight: 0,
           overflow: "auto",
-          }}
+        }}
       >
 
         {
