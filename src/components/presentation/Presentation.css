@@ -52,7 +52,7 @@
 
 .presentation-slide-icon{
 
-    font-size:88px;
+    font-size:var(--font-4xl);
 
     margin-bottom:24px;
 
@@ -62,7 +62,7 @@
 
     margin:0;
 
-    font-size:56px;
+    font-size:calc(var(--font-4xl) + 6px);
 
     font-weight:700;
 
@@ -76,7 +76,7 @@
 
     max-width:900px;
 
-    font-size:21px;
+    font-size:var(--font-xl);
 
     line-height:1.7;
 
@@ -192,7 +192,9 @@
 
     color:var(--color-text);
 
-    font-size:15px;
+    font-size:var(--font-md);
+
+   font-family:var(--font-family);
 
     font-weight:600;
 
@@ -288,7 +290,7 @@
 
     margin-bottom:12px;
 
-    font-size:15px;
+    font-size:var(--font-md);
 
     color:var(--color-text);
 
@@ -326,7 +328,7 @@
 
     text-align:right;
 
-    font-size:13px;
+    font-size:var(--font-xs);
 
     color:var(--color-text-secondary);
 
@@ -388,7 +390,7 @@
 
     margin:0;
 
-    font-size:40px;
+    font-size:var(--font-3xl);
 
     color:var(--color-text);
 
@@ -440,13 +442,17 @@
 
     color:var(--color-primary);
 
-    font-size:18px;
+    font-size:var(--font-lg);
 
 }
 
 .presentation-overlay-card small{
 
     color:var(--color-text-secondary);
+
+   font-size:var(--font-xs);
+
+   opacity:.65;
 
 }
 
@@ -518,20 +524,19 @@
 
     .presentation-slide-icon{
 
-        font-size:64px;
+        font-size:var(--font-3xl);
 
     }
 
     .presentation-slide-title{
 
-        font-size:38px;
+        font-size:var(--font-2xl);
 
     }
 
     .presentation-slide-description{
 
-        font-size:17px;
-
+        font-size:var(--font-lg);
     }
 
     .presentation-preview{
