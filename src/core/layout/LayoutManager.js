@@ -1,4 +1,4 @@
-import defaultLayout from "./defaultLayouts";
+import layouts from "./defaultLayouts";
 import LayoutStorage from "./LayoutStorage";
 
 class LayoutManager {
@@ -10,6 +10,34 @@ class LayoutManager {
     this.listeners = [];
 
   }
+
+  setPreset(name) {
+
+  if (
+
+    !layouts[name]
+
+  ) {
+
+    return;
+
+  }
+
+  this.layout = {
+
+    ...layouts[name],
+
+  };
+
+  LayoutStorage.save(
+
+    this.layout,
+
+  );
+
+  this.notify();
+
+}
 
   initialize() {
 
