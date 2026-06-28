@@ -5,6 +5,7 @@ import useSettings from "./useSettings";
 import ThemeManager from "../../core/theme/ThemeManager";
 import AccentManager from "../../core/accent/AccentManager";
 import FontManager from "../../core/font/FontManager";
+import AnimationManager from "../../core/animation/AnimationManager";
 
 export default function useAppearance() {
 
@@ -148,17 +149,23 @@ export default function useAppearance() {
 
   }
 
-  function setAnimations(enabled) {
+function setAnimations(enabled) {
 
-    update(
+  AnimationManager.setEnabled(
 
-      "animations",
+    enabled
 
-      enabled,
+  );
 
-    );
+  update(
 
-  }
+    "animations",
+
+    enabled
+
+  );
+
+}
 
   function setCompactMode(enabled) {
 
