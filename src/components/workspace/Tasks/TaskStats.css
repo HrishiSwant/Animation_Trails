@@ -61,25 +61,15 @@
 
     margin:0 0 10px;
 
-    font-size:15px;
+    font-size:var(--font-md);
 
-    font-weight:600;
-
-    color:var(--color-text-secondary);
-
-    transition:color var(--transition-medium);
+    opacity:.8;
 
 }
 
 .task-stat-card span{
 
-    font-size:30px;
-
-    font-weight:700;
-
-    color:var(--color-text);
-
-    transition:color var(--transition-medium);
+    font-size:var(--font-2xl);
 
 }
 
@@ -107,19 +97,9 @@
 
 .task-progress-header{
 
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:center;
-
-    margin-bottom:12px;
+    font-size:var(--font-md);
 
     font-weight:600;
-
-    color:var(--color-text);
-
-    transition:color var(--transition-medium);
 
 }
 
