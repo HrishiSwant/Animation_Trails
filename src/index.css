@@ -11,6 +11,15 @@
 :root{
 
     /* ======================
+       FONT FAMILY
+    ====================== */
+
+    --font-family:
+        Inter,
+        system-ui,
+        sans-serif;
+
+    /* ======================
        FONT SCALE
     ====================== */
 
@@ -30,7 +39,25 @@
 
     --font-4xl:50px;
 
+    /* ======================
+       ANIMATIONS
+    ====================== */
+
+    --transition-fast:.18s;
+
+    --transition-medium:.30s;
+
+    --transition-slow:.45s;
+
+    --hover-transform:translateY(-2px);
+
+    --hover-scale:scale(1.05);
+
 }
+
+/* ==========================
+   ROOT
+========================== */
 
 html,
 body,
@@ -43,16 +70,17 @@ body,
 
     background:#09090B;
 
-    font-family:
-        Inter,
-        system-ui,
-        sans-serif;
+    font-family:var(--font-family);
 
     font-size:var(--font-md);
 
     color:white;
 
 }
+
+/* ==========================
+   APP
+========================== */
 
 .app{
 
@@ -63,6 +91,10 @@ body,
     display:flex;
 
 }
+
+/* ==========================
+   PAGE CONTAINER
+========================== */
 
 .page-container{
 
