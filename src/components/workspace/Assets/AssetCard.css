@@ -1,30 +1,17 @@
-/* ===========================================
-   ASSET CARD
-=========================================== */
-
 .asset-card{
-
-    display:flex;
-
-    flex-direction:column;
 
     background:var(--color-surface);
 
     border:1px solid var(--color-border);
 
-    border-radius:16px;
+    border-radius:18px;
 
     overflow:hidden;
 
     transition:
-
         background-color var(--transition-medium),
-
         border-color var(--transition-medium),
-
-        transform var(--transition-fast),
-
-        box-shadow var(--transition-medium);
+        transform var(--transition-fast);
 
 }
 
@@ -34,13 +21,7 @@
 
     border-color:var(--color-primary);
 
-    box-shadow:var(--shadow-medium);
-
 }
-
-/* ===========================================
-   PREVIEW
-=========================================== */
 
 .asset-preview{
 
@@ -52,15 +33,9 @@
 
     align-items:center;
 
-    background:var(--color-background);
+    background:var(--color-surface-secondary);
 
     cursor:pointer;
-
-    overflow:hidden;
-
-    transition:
-
-        background-color var(--transition-medium);
 
 }
 
@@ -72,43 +47,19 @@
 
     object-fit:cover;
 
-    transition:
-
-        transform var(--transition-medium);
-
-}
-
-.asset-preview:hover .asset-image{
-
-    transform:scale(1.04);
-
 }
 
 .asset-icon{
 
-    font-size:30px;
+    font-size:var(--font-2xl);
 
     color:var(--color-text-secondary);
 
-    transition:
-
-        color var(--transition-medium);
-
 }
-
-/* ===========================================
-   CONTENT
-=========================================== */
 
 .asset-content{
 
     padding:16px;
-
-    display:flex;
-
-    flex-direction:column;
-
-    gap:8px;
 
 }
 
@@ -116,43 +67,27 @@
 
     margin:0;
 
-    font-size:16px;
-
-    font-weight:600;
+    font-size:var(--font-lg);
 
     color:var(--color-text);
 
     overflow:hidden;
 
-    text-overflow:ellipsis;
-
     white-space:nowrap;
 
-    transition:
-
-        color var(--transition-medium);
+    text-overflow:ellipsis;
 
 }
 
 .asset-content p{
 
-    margin:0;
+    margin-top:8px;
 
     color:var(--color-text-secondary);
 
-    font-size:13px;
-
-    line-height:1.5;
-
-    transition:
-
-        color var(--transition-medium);
+    font-size:var(--font-xs);
 
 }
-
-/* ===========================================
-   ACTIONS
-=========================================== */
 
 .asset-actions{
 
@@ -160,7 +95,7 @@
 
     gap:10px;
 
-    margin-top:12px;
+    margin-top:18px;
 
 }
 
@@ -168,33 +103,23 @@
 
     flex:1;
 
-    padding:10px 14px;
+    padding:10px;
 
     border:none;
 
-    outline:none;
-
     border-radius:10px;
+
+    cursor:pointer;
 
     background:var(--color-surface-secondary);
 
     color:var(--color-text);
 
-    font-size:14px;
-
-    font-weight:500;
-
-    cursor:pointer;
+    font-size:var(--font-sm);
 
     transition:
-
         background-color var(--transition-medium),
-
-        color var(--transition-medium),
-
-        transform var(--transition-fast),
-
-        box-shadow var(--transition-medium);
+        transform var(--transition-fast);
 
 }
 
@@ -202,66 +127,6 @@
 
     background:var(--color-primary);
 
-    color:#FFFFFF;
-
-    transform:translateY(-2px);
-
-    box-shadow:var(--shadow-small);
-
-}
-
-.asset-actions button:active{
-
-    transform:translateY(0);
-
-}
-
-.asset-actions button:focus-visible{
-
-    outline:2px solid var(--color-primary);
-
-    outline-offset:2px;
-
-}
-
-/* ===========================================
-   RESPONSIVE
-=========================================== */
-
-@media(max-width:768px){
-
-    .asset-preview{
-
-        height:160px;
-
-    }
-
-}
-
-@media(max-width:600px){
-
-    .asset-content{
-
-        padding:14px;
-
-    }
-
-    .asset-content h3{
-
-        font-size:15px;
-
-    }
-
-    .asset-actions{
-
-        flex-direction:column;
-
-    }
-
-    .asset-actions button{
-
-        width:100%;
-
-    }
+    color:white;
 
 }
