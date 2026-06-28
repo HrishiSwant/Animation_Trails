@@ -19,6 +19,8 @@ import AccessibilityManager from "./core/accessibility/AccessibilityManager";
 import CommandPalette from "./components/command/CommandPalette";
 import useCommandPalette from "./hooks/useCommandPalette";
 
+import registerDefaultCommands from "./core/command/registerDefaultCommands";
+
 export default function App() {
 
   const [
@@ -34,6 +36,17 @@ export default function App() {
 
   const commandPalette =
     useCommandPalette();
+
+  /* another useEffect  */
+  useEffect(() => {
+
+  registerDefaultCommands({
+
+    navigate: setCurrentPage,
+
+  });
+
+}, []);
 
   /*
   ==========================
