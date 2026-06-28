@@ -41,38 +41,92 @@ export default function CommandPalette({
   const itemRefs =
     useRef([]);
 
+  /*
+  ==========================
+      COMMANDS
+  ==========================
+  */
+
   const commands = useMemo(() => {
 
-  const value = search.trim();
+    const value =
+      search.trim();
 
-  if (value === "") {
+    if (value === "") {
 
-    const recent =
+      const recent =
+        CommandManager.getRecent();
 
-      CommandManager.getRecent();
+      if (recent.length > 0) {
 
-    if (recent.length > 0) {
+        return recent;
 
-      return recent;
+      }
 
     }
 
-  }
+    return CommandManager.search(
+      value,
+    );
 
-  return CommandManager.search(
+  }, [
 
-    value,
+    search,
 
-  );
+  ]);
 
-}, [
-
-  search,
-
-]);
   /*
   ==========================
-      RESET WHEN OPENING
+      GROUP COMMANDS
+  ==========================
+  */
+
+  const groupedCommands =
+    useMemo(() => {
+
+      const groups = {};
+
+      commands.forEach(
+
+        command => {
+
+          const category =
+            command.category ||
+            "General";
+
+          if (
+
+            !groups[
+              category
+            ]
+
+          ) {
+
+            groups[
+              category
+            ] = [];
+
+          }
+
+          groups[
+            category
+          ].push(command);
+
+        },
+
+      );
+
+      return groups;
+
+    }, [
+
+      commands,
+
+    ]);
+
+  /*
+  ==========================
+      RESET
   ==========================
   */
 
@@ -80,13 +134,17 @@ export default function CommandPalette({
 
     if (open) {
 
-      setActive(0);
-
       setSearch("");
+
+      setActive(0);
 
     }
 
-  }, [open]);
+  }, [
+
+    open,
+
+  ]);
 
   /*
   ==========================
@@ -97,7 +155,6 @@ export default function CommandPalette({
   useEffect(() => {
 
     const element =
-
       itemRefs.current[
         active
       ];
@@ -254,6 +311,8 @@ export default function CommandPalette({
 
   }
 
+  let commandIndex = -1;
+
   return (
 
     <div
@@ -293,9 +352,7 @@ export default function CommandPalette({
           onChange={e => {
 
             setSearch(
-
               e.target.value,
-
             );
 
             setActive(0);
@@ -306,33 +363,35 @@ export default function CommandPalette({
 
         {
 
-  search.trim() === "" &&
+          search.trim() === "" &&
 
-  CommandManager.getRecent().length > 0 && (
+          CommandManager
+            .getRecent()
+            .length > 0 && (
 
-    <div className="command-section">
+            <div className="command-section">
 
-      Recent Commands
+              Recent Commands
 
-    </div>
+            </div>
 
-  )
+          )
 
-}
+        }
 
-{
+        {
 
-  search.trim() !== "" && (
+          search.trim() !== "" && (
 
-    <div className="command-section">
+            <div className="command-section">
 
-      Search Results
+              Search Results
 
-    </div>
+            </div>
 
-  )
+          )
 
-}
+        }
 
         <div
 
@@ -358,53 +417,95 @@ export default function CommandPalette({
 
           {
 
-            commands.map(
+            Object.entries(
 
-              (
+              groupedCommands,
 
-                command,
+            ).map(
 
-                index,
+              ([
 
-              ) => (
+                category,
+
+                items,
+
+              ]) => (
 
                 <div
 
-                  key={command.id}
-
-                  ref={element =>
-
-                    itemRefs.current[
-                      index
-                    ] = element
-
-                  }
+                  key={category}
 
                 >
 
-                  <CommandItem
+                  <div className="command-group-title">
 
-                    command={command}
+                    {category}
 
-                    active={
+                  </div>
 
-                      active === index
+                  {
 
-                    }
+                    items.map(
 
-                    onClick={() => {
+                      command => {
 
-                      CommandManager.execute(
+                        commandIndex++;
 
-                        command.id,
+                        const index =
+                          commandIndex;
 
-                      );
+                        return (
 
-                      onClose();
+                          <div
 
-                    }}
+                            key={
+                              command.id
+                            }
 
-                  />
+                            ref={element =>
+
+                              itemRefs.current[
+                                index
+                              ] = element
+
+                            }
+
+                          >
+
+                            <CommandItem
+
+                              command={
+                                command
+                              }
+
+                              active={
+                                active ===
+                                index
+                              }
+
+                              onClick={() => {
+
+                                CommandManager.execute(
+
+                                  command.id,
+
+                                );
+
+                                onClose();
+
+                              }}
+
+                            />
+
+                          </div>
+
+                        );
+
+                      },
+
+                    )
+
+                  }
 
                 </div>
 
