@@ -1,12 +1,10 @@
-/* ===========================================
-   ASSET VIEWER OVERLAY
-=========================================== */
-
 .asset-viewer-overlay{
 
     position:fixed;
 
     inset:0;
+
+    background:rgba(0,0,0,.75);
 
     display:flex;
 
@@ -14,45 +12,27 @@
 
     align-items:center;
 
-    padding:30px;
-
-    background:rgba(0,0,0,.75);
-
-    backdrop-filter:blur(6px);
-
     z-index:1000;
 
 }
 
-/* ===========================================
-   VIEWER WINDOW
-=========================================== */
-
 .asset-viewer{
 
-    position:relative;
+    width:min(950px,92vw);
 
-    width:min(900px,90vw);
-
-    max-height:90vh;
+    max-height:92vh;
 
     overflow:auto;
 
-    padding:24px;
-
-    border-radius:18px;
-
     background:var(--color-surface);
 
+    border-radius:20px;
+
+    padding:28px;
+
+    position:relative;
+
     color:var(--color-text);
-
-    box-shadow:var(--shadow-large);
-
-    transition:
-
-        background-color var(--transition-medium),
-
-        color var(--transition-medium);
 
 }
 
@@ -60,73 +40,19 @@
 
     margin:0;
 
-    margin-bottom:18px;
-
-    color:var(--color-text);
-
-    font-size:28px;
+    font-size:var(--font-2xl);
 
 }
-
-/* ===========================================
-   CLOSE BUTTON
-=========================================== */
 
 .close-viewer{
 
     position:absolute;
 
-    top:20px;
-
     right:20px;
 
-    width:42px;
-
-    height:42px;
-
-    border:none;
-
-    border-radius:10px;
-
-    background:var(--color-surface-secondary);
-
-    color:var(--color-text);
-
-    cursor:pointer;
-
-    font-size:18px;
-
-    transition:
-
-        background-color var(--transition-medium),
-
-        color var(--transition-medium),
-
-        transform var(--transition-fast);
+    top:20px;
 
 }
-
-.close-viewer:hover{
-
-    background:var(--color-primary);
-
-    color:#FFFFFF;
-
-    transform:scale(1.05);
-
-}
-
-.close-viewer:focus-visible{
-
-    outline:2px solid var(--color-primary);
-
-    outline-offset:3px;
-
-}
-
-/* ===========================================
-   TOOLBAR
-=========================================== */
 
 .viewer-toolbar{
 
@@ -136,7 +62,7 @@
 
     gap:10px;
 
-    margin:20px 0;
+    margin:24px 0;
 
 }
 
@@ -148,23 +74,15 @@
 
     border-radius:10px;
 
+    cursor:pointer;
+
     background:var(--color-surface-secondary);
 
     color:var(--color-text);
 
-    cursor:pointer;
+    font-size:var(--font-sm);
 
-    font-size:14px;
-
-    transition:
-
-        background-color var(--transition-medium),
-
-        color var(--transition-medium),
-
-        transform var(--transition-fast),
-
-        box-shadow var(--transition-medium);
+    transition:.2s;
 
 }
 
@@ -172,117 +90,17 @@
 
     background:var(--color-primary);
 
-    color:#FFFFFF;
-
-    transform:translateY(-2px);
-
-    box-shadow:var(--shadow-small);
-
-}
-
-.viewer-toolbar button:disabled{
-
-    opacity:.45;
-
-    cursor:not-allowed;
-
-    transform:none;
-
-    box-shadow:none;
-
-}
-
-.viewer-toolbar button:focus-visible{
-
-    outline:2px solid var(--color-primary);
-
-    outline-offset:2px;
-
-}
-
-/* ===========================================
-   STATUS
-=========================================== */
-
-.zoom-level,
-
-.gallery-counter{
-
-    display:flex;
-
-    align-items:center;
-
-    font-weight:600;
-
-    color:var(--color-text);
-
-}
-
-.zoom-level{
-
-    margin-left:auto;
-
-}
-
-/* ===========================================
-   IMAGE
-=========================================== */
-
-.image-viewer{
-
-    display:flex;
-
-    flex-direction:column;
-
-    gap:20px;
-
-}
-
-.image-stage{
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-
-    overflow:hidden;
-
-    min-height:60vh;
+    color:white;
 
 }
 
 .viewer-image{
 
-    max-width:none;
-
-    user-select:none;
-
-    will-change:transform;
-
-    transform-origin:center;
+    width:100%;
 
     transition:transform .15s linear;
 
 }
-
-.viewer-image:active{
-
-    cursor:grabbing;
-
-}
-
-.zoom-indicator{
-
-    margin-left:auto;
-
-    font-weight:700;
-
-}
-
-/* ===========================================
-   PDF
-=========================================== */
 
 .viewer-frame{
 
@@ -294,73 +112,45 @@
 
     border-radius:12px;
 
-    background:#FFFFFF;
+    background:white;
 
 }
-
-/* ===========================================
-   VIDEO
-=========================================== */
 
 .viewer-video{
 
     width:100%;
 
-    border-radius:12px;
-
 }
-
-/* ===========================================
-   AUDIO
-=========================================== */
 
 .viewer-audio{
 
     width:100%;
 
-    margin:20px 0;
-
 }
-
-/* ===========================================
-   TEXT
-=========================================== */
 
 .viewer-text{
 
-    max-height:70vh;
-
-    overflow:auto;
+    white-space:pre-wrap;
 
     padding:20px;
 
     border-radius:12px;
 
-    background:var(--color-background);
+    background:var(--color-surface-secondary);
 
     color:var(--color-text);
 
-    white-space:pre-wrap;
+    max-height:70vh;
+
+    overflow:auto;
+
+    font-size:var(--font-md);
 
     line-height:1.7;
 
-    font-family:monospace;
-
-    transition:
-
-        background-color var(--transition-medium),
-
-        color var(--transition-medium);
-
 }
 
-/* ===========================================
-   PLACEHOLDER
-=========================================== */
-
 .viewer-placeholder{
-
-    height:400px;
 
     display:flex;
 
@@ -368,118 +158,50 @@
 
     align-items:center;
 
-    margin:20px 0;
+    min-height:420px;
 
     border:2px dashed var(--color-border);
 
-    border-radius:14px;
+    border-radius:16px;
+
+    font-size:var(--font-lg);
 
     color:var(--color-text-secondary);
 
-    transition:
-
-        border-color var(--transition-medium),
-
-        color var(--transition-medium);
-
 }
-
-/* ===========================================
-   FILE INFO
-=========================================== */
 
 .viewer-info{
 
     margin-top:24px;
 
-    padding-top:20px;
-
-    border-top:1px solid var(--color-border);
-
-    color:var(--color-text);
-
-    transition:
-
-        border-color var(--transition-medium),
-
-        color var(--transition-medium);
-
 }
 
 .viewer-info p{
 
-    margin:10px 0;
+    margin:8px 0;
 
-    line-height:1.6;
+    font-size:var(--font-md);
 
-}
-
-.viewer-info strong{
-
-    color:var(--color-text);
+    color:var(--color-text-secondary);
 
 }
 
-/* ===========================================
-   RESPONSIVE
-=========================================== */
+.zoom-level,
 
-@media(max-width:768px){
+.gallery-counter{
 
-    .asset-viewer{
+    display:flex;
 
-        width:95vw;
+    align-items:center;
 
-        padding:20px;
+    font-size:var(--font-sm);
 
-    }
-
-    .viewer-toolbar{
-
-        justify-content:center;
-
-    }
-
-    .zoom-level{
-
-        margin-left:0;
-
-    }
+    font-weight:600;
 
 }
 
-@media(max-width:600px){
+.zoom-level{
 
-    .asset-viewer{
-
-        padding:16px;
-
-    }
-
-    .asset-viewer h2{
-
-        font-size:22px;
-
-        padding-right:50px;
-
-    }
-
-    .viewer-toolbar{
-
-        flex-direction:column;
-
-    }
-
-    .viewer-toolbar button{
-
-        width:100%;
-
-    }
-
-    .viewer-placeholder{
-
-        height:250px;
-
-    }
+    margin-left:auto;
 
 }
