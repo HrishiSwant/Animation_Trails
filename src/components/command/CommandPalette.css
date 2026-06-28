@@ -1,0 +1,81 @@
+.command-overlay{
+
+    position:fixed;
+
+    inset:0;
+
+    background:rgba(0,0,0,.45);
+
+    backdrop-filter:blur(8px);
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:flex-start;
+
+    padding-top:10vh;
+
+    z-index:5000;
+
+}
+
+.command-palette{
+
+    width:min(760px,92vw);
+
+    max-height:70vh;
+
+    overflow:hidden;
+
+    display:flex;
+
+    flex-direction:column;
+
+    background:var(--color-surface);
+
+    border:1px solid var(--color-border);
+
+    border-radius:20px;
+
+    box-shadow:var(--shadow-large);
+
+}
+
+.command-palette input{
+
+    border:none;
+
+    outline:none;
+
+    padding:22px;
+
+    background:transparent;
+
+    color:var(--color-text);
+
+    font-size:var(--font-lg);
+
+    border-bottom:1px solid var(--color-border);
+
+}
+
+.command-results{
+
+    overflow-y:auto;
+
+    max-height:60vh;
+
+    padding:12px;
+
+}
+
+.command-empty{
+
+    padding:30px;
+
+    text-align:center;
+
+    color:var(--color-text-secondary);
+
+}
