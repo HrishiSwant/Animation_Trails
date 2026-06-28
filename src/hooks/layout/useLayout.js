@@ -38,6 +38,15 @@ export default function useLayout() {
 
       ),
 
+      toggleInspector:
+
+    LayoutManager.toggleInspector.bind(
+
+      LayoutManager,
+
+    ),
+
+
   };
 
 }
