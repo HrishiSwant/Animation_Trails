@@ -60,27 +60,43 @@ class CommandManager {
   ==========================
   */
 
-  execute(id) {
+execute(id) {
 
-    const command =
-      CommandRegistry.get(id);
+  const command =
 
-    if (!command) {
+    CommandRegistry.get(id);
 
-      return false;
+  if (!command) {
 
-    }
-
-    command.action();
-
-    this.addRecent(id);
-
-    this.notify();
-
-    return true;
+    return false;
 
   }
 
+  try {
+
+    command.action();
+
+  } catch (error) {
+
+    console.error(
+
+      "Command failed:",
+
+      error,
+
+    );
+
+    return false;
+
+  }
+
+  this.addRecent(id);
+
+  this.notify();
+
+  return true;
+
+}
   /*
   ==========================
       RECENT
