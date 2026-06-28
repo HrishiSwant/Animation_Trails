@@ -13,6 +13,7 @@ import ThemeManager from "./core/theme/ThemeManager";
 import AccentManager from "./core/accent/AccentManager";
 import FontManager from "./core/font/FontManager";
 import AnimationManager from "./core/animation/AnimationManager";
+import CompactManager from "./core/compact/CompactManager";
 
 export default function App() {
 
@@ -27,17 +28,19 @@ export default function App() {
   ==========================
   */
 
-  useEffect(() => {
+useEffect(() => {
 
-    ThemeManager.initialize();
+  ThemeManager.initialize();
 
-    AccentManager.initialize();
+  AccentManager.initialize();
 
-    FontManager.initialize();
+  FontManager.initialize();
 
-    AnimationManager.initialize();
+  AnimationManager.initialize();
 
-  }, []);
+  CompactManager.initialize();
+
+}, []);
 
   return (
 
