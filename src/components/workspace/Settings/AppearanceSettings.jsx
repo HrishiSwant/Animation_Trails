@@ -149,17 +149,17 @@ export default function AppearanceSettings() {
 
       />
 
-      <SettingsToggle
+        <SettingsToggle
 
-        label="Compact Mode"
+          label="Animations"
 
-        description="Use a denser interface layout."
+          description="Enable interface animations."
 
-        checked={appearance.compactMode}
+          checked={appearance.animations}
 
-        onChange={appearance.setCompactMode}
+          onChange={appearance.setAnimations}
 
-      />
+          />
 
     </div>
 
