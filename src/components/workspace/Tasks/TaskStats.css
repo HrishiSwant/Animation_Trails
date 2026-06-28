@@ -63,13 +63,25 @@
 
     font-size:var(--font-md);
 
-    opacity:.8;
+   opacity:.8;
+
+    font-weight:600;
+
+    color:var(--color-text-secondary);
+
+    transition:color var(--transition-medium);
 
 }
 
 .task-stat-card span{
 
     font-size:var(--font-2xl);
+
+    font-weight:700;
+
+    color:var(--color-text);
+
+    transition:color var(--transition-medium);
 
 }
 
@@ -97,9 +109,21 @@
 
 .task-progress-header{
 
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:12px;
+
     font-size:var(--font-md);
 
     font-weight:600;
+
+    color:var(--color-text);
+
+    transition:color var(--transition-medium);
 
 }
 
