@@ -7,7 +7,7 @@ export default function applyAccessibility(
 
   /*
   ==========================
-      HIGH CONTRAST
+      DATA ATTRIBUTES
   ==========================
   */
 
@@ -21,12 +21,6 @@ export default function applyAccessibility(
 
   );
 
-  /*
-  ==========================
-      REDUCE MOTION
-  ==========================
-  */
-
   root.setAttribute(
 
     "data-reduce-motion",
@@ -36,12 +30,6 @@ export default function applyAccessibility(
       : "off",
 
   );
-
-  /*
-  ==========================
-      LARGE TARGETS
-  ==========================
-  */
 
   root.setAttribute(
 
@@ -53,12 +41,6 @@ export default function applyAccessibility(
 
   );
 
-  /*
-  ==========================
-      KEYBOARD
-  ==========================
-  */
-
   root.setAttribute(
 
     "data-keyboard-nav",
@@ -69,12 +51,6 @@ export default function applyAccessibility(
 
   );
 
-  /*
-  ==========================
-      FOCUS
-  ==========================
-  */
-
   root.setAttribute(
 
     "data-focus-indicators",
@@ -82,6 +58,72 @@ export default function applyAccessibility(
     settings.focusIndicators
       ? "on"
       : "off",
+
+  );
+
+  /*
+  ==========================
+      HIGH CONTRAST
+  ==========================
+  */
+
+  root.style.setProperty(
+
+    "--contrast-multiplier",
+
+    settings.highContrast
+      ? "1.25"
+      : "1",
+
+  );
+
+  /*
+  ==========================
+      CLICK TARGETS
+  ==========================
+  */
+
+  root.style.setProperty(
+
+    "--click-target-size",
+
+    settings.largeClickTargets
+      ? "52px"
+      : "44px",
+
+  );
+
+  /*
+  ==========================
+      FOCUS
+  ==========================
+  */
+
+  root.style.setProperty(
+
+    "--focus-ring-width",
+
+    settings.focusIndicators
+      ? "3px"
+      : "0px",
+
+  );
+
+  root.style.setProperty(
+
+    "--focus-ring-offset",
+
+    settings.focusIndicators
+      ? "3px"
+      : "0px",
+
+  );
+
+  root.style.setProperty(
+
+    "--focus-ring-color",
+
+    "var(--color-primary)",
 
   );
 
