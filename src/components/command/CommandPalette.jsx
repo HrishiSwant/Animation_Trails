@@ -1,4 +1,9 @@
-import { useMemo, useState } from "react";
+import {
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 
 import "./CommandPalette.css";
 
@@ -30,6 +35,12 @@ export default function CommandPalette({
 
   ] = useState(0);
 
+  const listRef =
+    useRef(null);
+
+  const itemRefs =
+    useRef([]);
+
   const commands = useMemo(
 
     () =>
@@ -43,6 +54,184 @@ export default function CommandPalette({
     [search],
 
   );
+
+  /*
+  ==========================
+      RESET WHEN OPENING
+  ==========================
+  */
+
+  useEffect(() => {
+
+    if (open) {
+
+      setActive(0);
+
+      setSearch("");
+
+    }
+
+  }, [open]);
+
+  /*
+  ==========================
+      AUTO SCROLL
+  ==========================
+  */
+
+  useEffect(() => {
+
+    const element =
+
+      itemRefs.current[
+        active
+      ];
+
+    if (element) {
+
+      element.scrollIntoView({
+
+        block: "nearest",
+
+        behavior: "smooth",
+
+      });
+
+    }
+
+  }, [
+
+    active,
+
+  ]);
+
+  /*
+  ==========================
+      KEYBOARD
+  ==========================
+  */
+
+  function handleKeyDown(
+    event,
+  ) {
+
+    if (
+
+      commands.length === 0
+
+    ) {
+
+      if (
+
+        event.key === "Escape"
+
+      ) {
+
+        onClose();
+
+      }
+
+      return;
+
+    }
+
+    switch (
+
+      event.key
+
+    ) {
+
+      case "ArrowDown":
+
+        event.preventDefault();
+
+        setActive(
+
+          value =>
+
+            Math.min(
+
+              value + 1,
+
+              commands.length - 1,
+
+            ),
+
+        );
+
+        break;
+
+      case "ArrowUp":
+
+        event.preventDefault();
+
+        setActive(
+
+          value =>
+
+            Math.max(
+
+              value - 1,
+
+              0,
+
+            ),
+
+        );
+
+        break;
+
+      case "Home":
+
+        event.preventDefault();
+
+        setActive(0);
+
+        break;
+
+      case "End":
+
+        event.preventDefault();
+
+        setActive(
+
+          commands.length - 1,
+
+        );
+
+        break;
+
+      case "Enter":
+
+        event.preventDefault();
+
+        CommandManager.execute(
+
+          commands[
+            active
+          ].id,
+
+        );
+
+        onClose();
+
+        break;
+
+      case "Escape":
+
+        event.preventDefault();
+
+        onClose();
+
+        break;
+
+      default:
+
+        break;
+
+    }
+
+  }
 
   if (!open) {
 
@@ -82,11 +271,15 @@ export default function CommandPalette({
 
           value={search}
 
+          onKeyDown={
+            handleKeyDown
+          }
+
           onChange={e => {
 
             setSearch(
 
-              e.target.value
+              e.target.value,
 
             );
 
@@ -96,7 +289,13 @@ export default function CommandPalette({
 
         />
 
-        <div className="command-results">
+        <div
+
+          ref={listRef}
+
+          className="command-results"
+
+        >
 
           {
 
@@ -124,33 +323,47 @@ export default function CommandPalette({
 
               ) => (
 
-                <CommandItem
+                <div
 
                   key={command.id}
 
-                  command={command}
+                  ref={element =>
 
-                  active={
-
-                    active === index
+                    itemRefs.current[
+                      index
+                    ] = element
 
                   }
 
-                  onClick={() => {
+                >
 
-                    CommandManager.execute(
+                  <CommandItem
 
-                      command.id
+                    command={command}
 
-                    );
+                    active={
 
-                    onClose();
+                      active === index
 
-                  }}
+                    }
 
-                />
+                    onClick={() => {
 
-              )
+                      CommandManager.execute(
+
+                        command.id,
+
+                      );
+
+                      onClose();
+
+                    }}
+
+                  />
+
+                </div>
+
+              ),
 
             )
 
