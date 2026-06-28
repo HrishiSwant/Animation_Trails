@@ -14,6 +14,7 @@ import AccentManager from "./core/accent/AccentManager";
 import FontManager from "./core/font/FontManager";
 import AnimationManager from "./core/animation/AnimationManager";
 import CompactManager from "./core/compact/CompactManager";
+import AccessibilityManager from "./core/accessibility/AccessibilityManager";
 
 export default function App() {
 
@@ -22,11 +23,11 @@ export default function App() {
     setCurrentPage,
   ] = useState("library");
 
-  /*
-  ==========================
-      INITIALIZE APP
-  ==========================
-  */
+/*
+==========================
+    INITIALIZE APP
+==========================
+*/
 
 useEffect(() => {
 
@@ -39,6 +40,8 @@ useEffect(() => {
   AnimationManager.initialize();
 
   CompactManager.initialize();
+
+  AccessibilityManager.initialize();
 
 }, []);
 
