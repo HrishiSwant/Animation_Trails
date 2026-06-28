@@ -41,20 +41,35 @@ export default function CommandPalette({
   const itemRefs =
     useRef([]);
 
-  const commands = useMemo(
+  const commands = useMemo(() => {
 
-    () =>
+  const value = search.trim();
 
-      CommandManager.search(
+  if (value === "") {
 
-        search,
+    const recent =
 
-      ),
+      CommandManager.getRecent();
 
-    [search],
+    if (recent.length > 0) {
+
+      return recent;
+
+    }
+
+  }
+
+  return CommandManager.search(
+
+    value,
 
   );
 
+}, [
+
+  search,
+
+]);
   /*
   ==========================
       RESET WHEN OPENING
@@ -288,6 +303,36 @@ export default function CommandPalette({
           }}
 
         />
+
+        {
+
+  search.trim() === "" &&
+
+  CommandManager.getRecent().length > 0 && (
+
+    <div className="command-section">
+
+      Recent Commands
+
+    </div>
+
+  )
+
+}
+
+{
+
+  search.trim() !== "" && (
+
+    <div className="command-section">
+
+      Search Results
+
+    </div>
+
+  )
+
+}
 
         <div
 
