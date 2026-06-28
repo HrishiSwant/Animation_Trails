@@ -6,6 +6,7 @@ import ThemeManager from "../../core/theme/ThemeManager";
 import AccentManager from "../../core/accent/AccentManager";
 import FontManager from "../../core/font/FontManager";
 import AnimationManager from "../../core/animation/AnimationManager";
+import CompactManager from "../../core/compact/CompactManager";
 
 export default function useAppearance() {
 
@@ -168,6 +169,36 @@ export default function useAppearance() {
   ]);
 
   /*
+==========================
+    SYNC COMPACT MODE
+==========================
+*/
+
+useEffect(() => {
+
+  if (
+
+    CompactManager.isEnabled() !==
+
+    appearance.compactMode
+
+  ) {
+
+    CompactManager.setEnabled(
+
+      appearance.compactMode
+
+    );
+
+  }
+
+}, [
+
+  appearance.compactMode,
+
+]);
+
+  /*
   ==========================
       SUBSCRIBE
   ==========================
@@ -210,6 +241,50 @@ export default function useAppearance() {
     appearance.animations,
 
   ]);
+
+  /*
+==========================
+    SUBSCRIBE
+==========================
+*/
+
+useEffect(() => {
+
+  const unsubscribe =
+
+    CompactManager.subscribe(
+
+      enabled => {
+
+        if (
+
+          enabled !==
+
+          appearance.compactMode
+
+        ) {
+
+          update(
+
+            "compactMode",
+
+            enabled,
+
+          );
+
+        }
+
+      }
+
+    );
+
+  return unsubscribe;
+
+}, [
+
+  appearance.compactMode,
+
+]);
 
   /*
   ==========================
@@ -271,17 +346,23 @@ export default function useAppearance() {
 
   }
 
-  function setCompactMode(enabled) {
+function setCompactMode(enabled) {
 
-    update(
+  CompactManager.setEnabled(
 
-      "compactMode",
+    enabled,
 
-      enabled,
+  );
 
-    );
+  update(
 
-  }
+    "compactMode",
+
+    enabled,
+
+  );
+
+}
 
   return {
 
