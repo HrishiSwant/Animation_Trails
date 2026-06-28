@@ -117,7 +117,7 @@ execute(id) {
 
       ),
 
-    ].slice(0, 10);
+    ].slice(0, 8);
 
     CommandStorage.save(
 
