@@ -1,0 +1,21 @@
+.resize-handle{
+
+    width:6px;
+
+    cursor:col-resize;
+
+    background:transparent;
+
+    transition:
+
+        background-color var(--transition-fast);
+
+}
+
+.resize-handle:hover{
+
+    background:
+
+        var(--color-primary);
+
+}
