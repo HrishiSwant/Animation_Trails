@@ -1,0 +1,21 @@
+.workspace-statusbar{
+
+    height:32px;
+
+    display:flex;
+
+    align-items:center;
+
+    padding:0 16px;
+
+    background:var(--color-surface);
+
+    border-top:1px solid var(--color-border);
+
+    color:var(--color-text-secondary);
+
+    font-size:var(--font-xs);
+
+    flex-shrink:0;
+
+}
