@@ -40,4 +40,14 @@ class DockStorage {
 
 }
 
+clear() {
+
+  localStorage.removeItem(
+
+    "hrishi-dock-layout",
+
+  );
+
+}
+
 export default new DockStorage();
