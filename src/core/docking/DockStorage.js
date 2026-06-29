@@ -2,23 +2,35 @@ const KEY = "hrishi-dock-layout";
 
 class DockStorage {
 
+  /*
+  ==========================
+      LOAD
+  ==========================
+  */
+
   load() {
 
     try {
 
       const value =
 
-        localStorage.getItem(KEY);
+        localStorage.getItem(
+
+          KEY,
+
+        );
 
       return value
 
-        ? JSON.parse(value)
+        ? JSON.parse(
+
+            value,
+
+          )
 
         : null;
 
-    }
-
-    catch {
+    } catch {
 
       return null;
 
@@ -26,27 +38,43 @@ class DockStorage {
 
   }
 
+  /*
+  ==========================
+      SAVE
+  ==========================
+  */
+
   save(layout) {
 
     localStorage.setItem(
 
       KEY,
 
-      JSON.stringify(layout),
+      JSON.stringify(
+
+        layout,
+
+      ),
 
     );
 
   }
 
-}
+  /*
+  ==========================
+      CLEAR
+  ==========================
+  */
 
-clear() {
+  clear() {
 
-  localStorage.removeItem(
+    localStorage.removeItem(
 
-    "hrishi-dock-layout",
+      KEY,
 
-  );
+    );
+
+  }
 
 }
 
