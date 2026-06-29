@@ -1,6 +1,7 @@
 import defaultDockLayout from "./defaultDockLayout";
 import DockStorage from "./DockStorage";
 import DockRegistry from "./DockRegistry";
+import DockAnimator from "./DockAnimator";
 
 class DockManager {
 
@@ -222,6 +223,8 @@ class DockManager {
 
     }
 
+    DockAnimator.animate(() => {
+
     this.updatePanel(
 
       id,
@@ -232,7 +235,7 @@ class DockManager {
 
       },
 
-    );
+      });
 
   }
 
