@@ -15,6 +15,7 @@ import CommandPalette from "./components/command/CommandPalette";
 import useCommandPalette from "./hooks/useCommandPalette";
 import registerDefaultCommands from "./core/command/registerDefaultCommands";
 import LayoutManager from "./core/layout/LayoutManager";
+import DockManager from "./core/docking/DockManager";
 
 export default function App() {
 
@@ -66,6 +67,8 @@ export default function App() {
     AccessibilityManager.initialize();
 
      LayoutManager.initialize();
+
+    DockManager.initialize();
 
   }, []);
 
