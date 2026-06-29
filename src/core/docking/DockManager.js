@@ -192,4 +192,74 @@ class DockManager {
 
 }
 
+/*
+==========================
+    DOCK POSITION
+==========================
+*/
+
+setDockPosition(
+
+  id,
+
+  dock,
+
+) {
+
+  const positions = [
+
+    "left",
+
+    "right",
+
+    "bottom",
+
+  ];
+
+  if (
+
+    !positions.includes(
+
+      dock,
+
+    )
+
+  ) {
+
+    return;
+
+  }
+
+  this.updatePanel(
+
+    id,
+
+    {
+
+      dock,
+
+    },
+
+  );
+
+}
+
+getDockPosition(
+
+  id,
+
+) {
+
+  return
+
+    this.layout
+
+      .panels[id]
+
+      ?.dock ||
+
+    "right";
+
+}
+
 export default new DockManager();
