@@ -109,6 +109,35 @@ class WorkspacePersistence {
 
   }
 
+
+  /*
+==========================
+    CURRENT TOOL
+==========================
+*/
+
+setCurrentTool(
+
+  currentTool,
+
+) {
+
+  this.update({
+
+    currentTool,
+
+  });
+
+}
+
+getCurrentTool() {
+
+  return
+
+    this.state.currentTool;
+
+}
+
   /*
   ==========================
       RESET
