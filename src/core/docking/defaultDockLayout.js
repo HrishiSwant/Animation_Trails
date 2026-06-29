@@ -6,9 +6,9 @@ const defaultDockLayout = {
 
       dock: "right",
 
-      visible: true,
+      visible:false,
 
-      order: 0,
+      order:0,
 
     },
 
