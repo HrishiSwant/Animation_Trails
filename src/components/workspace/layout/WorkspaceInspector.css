@@ -1,20 +1,16 @@
 .workspace-inspector{
 
-    background:var(--color-surface);
-
-    border-left:1px solid var(--color-border);
-
     overflow:auto;
 
     flex-shrink:0;
 
     transition:
 
-        width var(--transition-medium),
+        width 220ms cubic-bezier(.2,.8,.2,1),
 
-        opacity var(--transition-medium),
+        opacity 180ms ease,
 
-        transform var(--transition-medium),
+        transform 220ms cubic-bezier(.2,.8,.2,1),
 
         background-color var(--transition-medium),
 
