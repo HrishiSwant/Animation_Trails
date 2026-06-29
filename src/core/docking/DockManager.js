@@ -321,4 +321,43 @@ class DockManager {
 
 }
 
+  /*
+  ==========================
+      VISIBLE PANEL
+  ==========================
+  */
+getVisiblePanels() {
+
+  return Object.entries(
+
+    this.layout.panels,
+
+  )
+
+    .filter(
+
+      ([, panel]) =>
+
+        panel.visible,
+
+    )
+
+    .sort(
+
+      (
+
+        [, a],
+
+        [, b],
+
+      ) =>
+
+        a.order -
+
+        b.order,
+
+    );
+
+}
+
 export default new DockManager();
