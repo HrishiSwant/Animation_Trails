@@ -133,6 +133,54 @@ class DockManager {
 
   /*
   ==========================
+      GET VISIBLE PANELS
+  ==========================
+  */
+
+  getVisiblePanels() {
+
+    return Object.entries(
+
+      this.layout.panels,
+
+    )
+
+      .filter(
+
+        ([, panel]) =>
+
+          panel.visible,
+
+      )
+
+      .sort(
+
+        ([, a], [, b]) =>
+
+          a.order - b.order,
+
+      )
+
+      .map(
+
+        ([id, panel]) => ({
+
+          id,
+
+          ...panel,
+
+          definition:
+
+            DockRegistry.get(id),
+
+        }),
+
+      );
+
+  }
+
+  /*
+  ==========================
       UPDATE PANEL
   ==========================
   */
@@ -318,45 +366,6 @@ class DockManager {
     );
 
   }
-
-}
-
-  /*
-  ==========================
-      VISIBLE PANEL
-  ==========================
-  */
-getVisiblePanels() {
-
-  return Object.entries(
-
-    this.layout.panels,
-
-  )
-
-    .filter(
-
-      ([, panel]) =>
-
-        panel.visible,
-
-    )
-
-    .sort(
-
-      (
-
-        [, a],
-
-        [, b],
-
-      ) =>
-
-        a.order -
-
-        b.order,
-
-    );
 
 }
 
