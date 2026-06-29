@@ -42,4 +42,14 @@
 
     background:var(--color-background);
 
+    transition:
+
+        margin var(--transition-medium),
+
+        width var(--transition-medium),
+
+        padding var(--transition-medium),
+
+        background-color var(--transition-medium);
+
 }
