@@ -1,4 +1,6 @@
 import WorkspaceStore from "./WorkspaceStore";
+import WorkspaceEvents from "../events/WorkspaceEvents";
+import WorkspaceEventTypes from "../events/WorkspaceEventTypes";
 
 class WorkspaceActions {
 
@@ -20,6 +22,14 @@ class WorkspaceActions {
 
     });
 
+    WorkspaceEvents.emit(
+
+      WorkspaceEventTypes.TOOL_CHANGED,
+
+      currentTool,
+
+    );
+
   }
 
   /*
@@ -39,6 +49,18 @@ class WorkspaceActions {
       presentation,
 
     });
+
+    WorkspaceEvents.emit(
+
+      presentation
+
+        ? WorkspaceEventTypes.PRESENTATION_ENTER
+
+        : WorkspaceEventTypes.PRESENTATION_EXIT,
+
+      presentation,
+
+    );
 
   }
 
@@ -60,6 +82,14 @@ class WorkspaceActions {
 
     });
 
+    WorkspaceEvents.emit(
+
+      WorkspaceEventTypes.PROJECT_CHANGED,
+
+      activeProject,
+
+    );
+
   }
 
   setActiveDocument(
@@ -73,6 +103,14 @@ class WorkspaceActions {
       activeDocument,
 
     });
+
+    WorkspaceEvents.emit(
+
+      WorkspaceEventTypes.DOCUMENT_CHANGED,
+
+      activeDocument,
+
+    );
 
   }
 
@@ -94,6 +132,14 @@ class WorkspaceActions {
 
     });
 
+    WorkspaceEvents.emit(
+
+      WorkspaceEventTypes.PANEL_CHANGED,
+
+      activePanel,
+
+    );
+
   }
 
   /*
@@ -114,6 +160,14 @@ class WorkspaceActions {
 
     });
 
+    WorkspaceEvents.emit(
+
+      WorkspaceEventTypes.SELECTION_CHANGED,
+
+      selection,
+
+    );
+
   }
 
   clearSelection() {
@@ -123,6 +177,14 @@ class WorkspaceActions {
       selection: null,
 
     });
+
+    WorkspaceEvents.emit(
+
+      WorkspaceEventTypes.SELECTION_CHANGED,
+
+      null,
+
+    );
 
   }
 
@@ -142,7 +204,7 @@ class WorkspaceActions {
 
       clipboard,
 
-    });
+    );
 
   }
 
@@ -174,6 +236,14 @@ class WorkspaceActions {
 
     });
 
+    WorkspaceEvents.emit(
+
+      WorkspaceEventTypes.ZOOM_CHANGED,
+
+      zoom,
+
+    );
+
   }
 
   zoomIn() {
@@ -184,17 +254,27 @@ class WorkspaceActions {
 
     } = WorkspaceStore.getState();
 
+    const newZoom = Math.min(
+
+      zoom + 10,
+
+      400,
+
+    );
+
     WorkspaceStore.setState({
 
-      zoom: Math.min(
-
-        zoom + 10,
-
-        400,
-
-      ),
+      zoom: newZoom,
 
     });
+
+    WorkspaceEvents.emit(
+
+      WorkspaceEventTypes.ZOOM_CHANGED,
+
+      newZoom,
+
+    );
 
   }
 
@@ -206,17 +286,27 @@ class WorkspaceActions {
 
     } = WorkspaceStore.getState();
 
+    const newZoom = Math.max(
+
+      zoom - 10,
+
+      10,
+
+    );
+
     WorkspaceStore.setState({
 
-      zoom: Math.max(
-
-        zoom - 10,
-
-        10,
-
-      ),
+      zoom: newZoom,
 
     });
+
+    WorkspaceEvents.emit(
+
+      WorkspaceEventTypes.ZOOM_CHANGED,
+
+      newZoom,
+
+    );
 
   }
 
@@ -227,6 +317,14 @@ class WorkspaceActions {
       zoom: 100,
 
     });
+
+    WorkspaceEvents.emit(
+
+      WorkspaceEventTypes.ZOOM_CHANGED,
+
+      100,
+
+    );
 
   }
 
