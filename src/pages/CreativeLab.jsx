@@ -1,4 +1,10 @@
-import { useState } from "react";
+import {
+
+  useEffect,
+
+  useState,
+
+} from "react";
 
 import "./CreativeLab.css";
 
@@ -10,10 +16,10 @@ import Tasks from "../components/workspace/Tasks/Tasks";
 import StorageInspector from "../components/workspace/Storage/StorageInspector";
 import ExportCenter from "../components/workspace/Export/ExportCenter";
 import Settings from "../components/workspace/Settings/Settings";
-
 import PresentationMode from "../components/presentation/PresentationMode";
-
 import WorkspaceShell from "../components/workspace/layout/WorkspaceShell";
+
+import WorkspacePersistence from "../core/workspace/WorkspacePersistence";
 
 export default function CreativeLab() {
 
@@ -32,6 +38,38 @@ export default function CreativeLab() {
     setPresentation,
 
   ] = useState(false);
+
+  /*
+  ==========================
+      INITIALIZE
+  ==========================
+  */
+
+  useEffect(() => {
+
+    WorkspacePersistence.initialize();
+
+  }, []);
+
+  /*
+  ==========================
+      PERSIST TOOL
+  ==========================
+  */
+
+  useEffect(() => {
+
+    WorkspacePersistence.setCurrentTool(
+
+      currentTool,
+
+    );
+
+  }, [
+
+    currentTool,
+
+  ]);
 
   /*
   ==========================
@@ -205,7 +243,7 @@ export default function CreativeLab() {
 
                   setCurrentTool(
 
-                    "dashboard"
+                    "dashboard",
 
                   )
 
