@@ -1,16 +1,12 @@
 .resize-handle{
 
-    width:6px;
-
-    cursor:col-resize;
-
-    background:transparent;
-
     transition:
 
-        background-color var(--transition-fast),
+        opacity 180ms,
 
-        opacity var(--transition-medium);
+        background-color 180ms,
+
+        transform 220ms;
 
 }
 
