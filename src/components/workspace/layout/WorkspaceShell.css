@@ -22,6 +22,10 @@
 
     overflow:hidden;
 
+        transition:
+
+        all var(--transition-medium);
+
 }
 
 .workspace-content{
