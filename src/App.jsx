@@ -1,27 +1,38 @@
 import { useEffect, useState } from "react";
+
 import "./index.css";
+
 import Navigation from "./components/Navigation";
+
 import Showcase from "./pages/Showcase";
 import CreativeLab from "./pages/CreativeLab";
 import Presentation from "./pages/Presentation";
 import Settings from "./pages/Settings";
+
 import ThemeManager from "./core/theme/ThemeManager";
 import AccentManager from "./core/accent/AccentManager";
 import FontManager from "./core/font/FontManager";
 import AnimationManager from "./core/animation/AnimationManager";
 import CompactManager from "./core/compact/CompactManager";
 import AccessibilityManager from "./core/accessibility/AccessibilityManager";
+
+import LayoutManager from "./core/layout/LayoutManager";
+
+import DockManager from "./core/docking/DockManager";
+import registerDefaultPanels from "./core/docking/registerDefaultPanels";
+
 import CommandPalette from "./components/command/CommandPalette";
 import useCommandPalette from "./hooks/useCommandPalette";
 import registerDefaultCommands from "./core/command/registerDefaultCommands";
-import LayoutManager from "./core/layout/LayoutManager";
-import DockManager from "./core/docking/DockManager";
 
 export default function App() {
 
   const [
+
     currentPage,
+
     setCurrentPage,
+
   ] = useState("library");
 
   /*
@@ -31,26 +42,32 @@ export default function App() {
   */
 
   const commandPalette =
+
     useCommandPalette();
 
-  /* another useEffect  */
+  /*
+  ==========================
+      REGISTER COMMANDS
+  ==========================
+  */
+
   useEffect(() => {
 
-  registerDefaultCommands({
+    registerDefaultCommands({
 
-    navigate: setCurrentPage,
+      navigate:
 
-  });
+        setCurrentPage,
 
-}, []);
+    });
+
+  }, []);
 
   /*
   ==========================
       INITIALIZE APP
   ==========================
   */
-
- 
 
   useEffect(() => {
 
@@ -66,7 +83,15 @@ export default function App() {
 
     AccessibilityManager.initialize();
 
-     LayoutManager.initialize();
+    LayoutManager.initialize();
+
+    /*
+    ==========================
+        DOCK SYSTEM
+    ==========================
+    */
+
+    registerDefaultPanels();
 
     DockManager.initialize();
 
@@ -77,26 +102,55 @@ export default function App() {
     <>
 
       <div
+
         style={{
+
           display: "flex",
+
           height: "100vh",
-          background: "var(--color-background)",
-          color: "var(--color-text)",
+
+          background:
+
+            "var(--color-background)",
+
+          color:
+
+            "var(--color-text)",
+
         }}
+
       >
 
         <Navigation
-          currentPage={currentPage}
-          setCurrentPage={setCurrentPage}
+
+          currentPage={
+
+            currentPage
+
+          }
+
+          setCurrentPage={
+
+            setCurrentPage
+
+          }
+
         />
 
         <div
+
           style={{
+
             flex: 1,
+
             minWidth: 0,
+
             minHeight: 0,
+
             overflow: "auto",
+
           }}
+
         >
 
           {
@@ -138,11 +192,15 @@ export default function App() {
       <CommandPalette
 
         open={
+
           commandPalette.open
+
         }
 
         onClose={
+
           commandPalette.closePalette
+
         }
 
       />
