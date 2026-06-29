@@ -14,6 +14,16 @@
 
     flex-shrink:0;
 
+    transition:
+
+        height var(--transition-medium),
+
+        opacity var(--transition-medium),
+
+        background-color var(--transition-medium),
+
+        border-color var(--transition-medium);
+
 }
 .toolbar-btn{
 
