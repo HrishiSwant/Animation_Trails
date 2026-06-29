@@ -2,8 +2,6 @@ import {
 
   useEffect,
 
-  useState,
-
 } from "react";
 
 import "./CreativeLab.css";
@@ -18,26 +16,22 @@ import ExportCenter from "../components/workspace/Export/ExportCenter";
 import Settings from "../components/workspace/Settings/Settings";
 import PresentationMode from "../components/presentation/PresentationMode";
 import WorkspaceShell from "../components/workspace/layout/WorkspaceShell";
-
+import useWorkspace from "../hooks/workspace/useWorkspace";
 import WorkspacePersistence from "../core/workspace/WorkspacePersistence";
 
 export default function CreativeLab() {
 
-const [
+const {
 
   currentTool,
 
-  setCurrentTool,
-
-] = useState("dashboard");
-
-const [
-
   presentation,
+
+  setCurrentTool,
 
   setPresentation,
 
-] = useState(false);
+} = useWorkspace();
 
 /*
 ==========================
