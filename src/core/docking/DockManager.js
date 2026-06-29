@@ -1,5 +1,6 @@
 import defaultDockLayout from "./defaultDockLayout";
 import DockStorage from "./DockStorage";
+import DockRegistry from "./DockRegistry";
 
 class DockManager {
 
@@ -70,6 +71,18 @@ class DockManager {
       this.layout.panels[id];
 
   }
+
+   /*
+  ==========================
+      GET PANEL
+  ==========================
+  */
+
+  getPanels() {
+
+  return DockRegistry.getAll();
+
+}
 
   /*
   ==========================
