@@ -9,7 +9,9 @@ import WorkspaceToolbar from "./WorkspaceToolbar";
 import WorkspaceInspector from "./WorkspaceInspector";
 import WorkspaceStatusBar from "./WorkspaceStatusBar";
 import ResizeHandle from "./ResizeHandle";
+
 import DropZoneOverlay from "./DropZoneOverlay";
+import GhostPreview from "./GhostPreview";
 
 export default function WorkspaceShell({
 
@@ -250,10 +252,12 @@ export default function WorkspaceShell({
       }
 
       {/* ==========================
-          DROP ZONES
+          DOCK OVERLAYS
       ========================== */}
 
       <DropZoneOverlay />
+
+      <GhostPreview />
 
       <div className="workspace-body">
 
