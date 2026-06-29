@@ -18,13 +18,13 @@
 
     display:flex;
 
-    min-height:0;
-
     overflow:hidden;
 
-        transition:
+    min-height:0;
 
-        all var(--transition-medium);
+    transition:
+
+        all 220ms cubic-bezier(.2,.8,.2,1);
 
 }
 
@@ -38,18 +38,12 @@
 
     min-height:0;
 
-    padding:24px;
-
-    background:var(--color-background);
-
     transition:
 
-        margin var(--transition-medium),
+        width 220ms cubic-bezier(.2,.8,.2,1),
 
-        width var(--transition-medium),
+        margin 220ms cubic-bezier(.2,.8,.2,1),
 
-        padding var(--transition-medium),
-
-        background-color var(--transition-medium);
+        padding 220ms cubic-bezier(.2,.8,.2,1);
 
 }
