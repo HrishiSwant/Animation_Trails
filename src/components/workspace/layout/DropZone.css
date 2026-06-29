@@ -1,0 +1,33 @@
+.drop-zone{
+
+    position:absolute;
+
+    border:2px dashed
+
+        var(--color-primary);
+
+    border-radius:14px;
+
+    opacity:.18;
+
+    transition:
+
+        opacity var(--transition-fast),
+
+        background-color var(--transition-fast),
+
+        transform var(--transition-fast);
+
+}
+
+.drop-zone.active{
+
+    opacity:.55;
+
+    background:
+
+        rgba(59,130,246,.12);
+
+    transform:scale(1.02);
+
+}
