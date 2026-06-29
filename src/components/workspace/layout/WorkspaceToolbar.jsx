@@ -1,6 +1,7 @@
 import "./WorkspaceToolbar.css";
 
 import useLayout from "../../../hooks/layout/useLayout";
+import useDock from "../../../hooks/layout/useDock";
 
 export default function WorkspaceToolbar() {
 
@@ -13,6 +14,12 @@ export default function WorkspaceToolbar() {
     setPreset,
 
   } = useLayout();
+
+  const {
+
+    setDockPosition,
+
+  } = useDock();
 
   return (
 
@@ -103,6 +110,80 @@ export default function WorkspaceToolbar() {
             : "🚫"
 
         }
+
+      </button>
+
+      {/* Temporary Dock Controls */}
+
+      <button
+
+        className="toolbar-btn"
+
+        onClick={() =>
+
+          setDockPosition(
+
+            "inspector",
+
+            "left",
+
+          )
+
+        }
+
+        title="Dock Left"
+
+      >
+
+        ⬅️
+
+      </button>
+
+      <button
+
+        className="toolbar-btn"
+
+        onClick={() =>
+
+          setDockPosition(
+
+            "inspector",
+
+            "right",
+
+          )
+
+        }
+
+        title="Dock Right"
+
+      >
+
+        ➡️
+
+      </button>
+
+      <button
+
+        className="toolbar-btn"
+
+        onClick={() =>
+
+          setDockPosition(
+
+            "inspector",
+
+            "bottom",
+
+          )
+
+        }
+
+        title="Dock Bottom"
+
+      >
+
+        ⬇️
 
       </button>
 
