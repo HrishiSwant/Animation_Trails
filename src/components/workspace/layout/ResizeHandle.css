@@ -8,7 +8,9 @@
 
     transition:
 
-        background-color var(--transition-fast);
+        background-color var(--transition-fast),
+
+        opacity var(--transition-medium);
 
 }
 
