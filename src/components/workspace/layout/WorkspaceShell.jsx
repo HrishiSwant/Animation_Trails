@@ -129,25 +129,21 @@ export default function WorkspaceShell({
 
             <>
 
-              <ResizeHandle
+<ResizeHandle
+    onMouseDown={startResize}
+    hidden={!layout.inspector.visible}
+/>
 
-                onMouseDown={
-
-                  startResize
-
-                }
-
-              />
-
-              <WorkspaceInspector
-
-                width={
-
-                  layout.inspector.width
-
-                }
-
-              />
+<WorkspaceInspector
+    width={
+        layout.inspector.visible
+            ? layout.inspector.width
+            : 0
+    }
+    hidden={
+        !layout.inspector.visible
+    }
+/>
 
             </>
 
