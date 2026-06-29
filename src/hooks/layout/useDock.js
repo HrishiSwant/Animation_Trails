@@ -22,23 +22,29 @@ export default function useDock() {
 
   );
 
-  useEffect(
+  /*
+  ==========================
+      SUBSCRIBE
+  ==========================
+  */
 
-    () =>
+  useEffect(() => {
 
-      DockManager.subscribe(
+    return DockManager.subscribe(
 
-        setLayout,
+      setLayout,
 
-      ),
+    );
 
-    [],
-
-  );
+  }, []);
 
   return {
 
     layout,
+
+    panels:
+
+      DockManager.getPanels(),
 
     updatePanel:
 
