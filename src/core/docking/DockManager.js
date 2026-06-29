@@ -223,19 +223,31 @@ class DockManager {
 
     }
 
+    if (
+
+      this.getDockPosition(id) === dock
+
+    ) {
+
+      return;
+
+    }
+
     DockAnimator.animate(() => {
 
-    this.updatePanel(
+      this.updatePanel(
 
-      id,
+        id,
 
-      {
+        {
 
-        dock,
+          dock,
 
-      },
+        },
 
-      });
+      );
+
+    });
 
   }
 
