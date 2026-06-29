@@ -139,6 +139,32 @@ getCurrentTool() {
 }
 
   /*
+==========================
+    PRESENTATION
+==========================
+*/
+
+setPresentation(
+
+  presentation,
+
+) {
+
+  this.update({
+
+    presentation,
+
+  });
+
+}
+
+getPresentation() {
+
+  return this.state.presentation;
+
+}
+
+  /*
   ==========================
       RESET
   ==========================
