@@ -66,27 +66,25 @@ class DockManager {
 
   getPanel(id) {
 
-    return
-
-      this.layout.panels[id];
+    return this.layout.panels[id];
 
   }
 
-   /*
+  /*
   ==========================
-      GET PANEL
+      GET PANELS
   ==========================
   */
 
   getPanels() {
 
-  return DockRegistry.getAll();
+    return DockRegistry.getAll();
 
-}
+  }
 
   /*
   ==========================
-      UPDATE
+      UPDATE PANEL
   ==========================
   */
 
@@ -135,6 +133,74 @@ class DockManager {
     );
 
     this.notify();
+
+  }
+
+  /*
+  ==========================
+      DOCK POSITION
+  ==========================
+  */
+
+  setDockPosition(
+
+    id,
+
+    dock,
+
+  ) {
+
+    const positions = [
+
+      "left",
+
+      "right",
+
+      "bottom",
+
+    ];
+
+    if (
+
+      !positions.includes(
+
+        dock,
+
+      )
+
+    ) {
+
+      return;
+
+    }
+
+    this.updatePanel(
+
+      id,
+
+      {
+
+        dock,
+
+      },
+
+    );
+
+  }
+
+  getDockPosition(
+
+    id,
+
+  ) {
+
+    return (
+
+      this.layout.panels[id]?.dock ||
+
+      "right"
+
+    );
 
   }
 
@@ -189,76 +255,6 @@ class DockManager {
     );
 
   }
-
-}
-
-/*
-==========================
-    DOCK POSITION
-==========================
-*/
-
-setDockPosition(
-
-  id,
-
-  dock,
-
-) {
-
-  const positions = [
-
-    "left",
-
-    "right",
-
-    "bottom",
-
-  ];
-
-  if (
-
-    !positions.includes(
-
-      dock,
-
-    )
-
-  ) {
-
-    return;
-
-  }
-
-  this.updatePanel(
-
-    id,
-
-    {
-
-      dock,
-
-    },
-
-  );
-
-}
-
-getDockPosition(
-
-  id,
-
-) {
-
-  return
-
-    this.layout
-
-      .panels[id]
-
-      ?.dock ||
-
-    "right";
 
 }
 
