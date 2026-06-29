@@ -3,6 +3,7 @@ import "./WorkspaceShell.css";
 import { useCallback } from "react";
 
 import useLayout from "../../../hooks/layout/useLayout";
+import useDock from "../../../hooks/layout/useDock";
 
 import WorkspaceToolbar from "./WorkspaceToolbar";
 import WorkspaceInspector from "./WorkspaceInspector";
@@ -22,6 +23,22 @@ export default function WorkspaceShell({
     update,
 
   } = useLayout();
+
+  const {
+
+    layout: dockLayout,
+
+  } = useDock();
+
+  /*
+  ==========================
+      INSPECTOR
+  ==========================
+  */
+
+  const inspector =
+
+    dockLayout.panels.inspector;
 
   /*
   ==========================
@@ -109,13 +126,137 @@ export default function WorkspaceShell({
 
   ]);
 
+  /*
+  ==========================
+      RIGHT DOCK
+  ==========================
+  */
+
+  function renderRightDock() {
+
+    return (
+
+      <>
+
+        <ResizeHandle
+
+          onMouseDown={
+
+            startResize
+
+          }
+
+          hidden={
+
+            !layout.inspector.visible
+
+          }
+
+        />
+
+        <WorkspaceInspector
+
+          width={
+
+            layout.inspector.visible
+
+              ? layout.inspector.width
+
+              : 0
+
+          }
+
+          hidden={
+
+            !layout.inspector.visible
+
+          }
+
+        />
+
+      </>
+
+    );
+
+  }
+
+  /*
+  ==========================
+      LEFT DOCK
+  ==========================
+  */
+
+  function renderLeftDock() {
+
+    return (
+
+      <>
+
+        <WorkspaceInspector
+
+          width={
+
+            layout.inspector.visible
+
+              ? layout.inspector.width
+
+              : 0
+
+          }
+
+          hidden={
+
+            !layout.inspector.visible
+
+          }
+
+        />
+
+        <ResizeHandle
+
+          onMouseDown={
+
+            startResize
+
+          }
+
+          hidden={
+
+            !layout.inspector.visible
+
+          }
+
+        />
+
+      </>
+
+    );
+
+  }
+
   return (
 
     <div className="workspace-shell">
 
-      <WorkspaceToolbar />
+      {
+
+        layout.toolbar.visible && (
+
+          <WorkspaceToolbar />
+
+        )
+
+      }
 
       <div className="workspace-body">
+
+        {
+
+          inspector.dock === "left" &&
+
+          renderLeftDock()
+
+        }
 
         <main className="workspace-content">
 
@@ -125,35 +266,23 @@ export default function WorkspaceShell({
 
         {
 
-          layout.inspector.visible && (
+          inspector.dock === "right" &&
 
-            <>
-
-<ResizeHandle
-    onMouseDown={startResize}
-    hidden={!layout.inspector.visible}
-/>
-
-<WorkspaceInspector
-    width={
-        layout.inspector.visible
-            ? layout.inspector.width
-            : 0
-    }
-    hidden={
-        !layout.inspector.visible
-    }
-/>
-
-            </>
-
-          )
+          renderRightDock()
 
         }
 
       </div>
 
-      <WorkspaceStatusBar />
+      {
+
+        layout.statusbar.visible && (
+
+          <WorkspaceStatusBar />
+
+        )
+
+      }
 
     </div>
 
