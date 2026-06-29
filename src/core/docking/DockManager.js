@@ -32,9 +32,31 @@ class DockManager {
 
     if (saved) {
 
-      this.layout = saved;
+      this.layout = {
+
+        ...defaultDockLayout,
+
+        ...saved,
+
+        panels: {
+
+          ...defaultDockLayout.panels,
+
+          ...saved.panels,
+
+        },
+
+      };
 
     } else {
+
+      this.layout =
+
+        structuredClone(
+
+          defaultDockLayout,
+
+        );
 
       DockStorage.save(
 
@@ -43,6 +65,32 @@ class DockManager {
       );
 
     }
+
+  }
+
+  /*
+  ==========================
+      RESET
+  ==========================
+  */
+
+  reset() {
+
+    this.layout =
+
+      structuredClone(
+
+        defaultDockLayout,
+
+      );
+
+    DockStorage.save(
+
+      this.layout,
+
+    );
+
+    this.notify();
 
   }
 
