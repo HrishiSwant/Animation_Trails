@@ -23,33 +23,57 @@ import WorkspacePersistence from "../core/workspace/WorkspacePersistence";
 
 export default function CreativeLab() {
 
-  const [
+const [
 
-    currentTool,
+  currentTool,
 
-    setCurrentTool,
+  setCurrentTool,
 
-  ] = useState("dashboard");
+] = useState("dashboard");
 
-  const [
+const [
 
-    presentation,
+  presentation,
 
-    setPresentation,
+  setPresentation,
 
-  ] = useState(false);
+] = useState(false);
 
-  /*
-  ==========================
-      INITIALIZE
-  ==========================
-  */
+/*
+==========================
+    INITIALIZE
+==========================
+*/
 
-  useEffect(() => {
+useEffect(() => {
 
-    WorkspacePersistence.initialize();
+  WorkspacePersistence.initialize();
 
-  }, []);
+  const workspace =
+
+    WorkspacePersistence.restore();
+
+  if (workspace) {
+
+    setCurrentTool(
+
+      workspace.currentTool ??
+
+      "dashboard",
+
+    );
+
+    setPresentation(
+
+      workspace.presentation ??
+
+      false,
+
+    );
+
+  }
+
+}, []);
 
   /*
 ==========================
