@@ -28,34 +28,6 @@ const layouts = {
 
   },
 
-  presentation: {
-
-    toolbar: {
-
-      visible: false,
-
-      height: 56,
-
-    },
-
-    inspector: {
-
-      visible: false,
-
-      width: 320,
-
-    },
-
-    statusbar: {
-
-      visible: false,
-
-      height: 32,
-
-    },
-
-  },
-
   focus: {
 
     toolbar: {
@@ -77,6 +49,34 @@ const layouts = {
     statusbar: {
 
       visible: true,
+
+      height: 32,
+
+    },
+
+  },
+
+  presentation: {
+
+    toolbar: {
+
+      visible: false,
+
+      height: 56,
+
+    },
+
+    inspector: {
+
+      visible: false,
+
+      width: 320,
+
+    },
+
+    statusbar: {
+
+      visible: false,
 
       height: 32,
 
