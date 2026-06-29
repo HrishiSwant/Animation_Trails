@@ -52,6 +52,26 @@ export default function CreativeLab() {
   }, []);
 
   /*
+==========================
+    PERSIST PRESENTATION
+==========================
+*/
+
+useEffect(() => {
+
+  WorkspacePersistence.setPresentation(
+
+    presentation,
+
+  );
+
+}, [
+
+  presentation,
+
+]);
+
+  /*
   ==========================
       PERSIST TOOL
   ==========================
