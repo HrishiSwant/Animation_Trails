@@ -2,28 +2,50 @@ import "./WorkspaceInspector.css";
 
 export default function WorkspaceInspector({
 
-    width,
+  width,
 
-}){
+  hidden,
 
-    return(
+}) {
 
-        <aside
+  return (
 
-            className="workspace-inspector"
+    <aside
 
-            style={{
+      className="workspace-inspector"
 
-                width,
+      style={{
 
-            }}
+        width,
 
-        >
+        opacity:
 
-            Inspector
+          hidden ? 0 : 1,
 
-        </aside>
+        transform:
 
-    );
+          hidden
+
+            ? "translateX(20px)"
+
+            : "translateX(0)",
+
+        pointerEvents:
+
+          hidden
+
+            ? "none"
+
+            : "auto",
+
+      }}
+
+    >
+
+      Inspector
+
+    </aside>
+
+  );
 
 }
