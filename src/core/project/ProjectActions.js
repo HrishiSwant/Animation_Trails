@@ -2,6 +2,7 @@ import ProjectStore from "./ProjectStore";
 import createProject from "./defaultProject";
 import ProjectEvents from "./ProjectEvents";
 import ProjectEventTypes from "./ProjectEventTypes";
+import RecentProjects from "./RecentProjects";
 
 class ProjectActions {
 
@@ -27,9 +28,7 @@ class ProjectActions {
 
     });
 
-    const state =
-
-      ProjectStore.getState();
+    const state = ProjectStore.getState();
 
     ProjectStore.setState({
 
@@ -41,24 +40,27 @@ class ProjectActions {
 
       ],
 
-      activeProjectId:
-
-        project.id,
+      activeProjectId: project.id,
 
     });
-    
+
     ProjectEvents.emit(
 
-  ProjectEventTypes.PROJECT_CREATED,
+      ProjectEventTypes.PROJECT_CREATED,
 
-  project,
+      project,
 
-);
+    );
+
+    RecentProjects.add(
+
+      project,
+
+    );
 
     return project;
 
   }
-
 
   /*
   ==========================
@@ -72,13 +74,11 @@ class ProjectActions {
 
   ) {
 
-    const project =
+    const project = ProjectStore.getProject(
 
-      ProjectStore.getProject(
+      id,
 
-        id,
-
-      );
+    );
 
     if (!project) {
 
@@ -88,19 +88,23 @@ class ProjectActions {
 
     ProjectStore.setState({
 
-      activeProjectId:
-
-        id,
+      activeProjectId: id,
 
     });
 
     ProjectEvents.emit(
 
-  ProjectEventTypes.PROJECT_OPENED,
+      ProjectEventTypes.PROJECT_OPENED,
 
-  project,
+      project,
 
-);
+    );
+
+    RecentProjects.add(
+
+      project,
+
+    );
 
   }
 
@@ -118,55 +122,57 @@ class ProjectActions {
 
   ) {
 
-    const state =
+    const now = Date.now();
 
-      ProjectStore.getState();
+    const state = ProjectStore.getState();
 
     ProjectStore.setState({
 
-      projects:
+      projects: state.projects.map(
 
-        state.projects.map(
+        project =>
 
-          project =>
+          project.id === id
 
-            project.id === id
+            ? {
 
-              ? {
+                ...project,
 
-                  ...project,
+                name,
 
-                  name,
+                updatedAt: now,
 
-                  updatedAt:
+              }
 
-                    Date.now(),
+            : project,
 
-                }
-
-              : project,
-
-        ),
+      ),
 
     });
 
-      ProjectEvents.emit(
+    const updated =
 
-  ProjectEventTypes.PROJECT_RENAMED,
+      ProjectStore.getProject(id);
 
-  {
+    if (updated) {
 
-    id,
+      RecentProjects.add(
 
-    name,
+        updated,
 
-  },
+      );
 
-);
+    }
 
+    ProjectEvents.emit(
+
+      ProjectEventTypes.PROJECT_RENAMED,
+
+      updated,
+
+    );
 
   }
-
 
   /*
   ==========================
@@ -182,37 +188,55 @@ class ProjectActions {
 
   ) {
 
-    const state =
+    const now = Date.now();
 
-      ProjectStore.getState();
+    const state = ProjectStore.getState();
 
     ProjectStore.setState({
 
-      projects:
+      projects: state.projects.map(
 
-        state.projects.map(
+        project =>
 
-          project =>
+          project.id === id
 
-            project.id === id
+            ? {
 
-              ? {
+                ...project,
 
-                  ...project,
+                ...values,
 
-                  ...values,
+                updatedAt: now,
 
-                  updatedAt:
+              }
 
-                    Date.now(),
+            : project,
 
-                }
-
-              : project,
-
-        ),
+      ),
 
     });
+
+    const updated =
+
+      ProjectStore.getProject(id);
+
+    if (updated) {
+
+      RecentProjects.add(
+
+        updated,
+
+      );
+
+    }
+
+    ProjectEvents.emit(
+
+      ProjectEventTypes.PROJECT_UPDATED,
+
+      updated,
+
+    );
 
   }
 
@@ -228,19 +252,15 @@ class ProjectActions {
 
   ) {
 
-    const state =
+    const state = ProjectStore.getState();
 
-      ProjectStore.getState();
+    const projects = state.projects.filter(
 
-    const projects =
+      project =>
 
-      state.projects.filter(
+        project.id !== id,
 
-        project =>
-
-          project.id !== id,
-
-      );
+    );
 
     let activeProjectId =
 
@@ -270,6 +290,20 @@ class ProjectActions {
 
     });
 
+    RecentProjects.remove(
+
+      id,
+
+    );
+
+    ProjectEvents.emit(
+
+      ProjectEventTypes.PROJECT_DELETED,
+
+      id,
+
+    );
+
   }
 
   /*
@@ -298,13 +332,13 @@ class ProjectActions {
 
     }
 
-    const copy =
+    const now = Date.now();
 
-      structuredClone(
+    const copy = structuredClone(
 
-        project,
+      project,
 
-      );
+    );
 
     copy.id =
 
@@ -314,17 +348,11 @@ class ProjectActions {
 
       `${project.name} Copy`;
 
-    copy.createdAt =
+    copy.createdAt = now;
 
-      Date.now();
+    copy.updatedAt = now;
 
-    copy.updatedAt =
-
-      Date.now();
-
-    const state =
-
-      ProjectStore.getState();
+    const state = ProjectStore.getState();
 
     ProjectStore.setState({
 
@@ -336,11 +364,25 @@ class ProjectActions {
 
       ],
 
-      activeProjectId:
-
-        copy.id,
+      activeProjectId: copy.id,
 
     });
+
+    RecentProjects.add(
+
+      copy,
+
+    );
+
+    ProjectEvents.emit(
+
+      ProjectEventTypes.PROJECT_DUPLICATED,
+
+      copy,
+
+    );
+
+    return copy;
 
   }
 
@@ -354,11 +396,17 @@ class ProjectActions {
 
     ProjectStore.setState({
 
-      activeProjectId:
-
-        null,
+      activeProjectId: null,
 
     });
+
+    ProjectEvents.emit(
+
+      ProjectEventTypes.PROJECT_CLOSED,
+
+      null,
+
+    );
 
   }
 
