@@ -46,18 +46,19 @@ class ProjectActions {
         project.id,
 
     });
-
-    return project;
-
-  }
-
-  ProjectEvents.emit(
+    
+    ProjectEvents.emit(
 
   ProjectEventTypes.PROJECT_CREATED,
 
   project,
 
 );
+
+    return project;
+
+  }
+
 
   /*
   ==========================
@@ -149,9 +150,7 @@ class ProjectActions {
 
     });
 
-  }
-
-  ProjectEvents.emit(
+      ProjectEvents.emit(
 
   ProjectEventTypes.PROJECT_RENAMED,
 
@@ -164,6 +163,10 @@ class ProjectActions {
   },
 
 );
+
+
+  }
+
 
   /*
   ==========================
