@@ -1,5 +1,7 @@
 import ProjectStore from "./ProjectStore";
 import createProject from "./defaultProject";
+import ProjectEvents from "./ProjectEvents";
+import ProjectEventTypes from "./ProjectEventTypes";
 
 class ProjectActions {
 
@@ -49,6 +51,14 @@ class ProjectActions {
 
   }
 
+  ProjectEvents.emit(
+
+  ProjectEventTypes.PROJECT_CREATED,
+
+  project,
+
+);
+
   /*
   ==========================
       OPEN
@@ -82,6 +92,14 @@ class ProjectActions {
         id,
 
     });
+
+    ProjectEvents.emit(
+
+  ProjectEventTypes.PROJECT_OPENED,
+
+  project,
+
+);
 
   }
 
@@ -132,6 +150,20 @@ class ProjectActions {
     });
 
   }
+
+  ProjectEvents.emit(
+
+  ProjectEventTypes.PROJECT_RENAMED,
+
+  {
+
+    id,
+
+    name,
+
+  },
+
+);
 
   /*
   ==========================
