@@ -3,27 +3,23 @@ import { useEffect, useState } from "react";
 import "./index.css";
 
 import Navigation from "./components/Navigation";
-
 import Showcase from "./pages/Showcase";
 import CreativeLab from "./pages/CreativeLab";
 import Presentation from "./pages/Presentation";
 import Settings from "./pages/Settings";
-
 import ThemeManager from "./core/theme/ThemeManager";
 import AccentManager from "./core/accent/AccentManager";
 import FontManager from "./core/font/FontManager";
 import AnimationManager from "./core/animation/AnimationManager";
 import CompactManager from "./core/compact/CompactManager";
 import AccessibilityManager from "./core/accessibility/AccessibilityManager";
-
 import LayoutManager from "./core/layout/LayoutManager";
-
 import DockManager from "./core/docking/DockManager";
 import registerDefaultPanels from "./core/docking/registerDefaultPanels";
-
 import CommandPalette from "./components/command/CommandPalette";
 import useCommandPalette from "./hooks/useCommandPalette";
 import registerDefaultCommands from "./core/command/registerDefaultCommands";
+import ProjectManager from "./core/project/ProjectManager";
 
 export default function App() {
 
@@ -84,6 +80,8 @@ export default function App() {
     AccessibilityManager.initialize();
 
     LayoutManager.initialize();
+
+    ProjectManager.initialize();
 
     /*
     ==========================
