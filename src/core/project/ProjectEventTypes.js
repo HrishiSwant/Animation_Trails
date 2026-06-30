@@ -1,169 +1,39 @@
-class ProjectEvents {
-
-  constructor() {
-
-    this.listeners = new Map();
-
-  }
+const ProjectEventTypes = {
 
   /*
   ==========================
-      SUBSCRIBE
+      PROJECT
   ==========================
   */
 
-  on(
+  PROJECT_CREATED:
 
-    event,
+    "project:created",
 
-    callback,
+  PROJECT_OPENED:
 
-  ) {
+    "project:opened",
 
-    if (
+  PROJECT_CLOSED:
 
-      !this.listeners.has(
+    "project:closed",
 
-        event,
+  PROJECT_UPDATED:
 
-      )
+    "project:updated",
 
-    ) {
+  PROJECT_RENAMED:
 
-      this.listeners.set(
+    "project:renamed",
 
-        event,
+  PROJECT_DELETED:
 
-        [],
+    "project:deleted",
 
-      );
+  PROJECT_DUPLICATED:
 
-    }
+    "project:duplicated",
 
-    this.listeners
+};
 
-      .get(event)
-
-      .push(callback);
-
-    return () =>
-
-      this.off(
-
-        event,
-
-        callback,
-
-      );
-
-  }
-
-  /*
-  ==========================
-      UNSUBSCRIBE
-  ==========================
-  */
-
-  off(
-
-    event,
-
-    callback,
-
-  ) {
-
-    if (
-
-      !this.listeners.has(
-
-        event,
-
-      )
-
-    ) {
-
-      return;
-
-    }
-
-    this.listeners.set(
-
-      event,
-
-      this.listeners
-
-        .get(event)
-
-        .filter(
-
-          listener =>
-
-            listener !== callback,
-
-        ),
-
-    );
-
-  }
-
-  /*
-  ==========================
-      EMIT
-  ==========================
-  */
-
-  emit(
-
-    event,
-
-    payload,
-
-  ) {
-
-    if (
-
-      !this.listeners.has(
-
-        event,
-
-      )
-
-    ) {
-
-      return;
-
-    }
-
-    this.listeners
-
-      .get(event)
-
-      .forEach(
-
-        listener =>
-
-          listener(
-
-            payload,
-
-          ),
-
-      );
-
-  }
-
-  /*
-  ==========================
-      CLEAR
-  ==========================
-  */
-
-  clear() {
-
-    this.listeners.clear();
-
-  }
-
-}
-
-export default new ProjectEvents();
+export default ProjectEventTypes;
