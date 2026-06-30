@@ -53,9 +53,7 @@ class WorkspaceActions {
     WorkspaceEvents.emit(
 
       presentation
-
         ? WorkspaceEventTypes.PRESENTATION_ENTER
-
         : WorkspaceEventTypes.PRESENTATION_EXIT,
 
       presentation,
@@ -204,7 +202,23 @@ class WorkspaceActions {
 
       clipboard,
 
-    );
+    });
+
+    if (
+
+      WorkspaceEventTypes.CLIPBOARD_CHANGED
+
+    ) {
+
+      WorkspaceEvents.emit(
+
+        WorkspaceEventTypes.CLIPBOARD_CHANGED,
+
+        clipboard,
+
+      );
+
+    }
 
   }
 
@@ -215,6 +229,22 @@ class WorkspaceActions {
       clipboard: null,
 
     });
+
+    if (
+
+      WorkspaceEventTypes.CLIPBOARD_CLEARED
+
+    ) {
+
+      WorkspaceEvents.emit(
+
+        WorkspaceEventTypes.CLIPBOARD_CLEARED,
+
+        null,
+
+      );
+
+    }
 
   }
 
