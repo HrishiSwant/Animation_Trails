@@ -1,3 +1,5 @@
+import "./IconPicker.css";
+
 const icons = [
 
   "📁",
