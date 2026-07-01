@@ -14,6 +14,8 @@ import TagsInput from "./components/TagsInput";
 import FavoriteToggle from "./components/FavoriteToggle";
 import ProjectPreview from "./components/ProjectPreview";
 
+import ProjectValidator from "../../../core/project/ProjectValidator";
+
 const initialForm = {
   name: "",
   description: "",
@@ -49,31 +51,71 @@ export default function ProjectCreator({
 
   } = useProject();
 
+  const [
+
+  errors,
+
+  setErrors,
+
+] = useState({});
+
   /*
   ==========================
       AUTO FOCUS
   ==========================
   */
 
-  useEffect(() => {
+useEffect(() => {
 
-    if (!open) {
+  if (!open) {
 
-      return;
+    return;
 
-    }
+  }
 
-    requestAnimationFrame(() => {
+  requestAnimationFrame(() => {
 
-      inputRef.current?.focus();
+    inputRef.current?.focus();
 
-    });
+  });
 
-  }, [
+}, [
 
-    open,
+  open,
 
-  ]);
+]);
+
+  /*
+==========================
+    VALIDATION
+==========================
+*/
+
+useEffect(() => {
+
+  if (!open) {
+
+    return;
+
+  }
+
+  setErrors(
+
+    ProjectValidator
+
+      .validate(form)
+
+      .errors,
+
+  );
+
+}, [
+
+  form,
+
+  open,
+
+]);
 
   /*
   ==========================
@@ -84,6 +126,10 @@ export default function ProjectCreator({
   function resetForm() {
 
     setForm(initialForm);
+
+      setErrors({});
+
+}
 
   }
 
@@ -107,40 +153,61 @@ export default function ProjectCreator({
   ==========================
   */
 
-  function handleCreate() {
+function handleCreate() {
 
-    const projectName =
-      form.name.trim();
+  const result =
 
-    if (!projectName) {
+    ProjectValidator.validate(
 
-      inputRef.current?.focus();
+      form,
 
-      return;
+    );
 
-    }
+  if (
 
-    const templateProject =
-      ProjectTemplates.create(
-        form.template,
-      );
+    !result.valid
 
-    createProject({
+  ) {
 
-      ...templateProject,
+    setErrors(
 
-      ...form,
+      result.errors,
 
-      name: projectName,
+    );
 
-      description:
-        form.description.trim(),
+    inputRef.current?.focus();
 
-    });
-
-    handleClose();
+    return;
 
   }
+
+  const templateProject =
+
+    ProjectTemplates.create(
+
+      form.template,
+
+    );
+
+  createProject({
+
+    ...templateProject,
+
+    ...form,
+
+    name:
+
+      form.name.trim(),
+
+    description:
+
+      form.description.trim(),
+
+  });
+
+  handleClose();
+
+}
 
   /*
   ==========================
@@ -239,11 +306,11 @@ export default function ProjectCreator({
               GENERAL
           ========================== */}
 
-          <section className="wizard-section">
+<section className="wizard-section">
 
   <h3>
 
-    Appearance
+    General
 
   </h3>
 
@@ -251,27 +318,49 @@ export default function ProjectCreator({
 
     <label>
 
-      Project Icon
+      Project Name
 
     </label>
 
-    <IconPicker
+    <input
 
-      value={form.icon}
+      ref={inputRef}
 
-      onChange={icon =>
+      type="text"
+
+      placeholder="My Awesome Project"
+
+      value={form.name}
+
+      onChange={event =>
 
         setForm({
 
           ...form,
 
-          icon,
+          name:
+
+            event.target.value,
 
         })
 
       }
 
     />
+
+    {
+
+      errors.name && (
+
+        <div className="form-error">
+
+          {errors.name}
+
+        </div>
+
+      )
+
+    }
 
   </div>
 
@@ -279,27 +368,47 @@ export default function ProjectCreator({
 
     <label>
 
-      Project Color
+      Description
 
     </label>
 
-    <ColorPicker
+    <textarea
 
-      value={form.color}
+      rows={4}
 
-      onChange={color =>
+      placeholder="Describe your project..."
+
+      value={form.description}
+
+      onChange={event =>
 
         setForm({
 
           ...form,
 
-          color,
+          description:
+
+            event.target.value,
 
         })
 
       }
 
     />
+
+    {
+
+      errors.description && (
+
+        <div className="form-error">
+
+          {errors.description}
+
+        </div>
+
+      )
+
+    }
 
   </div>
 
@@ -382,40 +491,111 @@ export default function ProjectCreator({
 
           <section className="wizard-section">
 
-            <h3>
+  <h3>
 
-              Appearance
+    General
 
-            </h3>
+  </h3>
 
-<div className="form-group">
+  <div className="form-group">
 
-  <label>
+    <label>
 
-    Project Icon
+      Project Name
 
-  </label>
+    </label>
 
-  <IconPicker
+    <input
 
-    value={form.icon}
+      ref={inputRef}
 
-    onChange={icon =>
+      type="text"
 
-      setForm({
+      placeholder="My Awesome Project"
 
-        ...form,
+      value={form.name}
 
-        icon,
+      onChange={event =>
 
-      })
+        setForm({
+
+          ...form,
+
+          name:
+
+            event.target.value,
+
+        })
+
+      }
+
+    />
+
+    {
+
+      errors.name && (
+
+        <div className="form-error">
+
+          {errors.name}
+
+        </div>
+
+      )
 
     }
 
-  />
+  </div>
 
-</div>
-          </section>
+  <div className="form-group">
+
+    <label>
+
+      Description
+
+    </label>
+
+    <textarea
+
+      rows={4}
+
+      placeholder="Describe your project..."
+
+      value={form.description}
+
+      onChange={event =>
+
+        setForm({
+
+          ...form,
+
+          description:
+
+            event.target.value,
+
+        })
+
+      }
+
+    />
+
+    {
+
+      errors.description && (
+
+        <div className="form-error">
+
+          {errors.description}
+
+        </div>
+
+      )
+
+    }
+
+  </div>
+
+</section>
 
           {/* ==========================
     TAGS
@@ -442,6 +622,19 @@ export default function ProjectCreator({
         tags,
 
       })
+      {
+
+  errors.tags && (
+
+    <div className="form-error">
+
+      {errors.tags}
+
+    </div>
+
+  )
+
+}
 
     }
 
@@ -521,8 +714,12 @@ export default function ProjectCreator({
           <button
             className="create-btn"
             disabled={
-              !form.name.trim()
-            }
+
+  Object.keys(errors)
+
+    .length > 0
+
+}
             onClick={handleCreate}
           >
 
