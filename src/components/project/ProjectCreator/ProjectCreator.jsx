@@ -10,6 +10,7 @@ import useProject from "../../../hooks/project/useProject";
 import ProjectTemplates from "../../../core/project/ProjectTemplates";
 import IconPicker from "./components/IconPicker";
 import ColorPicker from "./components/ColorPicker";
+import TagsInput from "./components/TagsInput";
 
 const initialForm = {
   name: "",
@@ -413,6 +414,38 @@ export default function ProjectCreator({
 
 </div>
           </section>
+
+          {/* ==========================
+    TAGS
+========================== */}
+
+<section className="wizard-section">
+
+  <h3>
+
+    Tags
+
+  </h3>
+
+  <TagsInput
+
+    value={form.tags}
+
+    onChange={tags =>
+
+      setForm({
+
+        ...form,
+
+        tags,
+
+      })
+
+    }
+
+  />
+
+</section>
 
           {/* ==========================
               PREVIEW
