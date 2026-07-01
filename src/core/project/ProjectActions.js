@@ -19,14 +19,33 @@ class ProjectActions {
     description = "",
 
   } = {}) {
+    createProject(
 
-    const project = createProject({
+  values = {},
 
-      name,
+) {
 
-      description,
+  const project = {
 
-    });
+    ...createProject({
+
+      name:
+
+        values.name ??
+
+        "Untitled Project",
+
+      description:
+
+        values.description ??
+
+        "",
+
+    }),
+
+    ...values,
+
+  };
 
     const state = ProjectStore.getState();
 
