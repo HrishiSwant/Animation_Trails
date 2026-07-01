@@ -109,44 +109,51 @@ export default function ProjectCreator({
 
   }
 
-  /*
-  ==========================
-      CREATE PROJECT
-  ==========================
-  */
+/*
+==========================
+    CREATE PROJECT
+==========================
+*/
 
-  function handleCreate() {
+function handleCreate() {
 
-    const projectName =
+  const projectName =
 
-      name.trim();
+    name.trim();
 
-    if (
+  if (!projectName) {
 
-      !projectName
+    inputRef.current?.focus();
 
-    ) {
-
-      inputRef.current?.focus();
-
-      return;
-
-    }
-
-    createProject({
-
-      name: projectName,
-
-      description:
-
-        description.trim(),
-
-    });
-
-    handleClose();
+    return;
 
   }
 
+  const templateProject =
+
+    ProjectTemplates.create(
+
+      template,
+
+    );
+
+  createProject({
+
+    ...templateProject,
+
+    name: projectName,
+
+    description:
+
+      description.trim(),
+
+    template,
+
+  });
+
+  handleClose();
+
+}
   /*
   ==========================
       KEYBOARD
