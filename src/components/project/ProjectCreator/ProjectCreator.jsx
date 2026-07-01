@@ -42,6 +42,34 @@ export default function ProjectCreator({
 
   /*
   ==========================
+      RESET FORM
+  ==========================
+  */
+
+  function resetForm() {
+
+    setName("");
+
+    setDescription("");
+
+  }
+
+  /*
+  ==========================
+      CLOSE
+  ==========================
+  */
+
+  function handleClose() {
+
+    resetForm();
+
+    onClose();
+
+  }
+
+  /*
+  ==========================
       CREATE PROJECT
   ==========================
   */
@@ -56,6 +84,10 @@ export default function ProjectCreator({
 
     });
 
+    resetForm();
+
+    onClose();
+
   }
 
   return (
@@ -64,7 +96,7 @@ export default function ProjectCreator({
 
       className="project-creator-overlay"
 
-      onClick={onClose}
+      onClick={handleClose}
 
     >
 
@@ -96,7 +128,7 @@ export default function ProjectCreator({
 
             className="project-close"
 
-            onClick={onClose}
+            onClick={handleClose}
 
           >
 
@@ -184,7 +216,7 @@ export default function ProjectCreator({
 
             className="cancel-btn"
 
-            onClick={onClose}
+            onClick={handleClose}
 
           >
 
