@@ -1,0 +1,195 @@
+/*
+==========================
+    ICON PICKER
+==========================
+*/
+
+.icon-picker{
+
+  display:flex;
+
+  flex-wrap:wrap;
+
+  gap:12px;
+
+}
+
+.icon-picker-item{
+
+  position:relative;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  width:58px;
+
+  height:58px;
+
+  border-radius:14px;
+
+  border:1px solid var(--color-border);
+
+  background:var(--color-surface);
+
+  cursor:pointer;
+
+  overflow:hidden;
+
+  transition:
+    transform .18s cubic-bezier(.22,1,.36,1),
+    box-shadow .18s cubic-bezier(.22,1,.36,1),
+    border-color .18s ease,
+    background-color .18s ease;
+
+}
+
+.icon-picker-item:hover{
+
+  transform:
+    translateY(-4px)
+    scale(1.08);
+
+  border-color:var(--color-accent);
+
+  box-shadow:
+    0 10px 26px rgba(0,0,0,.18);
+
+}
+
+.icon-picker-item:active{
+
+  transform:scale(.95);
+
+}
+
+.icon-picker-item.active{
+
+  border-color:var(--color-accent);
+
+  background:color-mix(
+    in srgb,
+    var(--color-accent) 10%,
+    var(--color-surface)
+  );
+
+  box-shadow:
+    0 0 0 2px
+      color-mix(
+        in srgb,
+        var(--color-accent) 25%,
+        transparent
+      ),
+    0 14px 30px rgba(0,0,0,.20);
+
+}
+
+.icon-value{
+
+  font-size:30px;
+
+  transition:
+    transform .18s cubic-bezier(.22,1,.36,1);
+
+}
+
+.icon-picker-item:hover .icon-value{
+
+  transform:
+    scale(1.2)
+    rotate(-8deg);
+
+}
+
+.icon-picker-item.active .icon-value{
+
+  transform:scale(1.15);
+
+}
+
+.icon-picker-item::after{
+
+  content:"";
+
+  position:absolute;
+
+  inset:0;
+
+  border-radius:inherit;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(255,255,255,.28),
+      transparent 70%
+    );
+
+  opacity:0;
+
+  transform:scale(.6);
+
+  transition:
+    opacity .25s ease,
+    transform .25s ease;
+
+}
+
+.icon-picker-item:hover::after{
+
+  opacity:1;
+
+  transform:scale(1.2);
+
+}
+
+.icon-check{
+
+  position:absolute;
+
+  top:6px;
+
+  right:6px;
+
+  width:18px;
+
+  height:18px;
+
+  border-radius:50%;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  background:var(--color-accent);
+
+  color:#fff;
+
+  font-size:11px;
+
+  animation:iconCheckPop .2s ease;
+
+}
+
+@keyframes iconCheckPop{
+
+  from{
+
+    transform:scale(.5);
+
+    opacity:0;
+
+  }
+
+  to{
+
+    transform:scale(1);
+
+    opacity:1;
+
+  }
+
+}
