@@ -12,31 +12,63 @@
 
   background:rgba(0,0,0,.45);
 
-  backdrop-filter:blur(4px);
+  opacity:0;
 
-  z-index:10000;
+  transition:opacity .18s ease;
+
+  z-index:9999;
+
+}
+
+.project-creator-overlay.open{
+
+  opacity:1;
 
 }
 
 .project-creator{
 
-  width:460px;
+  width:720px;
 
-  max-width:90vw;
+  max-width:92vw;
+
+  max-height:90vh;
+
+  display:flex;
+
+  flex-direction:column;
 
   background:var(--color-surface);
 
-  color:var(--color-text);
+  border-radius:18px;
 
   border:1px solid var(--color-border);
 
-  border-radius:14px;
+  transform:
 
-  overflow:hidden;
+    translateY(16px)
 
-  box-shadow:
+    scale(.96);
 
-    0 20px 60px rgba(0,0,0,.25);
+  opacity:0;
+
+  transition:
+
+    opacity .18s ease,
+
+    transform .18s ease;
+
+}
+
+.project-creator.open{
+
+  opacity:1;
+
+  transform:
+
+    translateY(0)
+
+    scale(1);
 
 }
 
