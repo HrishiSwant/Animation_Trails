@@ -1,1 +1,35 @@
+/*
+==========================
+    FAVORITE
+==========================
+*/
 
+.favorite-toggle{
+
+  display:flex;
+
+  align-items:center;
+
+  gap:12px;
+
+  cursor:pointer;
+
+  user-select:none;
+
+}
+
+.favorite-toggle input{
+
+  width:18px;
+
+  height:18px;
+
+  cursor:pointer;
+
+}
+
+.favorite-icon{
+
+  font-size:22px;
+
+}
