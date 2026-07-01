@@ -33,31 +33,37 @@ export default function IconPicker({
 
           <button
 
-            key={icon}
+  key={icon}
 
-            type="button"
+  type="button"
 
-            className={
+  className={
 
-              value === icon
+    value === icon
 
-                ? "icon-button active"
+      ? "icon-picker-item active"
 
-                : "icon-button"
+      : "icon-picker-item"
 
-            }
+  }
 
-            onClick={() =>
+  onClick={() =>
 
-              onChange(icon)
+    onChange(icon)
 
-            }
+  }
 
-          >
+>
 
-            {icon}
+  <span className="icon-value">
 
-          </button>
+    {icon}
+
+  </span>
+
+</button>
+
+          
 
         ))
 
