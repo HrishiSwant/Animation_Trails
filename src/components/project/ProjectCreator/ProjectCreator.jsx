@@ -622,9 +622,13 @@ function handleCreate() {
         tags,
 
       })
-      {
 
-  errors.tags && (
+    }
+
+  />
+  {
+
+    errors.tags && (
 
     <div className="form-error">
 
@@ -635,10 +639,6 @@ function handleCreate() {
   )
 
 }
-
-    }
-
-  />
 
 </section>
 
