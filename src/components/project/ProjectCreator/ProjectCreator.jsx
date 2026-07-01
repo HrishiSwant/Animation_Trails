@@ -340,6 +340,8 @@ if (!mounted) {
       ? "project-creator-overlay open"
 
       : "project-creator-overlay"
+
+        }
       
       onClick={handleClose}
     >
