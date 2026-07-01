@@ -1,0 +1,41 @@
+.section-animation{
+
+  opacity:0;
+
+  transform:
+
+    translateY(16px);
+
+  animation:
+
+    sectionFade .35s
+
+    cubic-bezier(.22,1,.36,1)
+
+    forwards;
+
+}
+
+@keyframes sectionFade{
+
+  from{
+
+    opacity:0;
+
+    transform:
+
+      translateY(16px);
+
+  }
+
+  to{
+
+    opacity:1;
+
+    transform:
+
+      translateY(0);
+
+  }
+
+}
