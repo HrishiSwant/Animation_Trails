@@ -131,7 +131,7 @@ useEffect(() => {
 
 }
 
-  }
+  
 
   /*
   ==========================
@@ -489,11 +489,11 @@ function handleCreate() {
               APPEARANCE
           ========================== */}
 
-          <section className="wizard-section">
+         <section className="wizard-section">
 
   <h3>
 
-    General
+    Appearance
 
   </h3>
 
@@ -501,49 +501,27 @@ function handleCreate() {
 
     <label>
 
-      Project Name
+      Project Icon
 
     </label>
 
-    <input
+    <IconPicker
 
-      ref={inputRef}
+      value={form.icon}
 
-      type="text"
-
-      placeholder="My Awesome Project"
-
-      value={form.name}
-
-      onChange={event =>
+      onChange={icon =>
 
         setForm({
 
           ...form,
 
-          name:
-
-            event.target.value,
+          icon,
 
         })
 
       }
 
     />
-
-    {
-
-      errors.name && (
-
-        <div className="form-error">
-
-          {errors.name}
-
-        </div>
-
-      )
-
-    }
 
   </div>
 
@@ -551,27 +529,21 @@ function handleCreate() {
 
     <label>
 
-      Description
+      Project Color
 
     </label>
 
-    <textarea
+    <ColorPicker
 
-      rows={4}
+      value={form.color}
 
-      placeholder="Describe your project..."
-
-      value={form.description}
-
-      onChange={event =>
+      onChange={color =>
 
         setForm({
 
           ...form,
 
-          description:
-
-            event.target.value,
+          color,
 
         })
 
@@ -579,24 +551,9 @@ function handleCreate() {
 
     />
 
-    {
-
-      errors.description && (
-
-        <div className="form-error">
-
-          {errors.description}
-
-        </div>
-
-      )
-
-    }
-
   </div>
 
 </section>
-
           {/* ==========================
     TAGS
 ========================== */}
