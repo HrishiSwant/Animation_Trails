@@ -1,4 +1,12 @@
-import { useState } from "react";
+import {
+
+  useEffect,
+
+  useRef,
+
+  useState,
+
+} from "react";
 
 import "./ProjectCreator.css";
 
@@ -27,6 +35,10 @@ export default function ProjectCreator({
     setDescription,
 
   ] = useState("");
+  
+  const inputRef =
+
+  useRef(null);
 
   const {
 
@@ -39,6 +51,38 @@ export default function ProjectCreator({
     return null;
 
   }
+
+  /*
+==========================
+    AUTO FOCUS
+==========================
+*/
+
+useEffect(() => {
+
+  if (!open) {
+
+    return;
+
+  }
+
+  const timer =
+
+    setTimeout(() => {
+
+      inputRef.current?.focus();
+
+    }, 0);
+
+  return () =>
+
+    clearTimeout(timer);
+
+}, [
+
+  open,
+
+]);
 
   /*
   ==========================
@@ -152,25 +196,27 @@ export default function ProjectCreator({
 
             </label>
 
-            <input
+           <input
 
-              type="text"
+  ref={inputRef}
 
-              placeholder="My Awesome Project"
+  type="text"
 
-              value={name}
+  placeholder="My Awesome Project"
 
-              onChange={event =>
+  value={name}
 
-                setName(
+  onChange={event =>
 
-                  event.target.value,
+    setName(
 
-                )
+      event.target.value,
 
-              }
+    )
 
-            />
+  }
+
+/>
 
           </div>
 
