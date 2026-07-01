@@ -12,6 +12,7 @@ import IconPicker from "./components/IconPicker";
 import ColorPicker from "./components/ColorPicker";
 import TagsInput from "./components/TagsInput";
 import FavoriteToggle from "./components/FavoriteToggle";
+import ProjectPreview from "./components/ProjectPreview";
 
 const initialForm = {
   name: "",
@@ -492,12 +493,11 @@ export default function ProjectCreator({
 
             </h3>
 
-            <div className="wizard-placeholder">
+              <ProjectPreview
 
-              Live project preview
-              will appear here.
+                project={form}
 
-            </div>
+                />
 
           </section>
 
