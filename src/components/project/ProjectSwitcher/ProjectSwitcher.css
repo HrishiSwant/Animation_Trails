@@ -137,3 +137,21 @@
 }
 
 }
+
+.project-item.active{
+
+  background:
+
+  var(--color-accent);
+
+  color:white;
+
+  font-weight:600;
+
+}
+
+.project-item.active:hover{
+
+  opacity:.95;
+
+}
