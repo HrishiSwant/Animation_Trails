@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 import "./ProjectCreator.css";
 
 export default function ProjectCreator({
@@ -7,6 +9,22 @@ export default function ProjectCreator({
   onClose,
 
 }) {
+
+  const [
+
+    name,
+
+    setName,
+
+  ] = useState("");
+
+  const [
+
+    description,
+
+    setDescription,
+
+  ] = useState("");
 
   if (!open) {
 
@@ -68,12 +86,65 @@ export default function ProjectCreator({
 
         <div className="project-creator-body">
 
-          <p>
+          <div className="form-group">
 
-            Project creation form will
-            be added in the next step.
+            <label>
 
-          </p>
+              Project Name
+
+            </label>
+
+            <input
+
+              type="text"
+
+              placeholder="My Awesome Project"
+
+              value={name}
+
+              onChange={event =>
+
+                setName(
+
+                  event.target.value,
+
+                )
+
+              }
+
+            />
+
+          </div>
+
+          <div className="form-group">
+
+            <label>
+
+              Description
+
+            </label>
+
+            <textarea
+
+              rows={4}
+
+              placeholder="Describe your project..."
+
+              value={description}
+
+              onChange={event =>
+
+                setDescription(
+
+                  event.target.value,
+
+                )
+
+              }
+
+            />
+
+          </div>
 
         </div>
 
@@ -98,8 +169,6 @@ export default function ProjectCreator({
           <button
 
             className="create-btn"
-
-            disabled
 
           >
 
