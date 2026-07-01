@@ -35,10 +35,10 @@ export default function ProjectCreator({
     setDescription,
 
   ] = useState("");
-  
+
   const inputRef =
 
-  useRef(null);
+    useRef(null);
 
   const {
 
@@ -46,43 +46,31 @@ export default function ProjectCreator({
 
   } = useProject();
 
-  if (!open) {
-
-    return null;
-
-  }
-
   /*
-==========================
-    AUTO FOCUS
-==========================
-*/
+  ==========================
+      AUTO FOCUS
+  ==========================
+  */
 
-useEffect(() => {
+  useEffect(() => {
 
-  if (!open) {
+    if (!open) {
 
-    return;
+      return;
 
-  }
+    }
 
-  const timer =
-
-    setTimeout(() => {
+    requestAnimationFrame(() => {
 
       inputRef.current?.focus();
 
-    }, 0);
+    });
 
-  return () =>
+  }, [
 
-    clearTimeout(timer);
+    open,
 
-}, [
-
-  open,
-
-]);
+  ]);
 
   /*
   ==========================
@@ -120,17 +108,83 @@ useEffect(() => {
 
   function handleCreate() {
 
+    const projectName =
+
+      name.trim();
+
+    if (
+
+      !projectName
+
+    ) {
+
+      inputRef.current?.focus();
+
+      return;
+
+    }
+
     createProject({
 
-      name,
+      name: projectName,
 
-      description,
+      description:
+
+        description.trim(),
 
     });
 
-    resetForm();
+    handleClose();
 
-    onClose();
+  }
+
+  /*
+  ==========================
+      KEYBOARD
+  ==========================
+  */
+
+  function handleKeyDown(
+
+    event,
+
+  ) {
+
+    if (
+
+      event.key ===
+
+      "Escape"
+
+    ) {
+
+      handleClose();
+
+      return;
+
+    }
+
+    if (
+
+      event.key ===
+
+      "Enter" &&
+
+      !event.shiftKey
+
+    ) {
+
+      event.preventDefault();
+
+      handleCreate();
+
+    }
+
+  }
+
+  if (!open) {
+
+    return null;
 
   }
 
@@ -151,6 +205,12 @@ useEffect(() => {
         onClick={event =>
 
           event.stopPropagation()
+
+        }
+
+        onKeyDown={
+
+          handleKeyDown
 
         }
 
@@ -196,27 +256,27 @@ useEffect(() => {
 
             </label>
 
-           <input
+            <input
 
-  ref={inputRef}
+              ref={inputRef}
 
-  type="text"
+              type="text"
 
-  placeholder="My Awesome Project"
+              placeholder="My Awesome Project"
 
-  value={name}
+              value={name}
 
-  onChange={event =>
+              onChange={event =>
 
-    setName(
+                setName(
 
-      event.target.value,
+                  event.target.value,
 
-    )
+                )
 
-  }
+              }
 
-/>
+            />
 
           </div>
 
@@ -274,7 +334,17 @@ useEffect(() => {
 
             className="create-btn"
 
-            onClick={handleCreate}
+            disabled={
+
+              !name.trim()
+
+            }
+
+            onClick={
+
+              handleCreate
+
+            }
 
           >
 
