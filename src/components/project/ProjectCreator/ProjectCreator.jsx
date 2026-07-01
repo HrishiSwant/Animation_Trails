@@ -15,6 +15,7 @@ import FavoriteSection from "./sections/FavoriteSection";
 import PreviewSection from "./sections/PreviewSection";
 import ProjectTemplates from "../../../core/project/ProjectTemplates";
 import ProjectValidator from "../../../core/project/ProjectValidator";
+import SectionAnimation from "../../common/SectionAnimation/SectionAnimation";
 
 const initialForm = {
   name: "",
@@ -397,6 +398,8 @@ if (!mounted) {
 
        <div className="project-creator-body">
 
+<SectionAnimation delay={0}>
+
   <GeneralSection
 
     form={form}
@@ -409,6 +412,10 @@ if (!mounted) {
 
   />
 
+</SectionAnimation>
+
+<SectionAnimation delay={40}>
+
   <TemplateSection
 
     form={form}
@@ -417,6 +424,10 @@ if (!mounted) {
 
   />
 
+</SectionAnimation>
+
+<SectionAnimation delay={80}>
+
   <AppearanceSection
 
     form={form}
@@ -424,6 +435,10 @@ if (!mounted) {
     setForm={setForm}
 
   />
+
+</SectionAnimation>
+
+<SectionAnimation delay={120}>
 
   <TagsSection
 
@@ -435,6 +450,10 @@ if (!mounted) {
 
   />
 
+</SectionAnimation>
+
+<SectionAnimation delay={160}>
+
   <FavoriteSection
 
     form={form}
@@ -443,11 +462,17 @@ if (!mounted) {
 
   />
 
+</SectionAnimation>
+
+<SectionAnimation delay={200}>
+
   <PreviewSection
 
     form={form}
 
   />
+
+</SectionAnimation>
 
 </div>
 
