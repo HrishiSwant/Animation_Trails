@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import "./ProjectSwitcher.css";
 
 import useProject from "../../../hooks/project/useProject";
+import ProjectCreator from "../ProjectCreator/ProjectCreator";
 
 export default function ProjectSwitcher() {
 
@@ -11,6 +12,14 @@ export default function ProjectSwitcher() {
     open,
 
     setOpen,
+
+  ] = useState(false);
+
+  const [
+
+    isCreatorOpen,
+
+    setIsCreatorOpen,
 
   ] = useState(false);
 
@@ -95,6 +104,20 @@ export default function ProjectSwitcher() {
     );
 
     setOpen(false);
+
+  }
+
+  /*
+  ==========================
+      OPEN PROJECT CREATOR
+  ==========================
+  */
+
+  function handleNewProject() {
+
+    setOpen(false);
+
+    setIsCreatorOpen(true);
 
   }
 
@@ -228,6 +251,8 @@ export default function ProjectSwitcher() {
 
               className="project-new"
 
+              onClick={handleNewProject}
+
             >
 
               + New Project
@@ -239,6 +264,18 @@ export default function ProjectSwitcher() {
         )
 
       }
+
+      <ProjectCreator
+
+        open={isCreatorOpen}
+
+        onClose={() =>
+
+          setIsCreatorOpen(false)
+
+        }
+
+      />
 
     </div>
 
