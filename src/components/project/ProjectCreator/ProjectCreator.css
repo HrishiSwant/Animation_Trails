@@ -354,3 +354,67 @@
   line-height:1.4;
 
 }
+
+/*
+==========================
+    ICON PICKER
+==========================
+*/
+
+.icon-picker{
+
+  display:flex;
+
+  flex-wrap:wrap;
+
+  gap:10px;
+
+}
+
+.icon-button{
+
+  width:48px;
+
+  height:48px;
+
+  border-radius:12px;
+
+  border:1px solid var(--color-border);
+
+  background:var(--color-surface);
+
+  cursor:pointer;
+
+  font-size:22px;
+
+  transition:.2s;
+
+}
+
+.icon-button:hover{
+
+  border-color:
+
+  var(--color-accent);
+
+}
+
+.icon-button.active{
+
+  background:
+
+    color-mix(
+
+      in srgb,
+
+      var(--color-accent) 15%,
+
+      var(--color-surface)
+
+    );
+
+  border-color:
+
+    var(--color-accent);
+
+}
