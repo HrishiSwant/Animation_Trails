@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import "./ProjectSwitcher.css";
 
@@ -14,17 +14,99 @@ export default function ProjectSwitcher() {
 
   ] = useState(false);
 
+  const wrapperRef =
+
+    useRef(null);
+
   const {
 
     projects,
 
     activeProject,
 
+    openProject,
+
   } = useProject();
+
+  /*
+  ==========================
+      CLOSE ON OUTSIDE CLICK
+  ==========================
+  */
+
+  useEffect(() => {
+
+    function handleClick(event) {
+
+      if (
+
+        wrapperRef.current &&
+
+        !wrapperRef.current.contains(
+
+          event.target,
+
+        )
+
+      ) {
+
+        setOpen(false);
+
+      }
+
+    }
+
+    document.addEventListener(
+
+      "mousedown",
+
+      handleClick,
+
+    );
+
+    return () =>
+
+      document.removeEventListener(
+
+        "mousedown",
+
+        handleClick,
+
+      );
+
+  }, []);
+
+  /*
+  ==========================
+      SWITCH PROJECT
+  ==========================
+  */
+
+  function handleProjectClick(
+
+    project,
+
+  ) {
+
+    openProject(
+
+      project.id,
+
+    );
+
+    setOpen(false);
+
+  }
 
   return (
 
-    <div className="project-switcher">
+    <div
+
+      ref={wrapperRef}
+
+      className="project-switcher"
+
+    >
 
       <button
 
@@ -88,9 +170,45 @@ export default function ProjectSwitcher() {
 
                       key={project.id}
 
-                      className="project-item"
+                      className={
+
+                        project.id ===
+
+                        activeProject?.id
+
+                          ? "project-item active"
+
+                          : "project-item"
+
+                      }
+
+                      onClick={() =>
+
+                        handleProjectClick(
+
+                          project,
+
+                        )
+
+                      }
 
                     >
+
+                      <span>
+
+                        {
+
+                          project.id ===
+
+                          activeProject?.id
+
+                            ? "✔ "
+
+                            : ""
+
+                        }
+
+                      </span>
 
                       {project.name}
 
