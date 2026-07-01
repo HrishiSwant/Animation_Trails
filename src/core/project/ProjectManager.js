@@ -5,6 +5,12 @@ import createProject from "./defaultProject";
 
 class ProjectManager {
 
+  constructor() {
+
+    this.unsubscribe = null;
+
+  }
+
   /*
   ==========================
       INITIALIZE
@@ -17,6 +23,12 @@ class ProjectManager {
 
       ProjectStorage.load();
 
+    /*
+    ==========================
+        RESTORE
+    ==========================
+    */
+
     if (
 
       saved &&
@@ -25,7 +37,9 @@ class ProjectManager {
 
         saved.projects,
 
-      )
+      ) &&
+
+      saved.projects.length > 0
 
     ) {
 
@@ -39,13 +53,17 @@ class ProjectManager {
 
           saved.activeProjectId ??
 
-          saved.projects[0]?.id ??
-
-          null,
+          saved.projects[0].id,
 
       });
 
     }
+
+    /*
+    ==========================
+        FIRST PROJECT
+    ==========================
+    */
 
     else {
 
@@ -81,17 +99,63 @@ class ProjectManager {
     ==========================
     */
 
-    ProjectStore.subscribe(
+    this.unsubscribe?.();
 
-      state =>
+    this.unsubscribe =
 
-        ProjectStorage.save(
+      ProjectStore.subscribe(
 
-          state,
+        state =>
 
-        ),
+          ProjectStorage.save(
+
+            state,
+
+          ),
+
+      );
+
+  }
+
+  /*
+  ==========================
+      SAVE
+  ==========================
+  */
+
+  save() {
+
+    ProjectStorage.save(
+
+      ProjectStore.getState(),
 
     );
+
+  }
+
+  /*
+  ==========================
+      RESTORE
+  ==========================
+  */
+
+  restore() {
+
+    return ProjectStorage.load();
+
+  }
+
+  /*
+  ==========================
+      RESET
+  ==========================
+  */
+
+  reset() {
+
+    ProjectStorage.clear();
+
+    ProjectStore.reset();
 
   }
 
@@ -209,7 +273,7 @@ class ProjectManager {
 
   ) {
 
-    ProjectActions.duplicateProject(
+    return ProjectActions.duplicateProject(
 
       id,
 
