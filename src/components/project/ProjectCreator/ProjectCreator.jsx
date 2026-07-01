@@ -2,6 +2,8 @@ import { useState } from "react";
 
 import "./ProjectCreator.css";
 
+import useProject from "../../../hooks/project/useProject";
+
 export default function ProjectCreator({
 
   open,
@@ -26,9 +28,33 @@ export default function ProjectCreator({
 
   ] = useState("");
 
+  const {
+
+    createProject,
+
+  } = useProject();
+
   if (!open) {
 
     return null;
+
+  }
+
+  /*
+  ==========================
+      CREATE PROJECT
+  ==========================
+  */
+
+  function handleCreate() {
+
+    createProject({
+
+      name,
+
+      description,
+
+    });
 
   }
 
@@ -169,6 +195,8 @@ export default function ProjectCreator({
           <button
 
             className="create-btn"
+
+            onClick={handleCreate}
 
           >
 
