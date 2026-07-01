@@ -1,3 +1,5 @@
+import "./TemplateSection.css";
+
 import ProjectTemplates from "../../../../core/project/ProjectTemplates";
 
 export default function TemplateSection({
@@ -50,9 +52,7 @@ export default function TemplateSection({
 
                     ...form,
 
-                    template:
-
-                      item.id,
+                    template: item.id,
 
                   })
 
@@ -77,6 +77,20 @@ export default function TemplateSection({
                   {item.description}
 
                 </div>
+
+                {
+
+                  form.template === item.id && (
+
+                    <div className="template-selected">
+
+                      ✓
+
+                    </div>
+
+                  )
+
+                }
 
               </button>
 
