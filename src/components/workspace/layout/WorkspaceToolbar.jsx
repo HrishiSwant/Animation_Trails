@@ -2,6 +2,7 @@ import "./WorkspaceToolbar.css";
 
 import useLayout from "../../../hooks/layout/useLayout";
 import useDock from "../../../hooks/layout/useDock";
+import ProjectSwitcher from "../../project/ProjectSwitcher/ProjectSwitcher";
 
 export default function WorkspaceToolbar() {
 
@@ -23,171 +24,165 @@ export default function WorkspaceToolbar() {
 
   return (
 
-    <header className="workspace-toolbar">
+   <header className="workspace-toolbar">
 
-      <h3>
+  <div className="toolbar-left">
 
-        Workspace
+    <h3>
 
-      </h3>
+      Workspace
 
-      <select
+    </h3>
 
-        className="layout-select"
+    <ProjectSwitcher />
 
-        value={
+  </div>
 
-          layout.preset ||
+  <div className="toolbar-right">
 
-          "default"
+    <select
 
-        }
+      className="layout-select"
 
-        onChange={event =>
+      value={
 
-          setPreset(
+        layout.preset ||
 
-            event.target.value,
+        "default"
 
-          )
+      }
 
-        }
+      onChange={event =>
 
-        title="Workspace Layout"
+        setPreset(
 
-      >
+          event.target.value,
 
-        <option value="default">
+        )
 
-          Default
+      }
 
-        </option>
+    >
 
-        <option value="focus">
+      <option value="default">
 
-          Focus
+        Default
 
-        </option>
+      </option>
 
-        <option value="presentation">
+      <option value="focus">
 
-          Presentation
+        Focus
 
-        </option>
+      </option>
 
-        <option value="developer">
+      <option value="presentation">
 
-          Developer
+        Presentation
 
-        </option>
+      </option>
 
-      </select>
+      <option value="developer">
 
-      <button
+        Developer
 
-        className="toolbar-btn"
+      </option>
 
-        onClick={toggleInspector}
+    </select>
 
-        title={
+    <button
 
-          layout.inspector.visible
+      className="toolbar-btn"
 
-            ? "Hide Inspector"
+      onClick={toggleInspector}
 
-            : "Show Inspector"
+      title={
 
-        }
+        layout.inspector.visible
 
-      >
+          ? "Hide Inspector"
 
-        {
+          : "Show Inspector"
 
-          layout.inspector.visible
+      }
 
-            ? "👁️"
+    >
 
-            : "🚫"
+      {
 
-        }
+        layout.inspector.visible
 
-      </button>
+          ? "👁️"
 
-      {/* Temporary Dock Controls */}
+          : "🚫"
 
-      <button
+      }
 
-        className="toolbar-btn"
+    </button>
 
-        onClick={() =>
+    <button
 
-          setDockPosition(
+      onClick={() =>
 
-            "inspector",
+        setDockPosition(
 
-            "left",
+          "inspector",
 
-          )
+          "left",
 
-        }
+        )
 
-        title="Dock Left"
+      }
 
-      >
+    >
 
-        ⬅️
+      Left
 
-      </button>
+    </button>
 
-      <button
+    <button
 
-        className="toolbar-btn"
+      onClick={() =>
 
-        onClick={() =>
+        setDockPosition(
 
-          setDockPosition(
+          "inspector",
 
-            "inspector",
+          "right",
 
-            "right",
+        )
 
-          )
+      }
 
-        }
+    >
 
-        title="Dock Right"
+      Right
 
-      >
+    </button>
 
-        ➡️
+    <button
 
-      </button>
+      onClick={() =>
 
-      <button
+        setDockPosition(
 
-        className="toolbar-btn"
+          "inspector",
 
-        onClick={() =>
+          "bottom",
 
-          setDockPosition(
+        )
 
-            "inspector",
+      }
 
-            "bottom",
+    >
 
-          )
+      Bottom
 
-        }
+    </button>
 
-        title="Dock Bottom"
+  </div>
 
-      >
-
-        ⬇️
-
-      </button>
-
-    </header>
+</header>
 
   );
 
