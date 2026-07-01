@@ -40,35 +40,51 @@ export default function ColorPicker({
 
           <button
 
-            key={color}
+  key={color}
 
-            type="button"
+  type="button"
 
-            className={
+  className={
 
-              value === color
+    value === color
 
-                ? "color-button active"
+      ? "color-picker-item active"
 
-                : "color-button"
+      : "color-picker-item"
 
-            }
+  }
 
-            style={{
+  style={{
 
-              background: color,
+    background: color,
 
-            }}
+  }}
 
-            onClick={() =>
+  onClick={() =>
 
-              onChange(color)
+    onChange(color)
 
-            }
+  }
 
-            title={color}
+>
 
-          />
+  {
+
+    value === color && (
+
+      <span className="color-check">
+
+        ✓
+
+      </span>
+
+    )
+
+  }
+
+</button>
+
+
 
         ))
 
