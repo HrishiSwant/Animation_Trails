@@ -82,3 +82,33 @@
     cursor:pointer;
 
 }
+
+.workspace-toolbar{
+
+  display:flex;
+
+  justify-content:space-between;
+
+  align-items:center;
+
+}
+
+.toolbar-left{
+
+  display:flex;
+
+  align-items:center;
+
+  gap:18px;
+
+}
+
+.toolbar-right{
+
+  display:flex;
+
+  align-items:center;
+
+  gap:10px;
+
+}
