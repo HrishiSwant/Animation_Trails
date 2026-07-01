@@ -11,6 +11,7 @@ import ProjectTemplates from "../../../core/project/ProjectTemplates";
 import IconPicker from "./components/IconPicker";
 import ColorPicker from "./components/ColorPicker";
 import TagsInput from "./components/TagsInput";
+import FavoriteToggle from "./components/FavoriteToggle";
 
 const initialForm = {
   name: "",
@@ -438,6 +439,38 @@ export default function ProjectCreator({
         ...form,
 
         tags,
+
+      })
+
+    }
+
+  />
+
+</section>
+
+          {/* ==========================
+    FAVORITE
+========================== */}
+
+<section className="wizard-section">
+
+  <h3>
+
+    Favorite
+
+  </h3>
+
+  <FavoriteToggle
+
+    value={form.favorite}
+
+    onChange={favorite =>
+
+      setForm({
+
+        ...form,
+
+        favorite,
 
       })
 
