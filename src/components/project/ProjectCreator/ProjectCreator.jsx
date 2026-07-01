@@ -42,6 +42,14 @@ export default function ProjectCreator({
 
   ] = useState(initialForm);
 
+  const [
+
+  visible,
+
+  setVisible,
+
+] = useState(false);
+
   const inputRef =
     useRef(null);
 
@@ -112,6 +120,34 @@ useEffect(() => {
 }, [
 
   form,
+
+  open,
+
+]);
+
+  /*
+==========================
+    MODAL ANIMATION
+==========================
+*/
+
+useEffect(() => {
+
+  if (open) {
+
+    requestAnimationFrame(() => {
+
+      setVisible(true);
+
+    });
+
+  } else {
+
+    setVisible(false);
+
+  }
+
+}, [
 
   open,
 
@@ -252,21 +288,72 @@ function handleCreate() {
 
   }
 
-  if (!open) {
+const [
 
-    return null;
+  mounted,
+
+  setMounted,
+
+] = useState(open);
+
+useEffect(() => {
+
+  if (open) {
+
+    setMounted(true);
+
+    return;
 
   }
+
+  const timer =
+
+    setTimeout(() => {
+
+      setMounted(false);
+
+    }, 180);
+
+  return () =>
+
+    clearTimeout(timer);
+
+}, [
+
+  open,
+
+]);
+
+if (!mounted) {
+
+  return null;
+
+}
 
   return (
 
     <div
-      className="project-creator-overlay"
+        className={
+
+    visible
+
+      ? "project-creator-overlay open"
+
+      : "project-creator-overlay"
+      
       onClick={handleClose}
     >
 
       <div
-        className="project-creator"
+          className={
+
+    visible
+
+      ? "project-creator open"
+
+      : "project-creator"
+
+  }
         onClick={event =>
           event.stopPropagation()
         }
