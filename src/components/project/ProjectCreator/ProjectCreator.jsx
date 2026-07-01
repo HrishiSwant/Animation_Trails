@@ -11,6 +11,7 @@ import {
 import "./ProjectCreator.css";
 
 import useProject from "../../../hooks/project/useProject";
+import ProjectTemplates from "../../../core/project/ProjectTemplates";
 
 export default function ProjectCreator({
 
@@ -35,6 +36,14 @@ export default function ProjectCreator({
     setDescription,
 
   ] = useState("");
+
+  const [
+
+  template,
+
+  setTemplate,
+
+] = useState("blank");
 
   const inputRef =
 
@@ -350,12 +359,67 @@ export default function ProjectCreator({
 
             </h3>
 
-            <div className="wizard-placeholder">
+            <div className="template-grid">
 
-              Template selection will
-              be added in B-12.2
+  {
 
-            </div>
+    ProjectTemplates
+
+      .getAll()
+
+      .map(item => (
+
+        <button
+
+          key={item.id}
+
+          className={
+
+            template === item.id
+
+              ? "template-card active"
+
+              : "template-card"
+
+          }
+
+          onClick={() =>
+
+            setTemplate(
+
+              item.id,
+
+            )
+
+          }
+
+        >
+
+          <div className="template-icon">
+
+            {item.icon}
+
+          </div>
+
+          <div className="template-name">
+
+            {item.name}
+
+          </div>
+
+          <div className="template-description">
+
+            {item.description}
+
+          </div>
+
+        </button>
+
+      ))
+
+  }
+
+</div>
 
           </section>
 
