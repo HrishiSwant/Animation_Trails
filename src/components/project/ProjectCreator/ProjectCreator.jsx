@@ -174,9 +174,23 @@ export default function ProjectCreator({
 
     ) {
 
-      event.preventDefault();
+      const target =
 
-      handleCreate();
+        event.target;
+
+      const isTextarea =
+
+        target.tagName ===
+
+        "TEXTAREA";
+
+      if (!isTextarea) {
+
+        event.preventDefault();
+
+        handleCreate();
+
+      }
 
     }
 
@@ -224,7 +238,7 @@ export default function ProjectCreator({
 
           <h2>
 
-            Create Project
+            Create New Project
 
           </h2>
 
@@ -248,67 +262,144 @@ export default function ProjectCreator({
 
         <div className="project-creator-body">
 
-          <div className="form-group">
+          {/* ==========================
+              GENERAL
+          ========================== */}
 
-            <label>
+          <section className="wizard-section">
 
-              Project Name
+            <h3>
 
-            </label>
+              General
 
-            <input
+            </h3>
 
-              ref={inputRef}
+            <div className="form-group">
 
-              type="text"
+              <label>
 
-              placeholder="My Awesome Project"
+                Project Name
 
-              value={name}
+              </label>
 
-              onChange={event =>
+              <input
 
-                setName(
+                ref={inputRef}
 
-                  event.target.value,
+                type="text"
 
-                )
+                placeholder="My Awesome Project"
 
-              }
+                value={name}
 
-            />
+                onChange={event =>
 
-          </div>
+                  setName(
 
-          <div className="form-group">
+                    event.target.value,
 
-            <label>
+                  )
 
-              Description
+                }
 
-            </label>
+              />
 
-            <textarea
+            </div>
 
-              rows={4}
+            <div className="form-group">
 
-              placeholder="Describe your project..."
+              <label>
 
-              value={description}
+                Description
 
-              onChange={event =>
+              </label>
 
-                setDescription(
+              <textarea
 
-                  event.target.value,
+                rows={4}
 
-                )
+                placeholder="Describe your project..."
 
-              }
+                value={description}
 
-            />
+                onChange={event =>
 
-          </div>
+                  setDescription(
+
+                    event.target.value,
+
+                  )
+
+                }
+
+              />
+
+            </div>
+
+          </section>
+
+          {/* ==========================
+              TEMPLATE
+          ========================== */}
+
+          <section className="wizard-section">
+
+            <h3>
+
+              Template
+
+            </h3>
+
+            <div className="wizard-placeholder">
+
+              Template selection will
+              be added in B-12.2
+
+            </div>
+
+          </section>
+
+          {/* ==========================
+              APPEARANCE
+          ========================== */}
+
+          <section className="wizard-section">
+
+            <h3>
+
+              Appearance
+
+            </h3>
+
+            <div className="wizard-placeholder">
+
+              Icon and Color pickers
+              will be added later.
+
+            </div>
+
+          </section>
+
+          {/* ==========================
+              PREVIEW
+          ========================== */}
+
+          <section className="wizard-section">
+
+            <h3>
+
+              Preview
+
+            </h3>
+
+            <div className="wizard-placeholder">
+
+              Live project preview
+              will appear here.
+
+            </div>
+
+          </section>
 
         </div>
 
@@ -348,7 +439,7 @@ export default function ProjectCreator({
 
           >
 
-            Create
+            Create Project
 
           </button>
 
