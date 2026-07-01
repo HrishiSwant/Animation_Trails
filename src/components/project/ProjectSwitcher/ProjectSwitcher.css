@@ -124,4 +124,16 @@
 
   var(--color-surface-hover);
 
+  .project-empty{
+
+  padding:16px;
+
+  text-align:center;
+
+  color:var(--color-text-secondary);
+
+  font-size:.9rem;
+
+}
+
 }
