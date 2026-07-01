@@ -466,3 +466,82 @@
   transform:scale(1.15);
 
 }
+/*
+==========================
+    TAGS INPUT
+==========================
+*/
+
+.tags-list{
+
+  display:flex;
+
+  flex-wrap:wrap;
+
+  gap:10px;
+
+  padding:12px;
+
+  border:1px solid var(--color-border);
+
+  border-radius:12px;
+
+  min-height:52px;
+
+  background:var(--color-surface);
+
+}
+
+.tags-list input{
+
+  flex:1;
+
+  min-width:120px;
+
+  border:none;
+
+  outline:none;
+
+  background:transparent;
+
+  color:inherit;
+
+  font:inherit;
+
+}
+
+.tag-chip{
+
+  display:flex;
+
+  align-items:center;
+
+  gap:8px;
+
+  padding:6px 12px;
+
+  border-radius:999px;
+
+  background:var(--color-accent);
+
+  color:white;
+
+  font-size:.85rem;
+
+}
+
+.tag-chip button{
+
+  border:none;
+
+  background:none;
+
+  color:inherit;
+
+  cursor:pointer;
+
+  font-size:16px;
+
+  line-height:1;
+
+}
