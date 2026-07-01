@@ -12,42 +12,37 @@ class ProjectActions {
   ==========================
   */
 
-  createProject({
+  createProject(
 
-    name = "Untitled Project",
+    values = {},
 
-    description = "",
+  ) {
 
-  } = {}) {
-    createProject(
+    const project = {
 
-  values = {},
+      ...createProject({
 
-) {
+        name:
 
-  const project = {
+          values.name ??
 
-    ...createProject({
+          "Untitled Project",
 
-      name:
+        description:
 
-        values.name ??
+          values.description ??
 
-        "Untitled Project",
+          "",
 
-      description:
+      }),
 
-        values.description ??
+      ...values,
 
-        "",
+    };
 
-    }),
+    const state =
 
-    ...values,
-
-  };
-
-    const state = ProjectStore.getState();
+      ProjectStore.getState();
 
     ProjectStore.setState({
 
@@ -59,7 +54,9 @@ class ProjectActions {
 
       ],
 
-      activeProjectId: project.id,
+      activeProjectId:
+
+        project.id,
 
     });
 
@@ -93,11 +90,13 @@ class ProjectActions {
 
   ) {
 
-    const project = ProjectStore.getProject(
+    const project =
 
-      id,
+      ProjectStore.getProject(
 
-    );
+        id,
+
+      );
 
     if (!project) {
 
@@ -107,7 +106,9 @@ class ProjectActions {
 
     ProjectStore.setState({
 
-      activeProjectId: id,
+      activeProjectId:
+
+        id,
 
     });
 
@@ -141,37 +142,49 @@ class ProjectActions {
 
   ) {
 
-    const now = Date.now();
+    const now =
 
-    const state = ProjectStore.getState();
+      Date.now();
+
+    const state =
+
+      ProjectStore.getState();
 
     ProjectStore.setState({
 
-      projects: state.projects.map(
+      projects:
 
-        project =>
+        state.projects.map(
 
-          project.id === id
+          project =>
 
-            ? {
+            project.id === id
 
-                ...project,
+              ? {
 
-                name,
+                  ...project,
 
-                updatedAt: now,
+                  name,
 
-              }
+                  updatedAt:
 
-            : project,
+                    now,
 
-      ),
+                }
+
+              : project,
+
+        ),
 
     });
 
     const updated =
 
-      ProjectStore.getProject(id);
+      ProjectStore.getProject(
+
+        id,
+
+      );
 
     if (updated) {
 
@@ -207,37 +220,49 @@ class ProjectActions {
 
   ) {
 
-    const now = Date.now();
+    const now =
 
-    const state = ProjectStore.getState();
+      Date.now();
+
+    const state =
+
+      ProjectStore.getState();
 
     ProjectStore.setState({
 
-      projects: state.projects.map(
+      projects:
 
-        project =>
+        state.projects.map(
 
-          project.id === id
+          project =>
 
-            ? {
+            project.id === id
 
-                ...project,
+              ? {
 
-                ...values,
+                  ...project,
 
-                updatedAt: now,
+                  ...values,
 
-              }
+                  updatedAt:
 
-            : project,
+                    now,
 
-      ),
+                }
+
+              : project,
+
+        ),
 
     });
 
     const updated =
 
-      ProjectStore.getProject(id);
+      ProjectStore.getProject(
+
+        id,
+
+      );
 
     if (updated) {
 
@@ -271,15 +296,19 @@ class ProjectActions {
 
   ) {
 
-    const state = ProjectStore.getState();
+    const state =
 
-    const projects = state.projects.filter(
+      ProjectStore.getState();
 
-      project =>
+    const projects =
 
-        project.id !== id,
+      state.projects.filter(
 
-    );
+        project =>
+
+          project.id !== id,
+
+      );
 
     let activeProjectId =
 
@@ -351,13 +380,17 @@ class ProjectActions {
 
     }
 
-    const now = Date.now();
+    const now =
 
-    const copy = structuredClone(
+      Date.now();
 
-      project,
+    const copy =
 
-    );
+      structuredClone(
+
+        project,
+
+      );
 
     copy.id =
 
@@ -367,11 +400,17 @@ class ProjectActions {
 
       `${project.name} Copy`;
 
-    copy.createdAt = now;
+    copy.createdAt =
 
-    copy.updatedAt = now;
+      now;
 
-    const state = ProjectStore.getState();
+    copy.updatedAt =
+
+      now;
+
+    const state =
+
+      ProjectStore.getState();
 
     ProjectStore.setState({
 
@@ -383,7 +422,9 @@ class ProjectActions {
 
       ],
 
-      activeProjectId: copy.id,
+      activeProjectId:
+
+        copy.id,
 
     });
 
@@ -415,7 +456,9 @@ class ProjectActions {
 
     ProjectStore.setState({
 
-      activeProjectId: null,
+      activeProjectId:
+
+        null,
 
     });
 
