@@ -8,6 +8,7 @@ import "./ProjectCreator.css";
 
 import useProject from "../../../hooks/project/useProject";
 import ProjectTemplates from "../../../core/project/ProjectTemplates";
+import IconPicker from "./components/IconPicker";
 
 const initialForm = {
   name: "",
@@ -374,14 +375,33 @@ export default function ProjectCreator({
 
             </h3>
 
-            <div className="wizard-placeholder">
+<div className="form-group">
 
-              Icon and Color pickers
-              will be added in
-              v0.2.5B-12.3.2
+  <label>
 
-            </div>
+    Project Icon
 
+  </label>
+
+  <IconPicker
+
+    value={form.icon}
+
+    onChange={icon =>
+
+      setForm({
+
+        ...form,
+
+        icon,
+
+      })
+
+    }
+
+  />
+
+</div>
           </section>
 
           {/* ==========================
