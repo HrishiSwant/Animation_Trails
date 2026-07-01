@@ -28,21 +28,21 @@
 
 .project-preview-icon{
 
-  width:64px;
+  transition:
 
-  height:64px;
+    transform .25s ease,
 
-  border-radius:16px;
+    background .25s ease;
 
-  display:flex;
+}
 
-  align-items:center;
+.project-preview-card.animate
 
-  justify-content:center;
+.project-preview-icon{
 
-  font-size:32px;
+  animation:
 
-  flex-shrink:0;
+    previewIcon .25s ease;
 
 }
 
@@ -51,6 +51,40 @@
   margin:0;
 
   font-size:1.1rem;
+
+}
+
+@keyframes previewIcon{
+
+  0%{
+
+    transform:
+
+      rotate(-12deg)
+
+      scale(.8);
+
+  }
+
+  60%{
+
+    transform:
+
+      rotate(8deg)
+
+      scale(1.15);
+
+  }
+
+  100%{
+
+    transform:
+
+      rotate(0)
+
+      scale(1);
+
+  }
 
 }
 
@@ -109,5 +143,133 @@
   color:white;
 
   font-size:.8rem;
+
+}
+
+/*
+==========================
+    LIVE PREVIEW
+==========================
+*/
+
+.project-preview-card{
+
+  transition:
+
+    transform .22s ease,
+
+    opacity .22s ease,
+
+    box-shadow .22s ease;
+
+}
+
+.project-preview-card.animate{
+
+  animation:
+
+    previewUpdate .22s cubic-bezier(.22,1,.36,1);
+
+}
+
+@keyframes previewUpdate{
+
+  0%{
+
+    opacity:.75;
+
+    transform:
+
+      scale(.97)
+
+      translateY(8px);
+
+  }
+
+  60%{
+
+    opacity:1;
+
+    transform:
+
+      scale(1.02)
+
+      translateY(-2px);
+
+  }
+
+  100%{
+
+    opacity:1;
+
+    transform:
+
+      scale(1)
+
+      translateY(0);
+
+  }
+
+}
+.preview-tag{
+
+  animation:
+
+    tagAppear .18s ease;
+
+}
+
+@keyframes tagAppear{
+
+  from{
+
+    opacity:0;
+
+    transform:
+
+      translateY(6px);
+
+  }
+
+  to{
+
+    opacity:1;
+
+    transform:
+
+      translateY(0);
+
+  }
+
+}
+.preview-favorite{
+
+  animation:
+
+    favoritePop .22s ease;
+
+}
+
+@keyframes favoritePop{
+
+  from{
+
+    opacity:0;
+
+    transform:
+
+      scale(.7);
+
+  }
+
+  to{
+
+    opacity:1;
+
+    transform:
+
+      scale(1);
+
+  }
 
 }
