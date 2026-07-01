@@ -9,6 +9,7 @@ import "./ProjectCreator.css";
 import useProject from "../../../hooks/project/useProject";
 import ProjectTemplates from "../../../core/project/ProjectTemplates";
 import IconPicker from "./components/IconPicker";
+import ColorPicker from "./components/ColorPicker";
 
 const initialForm = {
   name: "",
@@ -237,60 +238,69 @@ export default function ProjectCreator({
 
           <section className="wizard-section">
 
-            <h3>
+  <h3>
 
-              General
+    Appearance
 
-            </h3>
+  </h3>
 
-            <div className="form-group">
+  <div className="form-group">
 
-              <label>
+    <label>
 
-                Project Name
+      Project Icon
 
-              </label>
+    </label>
 
-              <input
-                ref={inputRef}
-                type="text"
-                placeholder="My Awesome Project"
-                value={form.name}
-                onChange={event =>
-                  setForm({
-                    ...form,
-                    name:
-                      event.target.value,
-                  })
-                }
-              />
+    <IconPicker
 
-            </div>
+      value={form.icon}
 
-            <div className="form-group">
+      onChange={icon =>
 
-              <label>
+        setForm({
 
-                Description
+          ...form,
 
-              </label>
+          icon,
 
-              <textarea
-                rows={4}
-                placeholder="Describe your project..."
-                value={form.description}
-                onChange={event =>
-                  setForm({
-                    ...form,
-                    description:
-                      event.target.value,
-                  })
-                }
-              />
+        })
 
-            </div>
+      }
 
-          </section>
+    />
+
+  </div>
+
+  <div className="form-group">
+
+    <label>
+
+      Project Color
+
+    </label>
+
+    <ColorPicker
+
+      value={form.color}
+
+      onChange={color =>
+
+        setForm({
+
+          ...form,
+
+          color,
+
+        })
+
+      }
+
+    />
+
+  </div>
+
+</section>
 
           {/* ==========================
               TEMPLATE
