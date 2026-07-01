@@ -1,17 +1,23 @@
 import {
-
   useEffect,
-
   useRef,
-
   useState,
-
 } from "react";
 
 import "./ProjectCreator.css";
 
 import useProject from "../../../hooks/project/useProject";
 import ProjectTemplates from "../../../core/project/ProjectTemplates";
+
+const initialForm = {
+  name: "",
+  description: "",
+  template: "blank",
+  icon: "📁",
+  color: "#6b7280",
+  tags: [],
+  favorite: false,
+};
 
 export default function ProjectCreator({
 
@@ -23,30 +29,13 @@ export default function ProjectCreator({
 
   const [
 
-    name,
+    form,
 
-    setName,
+    setForm,
 
-  ] = useState("");
-
-  const [
-
-    description,
-
-    setDescription,
-
-  ] = useState("");
-
-  const [
-
-  template,
-
-  setTemplate,
-
-] = useState("blank");
+  ] = useState(initialForm);
 
   const inputRef =
-
     useRef(null);
 
   const {
@@ -83,15 +72,13 @@ export default function ProjectCreator({
 
   /*
   ==========================
-      RESET FORM
+      RESET
   ==========================
   */
 
   function resetForm() {
 
-    setName("");
-
-    setDescription("");
+    setForm(initialForm);
 
   }
 
@@ -109,51 +96,47 @@ export default function ProjectCreator({
 
   }
 
-/*
-==========================
-    CREATE PROJECT
-==========================
-*/
+  /*
+  ==========================
+      CREATE
+  ==========================
+  */
 
-function handleCreate() {
+  function handleCreate() {
 
-  const projectName =
+    const projectName =
+      form.name.trim();
 
-    name.trim();
+    if (!projectName) {
 
-  if (!projectName) {
+      inputRef.current?.focus();
 
-    inputRef.current?.focus();
+      return;
 
-    return;
+    }
+
+    const templateProject =
+      ProjectTemplates.create(
+        form.template,
+      );
+
+    createProject({
+
+      ...templateProject,
+
+      ...form,
+
+      name: projectName,
+
+      description:
+        form.description.trim(),
+
+    });
+
+    handleClose();
 
   }
 
-  const templateProject =
-
-    ProjectTemplates.create(
-
-      template,
-
-    );
-
-  createProject({
-
-    ...templateProject,
-
-    name: projectName,
-
-    description:
-
-      description.trim(),
-
-    template,
-
-  });
-
-  handleClose();
-
-}
   /*
   ==========================
       KEYBOARD
@@ -161,17 +144,12 @@ function handleCreate() {
   */
 
   function handleKeyDown(
-
     event,
-
   ) {
 
     if (
-
       event.key ===
-
       "Escape"
-
     ) {
 
       handleClose();
@@ -181,23 +159,13 @@ function handleCreate() {
     }
 
     if (
-
       event.key ===
-
       "Enter" &&
-
       !event.shiftKey
-
     ) {
 
-      const target =
-
-        event.target;
-
       const isTextarea =
-
-        target.tagName ===
-
+        event.target.tagName ===
         "TEXTAREA";
 
       if (!isTextarea) {
@@ -221,29 +189,16 @@ function handleCreate() {
   return (
 
     <div
-
       className="project-creator-overlay"
-
       onClick={handleClose}
-
     >
 
       <div
-
         className="project-creator"
-
         onClick={event =>
-
           event.stopPropagation()
-
         }
-
-        onKeyDown={
-
-          handleKeyDown
-
-        }
-
+        onKeyDown={handleKeyDown}
       >
 
         {/* ==========================
@@ -259,11 +214,8 @@ function handleCreate() {
           </h2>
 
           <button
-
             className="project-close"
-
             onClick={handleClose}
-
           >
 
             ✕
@@ -299,25 +251,17 @@ function handleCreate() {
               </label>
 
               <input
-
                 ref={inputRef}
-
                 type="text"
-
                 placeholder="My Awesome Project"
-
-                value={name}
-
+                value={form.name}
                 onChange={event =>
-
-                  setName(
-
-                    event.target.value,
-
-                  )
-
+                  setForm({
+                    ...form,
+                    name:
+                      event.target.value,
+                  })
                 }
-
               />
 
             </div>
@@ -331,23 +275,16 @@ function handleCreate() {
               </label>
 
               <textarea
-
                 rows={4}
-
                 placeholder="Describe your project..."
-
-                value={description}
-
+                value={form.description}
                 onChange={event =>
-
-                  setDescription(
-
-                    event.target.value,
-
-                  )
-
+                  setForm({
+                    ...form,
+                    description:
+                      event.target.value,
+                  })
                 }
-
               />
 
             </div>
@@ -368,65 +305,60 @@ function handleCreate() {
 
             <div className="template-grid">
 
-  {
+              {
 
-    ProjectTemplates
+                ProjectTemplates
+                  .getAll()
+                  .map(item => (
 
-      .getAll()
+                    <button
 
-      .map(item => (
+                      key={item.id}
 
-        <button
+                      type="button"
 
-          key={item.id}
+                      className={
+                        form.template ===
+                        item.id
+                          ? "template-card active"
+                          : "template-card"
+                      }
 
-          className={
+                      onClick={() =>
+                        setForm({
+                          ...form,
+                          template:
+                            item.id,
+                        })
+                      }
 
-            template === item.id
+                    >
 
-              ? "template-card active"
+                      <div className="template-icon">
 
-              : "template-card"
+                        {item.icon}
 
-          }
+                      </div>
 
-          onClick={() =>
+                      <div className="template-name">
 
-            setTemplate(
+                        {item.name}
 
-              item.id,
+                      </div>
 
-            )
+                      <div className="template-description">
 
-          }
+                        {item.description}
 
-        >
+                      </div>
 
-          <div className="template-icon">
+                    </button>
 
-            {item.icon}
+                  ))
 
-          </div>
+              }
 
-          <div className="template-name">
-
-            {item.name}
-
-          </div>
-
-          <div className="template-description">
-
-            {item.description}
-
-          </div>
-
-        </button>
-
-      ))
-
-  }
-
-</div>
+            </div>
 
           </section>
 
@@ -445,7 +377,8 @@ function handleCreate() {
             <div className="wizard-placeholder">
 
               Icon and Color pickers
-              will be added later.
+              will be added in
+              v0.2.5B-12.3.2
 
             </div>
 
@@ -481,11 +414,8 @@ function handleCreate() {
         <div className="project-creator-footer">
 
           <button
-
             className="cancel-btn"
-
             onClick={handleClose}
-
           >
 
             Cancel
@@ -493,21 +423,11 @@ function handleCreate() {
           </button>
 
           <button
-
             className="create-btn"
-
             disabled={
-
-              !name.trim()
-
+              !form.name.trim()
             }
-
-            onClick={
-
-              handleCreate
-
-            }
-
+            onClick={handleCreate}
           >
 
             Create Project
