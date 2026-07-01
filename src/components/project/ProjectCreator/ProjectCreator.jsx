@@ -7,12 +7,12 @@ import {
 import "./ProjectCreator.css";
 
 import useProject from "../../../hooks/project/useProject";
-import ProjectTemplates from "../../../core/project/ProjectTemplates";
-import IconPicker from "./components/IconPicker";
-import ColorPicker from "./components/ColorPicker";
-import TagsInput from "./components/TagsInput";
-import FavoriteToggle from "./components/FavoriteToggle";
-import ProjectPreview from "./components/ProjectPreview";
+import GeneralSection from "./sections/GeneralSection";
+import TemplateSection from "./sections/TemplateSection";
+import AppearanceSection from "./sections/AppearanceSection";
+import TagsSection from "./sections/TagsSection";
+import FavoriteSection from "./sections/FavoriteSection";
+import PreviewSection from "./sections/PreviewSection";
 
 import ProjectValidator from "../../../core/project/ProjectValidator";
 
@@ -175,13 +175,19 @@ useEffect(() => {
   ==========================
   */
 
-  function handleClose() {
+function handleClose() {
+
+  setVisible(false);
+
+  setTimeout(() => {
 
     resetForm();
 
     onClose();
 
-  }
+  }, 180);
+
+}
 
   /*
   ==========================
@@ -294,7 +300,7 @@ const [
 
   setMounted,
 
-] = useState(open);
+] = useState(false);
 
 useEffect(() => {
 
@@ -389,7 +395,61 @@ if (!mounted) {
             BODY
         ========================== */}
 
-        <div className="project-creator-body">
+       <div className="project-creator-body">
+
+  <GeneralSection
+
+    form={form}
+
+    setForm={setForm}
+
+    errors={errors}
+
+    inputRef={inputRef}
+
+  />
+
+  <TemplateSection
+
+    form={form}
+
+    setForm={setForm}
+
+  />
+
+  <AppearanceSection
+
+    form={form}
+
+    setForm={setForm}
+
+  />
+
+  <TagsSection
+
+    form={form}
+
+    setForm={setForm}
+
+    errors={errors}
+
+  />
+
+  <FavoriteSection
+
+    form={form}
+
+    setForm={setForm}
+
+  />
+
+  <PreviewSection
+
+    form={form}
+
+  />
+
+</div>
 
           {/* ==========================
               GENERAL
