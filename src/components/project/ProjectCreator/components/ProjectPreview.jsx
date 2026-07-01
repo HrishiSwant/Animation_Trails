@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import "./ProjectPreview.css";
 
 export default function ProjectPreview({
@@ -6,13 +7,53 @@ export default function ProjectPreview({
 
 }) {
 
+  const [
+
+    animate,
+
+    setAnimate,
+
+  ] = useState(false);
+
+  useEffect(() => {
+
+    setAnimate(true);
+
+    const timer =
+
+      setTimeout(() => {
+
+        setAnimate(false);
+
+      }, 220);
+
+    return () =>
+
+      clearTimeout(timer);
+
+  }, [
+
+    project,
+
+  ]);
+
   return (
 
-    <div className="project-preview-card">
+    <div
 
-      <div
-        className="project-preview-header"
-      >
+      className={
+
+        animate
+
+          ? "project-preview-card animate"
+
+          : "project-preview-card"
+
+      }
+
+    >
+
+      <div className="project-preview-header">
 
         <div
 
@@ -32,9 +73,9 @@ export default function ProjectPreview({
 
         </div>
 
-        <div>
+        <div className="project-preview-meta">
 
-          <h4>
+          <strong>
 
             {
 
@@ -44,9 +85,9 @@ export default function ProjectPreview({
 
             }
 
-          </h4>
+          </strong>
 
-          <p>
+          <span>
 
             {
 
@@ -56,33 +97,23 @@ export default function ProjectPreview({
 
             }
 
-          </p>
+          </span>
 
         </div>
 
       </div>
 
-      <div className="project-preview-meta">
+      <div className="preview-template">
 
-        <span className="preview-template">
+        Template:
+
+        <strong>
+
+          {" "}
 
           {project.template}
 
-        </span>
-
-        {
-
-          project.favorite && (
-
-            <span className="preview-favorite">
-
-              ⭐ Favorite
-
-            </span>
-
-          )
-
-        }
+        </strong>
 
       </div>
 
@@ -94,23 +125,41 @@ export default function ProjectPreview({
 
             {
 
-              project.tags.map(tag => (
+              project.tags.map(
 
-                <span
+                tag => (
 
-                  key={tag}
+                  <span
 
-                  className="preview-tag"
+                    key={tag}
 
-                >
+                    className="preview-tag"
 
-                  {tag}
+                  >
 
-                </span>
+                    {tag}
 
-              ))
+                  </span>
+
+                ),
+
+              )
 
             }
+
+          </div>
+
+        )
+
+      }
+
+      {
+
+        project.favorite && (
+
+          <div className="preview-favorite">
+
+            ⭐ Favorite Project
 
           </div>
 
