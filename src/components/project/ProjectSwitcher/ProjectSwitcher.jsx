@@ -2,6 +2,8 @@ import { useState } from "react";
 
 import "./ProjectSwitcher.css";
 
+import useProject from "../../../hooks/project/useProject";
+
 export default function ProjectSwitcher() {
 
   const [
@@ -12,47 +14,13 @@ export default function ProjectSwitcher() {
 
   ] = useState(false);
 
-  /*
-  ==========================
-      TEMP DATA
-  ==========================
-  */
+  const {
 
-  const projects = [
+    projects,
 
-    {
+    activeProject,
 
-      id: 1,
-
-      name: "Animation Showcase",
-
-    },
-
-    {
-
-      id: 2,
-
-      name: "Portfolio",
-
-    },
-
-    {
-
-      id: 3,
-
-      name: "Creative Lab",
-
-    },
-
-    {
-
-      id: 4,
-
-      name: "Website",
-
-    },
-
-  ];
+  } = useProject();
 
   return (
 
@@ -82,7 +50,13 @@ export default function ProjectSwitcher() {
 
         <span>
 
-          Animation Showcase
+          {
+
+            activeProject?.name ||
+
+            "No Project"
+
+          }
 
         </span>
 
@@ -96,23 +70,35 @@ export default function ProjectSwitcher() {
 
             {
 
-              projects.map(
+              projects.length === 0 ? (
 
-                project => (
+                <div className="project-empty">
 
-                  <button
+                  No Projects
 
-                    key={project.id}
+                </div>
 
-                    className="project-item"
+              ) : (
 
-                  >
+                projects.map(
 
-                    {project.name}
+                  project => (
 
-                  </button>
+                    <button
 
-                ),
+                      key={project.id}
+
+                      className="project-item"
+
+                    >
+
+                      {project.name}
+
+                    </button>
+
+                  ),
+
+                )
 
               )
 
