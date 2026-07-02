@@ -36,6 +36,22 @@ export default function ProjectRename({
 
   ] = useState("");
 
+  const [
+
+    visible,
+
+    setVisible,
+
+  ] = useState(false);
+
+  const [
+
+    mounted,
+
+    setMounted,
+
+  ] = useState(false);
+
   const inputRef =
 
     useRef(null);
@@ -43,6 +59,48 @@ export default function ProjectRename({
   const dialogRef =
 
     useRef(null);
+
+  /*
+  ==========================
+      MODAL ANIMATION
+  ==========================
+  */
+
+  useEffect(() => {
+
+    if (open) {
+
+      setMounted(true);
+
+      requestAnimationFrame(() => {
+
+        setVisible(true);
+
+      });
+
+      return;
+
+    }
+
+    setVisible(false);
+
+    const timer =
+
+      setTimeout(() => {
+
+        setMounted(false);
+
+      }, 180);
+
+    return () =>
+
+      clearTimeout(timer);
+
+  }, [
+
+    open,
+
+  ]);
 
   /*
   ==========================
@@ -302,6 +360,24 @@ export default function ProjectRename({
 
   /*
   ==========================
+      CLOSE
+  ==========================
+  */
+
+  function handleClose() {
+
+    setVisible(false);
+
+    setTimeout(() => {
+
+      onClose();
+
+    }, 180);
+
+  }
+
+  /*
+  ==========================
       SAVE
   ==========================
   */
@@ -338,7 +414,7 @@ export default function ProjectRename({
 
     ) {
 
-      onClose();
+      handleClose();
 
       return;
 
@@ -374,7 +450,7 @@ export default function ProjectRename({
 
         event.preventDefault();
 
-        onClose();
+        handleClose();
 
         break;
 
@@ -396,7 +472,7 @@ export default function ProjectRename({
 
   if (
 
-    !open ||
+    !mounted ||
 
     !project
 
@@ -410,9 +486,17 @@ export default function ProjectRename({
 
     <div
 
-      className="project-rename-overlay"
+      className={
 
-      onClick={onClose}
+        visible
+
+          ? "project-rename-overlay open"
+
+          : "project-rename-overlay"
+
+      }
+
+      onClick={handleClose}
 
     >
 
@@ -420,7 +504,15 @@ export default function ProjectRename({
 
         ref={dialogRef}
 
-        className="project-rename"
+        className={
+
+          visible
+
+            ? "project-rename open"
+
+            : "project-rename"
+
+        }
 
         role="dialog"
 
@@ -508,7 +600,7 @@ export default function ProjectRename({
 
             type="button"
 
-            onClick={onClose}
+            onClick={handleClose}
 
           >
 
