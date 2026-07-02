@@ -1,3 +1,4 @@
+import AnimatedCounter from "./AnimatedCounter";
 import "../ProjectDashboard.css";
 
 export default function StatisticCard({
@@ -28,11 +29,29 @@ export default function StatisticCard({
 
         </h4>
 
-        <p>
+       <p>
 
-          {value}
+  {
 
-        </p>
+    typeof value ===
+
+    "number"
+
+      ? (
+
+        <AnimatedCounter
+
+          value={value}
+
+        />
+
+      )
+
+      : value
+
+  }
+
+</p>
 
       </div>
 
