@@ -490,6 +490,12 @@ const {
 
   }
 
+  projects={
+
+    projects
+
+  }
+
   onClose={() =>
 
     setRenameProject(null)
