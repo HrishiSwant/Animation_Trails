@@ -1,5 +1,33 @@
 import "./ProjectDashboard.css";
 
+function formatDate(value) {
+
+  if (!value) {
+
+    return "Unknown";
+
+  }
+
+  return new Date(value)
+
+    .toLocaleDateString(
+
+      undefined,
+
+      {
+
+        year: "numeric",
+
+        month: "short",
+
+        day: "numeric",
+
+      },
+
+    );
+
+}
+
 export default function DashboardHeader({
 
   project,
@@ -36,7 +64,7 @@ export default function DashboardHeader({
 
         </div>
 
-        <div>
+        <div className="dashboard-title">
 
           <h1>
 
@@ -52,9 +80,7 @@ export default function DashboardHeader({
 
               "Blank"
 
-            }
-
-            {" "}Template
+            } Template
 
           </p>
 
@@ -73,6 +99,92 @@ export default function DashboardHeader({
               ⭐ Favorite
 
             </span>
+
+          )
+
+        }
+
+        <div className="dashboard-meta">
+
+          <div>
+
+            <strong>
+
+              Created
+
+            </strong>
+
+            <span>
+
+              {
+
+                formatDate(
+
+                  project.createdAt,
+
+                )
+
+              }
+
+            </span>
+
+          </div>
+
+          <div>
+
+            <strong>
+
+              Last Opened
+
+            </strong>
+
+            <span>
+
+              {
+
+                formatDate(
+
+                  project.lastOpened,
+
+                )
+
+              }
+
+            </span>
+
+          </div>
+
+        </div>
+
+        {
+
+          project.tags?.length > 0 && (
+
+            <div className="dashboard-tags">
+
+              {
+
+                project.tags.map(
+
+                  tag => (
+
+                    <span
+
+                      key={tag}
+
+                    >
+
+                      {tag}
+
+                    </span>
+
+                  ),
+
+                )
+
+              }
+
+            </div>
 
           )
 
