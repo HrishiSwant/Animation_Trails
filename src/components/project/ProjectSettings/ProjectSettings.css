@@ -457,3 +457,40 @@
   }
 
 }
+/*
+==========================
+    VALIDATION
+==========================
+*/
+
+.settings-counter{
+
+  margin-top:8px;
+
+  text-align:right;
+
+  font-size:.8rem;
+
+  color:var(--color-text-secondary);
+
+}
+
+.settings-error{
+
+  margin-top:10px;
+
+  color:#ef4444;
+
+  font-size:.85rem;
+
+}
+
+.project-settings-footer .create-btn:disabled{
+
+  opacity:.45;
+
+  cursor:not-allowed;
+
+  transform:none;
+
+}
