@@ -51,6 +51,22 @@ export default function ProjectCreator({
 
 ] = useState(false);
 
+  const [
+
+  creating,
+
+  setCreating,
+
+] = useState(false);
+
+  const [
+
+  mounted,
+
+  setMounted,
+
+] = useState(false);
+
   const inputRef =
     useRef(null);
 
@@ -248,61 +264,99 @@ function handleCreate() {
 
   });
 
-  handleClose();
+  setCreating(true);
+
+  setTimeout(() => {
+
+    setCreating(false);
+
+    handleClose();
+
+  }, 650);
 
 }
 
-  /*
-  ==========================
-      KEYBOARD
-  ==========================
-  */
+/*
+==========================
+    KEYBOARD
+==========================
+*/
 
-  function handleKeyDown(
-    event,
+function handleKeyDown(
+
+  event,
+
+)
+useEffect(() => {
+
+  if (open) {
+
+    setMounted(true);
+
+    return;
+
+  }
+
+  const timer =
+
+    setTimeout(() => {
+
+      setMounted(false);
+
+    }, 180);
+
+  return () =>
+
+    clearTimeout(timer);
+
+}, [
+
+  open,
+
+]);
+{
+
+  if (
+
+    event.key ===
+
+    "Escape"
+
   ) {
 
-    if (
-      event.key ===
-      "Escape"
-    ) {
+    handleClose();
 
-      handleClose();
+    return;
 
-      return;
+  }
 
-    }
+  if (
 
-    if (
-      event.key ===
-      "Enter" &&
-      !event.shiftKey
-    ) {
+    event.key ===
 
-      const isTextarea =
-        event.target.tagName ===
-        "TEXTAREA";
+    "Enter" &&
 
-      if (!isTextarea) {
+    !event.shiftKey
 
-        event.preventDefault();
+  ) {
 
-        handleCreate();
+    const isTextarea =
 
-      }
+      event.target.tagName ===
+
+      "TEXTAREA";
+
+    if (!isTextarea) {
+
+      event.preventDefault();
+
+      handleCreate();
 
     }
 
   }
 
-const [
-
-  mounted,
-
-  setMounted,
-
-] = useState(false);
-
+}
 useEffect(() => {
 
   if (open) {
@@ -476,6 +530,37 @@ if (!mounted) {
 
 </div>
 
+
+        {
+
+  creating && (
+
+    <div className="project-success">
+
+      <div className="project-success-icon">
+
+        ✓
+
+      </div>
+
+      <h3>
+
+        Project Created
+
+      </h3>
+
+      <p>
+
+        Your project is ready.
+
+      </p>
+
+    </div>
+
+  )
+
+}
+
         {/* ==========================
             FOOTER
         ========================== */}
@@ -483,31 +568,49 @@ if (!mounted) {
         <div className="project-creator-footer">
 
           <button
-            className="cancel-btn"
-            onClick={handleClose}
-          >
 
+  className="cancel-btn"
+
+  disabled={creating}
+
+  onClick={handleClose}
+
+>
             Cancel
 
-          </button>
+  </button>
 
-          <button
-            className="create-btn"
-            disabled={
+  <button
 
-  Object.keys(errors)
+    className="create-btn"
 
-    .length > 0
+    disabled={
 
-}
-            onClick={handleCreate}
-          >
+      creating ||
 
-            Create Project
+      Object.keys(errors).length > 0
 
-          </button>
+    }
 
-        </div>
+    onClick={handleCreate}
+
+  >
+
+    {
+
+      creating
+
+        ? "Creating..."
+
+        : "Create Project"
+
+    }
+
+  </button>
+
+</div>
+
+
 
       </div>
 
