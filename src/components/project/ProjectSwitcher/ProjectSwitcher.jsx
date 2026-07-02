@@ -5,6 +5,7 @@ import "./ProjectSwitcher.css";
 import useProject from "../../../hooks/project/useProject";
 import ProjectCreator from "../ProjectCreator/ProjectCreator";
 import ProjectRename from "../ProjectRename/ProjectRename";
+import ProjectDelete from "../ProjectDelete/ProjectDelete";
 
 export default function ProjectSwitcher() {
 
@@ -37,6 +38,14 @@ export default function ProjectSwitcher() {
   renameProject,
 
   setRenameProject,
+
+] = useState(null);
+
+  const [
+
+  deleteProjectData,
+
+  setDeleteProjectData,
 
 ] = useState(null);
 
@@ -483,42 +492,25 @@ const sortedProjects =
 
   <button
 
-    className="danger"
+  className="danger"
 
-    onClick={() => {
+  onClick={() => {
 
-      const confirmed =
+    setDeleteProjectData(
 
-        window.confirm(
+      project,
 
-          `Delete "${project.name}"?`,
+    );
 
-        );
+    setMenuProjectId(null);
 
-      if (!confirmed) {
+  }}
 
-        return;
+>
 
-      }
+  Delete
 
-      deleteProject(
-
-        project.id,
-
-      );
-
-      setMenuProjectId(null);
-
-      setOpen(false);
-
-    }}
-
-  >
-
-    Delete
-
-  </button>
-
+</button>
 </div>
 
                           )
@@ -606,6 +598,42 @@ const sortedProjects =
     );
 
     setRenameProject(null);
+
+  }}
+
+/>
+
+      <ProjectDelete
+
+  open={
+
+    deleteProjectData !== null
+
+  }
+
+  project={
+
+    deleteProjectData
+
+  }
+
+  onClose={() =>
+
+    setDeleteProjectData(null)
+
+  }
+
+  onDelete={() => {
+
+    deleteProject(
+
+      deleteProjectData.id,
+
+    );
+
+    setDeleteProjectData(null);
+
+    setOpen(false);
 
   }}
 
