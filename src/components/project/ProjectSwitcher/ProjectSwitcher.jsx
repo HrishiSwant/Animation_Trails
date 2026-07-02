@@ -4,6 +4,7 @@ import "./ProjectSwitcher.css";
 
 import useProject from "../../../hooks/project/useProject";
 import ProjectCreator from "../ProjectCreator/ProjectCreator";
+import ProjectRename from "../ProjectRename/ProjectRename";
 
 export default function ProjectSwitcher() {
 
@@ -31,6 +32,14 @@ export default function ProjectSwitcher() {
 
   ] = useState(null);
 
+  const [
+
+  renameProject,
+
+  setRenameProject,
+
+] = useState(null);
+
   const wrapperRef =
 
     useRef(null);
@@ -42,6 +51,8 @@ export default function ProjectSwitcher() {
     activeProject,
 
     openProject,
+
+    renameProject: renameProjectAction,
 
   } = useProject();
 
@@ -297,11 +308,21 @@ export default function ProjectSwitcher() {
 
                             <div className="project-menu">
 
-                              <button>
+                              <button
+
+                                onClick={() => {
+
+                                  setRenameProject(project);
+
+                                  setMenuProjectId(null);
+
+                                  }}
+
+                                >
 
                                 Rename
 
-                              </button>
+                                </button>
 
                               <button>
 
@@ -370,6 +391,42 @@ export default function ProjectSwitcher() {
         }
 
       />
+
+      <ProjectRename
+
+  open={
+
+    renameProject !== null
+
+  }
+
+  project={
+
+    renameProject
+
+  }
+
+  onClose={() =>
+
+    setRenameProject(null)
+
+  }
+
+  onRename={name => {
+
+    renameProjectAction(
+
+      renameProject.id,
+
+      name,
+
+    );
+
+    setRenameProject(null);
+
+  }}
+
+/>
 
     </>
 
