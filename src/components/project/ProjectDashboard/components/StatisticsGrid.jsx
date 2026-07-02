@@ -2,6 +2,50 @@ import "../ProjectDashboard.css";
 
 import StatisticCard from "./StatisticCard";
 
+function formatLastOpened(value) {
+
+  if (!value) {
+
+    return "Never";
+
+  }
+
+  const date =
+
+    new Date(value);
+
+  const today =
+
+    new Date();
+
+  const isToday =
+
+    date.toDateString() ===
+
+    today.toDateString();
+
+  if (isToday) {
+
+    return "Today";
+
+  }
+
+  return date.toLocaleDateString(
+
+    undefined,
+
+    {
+
+      month: "short",
+
+      day: "numeric",
+
+    },
+
+  );
+
+}
+
 export default function StatisticsGrid({
 
   project,
@@ -14,6 +58,24 @@ export default function StatisticsGrid({
 
   }
 
+  const animationCount =
+
+    project.animations?.length ||
+
+    0;
+
+  const componentCount =
+
+    project.components?.length ||
+
+    0;
+
+  const tagCount =
+
+    project.tags?.length ||
+
+    0;
+
   return (
 
     <section className="statistics-grid">
@@ -24,7 +86,11 @@ export default function StatisticsGrid({
 
         title="Animations"
 
-        value="0"
+        value={
+
+          animationCount
+
+        }
 
       />
 
@@ -34,7 +100,11 @@ export default function StatisticsGrid({
 
         title="Components"
 
-        value="0"
+        value={
+
+          componentCount
+
+        }
 
       />
 
@@ -46,7 +116,7 @@ export default function StatisticsGrid({
 
         value={
 
-          project.tags?.length || 0
+          tagCount
 
         }
 
@@ -58,7 +128,15 @@ export default function StatisticsGrid({
 
         title="Last Opened"
 
-        value="Today"
+        value={
+
+          formatLastOpened(
+
+            project.lastOpened,
+
+          )
+
+        }
 
       />
 
