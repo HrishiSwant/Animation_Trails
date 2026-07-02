@@ -223,17 +223,31 @@ const sortedProjects =
 
           </span>
 
-          <span>
+          <span className="project-switcher-current">
 
-            {
+  {
 
-              activeProject?.name ||
+    activeProject?.favorite && (
 
-              "No Project"
+      <span className="project-favorite-current">
 
-            }
+        ⭐
 
-          </span>
+      </span>
+
+    )
+
+  }
+
+  {
+
+    activeProject?.name ||
+
+    "No Project"
+
+  }
+
+</span>
 
         </button>
 
@@ -431,15 +445,37 @@ const sortedProjects =
 
   >
 
+    <>
+  <span>
+
     {
 
       project.favorite
 
-        ? "★ Unfavorite"
+        ? "★"
 
-        : "☆ Favorite"
+        : "☆"
 
     }
+
+  </span>
+
+  <span>
+
+    {
+
+      project.favorite
+
+        ? " Remove Favorite"
+
+        : " Add Favorite"
+
+    }
+
+  </span>
+</>
+
+
 
   </button>
 
