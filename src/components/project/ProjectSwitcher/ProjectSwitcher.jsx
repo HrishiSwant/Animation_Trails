@@ -151,6 +151,43 @@ const {
     setIsCreatorOpen(true);
 
   }
+  /*
+==========================
+    SORT PROJECTS
+==========================
+*/
+
+const sortedProjects =
+
+  [...projects].sort(
+
+    (a, b) => {
+
+      if (
+
+        a.favorite !==
+
+        b.favorite
+
+      ) {
+
+        return a.favorite
+
+          ? -1
+
+          : 1;
+
+      }
+
+      return a.name.localeCompare(
+
+        b.name,
+
+      );
+
+    },
+
+  );
 
   return (
 
@@ -293,38 +330,6 @@ const {
 
 
                         </button>
-
-                        const sortedProjects =
-
-  [...projects].sort(
-
-    (a, b) => {
-
-      if (
-
-        a.favorite !==
-
-        b.favorite
-
-      ) {
-
-        return a.favorite
-
-          ? -1
-
-          : 1;
-
-      }
-
-      return a.name.localeCompare(
-
-        b.name,
-
-      );
-
-    },
-
-  );
 
                         <button
 
