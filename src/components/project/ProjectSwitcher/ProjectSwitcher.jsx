@@ -137,31 +137,17 @@ export default function ProjectSwitcher() {
 
         onClick={() =>
 
-          setOpen(
-
-            value => !value,
-
-          )
+          setOpen(value => !value,)
 
         }
 
       >
 
-        <span>
-
-          ▼
-
-        </span>
+        <span>▼</span>
 
         <span>
 
-          {
-
-            activeProject?.name ||
-
-            "No Project"
-
-          }
+          {activeProject?.name ||"No Project"}
 
         </span>
 
@@ -185,9 +171,7 @@ export default function ProjectSwitcher() {
 
               ) : (
 
-                projects.map(
-
-                  project => (
+                projects.map(project => (
 
                     <button
 
@@ -195,9 +179,7 @@ export default function ProjectSwitcher() {
 
                       className={
 
-                        project.id ===
-
-                        activeProject?.id
+                        project.id ===activeProject?.id
 
                           ? "project-item active"
 
@@ -207,11 +189,7 @@ export default function ProjectSwitcher() {
 
                       onClick={() =>
 
-                        handleProjectClick(
-
-                          project,
-
-                        )
+                        handleProjectClick(project)
 
                       }
 
@@ -221,9 +199,7 @@ export default function ProjectSwitcher() {
 
                         {
 
-                          project.id ===
-
-                          activeProject?.id
+                          project.id ===activeProject?.id
 
                             ? "✔ "
 
@@ -237,9 +213,7 @@ export default function ProjectSwitcher() {
 
                     </button>
 
-                  ),
-
-                )
+                  ))
 
               )
 
