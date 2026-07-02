@@ -33,6 +33,22 @@ export default function ProjectSettings({
 
   const [
 
+  initialForm,
+
+  setInitialForm,
+
+] = useState(null);
+
+const [
+
+  error,
+
+  setError,
+
+] = useState("");
+
+  const [
+
     visible,
 
     setVisible,
@@ -115,25 +131,41 @@ export default function ProjectSettings({
 
     setForm({
 
-      description:
+      const data = {
 
-        project.description || "",
+  description:
 
-      icon:
+    project.description || "",
 
-        project.icon,
+  icon:
 
-      color:
+    project.icon,
 
-        project.color,
+  color:
 
-      tags:
+    project.color,
 
-        project.tags || [],
+  tags:
 
-      favorite:
+    project.tags || [],
 
-        project.favorite,
+  favorite:
+
+    project.favorite,
+
+};
+
+setForm(data);
+
+setInitialForm(data);
+
+setError("");
+
+requestAnimationFrame(() => {
+
+  descriptionRef.current?.focus();
+
+});
 
     });
 
@@ -150,6 +182,56 @@ export default function ProjectSettings({
     project,
 
   ]);
+
+/*
+==========================
+    VALIDATION
+==========================
+*/
+
+function validate() {
+
+  if (
+
+    form.description.length >
+
+    500
+
+  ) {
+
+    return "Description cannot exceed 500 characters.";
+
+  }
+
+  return "";
+
+}
+
+useEffect(() => {
+
+  if (!form) {
+
+    return;
+
+  }
+
+  setError(
+
+    validate(),
+
+  );
+
+}, [
+
+  form,
+
+]);
+
+const hasChanges =
+
+  JSON.stringify(form) !==
+
+  JSON.stringify(initialForm);
 
   /*
   ==========================
@@ -175,13 +257,41 @@ export default function ProjectSettings({
   ==========================
   */
 
-  function handleSave() {
+function handleSave() {
 
-    onSave(form);
+  const validation =
+
+    validate();
+
+  if (validation) {
+
+    setError(
+
+      validation,
+
+    );
+
+    return;
+
+  }
+
+  if (!hasChanges) {
 
     handleClose();
 
+    return;
+
   }
+
+  onSave(
+
+    form,
+
+  );
+
+  handleClose();
+
+}
 
   /*
   ==========================
@@ -191,77 +301,43 @@ export default function ProjectSettings({
 
   function handleKeyDown(
 
-    event,
+  event,
+
+) {
+
+  if (
+
+    event.key ===
+
+    "Escape"
 
   ) {
 
-    if (
+    event.preventDefault();
 
-      event.key ===
+    handleClose();
 
-      "Escape"
-
-    ) {
-
-      handleClose();
-
-    }
+    return;
 
   }
 
   if (
 
-    !mounted ||
+    (event.ctrlKey ||
 
-    !form ||
+      event.metaKey) &&
 
-    !project
+    event.key === "s"
 
   ) {
 
-    return null;
+    event.preventDefault();
+
+    handleSave();
 
   }
 
-  return (
-
-    <div
-
-      className={
-
-        visible
-
-          ? "project-settings-overlay open"
-
-          : "project-settings-overlay"
-
-      }
-
-      onClick={handleClose}
-
-    >
-
-      <div
-
-        className={
-
-          visible
-
-            ? "project-settings open"
-
-            : "project-settings"
-
-        }
-
-        onClick={event =>
-
-          event.stopPropagation()
-
-        }
-
-        onKeyDown={handleKeyDown}
-
-      >
+}
 
         {/* ==========================
             HEADER
@@ -338,6 +414,31 @@ export default function ProjectSettings({
                 }
 
               />
+
+              <div className="settings-counter">
+
+  {
+
+    form.description.length
+
+  }
+
+  /500
+
+</div>
+              {
+
+  error && (
+
+    <div className="settings-error">
+
+      {error}
+
+    </div>
+
+  )
+
+}
 
             </div>
 
@@ -583,11 +684,19 @@ export default function ProjectSettings({
 
           <button
 
-            className="create-btn"
+  className="create-btn"
 
-            onClick={handleSave}
+  onClick={handleSave}
 
-          >
+  disabled={
+
+    !!error ||
+
+    !hasChanges
+
+  }
+
+>
 
             Save Changes
 
