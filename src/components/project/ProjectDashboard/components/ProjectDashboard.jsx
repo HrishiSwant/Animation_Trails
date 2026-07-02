@@ -6,6 +6,7 @@ import useProject from "../../../hooks/project/useProject";
 
 import DashboardHeader from "./components/DashboardHeader";
 import ProjectRename from "../ProjectRename/ProjectRename";
+import StatisticsGrid from "./components/StatisticsGrid";
 
 export default function ProjectDashboard() {
 
