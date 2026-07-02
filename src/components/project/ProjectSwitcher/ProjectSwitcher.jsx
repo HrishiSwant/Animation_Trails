@@ -44,17 +44,23 @@ export default function ProjectSwitcher() {
 
     useRef(null);
 
-  const {
+const {
 
-    projects,
+  projects,
 
-    activeProject,
+  activeProject,
 
-    openProject,
+  openProject,
 
-    renameProject: renameProjectAction,
+  renameProject: renameProjectAction,
 
-  } = useProject();
+  duplicateProject,
+
+  deleteProject,
+
+  updateProject,
+
+} = useProject();
 
   /*
   ==========================
@@ -306,43 +312,121 @@ export default function ProjectSwitcher() {
 
                             project.id && (
 
-                            <div className="project-menu">
+                           <div className="project-menu">
 
-                              <button
+  <button
 
-                                onClick={() => {
+    onClick={() => {
 
-                                  setRenameProject(project);
+      setRenameProject(project);
 
-                                  setMenuProjectId(null);
+      setMenuProjectId(null);
 
-                                  }}
+    }}
 
-                                >
+  >
 
-                                Rename
+    Rename
 
-                                </button>
+  </button>
 
-                              <button>
+  <button
 
-                                Duplicate
+    onClick={() => {
 
-                              </button>
+      duplicateProject(
 
-                              <button>
+        project.id,
 
-                                Favorite
+      );
 
-                              </button>
+      setMenuProjectId(null);
 
-                              <button className="danger">
+      setOpen(false);
 
-                                Delete
+    }}
 
-                              </button>
+  >
 
-                            </div>
+    Duplicate
+
+  </button>
+
+  <button
+
+    onClick={() => {
+
+      updateProject(
+
+        project.id,
+
+        {
+
+          favorite:
+
+            !project.favorite,
+
+        },
+
+      );
+
+      setMenuProjectId(null);
+
+    }}
+
+  >
+
+    {
+
+      project.favorite
+
+        ? "★ Unfavorite"
+
+        : "☆ Favorite"
+
+    }
+
+  </button>
+
+  <button
+
+    className="danger"
+
+    onClick={() => {
+
+      const confirmed =
+
+        window.confirm(
+
+          `Delete "${project.name}"?`,
+
+        );
+
+      if (!confirmed) {
+
+        return;
+
+      }
+
+      deleteProject(
+
+        project.id,
+
+      );
+
+      setMenuProjectId(null);
+
+      setOpen(false);
+
+    }}
+
+  >
+
+    Delete
+
+  </button>
+
+</div>
 
                           )
 
