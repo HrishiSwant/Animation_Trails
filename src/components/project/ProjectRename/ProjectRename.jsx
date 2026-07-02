@@ -1,11 +1,7 @@
 import {
-
   useEffect,
-
   useRef,
-
   useState,
-
 } from "react";
 
 import "./ProjectRename.css";
@@ -15,6 +11,8 @@ export default function ProjectRename({
   open,
 
   project,
+
+  projects = [],
 
   onRename,
 
@@ -30,9 +28,23 @@ export default function ProjectRename({
 
   ] = useState("");
 
+  const [
+
+    error,
+
+    setError,
+
+  ] = useState("");
+
   const inputRef =
 
     useRef(null);
+
+  /*
+  ==========================
+      RESET / AUTO FOCUS
+  ==========================
+  */
 
   useEffect(() => {
 
@@ -54,6 +66,8 @@ export default function ProjectRename({
 
     );
 
+    setError("");
+
     requestAnimationFrame(() => {
 
       inputRef.current?.focus();
@@ -70,7 +84,51 @@ export default function ProjectRename({
 
   ]);
 
-  function handleSave() {
+  /*
+  ==========================
+      LIVE VALIDATION
+  ==========================
+  */
+
+  useEffect(() => {
+
+    if (
+
+      !open ||
+
+      !project
+
+    ) {
+
+      return;
+
+    }
+
+    setError(
+
+      validate(),
+
+    );
+
+  }, [
+
+    value,
+
+    open,
+
+    project,
+
+    projects,
+
+  ]);
+
+  /*
+  ==========================
+      VALIDATE
+  ==========================
+  */
+
+  function validate() {
 
     const name =
 
@@ -78,15 +136,103 @@ export default function ProjectRename({
 
     if (!name) {
 
-      inputRef.current?.focus();
+      return "Project name is required.";
+
+    }
+
+    if (
+
+      name.length > 60
+
+    ) {
+
+      return "Maximum 60 characters.";
+
+    }
+
+    const duplicate =
+
+      projects.some(
+
+        item =>
+
+          item.id !== project.id &&
+
+          item.name
+
+            .trim()
+
+            .toLowerCase() ===
+
+          name.toLowerCase(),
+
+      );
+
+    if (duplicate) {
+
+      return "A project with this name already exists.";
+
+    }
+
+    return "";
+
+  }
+
+  /*
+  ==========================
+      SAVE
+  ==========================
+  */
+
+  function handleSave() {
+
+    const validation =
+
+      validate();
+
+    if (validation) {
+
+      setError(
+
+        validation,
+
+      );
 
       return;
 
     }
 
-    onRename(name);
+    const name =
+
+      value.trim();
+
+    if (
+
+      name ===
+
+      project.name
+
+    ) {
+
+      onClose();
+
+      return;
+
+    }
+
+    onRename(
+
+      name,
+
+    );
 
   }
+
+  /*
+  ==========================
+      KEYBOARD
+  ==========================
+  */
 
   function handleKeyDown(
 
@@ -103,6 +249,8 @@ export default function ProjectRename({
     ) {
 
       onClose();
+
+      return;
 
     }
 
@@ -196,6 +344,20 @@ export default function ProjectRename({
 
           />
 
+          {
+
+            error && (
+
+              <div className="rename-error">
+
+                {error}
+
+              </div>
+
+            )
+
+          }
+
         </div>
 
         <div className="project-rename-footer">
@@ -216,7 +378,7 @@ export default function ProjectRename({
 
             disabled={
 
-              !value.trim()
+              !!error
 
             }
 
