@@ -1,3 +1,5 @@
+import "./FavoriteToggle.css";
+
 export default function FavoriteToggle({
 
   value,
