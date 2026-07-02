@@ -1,6 +1,6 @@
 .project-creator-overlay{
 
-  position:relative;
+  position:fixed;
 
   inset:0;
 
@@ -10,13 +10,15 @@
 
   align-items:center;
 
+  padding:24px;
+
   background:rgba(0,0,0,.45);
 
-  opacity:0;
+  z-index:9999;
+
+    opacity:0;
 
   transition:opacity .18s ease;
-
-  z-index:9999;
 
 }
 
@@ -48,6 +50,18 @@
 
   border:1px solid var(--color-border);
 
+  overflow:hidden;
+
+  opacity:0;
+
+  transform:
+    translateY(16px)
+    scale(.96);
+
+  transition:
+    opacity .18s ease,
+    transform .18s ease;
+
 }
 
 .project-creator-header{
@@ -59,6 +73,18 @@
 .project-creator-footer{
 
   flex-shrink:0;
+
+  display:flex;
+
+  justify-content:flex-end;
+
+  gap:12px;
+
+  padding:18px 22px;
+
+  border-top:1px solid var(--color-border);
+
+  background:var(--color-surface);
 
 }
 
