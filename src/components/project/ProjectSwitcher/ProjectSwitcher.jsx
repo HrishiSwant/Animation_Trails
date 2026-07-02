@@ -427,19 +427,21 @@ const sortedProjects =
 
       updateProject(
 
-        project.id,
+  project.id,
 
-        {
+  {
 
-          favorite:
+    favorite:
 
-            !project.favorite,
+      !project.favorite,
 
-        },
+  },
 
-      );
+);
 
       setMenuProjectId(null);
+
+      setOpen(false);
 
     }}
 
