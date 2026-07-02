@@ -40,6 +40,10 @@ export default function ProjectRename({
 
     useRef(null);
 
+  const dialogRef =
+
+    useRef(null);
+
   /*
   ==========================
       RESET / AUTO FOCUS
@@ -124,6 +128,124 @@ export default function ProjectRename({
 
   /*
   ==========================
+      FOCUS TRAP
+  ==========================
+  */
+
+  useEffect(() => {
+
+    if (!open) {
+
+      return;
+
+    }
+
+    function handleTab(
+
+      event,
+
+    ) {
+
+      if (
+
+        event.key !==
+
+        "Tab"
+
+      ) {
+
+        return;
+
+      }
+
+      const focusable =
+
+        dialogRef.current?.querySelectorAll(
+
+          "input, button",
+
+        );
+
+      if (
+
+        !focusable ||
+
+        focusable.length === 0
+
+      ) {
+
+        return;
+
+      }
+
+      const first =
+
+        focusable[0];
+
+      const last =
+
+        focusable[
+
+          focusable.length - 1
+
+        ];
+
+      if (
+
+        event.shiftKey &&
+
+        document.activeElement === first
+
+      ) {
+
+        event.preventDefault();
+
+        last.focus();
+
+      }
+
+      if (
+
+        !event.shiftKey &&
+
+        document.activeElement === last
+
+      ) {
+
+        event.preventDefault();
+
+        first.focus();
+
+      }
+
+    }
+
+    document.addEventListener(
+
+      "keydown",
+
+      handleTab,
+
+    );
+
+    return () =>
+
+      document.removeEventListener(
+
+        "keydown",
+
+        handleTab,
+
+      );
+
+  }, [
+
+    open,
+
+  ]);
+
+  /*
+  ==========================
       VALIDATE
   ==========================
   */
@@ -198,6 +320,8 @@ export default function ProjectRename({
 
       );
 
+      inputRef.current?.focus();
+
       return;
 
     }
@@ -240,29 +364,31 @@ export default function ProjectRename({
 
   ) {
 
-    if (
+    switch (
 
-      event.key ===
-
-      "Escape"
+      event.key
 
     ) {
 
-      onClose();
+      case "Escape":
 
-      return;
+        event.preventDefault();
 
-    }
+        onClose();
 
-    if (
+        break;
 
-      event.key ===
+      case "Enter":
 
-      "Enter"
+        event.preventDefault();
 
-    ) {
+        handleSave();
 
-      handleSave();
+        break;
+
+      default:
+
+        break;
 
     }
 
@@ -292,7 +418,15 @@ export default function ProjectRename({
 
       <div
 
+        ref={dialogRef}
+
         className="project-rename"
+
+        role="dialog"
+
+        aria-modal="true"
+
+        aria-labelledby="rename-project-title"
 
         onClick={event =>
 
@@ -304,7 +438,7 @@ export default function ProjectRename({
 
         <div className="project-rename-header">
 
-          <h3>
+          <h3 id="rename-project-title">
 
             Rename Project
 
@@ -323,6 +457,14 @@ export default function ProjectRename({
           <input
 
             ref={inputRef}
+
+            type="text"
+
+            autoComplete="off"
+
+            spellCheck={false}
+
+            aria-label="Project name"
 
             value={value}
 
@@ -364,6 +506,8 @@ export default function ProjectRename({
 
           <button
 
+            type="button"
+
             onClick={onClose}
 
           >
@@ -373,6 +517,8 @@ export default function ProjectRename({
           </button>
 
           <button
+
+            type="button"
 
             onClick={handleSave}
 
