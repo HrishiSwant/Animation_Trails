@@ -50,7 +50,7 @@
 
   border-radius:12px;
 
-  overflow:hidden;
+  overflow:visible;
 
   z-index:100;
 
@@ -122,9 +122,11 @@
 
   background:
 
-  var(--color-surface-hover);
+    var(--color-surface-hover);
 
-  .project-empty{
+}
+
+.project-empty{
 
   padding:16px;
 
@@ -133,8 +135,6 @@
   color:var(--color-text-secondary);
 
   font-size:.9rem;
-
-}
 
 }
 
@@ -222,9 +222,9 @@
 
   position:absolute;
 
-  top:100%;
+  top:6px;
 
-  right:0;
+  right:-186px;
 
   width:180px;
 
@@ -242,9 +242,9 @@
 
   box-shadow:
 
-    0 10px 24px rgba(0,0,0,.22);
+    0 12px 28px rgba(0,0,0,.22);
 
-  z-index:100;
+  z-index:999;
 
 }
 
