@@ -155,3 +155,125 @@
   opacity:.95;
 
 }
+
+/*
+==========================
+    PROJECT ROW
+==========================
+*/
+
+.project-row{
+
+  position:relative;
+
+  display:flex;
+
+  align-items:center;
+
+}
+
+.project-item{
+
+  flex:1;
+
+}
+
+/*
+==========================
+    MENU BUTTON
+==========================
+*/
+
+.project-menu-button{
+
+  width:32px;
+
+  height:32px;
+
+  border:none;
+
+  background:none;
+
+  color:var(--color-text-secondary);
+
+  cursor:pointer;
+
+  border-radius:8px;
+
+  transition:.18s;
+
+}
+
+.project-menu-button:hover{
+
+  background:var(--color-surface-hover);
+
+  color:var(--color-text);
+
+}
+
+/*
+==========================
+    MENU
+==========================
+*/
+
+.project-menu{
+
+  position:absolute;
+
+  top:100%;
+
+  right:0;
+
+  width:180px;
+
+  display:flex;
+
+  flex-direction:column;
+
+  padding:6px;
+
+  background:var(--color-surface);
+
+  border:1px solid var(--color-border);
+
+  border-radius:10px;
+
+  box-shadow:
+
+    0 10px 24px rgba(0,0,0,.22);
+
+  z-index:100;
+
+}
+
+.project-menu button{
+
+  border:none;
+
+  background:none;
+
+  text-align:left;
+
+  padding:10px 12px;
+
+  border-radius:8px;
+
+  cursor:pointer;
+
+  color:var(--color-text);
+
+}
+
+.project-menu button:hover{
+
+  background:var(--color-surface-hover);
+
+}
+
+.project-menu .danger{
+
+  color:#ef4444;
+
+}
