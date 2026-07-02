@@ -1,0 +1,121 @@
+.project-delete-overlay{
+
+  position:fixed;
+
+  inset:0;
+
+  display:flex;
+
+  justify-content:center;
+
+  align-items:center;
+
+  background:rgba(0,0,0,.45);
+
+  opacity:0;
+
+  transition:.18s;
+
+  z-index:12000;
+
+}
+
+.project-delete-overlay.open{
+
+  opacity:1;
+
+}
+
+.project-delete{
+
+  width:420px;
+
+  background:var(--color-surface);
+
+  border:1px solid var(--color-border);
+
+  border-radius:14px;
+
+  transform:
+
+    translateY(16px)
+
+    scale(.96);
+
+  opacity:0;
+
+  transition:.18s;
+
+}
+
+.project-delete.open{
+
+  transform:
+
+    translateY(0)
+
+    scale(1);
+
+  opacity:1;
+
+}
+
+.project-delete-header{
+
+  padding:18px 22px;
+
+  border-bottom:1px solid var(--color-border);
+
+}
+
+.project-delete-body{
+
+  padding:22px;
+
+}
+
+.project-delete-body p{
+
+  margin:0 0 10px;
+
+}
+
+.project-delete-body small{
+
+  color:var(--color-text-secondary);
+
+}
+
+.project-delete-footer{
+
+  display:flex;
+
+  justify-content:flex-end;
+
+  gap:10px;
+
+  padding:18px 22px;
+
+  border-top:1px solid var(--color-border);
+
+}
+
+.project-delete-footer button{
+
+  padding:10px 18px;
+
+  border:none;
+
+  border-radius:8px;
+
+  cursor:pointer;
+
+}
+
+.project-delete-footer .danger{
+
+  background:#ef4444;
+
+  color:white;
+
+}
