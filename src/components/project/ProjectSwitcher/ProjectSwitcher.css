@@ -334,3 +334,26 @@
   }
 
 }
+/*
+==========================
+    ACTIVE FAVORITE
+==========================
+*/
+
+.project-switcher-current{
+
+  display:flex;
+
+  align-items:center;
+
+  gap:6px;
+
+}
+
+.project-favorite-current{
+
+  animation:
+
+    favoriteGlow .25s ease;
+
+}
