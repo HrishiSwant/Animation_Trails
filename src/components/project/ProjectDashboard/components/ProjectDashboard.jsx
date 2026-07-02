@@ -5,8 +5,10 @@ import "./ProjectDashboard.css";
 import useProject from "../../../hooks/project/useProject";
 
 import DashboardHeader from "./components/DashboardHeader";
-import ProjectRename from "../ProjectRename/ProjectRename";
 import StatisticsGrid from "./components/StatisticsGrid";
+
+import ProjectRename from "../ProjectRename/ProjectRename";
+import ProjectSettings from "../ProjectSettings/ProjectSettings";
 
 export default function ProjectDashboard() {
 
@@ -15,6 +17,14 @@ export default function ProjectDashboard() {
     renameOpen,
 
     setRenameOpen,
+
+  ] = useState(false);
+
+  const [
+
+    settingsOpen,
+
+    setSettingsOpen,
 
   ] = useState(false);
 
@@ -84,17 +94,23 @@ export default function ProjectDashboard() {
 
           onSettings={() =>
 
-            alert(
-
-              "Project Settings will be added in D-1.5",
-
-            )
+            setSettingsOpen(true)
 
           }
 
         />
 
+        <StatisticsGrid
+
+          project={activeProject}
+
+        />
+
       </div>
+
+      {/* ==========================
+          Rename
+      ========================== */}
 
       <ProjectRename
 
@@ -121,6 +137,36 @@ export default function ProjectDashboard() {
           );
 
           setRenameOpen(false);
+
+        }}
+
+      />
+
+      {/* ==========================
+          Settings
+      ========================== */}
+
+      <ProjectSettings
+
+        open={settingsOpen}
+
+        project={activeProject}
+
+        onClose={() =>
+
+          setSettingsOpen(false)
+
+        }
+
+        onSave={updates => {
+
+          updateProject(
+
+            activeProject.id,
+
+            updates,
+
+          );
 
         }}
 
