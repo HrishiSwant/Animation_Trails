@@ -286,35 +286,7 @@ function handleKeyDown(
 
   event,
 
-)
-useEffect(() => {
-
-  if (open) {
-
-    setMounted(true);
-
-    return;
-
-  }
-
-  const timer =
-
-    setTimeout(() => {
-
-      setMounted(false);
-
-    }, 180);
-
-  return () =>
-
-    clearTimeout(timer);
-
-}, [
-
-  open,
-
-]);
-{
+) {
 
   if (
 
@@ -357,6 +329,13 @@ useEffect(() => {
   }
 
 }
+
+/*
+==========================
+    MOUNT / UNMOUNT
+==========================
+*/
+
 useEffect(() => {
 
   if (open) {
@@ -390,7 +369,6 @@ if (!mounted) {
   return null;
 
 }
-
   return (
 
     <div
