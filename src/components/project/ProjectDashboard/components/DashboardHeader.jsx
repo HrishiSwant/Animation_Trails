@@ -1,3 +1,4 @@
+import DashboardActions from "./DashboardActions";
 import "./ProjectDashboard.css";
 
 function formatDate(value) {
@@ -8,29 +9,35 @@ function formatDate(value) {
 
   }
 
-  return new Date(value)
+  return new Date(value).toLocaleDateString(
 
-    .toLocaleDateString(
+    undefined,
 
-      undefined,
+    {
 
-      {
+      year: "numeric",
 
-        year: "numeric",
+      month: "short",
 
-        month: "short",
+      day: "numeric",
 
-        day: "numeric",
+    },
 
-      },
-
-    );
+  );
 
 }
 
 export default function DashboardHeader({
 
   project,
+
+  onRename,
+
+  onDuplicate,
+
+  onFavorite,
+
+  onSettings,
 
 }) {
 
@@ -80,7 +87,9 @@ export default function DashboardHeader({
 
               "Blank"
 
-            } Template
+            }{" "}
+
+            Template
 
           </p>
 
@@ -189,6 +198,20 @@ export default function DashboardHeader({
           )
 
         }
+
+        <DashboardActions
+
+          project={project}
+
+          onRename={onRename}
+
+          onDuplicate={onDuplicate}
+
+          onFavorite={onFavorite}
+
+          onSettings={onSettings}
+
+        />
 
       </div>
 
