@@ -10,9 +10,19 @@
 
   align-items:center;
 
-  background:rgba(0,0,0,.4);
+  background:rgba(0,0,0,.45);
+
+  opacity:0;
+
+  transition:opacity .18s ease;
 
   z-index:12000;
+
+}
+
+.project-rename-overlay.open{
+
+  opacity:1;
 
 }
 
@@ -27,6 +37,76 @@
   border-radius:14px;
 
   overflow:hidden;
+
+  transform:
+
+    translateY(14px)
+
+    scale(.96);
+
+  opacity:0;
+
+  transition:
+
+    transform .18s ease,
+
+    opacity .18s ease;
+
+}
+
+.project-rename.open{
+
+  transform:
+
+    translateY(0)
+
+    scale(1);
+
+  opacity:1;
+
+}
+
+.project-rename-footer button{
+
+  padding:10px 18px;
+
+  border-radius:8px;
+
+  border:none;
+
+  cursor:pointer;
+
+  transition:.18s;
+
+}
+
+.project-rename-footer button:hover{
+
+  transform:
+
+    translateY(-1px);
+
+}
+
+.project-rename-footer button:active{
+
+  transform:
+
+    scale(.97);
+
+}
+
+.project-rename-footer button:last-child{
+
+  background:var(--color-accent);
+
+  color:white;
+
+}
+
+.project-rename-footer button:first-child{
+
+  background:var(--color-surface-hover);
 
 }
 
@@ -79,5 +159,74 @@
   padding:18px 20px;
 
   border-top:1px solid var(--color-border);
+
+}
+.project-rename-body input{
+
+  transition:
+
+    border-color .18s ease,
+
+    box-shadow .18s ease;
+
+}
+
+.project-rename-body input:focus{
+
+  border-color:
+
+    var(--color-accent);
+
+  box-shadow:
+
+    0 0 0 3px
+
+    color-mix(
+
+      in srgb,
+
+      var(--color-accent) 20%,
+
+      transparent
+
+    );
+
+}
+
+.rename-error{
+
+  margin-top:8px;
+
+  color:#ef4444;
+
+  font-size:.85rem;
+
+  animation:
+
+    renameError .16s ease;
+
+}
+
+@keyframes renameError{
+
+  from{
+
+    opacity:0;
+
+    transform:
+
+      translateY(-4px);
+
+  }
+
+  to{
+
+    opacity:1;
+
+    transform:
+
+      translateY(0);
+
+  }
 
 }
