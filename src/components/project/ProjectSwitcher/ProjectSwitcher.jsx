@@ -23,6 +23,14 @@ export default function ProjectSwitcher() {
 
   ] = useState(false);
 
+  const [
+
+    menuProjectId,
+
+    setMenuProjectId,
+
+  ] = useState(null);
+
   const wrapperRef =
 
     useRef(null);
@@ -60,6 +68,8 @@ export default function ProjectSwitcher() {
       ) {
 
         setOpen(false);
+
+        setMenuProjectId(null);
 
       }
 
@@ -105,6 +115,8 @@ export default function ProjectSwitcher() {
 
     setOpen(false);
 
+    setMenuProjectId(null);
+
   }
 
   /*
@@ -117,127 +129,235 @@ export default function ProjectSwitcher() {
 
     setOpen(false);
 
+    setMenuProjectId(null);
+
     setIsCreatorOpen(true);
 
   }
 
   return (
 
-    <div
+    <>
 
-      ref={wrapperRef}
+      <div
 
-      className="project-switcher"
+        ref={wrapperRef}
 
-    >
-
-      <button
-
-        className="project-switcher-button"
-
-        onClick={() =>
-
-          setOpen(value => !value,)
-
-        }
+        className="project-switcher"
 
       >
 
-        <span>▼</span>
+        <button
 
-        <span>
+          className="project-switcher-button"
 
-          {activeProject?.name ||"No Project"}
+          onClick={() =>
 
-        </span>
+            setOpen(
 
-      </button>
+              value => !value,
 
-      {
+            )
 
-        open && (
+          }
 
-          <div className="project-dropdown">
+        >
+
+          <span>
+
+            ▼
+
+          </span>
+
+          <span>
 
             {
 
-              projects.length === 0 ? (
+              activeProject?.name ||
 
-                <div className="project-empty">
-
-                  No Projects
-
-                </div>
-
-              ) : (
-
-                projects.map(project => (
-
-                    <button
-
-                      key={project.id}
-
-                      className={
-
-                        project.id ===activeProject?.id
-
-                          ? "project-item active"
-
-                          : "project-item"
-
-                      }
-
-                      onClick={() =>
-
-                        handleProjectClick(project)
-
-                      }
-
-                    >
-
-                      <span>
-
-                        {
-
-                          project.id ===activeProject?.id
-
-                            ? "✔ "
-
-                            : ""
-
-                        }
-
-                      </span>
-
-                      {project.name}
-
-                    </button>
-
-                  ))
-
-              )
+              "No Project"
 
             }
 
-            <div className="project-divider" />
+          </span>
 
-            <button
+        </button>
 
-              className="project-new"
+        {
 
-              onClick={handleNewProject}
+          open && (
 
-            >
+            <div className="project-dropdown">
 
-              + New Project
+              {
 
-            </button>
+                projects.length === 0 ? (
 
-          </div>
+                  <div className="project-empty">
 
-        )
+                    No Projects
 
-      }
+                  </div>
+
+                ) : (
+
+                  projects.map(
+
+                    project => (
+
+                      <div
+
+                        key={project.id}
+
+                        className="project-row"
+
+                      >
+
+                        <button
+
+                          className={
+
+                            project.id ===
+
+                            activeProject?.id
+
+                              ? "project-item active"
+
+                              : "project-item"
+
+                          }
+
+                          onClick={() =>
+
+                            handleProjectClick(
+
+                              project,
+
+                            )
+
+                          }
+
+                        >
+
+                          <span>
+
+                            {
+
+                              project.id ===
+
+                              activeProject?.id
+
+                                ? "✔ "
+
+                                : ""
+
+                            }
+
+                          </span>
+
+                          {project.name}
+
+                        </button>
+
+                        <button
+
+                          type="button"
+
+                          className="project-menu-button"
+
+                          onClick={event => {
+
+                            event.stopPropagation();
+
+                            setMenuProjectId(
+
+                              menuProjectId ===
+
+                              project.id
+
+                                ? null
+
+                                : project.id,
+
+                            );
+
+                          }}
+
+                        >
+
+                          ⋮
+
+                        </button>
+
+                        {
+
+                          menuProjectId ===
+
+                            project.id && (
+
+                            <div className="project-menu">
+
+                              <button>
+
+                                Rename
+
+                              </button>
+
+                              <button>
+
+                                Duplicate
+
+                              </button>
+
+                              <button>
+
+                                Favorite
+
+                              </button>
+
+                              <button className="danger">
+
+                                Delete
+
+                              </button>
+
+                            </div>
+
+                          )
+
+                        }
+
+                      </div>
+
+                    ),
+
+                  )
+
+                )
+
+              }
+
+              <div className="project-divider" />
+
+              <button
+
+                className="project-new"
+
+                onClick={handleNewProject}
+
+              >
+
+                + New Project
+
+              </button>
+
+            </div>
+
+          )
+
+        }
+
+      </div>
 
       <ProjectCreator
 
@@ -251,7 +371,7 @@ export default function ProjectSwitcher() {
 
       />
 
-    </div>
+    </>
 
   );
 
