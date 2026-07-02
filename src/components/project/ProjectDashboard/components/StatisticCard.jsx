@@ -1,5 +1,6 @@
-import AnimatedCounter from "./AnimatedCounter";
 import "../ProjectDashboard.css";
+
+import AnimatedCounter from "./AnimatedCounter";
 
 export default function StatisticCard({
 
@@ -9,11 +10,25 @@ export default function StatisticCard({
 
   value,
 
+  index = 0,
+
 }) {
 
   return (
 
-    <div className="stat-card">
+    <div
+
+      className="stat-card"
+
+      style={{
+
+        animationDelay:
+
+          `${index * 80}ms`,
+
+      }}
+
+    >
 
       <div className="stat-icon">
 
@@ -29,29 +44,29 @@ export default function StatisticCard({
 
         </h4>
 
-       <p>
+        <p>
 
-  {
+          {
 
-    typeof value ===
+            typeof value ===
 
-    "number"
+            "number"
 
-      ? (
+              ? (
 
-        <AnimatedCounter
+                <AnimatedCounter
 
-          value={value}
+                  value={value}
 
-        />
+                />
 
-      )
+              )
 
-      : value
+              : value
 
-  }
+          }
 
-</p>
+        </p>
 
       </div>
 
