@@ -258,21 +258,39 @@ const {
 
                           <span>
 
-                            {
+  {
 
-                              project.id ===
+    project.id === activeProject?.id
 
-                              activeProject?.id
+      ? "✔ "
 
-                                ? "✔ "
+      : ""
 
-                                : ""
+  }
 
-                            }
+</span>
 
-                          </span>
+{
 
-                          {project.name}
+  project.favorite && (
+
+    <span className="project-favorite">
+
+      ⭐
+
+    </span>
+
+  )
+
+}
+
+<span className="project-name">
+
+  {project.name}
+
+</span>
+
+
 
                         </button>
 
