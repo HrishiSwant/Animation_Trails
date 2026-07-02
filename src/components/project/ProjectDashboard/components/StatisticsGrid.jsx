@@ -82,63 +82,59 @@ export default function StatisticsGrid({
 
       <StatisticCard
 
-        icon="🎬"
+  index={0}
 
-        title="Animations"
+  icon="🎬"
 
-        value={
+  title="Animations"
 
-          animationCount
+  value={animationCount}
 
-        }
+/>
 
-      />
+<StatisticCard
 
-      <StatisticCard
+  index={1}
 
-        icon="🧩"
+  icon="🧩"
 
-        title="Components"
+  title="Components"
 
-        value={
+  value={componentCount}
 
-          componentCount
+/>
 
-        }
+<StatisticCard
 
-      />
+  index={2}
 
-      <StatisticCard
+  icon="🏷"
 
-        icon="🏷"
+  title="Tags"
 
-        title="Tags"
+  value={tagCount}
 
-        value={
+/>
 
-          tagCount
+<StatisticCard
 
-        }
+  index={3}
 
-      />
+  icon="🕒"
 
-      <StatisticCard
+  title="Last Opened"
 
-        icon="🕒"
+  value={
 
-        title="Last Opened"
+    formatLastOpened(
 
-        value={
+      project.lastOpened,
 
-          formatLastOpened(
+    )
 
-            project.lastOpened,
+  }
 
-          )
-
-        }
-
-      />
+/>
 
     </section>
 
