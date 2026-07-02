@@ -1,3 +1,5 @@
+import "./ColorPicker.css";
+
 const colors = [
 
   "#6b7280",
