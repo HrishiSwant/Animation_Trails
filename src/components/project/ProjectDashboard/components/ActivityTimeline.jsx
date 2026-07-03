@@ -8,6 +8,18 @@ export default function ActivityTimeline({
 
 }) {
 
+  const sortedActivities =
+
+    [...activities].sort(
+
+      (a, b) =>
+
+        b.createdAt -
+
+        a.createdAt,
+
+    );
+
   return (
 
     <section className="activity-timeline">
@@ -20,11 +32,21 @@ export default function ActivityTimeline({
 
         </h2>
 
+        <span className="activity-count">
+
+          {
+
+            sortedActivities.length
+
+          }
+
+        </span>
+
       </div>
 
       {
 
-        activities.length === 0 ? (
+        sortedActivities.length === 0 ? (
 
           <div className="activity-empty">
 
@@ -50,27 +72,39 @@ export default function ActivityTimeline({
 
         ) : (
 
-          activities.map(
+          <div className="activity-list">
 
-            activity => (
+            {
 
-              <ActivityItem
+              sortedActivities.map(
 
-                key={activity.id}
+                activity => (
 
-                icon={activity.icon}
+                  <ActivityItem
 
-                title={activity.title}
+                    key={activity.id}
 
-                description={activity.description}
+                    icon={activity.icon}
 
-                time={activity.time}
+                    title={activity.title}
 
-              />
+                    description={activity.description}
 
-            ),
+                    time={
 
-          )
+                      activity.createdAt
+
+                    }
+
+                  />
+
+                ),
+
+              )
+
+            }
+
+          </div>
 
         )
 
