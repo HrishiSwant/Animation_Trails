@@ -20,11 +20,13 @@ export default function DashboardWidget({
 
   emptyText = "Nothing here yet.",
 
+  variant = "default",
+
 }) {
 
   return (
 
-    <section className="dashboard-widget">
+    <section className={`dashboard-widget dashboard-widget-${variant}`}>
 
       <header className="dashboard-widget-header">
 
