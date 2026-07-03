@@ -6,7 +6,7 @@ import {
 
 } from "react";
 
-import "../ProjectDashboard.css";
+import "./ProjectDashboard.css";
 
 function formatTime(
 
@@ -104,17 +104,11 @@ function formatTime(
 
     {
 
-      year:
+      year: "numeric",
 
-        "numeric",
+      month: "short",
 
-      month:
-
-        "short",
-
-      day:
-
-        "numeric",
+      day: "numeric",
 
     },
 
@@ -134,65 +128,65 @@ export default function ActivityItem({
 
   time,
 
-}) 
+}) {
 
   const [
 
-  relativeTime,
+    relativeTime,
 
-  setRelativeTime,
+    setRelativeTime,
 
-] = useState(
+  ] = useState(
 
-  formatTime(
+    formatTime(
+
+      time,
+
+    ),
+
+  );
+
+  useEffect(() => {
+
+    function update() {
+
+      setRelativeTime(
+
+        formatTime(
+
+          time,
+
+        ),
+
+      );
+
+    }
+
+    update();
+
+    const timer =
+
+      setInterval(
+
+        update,
+
+        60000,
+
+      );
+
+    return () =>
+
+      clearInterval(
+
+        timer,
+
+      );
+
+  }, [
 
     time,
 
-  ),
-
-);
-
-useEffect(() => {
-
-  const update = () =>
-
-    setRelativeTime(
-
-      formatTime(
-
-        time,
-
-      ),
-
-    );
-
-  update();
-
-  const timer =
-
-    setInterval(
-
-      update,
-
-      60000,
-
-    );
-
-  return () =>
-
-    clearInterval(
-
-      timer,
-
-    );
-
-}, [
-
-  time,
-
-]);
-
-{
+  ]);
 
   return (
 
@@ -202,15 +196,15 @@ useEffect(() => {
 
       <div
 
-  className="activity-icon"
+        className="activity-icon"
 
-  style={{
+        style={{
 
-    background: color,
+          background: color,
 
-  }}
+        }}
 
->
+      >
 
         {icon}
 
