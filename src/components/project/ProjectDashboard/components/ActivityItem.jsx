@@ -48,7 +48,19 @@ export default function ActivityItem({
 
       <div className="activity-line" />
 
-      <div className="activity-icon">
+      <div
+
+  className="activity-icon"
+
+  style={{
+
+    background:
+
+      activity.color,
+
+  }}
+
+>
 
         {icon}
 
