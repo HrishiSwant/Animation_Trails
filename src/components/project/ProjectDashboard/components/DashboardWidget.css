@@ -26,25 +26,55 @@
 
     0 8px 24px rgba(0,0,0,.08);
 
+  opacity:0;
+
+  transform:
+
+    translateY(18px)
+
+    scale(.98);
+
+  animation:
+
+    widgetEnter .45s cubic-bezier(.22,1,.36,1)
+
+    forwards;
+
   transition:
 
     transform .22s cubic-bezier(.22,1,.36,1),
 
     box-shadow .22s cubic-bezier(.22,1,.36,1),
 
-    border-color .22s ease;
+    border-color .22s ease,
+
+    background .22s ease;
 
 }
 
 .dashboard-widget:hover{
 
-  transform:translateY(-4px);
+  transform:
 
-  border-color:var(--color-accent);
+    translateY(-6px)
+
+    scale(1.01);
+
+  border-color:
+
+    var(--color-accent);
 
   box-shadow:
 
-    0 18px 40px rgba(0,0,0,.14);
+    0 22px 48px rgba(0,0,0,.18);
+
+}
+
+.dashboard-widget:active{
+
+  transform:
+
+    scale(.985);
 
 }
 
@@ -97,6 +127,24 @@
   background:var(--color-surface-hover);
 
   font-size:1.35rem;
+
+  transition:
+
+    transform .22s ease,
+
+    background .22s ease;
+
+}
+
+.dashboard-widget:hover
+
+.dashboard-widget-icon{
+
+  transform:
+
+    rotate(-8deg)
+
+    scale(1.08);
 
 }
 
@@ -210,6 +258,20 @@
 
   gap:12px;
 
+  opacity:.9;
+
+  transition:
+
+    opacity .2s ease;
+
+}
+
+.dashboard-widget:hover
+
+.dashboard-widget-footer{
+
+  opacity:1;
+
 }
 
 /*
@@ -232,9 +294,27 @@
 
   font-size:.92rem;
 
+  background:
+
+    linear-gradient(
+
+      90deg,
+
+      transparent,
+
+      rgba(255,255,255,.08),
+
+      transparent
+
+    );
+
+  background-size:
+
+    250% 100%;
+
   animation:
 
-    widgetPulse 1.4s infinite;
+    widgetLoading 1.8s linear infinite;
 
 }
 
@@ -462,5 +542,74 @@
 .dashboard-widget-body{
 
   gap:10px;
+
+}
+
+@keyframes widgetEnter{
+
+  from{
+
+    opacity:0;
+
+    transform:
+
+      translateY(18px)
+
+      scale(.98);
+
+  }
+
+  to{
+
+    opacity:1;
+
+    transform:
+
+      translateY(0)
+
+      scale(1);
+
+  }
+
+}
+
+@keyframes widgetLoading{
+
+  from{
+
+    background-position:
+
+      200% 0;
+
+  }
+
+  to{
+
+    background-position:
+
+      -200% 0;
+
+  }
+
+}
+
+
+@media (prefers-reduced-motion:reduce){
+
+  .dashboard-widget,
+
+  .dashboard-widget-icon,
+
+  .dashboard-widget-footer,
+
+  .dashboard-widget-loading{
+
+    animation:none;
+
+    transition:none;
+
+    transform:none;
+
+  }
 
 }
