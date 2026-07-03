@@ -6,10 +6,10 @@ import useProject from "../../../hooks/project/useProject";
 
 import DashboardHeader from "./components/DashboardHeader";
 import StatisticsGrid from "./components/StatisticsGrid";
+import ActivityTimeline from "./components/ActivityTimeline";
 
 import ProjectRename from "../ProjectRename/ProjectRename";
 import ProjectSettings from "../ProjectSettings/ProjectSettings";
-import ActivityTimeline from "./components/ActivityTimeline";
 
 export default function ProjectDashboard() {
 
@@ -43,7 +43,11 @@ export default function ProjectDashboard() {
 
   } = useProject();
 
-  if (!activeProject) {
+  if (
+
+    !activeProject
+
+  ) {
 
     return null;
 
@@ -101,26 +105,44 @@ export default function ProjectDashboard() {
 
         />
 
-        <StatisticsGrid
+        {/* ==========================
+            DASHBOARD GRID
+        ========================== */}
 
-          project={activeProject}
+        <div className="dashboard-grid">
 
-        />
+          <div className="widget-large">
 
-        <ActivityTimeline
+            <StatisticsGrid
 
-  activities={
+              project={activeProject}
 
-    activeProject.activities || []
+            />
 
-  }
+          </div>
 
-/>
+          <div className="widget-full">
+
+            <ActivityTimeline
+
+              activities={
+
+                activeProject.activities ||
+
+                []
+
+              }
+
+            />
+
+          </div>
+
+        </div>
 
       </div>
 
       {/* ==========================
-          Rename
+          RENAME
       ========================== */}
 
       <ProjectRename
@@ -154,7 +176,7 @@ export default function ProjectDashboard() {
       />
 
       {/* ==========================
-          Settings
+          SETTINGS
       ========================== */}
 
       <ProjectSettings
