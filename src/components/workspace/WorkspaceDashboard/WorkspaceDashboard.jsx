@@ -8,6 +8,10 @@ import DashboardStats from "./DashboardStats";
 
 import WorkspaceCard from "./WorkspaceCard";
 
+import useProject from "../../../hooks/project/useProject";
+import StatisticsGrid from "../ProjectDashboard/components/StatisticsGrid";
+import ActivityTimeline from "../ProjectDashboard/components/ActivityTimeline";
+
 export default function WorkspaceDashboard({
 
   setCurrentTool,
@@ -18,6 +22,12 @@ export default function WorkspaceDashboard({
 
   const dashboard =
     useDashboard();
+
+  const {
+
+  activeProject,
+
+} = useProject();
 
   return (
 
@@ -44,6 +54,36 @@ export default function WorkspaceDashboard({
         overview={dashboard.overview}
 
       />
+
+      {
+
+  activeProject && (
+
+    <>
+
+      <StatisticsGrid
+
+        project={activeProject}
+
+      />
+
+      <ActivityTimeline
+
+        activities={
+
+          activeProject.activities ||
+
+          []
+
+        }
+
+      />
+
+    </>
+
+  )
+
+}
 
       <DashboardQuickActions
 
