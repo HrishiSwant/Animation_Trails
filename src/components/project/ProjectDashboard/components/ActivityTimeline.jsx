@@ -8,6 +8,7 @@ import {
 
 import "../ProjectDashboard.css";
 
+import DashboardWidget from "./DashboardWidget";
 import ActivityItem from "./ActivityItem";
 
 function groupActivities(
@@ -244,15 +245,21 @@ export default function ActivityTimeline({
 
   return (
 
-    <section className="activity-timeline">
+    <DashboardWidget
+
+      title="Recent Activity"
+
+      subtitle="Everything happening in this project"
+
+      icon="🕒"
+
+      variant="default"
+
+      className="widget-full"
+
+    >
 
       <div className="activity-header">
-
-        <h2>
-
-          Recent Activity
-
-        </h2>
 
         <span className="activity-count">
 
@@ -408,75 +415,75 @@ export default function ActivityTimeline({
 
           <div className="activity-list">
 
-  {
+            {
 
-    Object.entries(
+              Object.entries(
 
-      groupActivities(
+                groupActivities(
 
-        filteredActivities,
+                  filteredActivities,
 
-      ),
+                ),
 
-    ).map(
+              ).map(
 
-      ([group, items]) => (
+                ([group, items]) => (
 
-        <div
+                  <div
 
-          key={group}
+                    key={group}
 
-          className="activity-group"
+                    className="activity-group"
 
-        >
+                  >
 
-          <div className="activity-group-title">
+                    <div className="activity-group-title">
 
-            {group}
+                      {group}
+
+                    </div>
+
+                    {
+
+                      items.map(
+
+                        activity => (
+
+                          <ActivityItem
+
+                            key={activity.id}
+
+                            {...activity}
+
+                            time={
+
+                              activity.createdAt
+
+                            }
+
+                          />
+
+                        ),
+
+                      )
+
+                    }
+
+                  </div>
+
+                ),
+
+              )
+
+            }
 
           </div>
-
-          {
-
-            items.map(
-
-              activity => (
-
-                <ActivityItem
-
-                  key={activity.id}
-
-                  {...activity}
-
-                  time={
-
-                    activity.createdAt
-
-                  }
-
-                />
-
-              ),
-
-            )
-
-          }
-
-        </div>
-
-      ),
-
-    )
-
-  }
-
-</div>
 
         )
 
       }
 
-    </section>
+    </DashboardWidget>
 
   );
 
