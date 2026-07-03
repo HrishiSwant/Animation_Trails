@@ -195,6 +195,14 @@ class ProjectActions {
 
       Date.now();
 
+    const previousName =
+
+  ProjectStore.getProject(
+
+    id,
+
+  )?.name || "";
+
     const state =
 
       ProjectStore.getState();
@@ -401,9 +409,25 @@ class ProjectActions {
 
   ) {
 
-    const state =
+const project =
 
-      ProjectStore.getState();
+  ProjectStore.getProject(
+
+    id,
+
+  );
+
+const project =
+
+  ProjectStore.getProject(
+
+    id,
+
+  );
+
+const state =
+
+  ProjectStore.getState();
 
     const projects =
 
@@ -457,32 +481,6 @@ class ProjectActions {
 
     );
 
-    if (project) {
-
-  console.info(
-
-    ProjectActivity.createActivity({
-
-      type:
-
-        ProjectActivity.ActivityTypes.PROJECT_DELETED,
-
-      title:
-
-        "Project Deleted",
-
-      description:
-
-        project.name,
-
-      icon: "🗑️",
-
-    }),
-
-  );
-
-}
-
   }
 
   /*
@@ -522,6 +520,8 @@ class ProjectActions {
         project,
 
       );
+
+    copy.activities = [];
 
     copy.id =
 
