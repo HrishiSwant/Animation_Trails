@@ -71,6 +71,8 @@ export default function WorkspaceDashboard({
 
         activeProject && (
 
+            
+
           <div className="dashboard-widget-grid">
 
             <StatisticsGrid
@@ -79,17 +81,13 @@ export default function WorkspaceDashboard({
 
             />
 
+            {/*
+
             <ActivityTimeline
 
-              activities={
+              activities={activeProject.activities ||[]}
 
-                activeProject.activities ||
-
-                []
-
-              }
-
-            />
+            />  */}
 
           </div>
 
