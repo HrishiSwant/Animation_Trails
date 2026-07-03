@@ -1,191 +1,5 @@
 import useProject from "../project/useProject";
 
-function calculateStorage(
-
-  projects,
-
-) {
-
-  let bytes = 0;
-
-  projects.forEach(
-
-    project => {
-
-      bytes += JSON.stringify(
-
-        project,
-
-      ).length;
-
-      bytes +=
-
-        (
-
-          project.animations?.length ||
-
-          0
-
-        ) * 512;
-
-      bytes +=
-
-        (
-
-          project.components?.length ||
-
-          0
-
-        ) * 384;
-
-      bytes +=
-
-        (
-
-          project.tags?.length ||
-
-          0
-
-        ) * 64;
-
-      bytes +=
-
-        (
-
-          project.activities?.length ||
-
-          0
-
-        ) * 180;
-
-    },
-
-  );
-
-  if (
-
-    bytes < 1024
-
-  ) {
-
-    return {
-
-      value:
-
-        `${bytes} B`,
-
-      percent: 1,
-
-      color:
-
-        "#10B981",
-
-      level:
-
-        "Excellent",
-
-    };
-
-  }
-
-  const kb =
-
-    bytes / 1024;
-
-  if (
-
-    kb < 1024
-
-  ) {
-
-    const percent =
-
-      Math.min(
-
-        Math.round(
-
-          kb / 10,
-
-        ),
-
-        100,
-
-      );
-
-    return {
-
-      value:
-
-        `${kb.toFixed(
-
-          1,
-
-        )} KB`,
-
-      percent,
-
-      color:
-
-        "#10B981",
-
-      level:
-
-        "Excellent",
-
-    };
-
-  }
-
-  const mb =
-
-    kb / 1024;
-
-  const percent =
-
-    Math.min(
-
-      Math.round(
-
-        mb * 5,
-
-      ),
-
-      100,
-
-    );
-
-  return {
-
-    value:
-
-      `${mb.toFixed(
-
-        2,
-
-      )} MB`,
-
-    percent,
-
-    color:
-
-      mb > 10
-
-        ? "#EF4444"
-
-        : "#F59E0B",
-
-    level:
-
-      mb > 10
-
-        ? "High"
-
-        : "Normal",
-
-  };
-
-}
-
 export default function useDashboard() {
 
   const {
@@ -262,11 +76,17 @@ export default function useDashboard() {
 
   const storage =
 
-  calculateStorage(
+    `${(
 
-    projects,
+      JSON.stringify(
 
-  );
+        projects,
+
+      ).length /
+
+      1024
+
+    ).toFixed(1)} KB`;
 
   return {
 
@@ -326,15 +146,15 @@ export default function useDashboard() {
 
         value:
 
-          storage.value,
+          storage,
 
         subtitle:
 
-           `${storage.level} • ${storage.percent}%`,
+          "Workspace usage",
 
         color:
 
-          storage.color,
+          "#10B981",
 
       },
 
