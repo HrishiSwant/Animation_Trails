@@ -6,7 +6,7 @@ import {
 
 } from "react";
 
-import "../ProjectDashboard.css";
+import "./ProjectDashboard.css";
 
 import DashboardWidget from "./DashboardWidget";
 import ActivityItem from "./ActivityItem";
