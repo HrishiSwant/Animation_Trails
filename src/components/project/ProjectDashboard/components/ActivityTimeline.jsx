@@ -10,6 +10,128 @@ import "../ProjectDashboard.css";
 
 import ActivityItem from "./ActivityItem";
 
+function groupActivities(
+
+  activities,
+
+) {
+
+  const now =
+
+    new Date();
+
+  const groups = {
+
+    Today: [],
+
+    Yesterday: [],
+
+    "Last 7 Days": [],
+
+    Older: [],
+
+  };
+
+  activities.forEach(
+
+    activity => {
+
+      const date =
+
+        new Date(
+
+          activity.createdAt,
+
+        );
+
+      const diff =
+
+        Math.floor(
+
+          (
+
+            now -
+
+            date
+
+          ) /
+
+            86400000,
+
+        );
+
+      if (diff === 0) {
+
+        groups.Today.push(
+
+          activity,
+
+        );
+
+      }
+
+      else if (
+
+        diff === 1
+
+      ) {
+
+        groups.Yesterday.push(
+
+          activity,
+
+        );
+
+      }
+
+      else if (
+
+        diff < 7
+
+      ) {
+
+        groups["Last 7 Days"]
+
+          .push(
+
+            activity,
+
+          );
+
+      }
+
+      else {
+
+        groups.Older.push(
+
+          activity,
+
+        );
+
+      }
+
+    },
+
+  );
+
+  return Object.fromEntries(
+
+    Object.entries(
+
+      groups,
+
+    ).filter(
+
+      ([, items]) =>
+
+        items.length > 0,
+
+    ),
+
+  );
+
+}
+
 export default function ActivityTimeline({
 
   activities = [],
@@ -286,33 +408,69 @@ export default function ActivityTimeline({
 
           <div className="activity-list">
 
-            {
+  {
 
-              filteredActivities.map(
+    Object.entries(
 
-                activity => (
+      groupActivities(
 
-                  <ActivityItem
+        filteredActivities,
 
-                    key={activity.id}
+      ),
 
-                    {...activity}
+    ).map(
 
-                    time={
+      ([group, items]) => (
 
-                      activity.createdAt
+        <div
 
-                    }
+          key={group}
 
-                  />
+          className="activity-group"
 
-                ),
+        >
 
-              )
+          <div className="activity-group-title">
 
-            }
+            {group}
 
           </div>
+
+          {
+
+            items.map(
+
+              activity => (
+
+                <ActivityItem
+
+                  key={activity.id}
+
+                  {...activity}
+
+                  time={
+
+                    activity.createdAt
+
+                  }
+
+                />
+
+              ),
+
+            )
+
+          }
+
+        </div>
+
+      ),
+
+    )
+
+  }
+
+</div>
 
         )
 
