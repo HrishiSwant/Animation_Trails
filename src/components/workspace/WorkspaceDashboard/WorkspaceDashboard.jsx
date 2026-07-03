@@ -6,6 +6,7 @@ import DashboardOverview from "./DashboardOverview";
 import DashboardQuickActions from "./DashboardQuickActions";
 import DashboardStats from "./DashboardStats";
 import WorkspaceCard from "./WorkspaceCard";
+import ActiveWorkspaceSummary from "./ActiveWorkspaceSummary";
 
 export default function WorkspaceDashboard({
 
@@ -52,6 +53,12 @@ export default function WorkspaceDashboard({
         overview={dashboard.overview}
 
       />
+
+      <ActiveWorkspaceSummary
+
+  project={dashboard.activeProject}
+
+/>
 
       {/* ==========================
           PROJECT WIDGETS
