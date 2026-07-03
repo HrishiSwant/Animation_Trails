@@ -836,3 +836,37 @@
   color:var(--color-text-secondary);
 
 }
+
+.activity-list{
+
+  display:flex;
+
+  flex-direction:column;
+
+  gap:0;
+
+}
+
+.activity-count{
+
+  min-width:28px;
+
+  height:28px;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  border-radius:999px;
+
+  background:var(--color-surface-hover);
+
+  color:var(--color-text-secondary);
+
+  font-size:.82rem;
+
+  font-weight:600;
+
+}
