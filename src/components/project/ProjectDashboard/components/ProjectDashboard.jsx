@@ -9,6 +9,7 @@ import StatisticsGrid from "./components/StatisticsGrid";
 
 import ProjectRename from "../ProjectRename/ProjectRename";
 import ProjectSettings from "../ProjectSettings/ProjectSettings";
+import ActivityTimeline from "./components/ActivityTimeline";
 
 export default function ProjectDashboard() {
 
@@ -105,6 +106,12 @@ export default function ProjectDashboard() {
           project={activeProject}
 
         />
+
+        <ActivityTimeline
+
+          activities={[]}
+
+          />
 
       </div>
 
