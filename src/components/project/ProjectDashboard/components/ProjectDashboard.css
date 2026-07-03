@@ -831,11 +831,19 @@
 
 .activity-content span{
 
+  display:inline-flex;
+
+  align-items:center;
+
+  gap:6px;
+
   font-size:.82rem;
 
   color:var(--color-text-secondary);
 
-}
+  opacity:.8;
+
+}}
 
 .activity-list{
 
