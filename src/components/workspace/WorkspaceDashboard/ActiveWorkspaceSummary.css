@@ -1,0 +1,93 @@
+.active-workspace{
+
+    background:var(--color-surface);
+
+    border:1px solid var(--color-border);
+
+    border-radius:18px;
+
+    padding:24px;
+
+    margin-bottom:28px;
+
+    transition:all .25s;
+
+}
+
+.active-workspace-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:16px;
+
+}
+
+.active-workspace-header h2{
+
+    margin:0;
+
+    font-size:24px;
+
+}
+
+.active-workspace-header span{
+
+    font-size:32px;
+
+}
+
+.active-workspace h3{
+
+    margin:0 0 6px;
+
+    font-size:28px;
+
+}
+
+.active-workspace p{
+
+    margin:0;
+
+    opacity:.75;
+
+}
+
+.active-workspace-meta{
+
+    display:flex;
+
+    gap:24px;
+
+    flex-wrap:wrap;
+
+    margin-top:20px;
+
+}
+
+.active-workspace-tags{
+
+    display:flex;
+
+    gap:10px;
+
+    flex-wrap:wrap;
+
+    margin-top:20px;
+
+}
+
+.active-workspace-tags span{
+
+    padding:6px 12px;
+
+    border-radius:999px;
+
+    background:rgba(255,255,255,.08);
+
+    font-size:13px;
+
+}
