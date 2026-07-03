@@ -8,8 +8,8 @@ import DashboardQuickActions from "./DashboardQuickActions";
 import DashboardStats from "./DashboardStats";
 import WorkspaceCard from "./WorkspaceCard";
 
-import StatisticsGrid from "../ProjectDashboard/components/StatisticsGrid";
-import ActivityTimeline from "../ProjectDashboard/components/ActivityTimeline";
+import StatisticsGrid from "../../project/ProjectDashboard/components/StatisticsGrid";
+import ActivityTimeline from "../../project/ProjectDashboard/components/ActivityTimeline";
 
 export default function WorkspaceDashboard({
 
