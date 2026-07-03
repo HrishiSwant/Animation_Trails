@@ -969,3 +969,54 @@
   border-color:var(--color-accent);
 
 }
+/*
+==========================
+    TIMELINE GROUPS
+==========================
+*/
+
+.activity-group{
+
+  margin-bottom:28px;
+
+}
+
+.activity-group:last-child{
+
+  margin-bottom:0;
+
+}
+
+.activity-group-title{
+
+  display:flex;
+
+  align-items:center;
+
+  gap:12px;
+
+  margin-bottom:14px;
+
+  font-size:.78rem;
+
+  font-weight:700;
+
+  letter-spacing:.08em;
+
+  text-transform:uppercase;
+
+  color:var(--color-text-secondary);
+
+}
+
+.activity-group-title::after{
+
+  content:"";
+
+  flex:1;
+
+  height:1px;
+
+  background:var(--color-border);
+
+}
