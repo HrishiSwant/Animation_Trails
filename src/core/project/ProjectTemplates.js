@@ -122,6 +122,7 @@ const ProjectTemplates = {
     project.template = "blank";
     project.icon = "📁";
     project.color = "#6b7280";
+    project.activities = [];
 
     return project;
 
@@ -144,6 +145,7 @@ const ProjectTemplates = {
     project.template = "animation";
     project.icon = "🎬";
     project.color = "#3b82f6";
+    project.activities = [];
 
     project.tags.push(
 
@@ -172,6 +174,7 @@ const ProjectTemplates = {
     project.template = "ui";
     project.icon = "🎨";
     project.color = "#8b5cf6";
+    project.activities = [];
 
     project.tags.push(
 
@@ -200,6 +203,7 @@ const ProjectTemplates = {
     project.template = "presentation";
     project.icon = "📽️";
     project.color = "#f97316";
+    project.activities = [];
 
     project.tags.push(
 
@@ -228,6 +232,7 @@ const ProjectTemplates = {
     project.template = "web";
     project.icon = "💻";
     project.color = "#22c55e";
+    project.activities = [];
 
     project.tags.push(
 
