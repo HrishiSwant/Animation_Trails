@@ -129,13 +129,45 @@ class ProjectActions {
 
     }
 
-    ProjectStore.setState({
+    const now =
 
-      activeProjectId:
+  Date.now();
 
-        id,
+const state =
 
-    });
+  ProjectStore.getState();
+
+ProjectStore.setState({
+
+  activeProjectId:
+
+    id,
+
+  projects:
+
+    state.projects.map(
+
+      item =>
+
+        item.id === id
+
+          ? {
+
+              ...item,
+
+              lastOpened:
+
+                now,
+
+            }
+
+          : item,
+
+    ),
+
+});
+
+
 
     ProjectStore.addActivity(
 
@@ -291,105 +323,121 @@ class ProjectActions {
 
   }
 
-  /*
-  ==========================
-      UPDATE
-  ==========================
-  */
+/*
+==========================
+    UPDATE
+==========================
+*/
 
-  updateProject(
+updateProject(
 
-    id,
+  id,
 
-    values,
+  values,
 
-  ) {
+) {
 
-    const now =
+  const now =
 
-      Date.now();
+    Date.now();
 
-    const state =
+  const state =
 
-      ProjectStore.getState();
+    ProjectStore.getState();
 
-    ProjectStore.setState({
+  ProjectStore.setState({
 
-      projects:
+    projects:
 
-        state.projects.map(
+      state.projects.map(
 
-          project =>
+        project =>
 
-            project.id === id
+          project.id === id
 
-              ? {
+            ? {
 
-                  ...project,
+                ...project,
 
-                  ...values,
+                ...values,
 
-                  updatedAt:
+                updatedAt:
 
-                    now,
+                  now,
 
-                }
+              }
 
-              : project,
+            : project,
 
-        ),
+      ),
 
-    });
+  });
 
-    const updated =
+  const updated =
 
-      ProjectStore.getProject(
+    ProjectStore.getProject(
 
-        id,
+      id,
 
-      );
+    );
 
-    if (updated) {
+  if (updated) {
 
-  ProjectStore.addActivity(
+    const title =
 
-    id,
+      values.favorite !==
 
-    ProjectActivity.createActivity({
+      undefined
 
-      type:
+        ? values.favorite
 
-        ProjectActivity.ActivityTypes.PROJECT_UPDATED,
+          ? "Project Favorited"
 
-      title:
+          : "Project Unfavorited"
 
-        "Project Updated",
+        : "Project Updated";
 
-      description:
+    const description =
 
-        "Project settings changed",
+      values.favorite !==
 
-      icon: "⚙️",
+      undefined
 
-    }),
+        ? updated.name
 
-  );
+        : "Project settings changed";
 
-}
+    const icon =
 
-    if (updated) {
+      values.favorite !==
 
-      RecentProjects.add(
+      undefined
 
-        updated,
+        ? "⭐"
 
-      );
+        : "⚙️";
 
-    }
+    ProjectStore.addActivity(
 
-    ProjectEvents.emit(
+      id,
 
-      ProjectEventTypes.PROJECT_UPDATED,
+      ProjectActivity.createActivity({
+
+        type:
+
+          ProjectActivity.ActivityTypes.PROJECT_UPDATED,
+
+        title,
+
+        description,
+
+        icon,
+
+      }),
+
+    );
+
+    RecentProjects.add(
 
       updated,
 
@@ -397,6 +445,15 @@ class ProjectActions {
 
   }
 
+  ProjectEvents.emit(
+
+    ProjectEventTypes.PROJECT_UPDATED,
+
+    updated,
+
+  );
+
+}
   /*
   ==========================
       DELETE
@@ -408,14 +465,6 @@ class ProjectActions {
     id,
 
   ) {
-
-const project =
-
-  ProjectStore.getProject(
-
-    id,
-
-  );
 
 const project =
 
