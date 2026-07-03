@@ -1,4 +1,4 @@
-import "../ProjectDashboard.css";
+import "./ProjectDashboard.css";
 
 import AnimatedCounter from "./AnimatedCounter";
 
