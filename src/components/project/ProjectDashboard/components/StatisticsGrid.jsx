@@ -1,5 +1,6 @@
 import "../ProjectDashboard.css";
 
+import DashboardWidget from "./DashboardWidget";
 import StatisticCard from "./StatisticCard";
 
 function formatLastOpened(value) {
@@ -78,65 +79,81 @@ export default function StatisticsGrid({
 
   return (
 
-    <section className="statistics-grid">
+    <DashboardWidget
 
-      <StatisticCard
+      title="Statistics"
 
-  index={0}
+      subtitle="Live project overview"
 
-  icon="🎬"
+      icon="📊"
 
-  title="Animations"
+      variant="accent"
 
-  value={animationCount}
+      className="widget-large"
 
-/>
+    >
 
-<StatisticCard
+      <div className="statistics-grid">
 
-  index={1}
+        <StatisticCard
 
-  icon="🧩"
+          index={0}
 
-  title="Components"
+          icon="🎬"
 
-  value={componentCount}
+          title="Animations"
 
-/>
+          value={animationCount}
 
-<StatisticCard
+        />
 
-  index={2}
+        <StatisticCard
 
-  icon="🏷"
+          index={1}
 
-  title="Tags"
+          icon="🧩"
 
-  value={tagCount}
+          title="Components"
 
-/>
+          value={componentCount}
 
-<StatisticCard
+        />
 
-  index={3}
+        <StatisticCard
 
-  icon="🕒"
+          index={2}
 
-  title="Last Opened"
+          icon="🏷"
 
-  value={
+          title="Tags"
 
-    formatLastOpened(
+          value={tagCount}
 
-      project.lastOpened,
+        />
 
-    )
+        <StatisticCard
 
-  }
+          index={3}
 
-/>
+          icon="🕒"
 
-    </section>
+          title="Last Opened"
+
+          value={
+
+            formatLastOpened(
+
+              project.lastOpened,
+
+            )
+
+          }
+
+        />
+
+      </div>
+
+    </DashboardWidget>
 
   );
 
