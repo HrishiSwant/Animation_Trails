@@ -1020,3 +1020,114 @@
   background:var(--color-border);
 
 }
+/*
+==========================
+    DASHBOARD GRID
+==========================
+*/
+
+.dashboard-grid{
+
+  display:grid;
+
+  grid-template-columns:
+
+    repeat(
+
+      auto-fit,
+
+      minmax(340px,1fr)
+
+    );
+
+  gap:24px;
+
+  align-items:start;
+
+}
+
+/*
+==========================
+    GRID SPANS
+==========================
+*/
+
+.widget-small{
+
+  grid-column:span 1;
+
+}
+
+.widget-medium{
+
+  grid-column:span 1;
+
+}
+
+.widget-large{
+
+  grid-column:
+
+    span 2;
+
+}
+
+.widget-full{
+
+  grid-column:
+
+    1 / -1;
+
+}
+
+@media (max-width:1024px){
+
+  .dashboard-grid{
+
+    grid-template-columns:
+
+      repeat(
+
+        auto-fit,
+
+        minmax(300px,1fr)
+
+      );
+
+  }
+
+  .widget-large,
+
+  .widget-full{
+
+    grid-column:
+
+      span 1;
+
+  }
+
+}
+
+@media (max-width:768px){
+
+  .dashboard-grid{
+
+    grid-template-columns:
+
+      1fr;
+
+    gap:18px;
+
+  }
+
+}
+
+@media (max-width:480px){
+
+  .dashboard-grid{
+
+    gap:14px;
+
+  }
+
+}
