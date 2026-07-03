@@ -109,9 +109,13 @@ export default function ProjectDashboard() {
 
         <ActivityTimeline
 
-          activities={[]}
+  activities={
 
-          />
+    activeProject.activities || []
+
+  }
+
+/>
 
       </div>
 
