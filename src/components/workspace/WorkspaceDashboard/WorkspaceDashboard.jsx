@@ -1,14 +1,13 @@
 import "./WorkspaceDashboard.css";
 
 import useDashboard from "../../../hooks/dashboard/useDashboard";
+import useProject from "../../../hooks/project/useProject";
 
 import DashboardOverview from "./DashboardOverview";
 import DashboardQuickActions from "./DashboardQuickActions";
 import DashboardStats from "./DashboardStats";
-
 import WorkspaceCard from "./WorkspaceCard";
 
-import useProject from "../../../hooks/project/useProject";
 import StatisticsGrid from "../ProjectDashboard/components/StatisticsGrid";
 import ActivityTimeline from "../ProjectDashboard/components/ActivityTimeline";
 
@@ -21,17 +20,22 @@ export default function WorkspaceDashboard({
 }) {
 
   const dashboard =
+
     useDashboard();
 
   const {
 
-  activeProject,
+    activeProject,
 
-} = useProject();
+  } = useProject();
 
   return (
 
     <div className="workspace-dashboard">
+
+      {/* ==========================
+          PAGE HEADER
+      ========================== */}
 
       <div className="dashboard-header">
 
@@ -49,41 +53,53 @@ export default function WorkspaceDashboard({
 
       </div>
 
+      {/* ==========================
+          WORKSPACE OVERVIEW
+      ========================== */}
+
       <DashboardOverview
 
         overview={dashboard.overview}
 
       />
 
+      {/* ==========================
+          PROJECT WIDGETS
+      ========================== */}
+
       {
 
-  activeProject && (
+        activeProject && (
 
-    <>
+          <div className="dashboard-widget-grid">
 
-      <StatisticsGrid
+            <StatisticsGrid
 
-        project={activeProject}
+              project={activeProject}
 
-      />
+            />
 
-      <ActivityTimeline
+            <ActivityTimeline
 
-        activities={
+              activities={
 
-          activeProject.activities ||
+                activeProject.activities ||
 
-          []
+                []
 
-        }
+              }
 
-      />
+            />
 
-    </>
+          </div>
 
-  )
+        )
 
-}
+      }
+
+      {/* ==========================
+          QUICK ACTIONS
+      ========================== */}
 
       <DashboardQuickActions
 
@@ -93,6 +109,10 @@ export default function WorkspaceDashboard({
 
       />
 
+      {/* ==========================
+          WORKSPACE STATS
+      ========================== */}
+
       <DashboardStats
 
         stats={dashboard.stats}
@@ -100,6 +120,10 @@ export default function WorkspaceDashboard({
         summary={dashboard.summary}
 
       />
+
+      {/* ==========================
+          PRESENTATION
+      ========================== */}
 
       <div className="dashboard-presentation">
 
@@ -116,6 +140,10 @@ export default function WorkspaceDashboard({
         </button>
 
       </div>
+
+      {/* ==========================
+          MODULES
+      ========================== */}
 
       <div className="dashboard-section">
 
