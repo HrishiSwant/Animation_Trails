@@ -86,15 +86,13 @@ export default function ActivityTimeline({
 
                     icon={activity.icon}
 
+                    color={activity.color}
+
                     title={activity.title}
 
                     description={activity.description}
 
-                    time={
-
-                      activity.createdAt
-
-                    }
+                    time={activity.createdAt}
 
                   />
 
