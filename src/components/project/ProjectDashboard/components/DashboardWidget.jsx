@@ -22,11 +22,13 @@ export default function DashboardWidget({
 
   variant = "default",
 
+  className = "",
+
 }) {
 
   return (
 
-    <section className={`dashboard-widget dashboard-widget-${variant}`}>
+    <section className={`dashboard-widget dashboard-widget-${variant} ${className}`}>
 
       <header className="dashboard-widget-header">
 
