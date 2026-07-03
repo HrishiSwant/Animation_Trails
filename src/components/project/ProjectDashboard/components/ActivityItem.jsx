@@ -1,5 +1,35 @@
 import "../ProjectDashboard.css";
 
+function formatTime(
+
+  value,
+
+) {
+
+  return new Date(
+
+    value,
+
+  ).toLocaleString(
+
+    undefined,
+
+    {
+
+      dateStyle:
+
+        "medium",
+
+      timeStyle:
+
+        "short",
+
+    },
+
+  );
+
+}
+
 export default function ActivityItem({
 
   icon,
@@ -32,15 +62,31 @@ export default function ActivityItem({
 
         </h4>
 
-        <p>
+        {
 
-          {description}
+          description && (
 
-        </p>
+            <p>
+
+              {description}
+
+            </p>
+
+          )
+
+        }
 
         <span>
 
-          {time}
+          {
+
+            formatTime(
+
+              time,
+
+            )
+
+          }
 
         </span>
 
