@@ -3,6 +3,7 @@ import createProject from "./defaultProject";
 import ProjectEvents from "./ProjectEvents";
 import ProjectEventTypes from "./ProjectEventTypes";
 import RecentProjects from "./RecentProjects";
+import ProjectActivity from "./ProjectActivity";
 
 class ProjectActions {
 
@@ -60,6 +61,30 @@ class ProjectActions {
 
     });
 
+    ProjectStore.addActivity(
+
+  project.id,
+
+  ProjectActivity.createActivity({
+
+    type:
+
+      ProjectActivity.ActivityTypes.PROJECT_CREATED,
+
+    title:
+
+      "Project Created",
+
+    description:
+
+      project.name,
+
+    icon: "🎉",
+
+  }),
+
+);
+
     ProjectEvents.emit(
 
       ProjectEventTypes.PROJECT_CREATED,
@@ -111,6 +136,30 @@ class ProjectActions {
         id,
 
     });
+
+    ProjectStore.addActivity(
+
+  id,
+
+  ProjectActivity.createActivity({
+
+    type:
+
+      ProjectActivity.ActivityTypes.PROJECT_OPENED,
+
+    title:
+
+      "Project Opened",
+
+    description:
+
+      project.name,
+
+    icon: "📂",
+
+  }),
+
+);
 
     ProjectEvents.emit(
 
@@ -185,6 +234,34 @@ class ProjectActions {
         id,
 
       );
+
+    if (updated) {
+
+  ProjectStore.addActivity(
+
+    id,
+
+    ProjectActivity.createActivity({
+
+      type:
+
+        ProjectActivity.ActivityTypes.PROJECT_RENAMED,
+
+      title:
+
+        "Project Renamed",
+
+      description:
+
+        `"${previousName}" → "${updated.name}"`,
+
+      icon: "✏️",
+
+    }),
+
+  );
+
+}
 
     if (updated) {
 
@@ -263,6 +340,34 @@ class ProjectActions {
         id,
 
       );
+
+    if (updated) {
+
+  ProjectStore.addActivity(
+
+    id,
+
+    ProjectActivity.createActivity({
+
+      type:
+
+        ProjectActivity.ActivityTypes.PROJECT_UPDATED,
+
+      title:
+
+        "Project Updated",
+
+      description:
+
+        "Project settings changed",
+
+      icon: "⚙️",
+
+    }),
+
+  );
+
+}
 
     if (updated) {
 
@@ -352,6 +457,32 @@ class ProjectActions {
 
     );
 
+    if (project) {
+
+  console.info(
+
+    ProjectActivity.createActivity({
+
+      type:
+
+        ProjectActivity.ActivityTypes.PROJECT_DELETED,
+
+      title:
+
+        "Project Deleted",
+
+      description:
+
+        project.name,
+
+      icon: "🗑️",
+
+    }),
+
+  );
+
+}
+
   }
 
   /*
@@ -427,6 +558,30 @@ class ProjectActions {
         copy.id,
 
     });
+
+    ProjectStore.addActivity(
+
+  copy.id,
+
+  ProjectActivity.createActivity({
+
+    type:
+
+      ProjectActivity.ActivityTypes.PROJECT_DUPLICATED,
+
+    title:
+
+      "Project Duplicated",
+
+    description:
+
+      `Copied from "${project.name}"`,
+
+    icon: "📄",
+
+  }),
+
+);
 
     RecentProjects.add(
 
