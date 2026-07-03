@@ -92,6 +92,82 @@ class ProjectStore {
 
   /*
   ==========================
+      GET ACTIVITIES
+  ==========================
+  */
+
+  getActivities(
+
+    projectId,
+
+  ) {
+
+    return (
+
+      this.getProject(
+
+        projectId,
+
+      )?.activities || []
+
+    );
+
+  }
+
+  /*
+  ==========================
+      ADD ACTIVITY
+  ==========================
+  */
+
+  addActivity(
+
+    projectId,
+
+    activity,
+
+  ) {
+
+    const project =
+
+      this.getProject(
+
+        projectId,
+
+      );
+
+    if (!project) {
+
+      return;
+
+    }
+
+    if (
+
+      !Array.isArray(
+
+        project.activities,
+
+      )
+
+    ) {
+
+      project.activities = [];
+
+    }
+
+    project.activities.unshift(
+
+      activity,
+
+    );
+
+    this.notify();
+
+  }
+
+  /*
+  ==========================
       SET STATE
   ==========================
   */
@@ -101,6 +177,30 @@ class ProjectStore {
     values,
 
   ) {
+
+    if (
+
+      values.projects
+
+    ) {
+
+      values.projects =
+
+        values.projects.map(
+
+          project => ({
+
+            ...project,
+
+            activities:
+
+              project.activities ?? [],
+
+          }),
+
+        );
+
+    }
 
     this.state = {
 
