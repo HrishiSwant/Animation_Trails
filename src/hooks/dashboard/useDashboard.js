@@ -1,133 +1,210 @@
-import useWorkspaceOverview from "./useWorkspaceOverview";
-import useWorkspaceStats from "./useWorkspaceStats";
+import useProject from "../project/useProject";
 
 export default function useDashboard() {
 
-  /*
-  ==========================
-      OVERVIEW
-  ==========================
-  */
-
   const {
 
-    overview,
+    projects,
 
-    stats,
+    activeProject,
 
-  } = useWorkspaceOverview();
+  } = useProject();
 
-  /*
-  ==========================
-      QUICK ACTIONS
-  ==========================
-  */
+  const projectCount =
 
-  const quickActions = [
+    projects.length;
 
-    {
+  const favoriteCount =
 
-      id: "notes",
+    projects.filter(
 
-      icon: "📝",
+      project =>
 
-      title: "New Note",
+        project.favorite,
 
-      tool: "notes",
+    ).length;
 
-    },
+  const animationCount =
 
-    {
+    projects.reduce(
 
-      id: "tasks",
+      (total, project) =>
 
-      icon: "✅",
+        total +
 
-      title: "New Task",
+        (
 
-      tool: "tasks",
+          project.animations?.length ||
 
-    },
+          0
 
-    {
+        ),
 
-      id: "sketch",
+      0,
 
-      icon: "🎨",
+    );
 
-      title: "Open Sketch",
+  const componentCount =
 
-      tool: "sketch",
+    projects.reduce(
 
-    },
+      (total, project) =>
 
-    {
+        total +
 
-      id: "assets",
+        (
 
-      icon: "📁",
+          project.components?.length ||
 
-      title: "Upload Asset",
+          0
 
-      tool: "assets",
+        ),
 
-    },
+      0,
 
-    {
-
-      id: "export",
-
-      icon: "📤",
-
-      title: "Export Workspace",
-
-      tool: "export",
-
-    },
-
-  ];
+    );
 
   /*
   ==========================
-      SUMMARY
+      TEMP STORAGE
   ==========================
+
+  This will become a real
+  storage calculator in D-4.2.2
+
   */
 
-  const summary = {
+  const storage =
 
-    totalModules: 5,
+    `${(
 
-    workspaceReady:
+      JSON.stringify(
 
-      stats.notes.count > 0 ||
+        projects,
 
-      stats.tasks.total > 0 ||
+      ).length /
 
-      stats.assets.count > 0 ||
+      1024
 
-      stats.sketch.exists,
-
-    storage:
-
-      stats.storage,
-
-  };
-
-  /*
-  ==========================
-      RETURN
-  ==========================
-  */
+    ).toFixed(1)} KB`;
 
   return {
 
-    overview,
+    overview: [
 
-    stats,
+      {
 
-    quickActions,
+        id: "projects",
 
-    summary,
+        icon: "📁",
+
+        title: "Projects",
+
+        value:
+
+          projectCount,
+
+        subtitle:
+
+          "Workspace projects",
+
+        color:
+
+          "#2563EB",
+
+      },
+
+      {
+
+        id: "favorites",
+
+        icon: "⭐",
+
+        title: "Favorites",
+
+        value:
+
+          favoriteCount,
+
+        subtitle:
+
+          "Pinned projects",
+
+        color:
+
+          "#F59E0B",
+
+      },
+
+      {
+
+        id: "storage",
+
+        icon: "💾",
+
+        title: "Storage",
+
+        value:
+
+          storage,
+
+        subtitle:
+
+          "Workspace usage",
+
+        color:
+
+          "#10B981",
+
+      },
+
+      {
+
+        id: "animations",
+
+        icon: "🎬",
+
+        title: "Animations",
+
+        value:
+
+          animationCount,
+
+        subtitle:
+
+          "Across projects",
+
+        color:
+
+          "#8B5CF6",
+
+      },
+
+      {
+
+        id: "components",
+
+        icon: "🧩",
+
+        title: "Components",
+
+        value:
+
+          componentCount,
+
+        subtitle:
+
+          "Reusable components",
+
+        color:
+
+          "#EC4899",
+
+      },
+
+    ],
+
+    activeProject,
 
   };
 
