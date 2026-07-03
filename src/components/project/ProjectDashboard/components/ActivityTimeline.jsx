@@ -1,3 +1,11 @@
+import {
+
+  useMemo,
+
+  useState,
+
+} from "react";
+
 import "../ProjectDashboard.css";
 
 import ActivityItem from "./ActivityItem";
@@ -8,17 +16,109 @@ export default function ActivityTimeline({
 
 }) {
 
-  const sortedActivities =
+  const [
 
-    [...activities].sort(
+    filter,
 
-      (a, b) =>
+    setFilter,
 
-        b.createdAt -
+  ] = useState("all");
 
-        a.createdAt,
+  const [
 
-    );
+    search,
+
+    setSearch,
+
+  ] = useState("");
+
+  const filteredActivities =
+
+    useMemo(() => {
+
+      return [...activities]
+
+        .sort(
+
+          (a, b) =>
+
+            b.createdAt -
+
+            a.createdAt,
+
+        )
+
+        .filter(activity => {
+
+          const query =
+
+            search
+
+              .trim()
+
+              .toLowerCase();
+
+          const matchesSearch =
+
+            activity.title
+
+              .toLowerCase()
+
+              .includes(query) ||
+
+            activity.description
+
+              .toLowerCase()
+
+              .includes(query);
+
+          if (
+
+            !matchesSearch
+
+          ) {
+
+            return false;
+
+          }
+
+          switch (filter) {
+
+            case "project":
+
+              return activity.type.startsWith(
+
+                "project_",
+
+              );
+
+            case "settings":
+
+              return (
+
+                activity.type ===
+
+                "project_updated"
+
+              );
+
+            default:
+
+              return true;
+
+          }
+
+        });
+
+    }, [
+
+      activities,
+
+      filter,
+
+      search,
+
+    ]);
 
   return (
 
@@ -36,7 +136,7 @@ export default function ActivityTimeline({
 
           {
 
-            sortedActivities.length
+            filteredActivities.length
 
           }
 
@@ -44,9 +144,121 @@ export default function ActivityTimeline({
 
       </div>
 
+      <div className="activity-toolbar">
+
+        <div className="activity-filters">
+
+          <button
+
+            className={
+
+              filter === "all"
+
+                ? "active"
+
+                : ""
+
+            }
+
+            onClick={() =>
+
+              setFilter(
+
+                "all",
+
+              )
+
+            }
+
+          >
+
+            All
+
+          </button>
+
+          <button
+
+            className={
+
+              filter === "project"
+
+                ? "active"
+
+                : ""
+
+            }
+
+            onClick={() =>
+
+              setFilter(
+
+                "project",
+
+              )
+
+            }
+
+          >
+
+            Project
+
+          </button>
+
+          <button
+
+            className={
+
+              filter === "settings"
+
+                ? "active"
+
+                : ""
+
+            }
+
+            onClick={() =>
+
+              setFilter(
+
+                "settings",
+
+              )
+
+            }
+
+          >
+
+            Settings
+
+          </button>
+
+        </div>
+
+        <input
+
+          type="text"
+
+          placeholder="Search activity..."
+
+          value={search}
+
+          onChange={event =>
+
+            setSearch(
+
+              event.target.value,
+
+            )
+
+          }
+
+        />
+
+      </div>
+
       {
 
-        sortedActivities.length === 0 ? (
+        filteredActivities.length === 0 ? (
 
           <div className="activity-empty">
 
@@ -58,13 +270,13 @@ export default function ActivityTimeline({
 
             <h3>
 
-              No activity yet
+              No activity found
 
             </h3>
 
             <p>
 
-              Start working on your project to build its history.
+              Try another filter or search.
 
             </p>
 
@@ -76,7 +288,7 @@ export default function ActivityTimeline({
 
             {
 
-              sortedActivities.map(
+              filteredActivities.map(
 
                 activity => (
 
@@ -84,15 +296,13 @@ export default function ActivityTimeline({
 
                     key={activity.id}
 
-                    icon={activity.icon}
+                    {...activity}
 
-                    color={activity.color}
+                    time={
 
-                    title={activity.title}
+                      activity.createdAt
 
-                    description={activity.description}
-
-                    time={activity.createdAt}
+                    }
 
                   />
 
