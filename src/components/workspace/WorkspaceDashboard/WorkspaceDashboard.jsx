@@ -1,15 +1,11 @@
 import "./WorkspaceDashboard.css";
 
 import useDashboard from "../../../hooks/dashboard/useDashboard";
-import useProject from "../../../hooks/project/useProject";
 
 import DashboardOverview from "./DashboardOverview";
 import DashboardQuickActions from "./DashboardQuickActions";
 import DashboardStats from "./DashboardStats";
 import WorkspaceCard from "./WorkspaceCard";
-
-import StatisticsGrid from "../../project/ProjectDashboard/components/StatisticsGrid";
-import ActivityTimeline from "../../project/ProjectDashboard/components/ActivityTimeline";
 
 export default function WorkspaceDashboard({
 
@@ -22,12 +18,6 @@ export default function WorkspaceDashboard({
   const dashboard =
 
     useDashboard();
-
-  const {
-
-    activeProject,
-
-  } = useProject();
 
   return (
 
@@ -67,33 +57,7 @@ export default function WorkspaceDashboard({
           PROJECT WIDGETS
       ========================== */}
 
-      {
-
-        activeProject && (
-
-            
-
-          <div className="dashboard-widget-grid">
-
-            <StatisticsGrid
-
-              project={activeProject}
-
-            />
-
-            {/*
-
-            <ActivityTimeline
-
-              activities={activeProject.activities ||[]}
-
-            />  */}
-
-          </div>
-
-        )
-
-      }
+    
 
       {/* ==========================
           QUICK ACTIONS
