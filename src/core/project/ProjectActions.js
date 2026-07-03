@@ -71,15 +71,9 @@ class ProjectActions {
 
       ProjectActivity.ActivityTypes.PROJECT_CREATED,
 
-    title:
-
-      "Project Created",
-
     description:
 
       project.name,
-
-    icon: "🎉",
 
   }),
 
