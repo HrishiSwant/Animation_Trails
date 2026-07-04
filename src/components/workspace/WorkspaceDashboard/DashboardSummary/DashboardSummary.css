@@ -1,0 +1,41 @@
+.dashboard-summary{
+
+    margin:40px 0;
+
+}
+
+.dashboard-summary-header{
+
+    margin-bottom:20px;
+
+}
+
+.dashboard-summary-header h2{
+
+    margin:0;
+
+}
+
+.dashboard-summary-header p{
+
+    margin-top:6px;
+
+    color:var(--color-text-secondary);
+
+}
+
+.dashboard-summary-list{
+
+    display:grid;
+
+    gap:14px;
+
+    padding:24px;
+
+    border-radius:18px;
+
+    background:var(--color-surface);
+
+    border:1px solid var(--color-border);
+
+}
