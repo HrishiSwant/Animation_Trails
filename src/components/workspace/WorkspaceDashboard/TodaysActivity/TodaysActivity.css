@@ -1,0 +1,37 @@
+.todays-activity{
+
+    margin:40px 0;
+
+}
+
+.todays-activity-header{
+
+    margin-bottom:20px;
+
+}
+
+.todays-activity-header h2{
+
+    margin:0;
+
+}
+
+.todays-activity-header p{
+
+    margin-top:6px;
+
+    color:var(--color-text-secondary);
+
+}
+
+.todays-activity-grid{
+
+    display:grid;
+
+    grid-template-columns:
+
+        repeat(auto-fit,minmax(220px,1fr));
+
+    gap:18px;
+
+}
