@@ -231,14 +231,6 @@ if (
 
 }
 
-  health: {
-
-  score: health,
-
-  checks,
-
-},
-
   return {
     value: `${mb.toFixed(2)} MB`,
     kb: (mb * 1024).toFixed(1),
