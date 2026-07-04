@@ -41,7 +41,41 @@ function calculateStorage(projects) {
 
   }
 
-  const mb = kb / 1024;
+    const mb = kb / 1024;
+
+  return {
+
+    value: `${mb.toFixed(2)} MB`,
+
+    kb: (mb * 1024).toFixed(1),
+
+    percent: Math.min(
+
+      Math.round(mb * 5),
+
+      100,
+
+    ),
+
+    color:
+
+      mb > 10
+
+        ? "#EF4444"
+
+        : "#F59E0B",
+
+    level:
+
+      mb > 10
+
+        ? "High"
+
+        : "Normal",
+
+  };
+
+}
 
   /*
 ==========================
@@ -251,9 +285,151 @@ export default function useDashboard() {
 
   );
 
+  /*
+==========================
+    WORKSPACE HEALTH
+==========================
+*/
+
+let health = 0;
+
+const checks = [];
+
+if (projects.length > 0) {
+
+  health += 20;
+
+  checks.push({
+
+    label: "Project Created",
+
+    passed: true,
+
+  });
+
+}
+
+if (activeProject?.description?.trim()) {
+
+  health += 15;
+
+  checks.push({
+
+    label: "Description Added",
+
+    passed: true,
+
+  });
+
+} else {
+
+  checks.push({
+
+    label: "Description Missing",
+
+    passed: false,
+
+  });
+
+}
+
+if (activeProject?.tags?.length > 0) {
+
+  health += 15;
+
+  checks.push({
+
+    label: "Tags Added",
+
+    passed: true,
+
+  });
+
+} else {
+
+  checks.push({
+
+    label: "No Tags",
+
+    passed: false,
+
+  });
+
+}
+
+if (activeProject?.favorite) {
+
+  health += 10;
+
+  checks.push({
+
+    label: "Favorite",
+
+    passed: true,
+
+  });
+
+}
+
+if (activeProject?.animations?.length > 0) {
+
+  health += 20;
+
+  checks.push({
+
+    label: "Animations",
+
+    passed: true,
+
+  });
+
+} else {
+
+  checks.push({
+
+    label: "No Animations",
+
+    passed: false,
+
+  });
+
+}
+
+if (activeProject?.activities?.length > 0) {
+
+  health += 20;
+
+  checks.push({
+
+    label: "Activity Recorded",
+
+    passed: true,
+
+  });
+
+} else {
+
+  checks.push({
+
+    label: "No Activity",
+
+    passed: false,
+
+  });
+
+}
+
   return {
 
     activeProject,
+
+    health: {
+
+  score: health,
+
+  checks,
+
+},
 
     overview: [
 
