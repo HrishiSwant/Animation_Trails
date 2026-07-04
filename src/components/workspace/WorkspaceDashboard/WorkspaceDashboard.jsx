@@ -25,6 +25,7 @@ import ProductivityRecommendations from "./ProductivityRecommendations/Productiv
 import DashboardPreferences from "./DashboardPreferences/DashboardPreferences";
 import FavoriteWidgets from "./FavoriteWidgets/FavoriteWidgets";
 import WidgetSection from "./WidgetSection/WidgetSection";
+import DashboardTheme from "./DashboardTheme/DashboardTheme";
 
 
 export default function WorkspaceDashboard({
@@ -178,6 +179,12 @@ export default function WorkspaceDashboard({
       ========================== */}
 
       <DashboardPreferences />
+      
+      {/* ==========================
+          DashboardTheme
+      ========================== */}
+
+      <DashboardTheme />
 
       {/* ==========================
           QUICK ACTIONS
