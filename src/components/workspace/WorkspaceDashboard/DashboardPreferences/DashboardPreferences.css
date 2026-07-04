@@ -1,0 +1,55 @@
+.dashboard-preferences{
+
+    margin:40px 0;
+
+}
+
+.dashboard-preferences-header{
+
+    margin-bottom:20px;
+
+}
+
+.preferences-card{
+
+    padding:24px;
+
+    border-radius:18px;
+
+    background:var(--color-surface);
+
+    border:1px solid var(--color-border);
+
+}
+
+.density{
+
+    margin-top:24px;
+
+}
+
+.density button{
+
+    margin-right:12px;
+
+    margin-top:12px;
+
+    padding:10px 18px;
+
+    border:none;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+    background:var(--color-surface-secondary);
+
+}
+
+.density button.active{
+
+    background:var(--color-primary);
+
+    color:#fff;
+
+}
