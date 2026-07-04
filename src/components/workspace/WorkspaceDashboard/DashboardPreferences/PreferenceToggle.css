@@ -17,3 +17,66 @@
     border-bottom:none;
 
 }
+.preference-toggle{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:14px 0;
+
+    border-bottom:1px solid var(--color-border);
+
+}
+
+.preference-toggle:last-child{
+
+    border-bottom:none;
+
+}
+
+.preference-toggle-left{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+}
+
+.favorite-toggle{
+
+    width:34px;
+
+    height:34px;
+
+    border:none;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+    font-size:16px;
+
+    background:var(--color-surface-secondary);
+
+    transition:.25s;
+
+}
+
+.favorite-toggle:hover{
+
+    transform:scale(1.05);
+
+}
+
+.favorite-toggle.active{
+
+    background:#F59E0B;
+
+    color:#FFFFFF;
+
+}
