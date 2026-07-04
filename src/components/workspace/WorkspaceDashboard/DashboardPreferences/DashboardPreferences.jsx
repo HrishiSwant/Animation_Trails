@@ -12,6 +12,8 @@ export default function DashboardPreferences() {
 
     toggleWidget,
 
+    toggleFavoriteWidget,
+
     setDensity,
 
   } = useDashboardPreferences();
@@ -58,15 +60,19 @@ export default function DashboardPreferences() {
 
                 key={id}
 
+                id={id}
+
                 label={id}
 
                 checked={value}
 
+                favorite={preferences.favoriteWidgets.includes(id)}
+
                 onChange={() =>
 
-                  toggleWidget(id)
+                  toggleWidget(id)}
 
-                }
+                onFavorite={toggleFavoriteWidget}
 
               />
 
