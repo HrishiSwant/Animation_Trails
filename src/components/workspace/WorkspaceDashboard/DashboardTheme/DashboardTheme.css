@@ -1,0 +1,31 @@
+.dashboard-theme{
+
+    margin:40px 0;
+
+}
+
+.dashboard-theme-header{
+
+    margin-bottom:20px;
+
+}
+
+.dashboard-theme-header p{
+
+    margin-top:6px;
+
+    color:var(--color-text-secondary);
+
+}
+
+.dashboard-theme-grid{
+
+    display:grid;
+
+    grid-template-columns:
+
+        repeat(auto-fit,minmax(160px,1fr));
+
+    gap:18px;
+
+}
