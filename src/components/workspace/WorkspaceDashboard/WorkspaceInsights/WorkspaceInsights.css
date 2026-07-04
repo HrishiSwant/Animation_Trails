@@ -14,6 +14,10 @@
 
     margin:0;
 
+    font-size:28px;
+
+    color:var(--color-text);
+
 }
 
 .workspace-insights-header p{
@@ -21,6 +25,8 @@
     margin-top:6px;
 
     color:var(--color-text-secondary);
+
+    line-height:1.6;
 
 }
 
@@ -32,18 +38,66 @@
 
 }
 
+/* ==================================
+   EMPTY STATE
+================================== */
+
 .workspace-insights-empty{
 
-    padding:28px;
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    justify-content:center;
 
     text-align:center;
 
-    border-radius:16px;
+    padding:42px;
 
-    border:1px dashed var(--color-border);
+    border-radius:18px;
+
+    border:2px dashed var(--color-border);
 
     background:var(--color-surface);
 
-    font-size:18px;
+    transition:
+        background-color .25s,
+        border-color .25s;
+
+}
+
+.workspace-insights-empty-icon{
+
+    font-size:64px;
+
+    line-height:1;
+
+    margin-bottom:18px;
+
+}
+
+.workspace-insights-empty h3{
+
+    margin:0;
+
+    font-size:24px;
+
+    font-weight:700;
+
+    color:var(--color-text);
+
+}
+
+.workspace-insights-empty p{
+
+    margin-top:12px;
+
+    max-width:420px;
+
+    color:var(--color-text-secondary);
+
+    line-height:1.7;
 
 }
