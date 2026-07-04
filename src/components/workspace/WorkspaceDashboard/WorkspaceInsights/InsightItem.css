@@ -1,0 +1,83 @@
+.insight-item{
+
+    display:flex;
+
+    gap:16px;
+
+    align-items:flex-start;
+
+    padding:16px;
+
+    border-radius:14px;
+
+    border:1px solid var(--color-border);
+
+    background:var(--color-surface);
+
+    transition:.25s;
+
+}
+
+.insight-item:hover{
+
+    transform:translateY(-2px);
+
+}
+
+.insight-icon{
+
+    font-size:24px;
+
+}
+
+.insight-content{
+
+    flex:1;
+
+}
+
+.insight-content h4{
+
+    margin:0;
+
+    margin-bottom:6px;
+
+    font-size:16px;
+
+}
+
+.insight-content p{
+
+    margin:0;
+
+    opacity:.75;
+
+    line-height:1.5;
+
+}
+
+/* priorities */
+
+.insight-item.warning{
+
+    border-left:4px solid #F59E0B;
+
+}
+
+.insight-item.suggestion{
+
+    border-left:4px solid #3B82F6;
+
+}
+
+.insight-item.tip{
+
+    border-left:4px solid #10B981;
+
+}
+
+.insight-item.critical{
+
+    border-left:4px solid #EF4444;
+
+}
