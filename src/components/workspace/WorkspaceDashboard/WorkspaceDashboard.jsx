@@ -15,6 +15,7 @@ import WorkspaceInsights from "./WorkspaceInsights/WorkspaceInsights";
 import FavoriteProjects from "./FavoriteProjects/FavoriteProjects";
 import RecentProjects from "./RecentProjects/RecentProjects";
 import ContinueWorking from "./ContinueWorking/ContinueWorking";
+import TodaysActivity from "./TodaysActivity/TodaysActivity";
 
 export default function WorkspaceDashboard({
 
@@ -105,6 +106,12 @@ export default function WorkspaceDashboard({
       ========================== */}
 
       <ContinueWorking />
+
+      {/* ==========================
+          TodaysActivity
+      ========================== */}
+
+      <TodaysActivity />
 
 
       {/* ==========================
