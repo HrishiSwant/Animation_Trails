@@ -1,0 +1,49 @@
+.workspace-insights{
+
+    margin:40px 0;
+
+}
+
+.workspace-insights-header{
+
+    margin-bottom:22px;
+
+}
+
+.workspace-insights-header h2{
+
+    margin:0;
+
+}
+
+.workspace-insights-header p{
+
+    margin-top:6px;
+
+    color:var(--color-text-secondary);
+
+}
+
+.workspace-insights-list{
+
+    display:grid;
+
+    gap:14px;
+
+}
+
+.workspace-insights-empty{
+
+    padding:28px;
+
+    text-align:center;
+
+    border-radius:16px;
+
+    border:1px dashed var(--color-border);
+
+    background:var(--color-surface);
+
+    font-size:18px;
+
+}
