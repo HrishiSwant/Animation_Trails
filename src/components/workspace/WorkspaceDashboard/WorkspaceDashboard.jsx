@@ -77,15 +77,6 @@ export default function WorkspaceDashboard({
 
 />
 
-<WorkspaceInsights />
-
-<DashboardQuickActions
-
-  actions={dashboard.quickActions}
-
-  setCurrentTool={setCurrentTool}
-
-/>
     
 
       {/* ==========================
