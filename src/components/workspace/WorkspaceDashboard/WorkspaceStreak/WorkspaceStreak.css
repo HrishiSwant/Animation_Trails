@@ -1,0 +1,85 @@
+.workspace-streak{
+
+    margin:40px 0;
+
+}
+
+.workspace-streak-header{
+
+    margin-bottom:20px;
+
+}
+
+.workspace-streak-header h2{
+
+    margin:0;
+
+}
+
+.workspace-streak-header p{
+
+    margin-top:6px;
+
+    color:var(--color-text-secondary);
+
+}
+
+.workspace-streak-grid{
+
+    display:grid;
+
+    grid-template-columns:
+
+        repeat(auto-fit,minmax(220px,1fr));
+
+    gap:18px;
+
+}
+
+.streak-card{
+
+    background:var(--color-surface);
+
+    border:1px solid var(--color-border);
+
+    border-radius:18px;
+
+    padding:24px;
+
+    text-align:center;
+
+    transition:.25s;
+
+}
+
+.streak-card:hover{
+
+    transform:translateY(-3px);
+
+    border-color:var(--color-primary);
+
+}
+
+.streak-icon{
+
+    font-size:32px;
+
+}
+
+.streak-card h3{
+
+    margin:12px 0;
+
+    font-size:36px;
+
+    color:var(--color-text);
+
+}
+
+.streak-card p{
+
+    margin:0;
+
+    color:var(--color-text-secondary);
+
+}
