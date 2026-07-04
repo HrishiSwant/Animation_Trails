@@ -90,11 +90,19 @@ export default function WorkspaceDashboard({
           WORKSPACE HEALTH
       ========================== */}
 
-      <WorkspaceHealth
+      <WidgetSection
 
-        health={dashboard.health}
+        id="health"
 
-      />
+        title="Workspace Health">
+
+        <WorkspaceHealth
+
+          health={dashboard.health}
+
+          />
+
+        </WidgetSection>
 
       {/* ==========================
           WORKSPACE INSIGHTS
