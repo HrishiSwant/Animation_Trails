@@ -1,3 +1,9 @@
+import {
+
+  useMemo,
+
+} from "react";
+
 import useProject from "../project/useProject";
 
 export default function useWorkspaceInsights() {
@@ -8,178 +14,183 @@ export default function useWorkspaceInsights() {
 
   } = useProject();
 
-  if (!activeProject) {
+  const insights = useMemo(() => {
 
-    return [];
+    if (!activeProject) {
 
-  }
+      return [];
 
-  const insights = [];
+    }
 
-  /*
-  ==========================
-      DESCRIPTION
-  ==========================
-  */
+    const list = [];
 
-  if (!activeProject.description?.trim()) {
+    /*
+    ==========================
+        DESCRIPTION
+    ==========================
+    */
 
-    insights.push({
+    if (!activeProject.description?.trim()) {
 
-      id: "description",
+      list.push({
 
-      priority: "warning",
+        id: "description",
 
-      icon: "📝",
+        priority: "warning",
 
-      title: "Missing Description",
+        icon: "📝",
 
-      message:
-        "Add a project description.",
+        title: "Missing Description",
 
-    });
+        message: "Add a project description.",
 
-  }
+      });
 
-  /*
-  ==========================
-      TAGS
-  ==========================
-  */
+    }
 
-  if (
+    /*
+    ==========================
+        TAGS
+    ==========================
+    */
 
-    (activeProject.tags?.length || 0) === 0
+    if (
 
-  ) {
+      (activeProject.tags?.length || 0) === 0
 
-    insights.push({
+    ) {
 
-      id: "tags",
+      list.push({
 
-      priority: "tip",
+        id: "tags",
 
-      icon: "🏷",
+        priority: "tip",
 
-      title: "No Tags",
+        icon: "🏷",
 
-      message:
-        "Tags help organize projects.",
+        title: "No Tags",
 
-    });
+        message: "Tags help organize projects.",
 
-  }
+      });
 
-  /*
-  ==========================
-      FAVORITE
-  ==========================
-  */
+    }
 
-  if (!activeProject.favorite) {
+    /*
+    ==========================
+        FAVORITE
+    ==========================
+    */
 
-    insights.push({
+    if (!activeProject.favorite) {
 
-      id: "favorite",
+      list.push({
 
-      priority: "suggestion",
+        id: "favorite",
 
-      icon: "⭐",
+        priority: "suggestion",
 
-      title: "Favorite Project",
+        icon: "⭐",
 
-      message:
-        "Mark this project as favorite.",
+        title: "Favorite Project",
 
-    });
+        message: "Mark this project as favorite.",
 
-  }
+      });
 
-  /*
-  ==========================
-      ANIMATIONS
-  ==========================
-  */
+    }
 
-  if (
+    /*
+    ==========================
+        ANIMATIONS
+    ==========================
+    */
 
-    (activeProject.animations?.length || 0) === 0
+    if (
 
-  ) {
+      (activeProject.animations?.length || 0) === 0
 
-    insights.push({
+    ) {
 
-      id: "animations",
+      list.push({
 
-      priority: "warning",
+        id: "animations",
 
-      icon: "🎬",
+        priority: "warning",
 
-      title: "No Animations",
+        icon: "🎬",
 
-      message:
-        "This project has no animations.",
+        title: "No Animations",
 
-    });
+        message: "This project has no animations.",
 
-  }
+      });
 
-  /*
-  ==========================
-      ACTIVITY
-  ==========================
-  */
+    }
 
-  if (
+    /*
+    ==========================
+        ACTIVITY
+    ==========================
+    */
 
-    (activeProject.activities?.length || 0) === 0
+    if (
 
-  ) {
+      (activeProject.activities?.length || 0) === 0
 
-    insights.push({
+    ) {
 
-      id: "activity",
+      list.push({
 
-      priority: "tip",
+        id: "activity",
 
-      icon: "📅",
+        priority: "tip",
 
-      title: "No Activity",
+        icon: "📅",
 
-      message:
-        "Start working on this project.",
+        title: "No Activity",
 
-    });
+        message: "Start working on this project.",
 
-  }
+      });
 
-  /*
-==========================
-    PRIORITY SORT
-==========================
-*/
+    }
 
-const priorityOrder = {
+    /*
+    ==========================
+        PRIORITY SORT
+    ==========================
+    */
 
-  critical: 0,
+    const priorityOrder = {
 
-  warning: 1,
+      critical: 0,
 
-  suggestion: 2,
+      warning: 1,
 
-  tip: 3,
+      suggestion: 2,
 
-};
+      tip: 3,
 
-insights.sort(
+    };
 
-  (a, b) =>
+    list.sort(
 
-    priorityOrder[a.priority] -
+      (a, b) =>
 
-    priorityOrder[b.priority],
+        priorityOrder[a.priority] -
 
-);
+        priorityOrder[b.priority],
+
+    );
+
+    return list;
+
+  }, [
+
+    activeProject,
+
+  ]);
 
   return insights;
 
