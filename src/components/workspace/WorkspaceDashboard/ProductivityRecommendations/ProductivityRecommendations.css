@@ -1,0 +1,49 @@
+.productivity-recommendations{
+
+    margin:40px 0;
+
+}
+
+.productivity-recommendations-header{
+
+    margin-bottom:20px;
+
+}
+
+.productivity-recommendations-header h2{
+
+    margin:0;
+
+}
+
+.productivity-recommendations-header p{
+
+    margin-top:6px;
+
+    color:var(--color-text-secondary);
+
+}
+
+.recommendation-list{
+
+    display:grid;
+
+    gap:16px;
+
+}
+
+.recommendation-empty{
+
+    padding:28px;
+
+    text-align:center;
+
+    border-radius:16px;
+
+    background:var(--color-surface);
+
+    border:2px dashed var(--color-border);
+
+    color:var(--color-text-secondary);
+
+}
