@@ -36,7 +36,27 @@ export default function WorkspaceInsights() {
 
           <div className="workspace-insights-empty">
 
-            🎉 Workspace looks great!
+            <div className="workspace-insights-empty-icon">
+
+              🎉
+
+            </div>
+
+            <h3>
+
+              Workspace looks great!
+
+            </h3>
+
+            <p>
+
+              Your active project is well organized.
+
+              <br />
+
+              There are no suggestions right now.
+
+            </p>
 
           </div>
 
