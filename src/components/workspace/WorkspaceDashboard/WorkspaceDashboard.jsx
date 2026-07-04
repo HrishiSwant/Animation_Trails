@@ -8,6 +8,7 @@ import DashboardStats from "./DashboardStats";
 import WorkspaceCard from "./WorkspaceCard";
 import ActiveWorkspaceSummary from "./ActiveWorkspaceSummary";
 import WorkspaceHealth from "./WorkspaceHealth";
+import WorkspaceInsights from "./WorkspaceInsights/WorkspaceInsights";
 
 export default function WorkspaceDashboard({
 
@@ -70,7 +71,21 @@ export default function WorkspaceDashboard({
       {/* ==========================
           PROJECT WIDGETS
       ========================== */}
+<DashboardOverview
 
+  overview={dashboard.overview}
+
+/>
+
+<WorkspaceInsights />
+
+<DashboardQuickActions
+
+  actions={dashboard.quickActions}
+
+  setCurrentTool={setCurrentTool}
+
+/>
     
 
       {/* ==========================
