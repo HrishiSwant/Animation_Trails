@@ -6,6 +6,8 @@ const DEFAULTS = {
 
   density: "comfortable",
 
+  favoriteWidgets: [],
+
   widgets: {
 
     overview: true,
@@ -90,6 +92,40 @@ export default function useDashboardPreferences() {
 
   }
 
+  function toggleFavoriteWidget(id) {
+
+  setPreferences(previous => {
+
+    const exists =
+
+      previous.favoriteWidgets.includes(id);
+
+    return {
+
+      ...previous,
+
+      favoriteWidgets: exists
+
+        ? previous.favoriteWidgets.filter(
+
+            item => item !== id,
+
+          )
+
+        : [
+
+            ...previous.favoriteWidgets,
+
+            id,
+
+          ],
+
+    };
+
+  });
+
+}
+
   function setDensity(value) {
 
     setPreferences(previous => ({
@@ -107,6 +143,8 @@ export default function useDashboardPreferences() {
     preferences,
 
     toggleWidget,
+
+    toggleFavoriteWidget,
 
     setDensity,
 
