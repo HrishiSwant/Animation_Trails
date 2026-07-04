@@ -38,7 +38,7 @@ export default function PreferenceToggle({
 
           onClick={() =>
 
-            onFavorite(id)
+            onFavorite?.(id)
 
           }
 
