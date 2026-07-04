@@ -13,6 +13,7 @@ import WorkspaceHealth from "./WorkspaceHealth";
 
 import WorkspaceInsights from "./WorkspaceInsights/WorkspaceInsights";
 import FavoriteProjects from "./FavoriteProjects/FavoriteProjects";
+import RecentProjects from "./RecentProjects/RecentProjects";
 
 export default function WorkspaceDashboard({
 
@@ -91,6 +92,12 @@ export default function WorkspaceDashboard({
       ========================== */}
 
       <FavoriteProjects />
+
+      {/* ==========================
+          RECENT PROJECTS
+      ========================== */}
+
+      <RecentProjects />
 
       {/* ==========================
           QUICK ACTIONS
