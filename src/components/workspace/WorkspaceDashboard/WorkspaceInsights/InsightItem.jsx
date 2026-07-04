@@ -22,9 +22,27 @@ export default function InsightItem({
 
       <div className="insight-icon">
 
-        {icon}
+  {
 
-      </div>
+    priority === "critical"
+
+      ? "🚨"
+
+      : priority === "warning"
+
+      ? "⚠️"
+
+      : priority === "suggestion"
+
+      ? "💡"
+
+      : "✅"
+
+  }
+
+</div>
+
+
 
       <div className="insight-content">
 
