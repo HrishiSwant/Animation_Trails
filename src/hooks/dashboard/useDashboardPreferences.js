@@ -76,6 +76,10 @@ export default function useDashboardPreferences() {
 
             parsed.favoriteWidgets || [],
 
+           collapsedWidgets:
+
+             parsed.collapsedWidgets || {},
+
           widgets: {
 
             ...DEFAULTS.widgets,
