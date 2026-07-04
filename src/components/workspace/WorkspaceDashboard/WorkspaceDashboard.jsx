@@ -19,6 +19,7 @@ import TodaysActivity from "./TodaysActivity/TodaysActivity";
 import ProductivityScore from "./ProductivityScore/ProductivityScore";
 import WeeklyActivity from "./WeeklyActivity/WeeklyActivity";
 import WorkspaceStreak from "./WorkspaceStreak/WorkspaceStreak";
+import DashboardSummary from "./DashboardSummary/DashboardSummary";
 
 export default function WorkspaceDashboard({
 
@@ -133,6 +134,12 @@ export default function WorkspaceDashboard({
       ========================== */}
       
       <WorkspaceStreak />
+
+      {/* ==========================
+          DashboardSummary 
+      ========================== */}
+
+      <DashboardSummary />
 
       {/* ==========================
           QUICK ACTIONS
