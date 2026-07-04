@@ -22,6 +22,7 @@ import WorkspaceStreak from "./WorkspaceStreak/WorkspaceStreak";
 import DashboardSummary from "./DashboardSummary/DashboardSummary";
 import ProductivityRecommendations from "./ProductivityRecommendations/ProductivityRecommendations";
 import DashboardPreferences from "./DashboardPreferences/DashboardPreferences";
+import FavoriteWidgets from "./FavoriteWidgets/FavoriteWidgets";
 
 export default function WorkspaceDashboard({
 
@@ -68,6 +69,12 @@ export default function WorkspaceDashboard({
         project={dashboard.activeProject}
 
       />
+
+      {/* ==========================
+          FavoriteWidgets
+      ========================== */}
+      
+      <FavoriteWidgets />
 
       {/* ==========================
           WORKSPACE OVERVIEW
