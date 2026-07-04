@@ -1,0 +1,53 @@
+.summary-item{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:16px 18px;
+
+    border-radius:14px;
+
+    background:var(--color-surface-secondary);
+
+    transition:.25s;
+
+}
+
+.summary-item:hover{
+
+    transform:translateX(4px);
+
+}
+
+.summary-left{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+}
+
+.summary-icon{
+
+    font-size:22px;
+
+}
+
+.summary-label{
+
+    color:var(--color-text-secondary);
+
+}
+
+.summary-item strong{
+
+    font-size:18px;
+
+    color:var(--color-text);
+
+}
