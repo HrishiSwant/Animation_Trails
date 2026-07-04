@@ -153,6 +153,34 @@ export default function useWorkspaceInsights() {
 
   }
 
+  /*
+==========================
+    PRIORITY SORT
+==========================
+*/
+
+const priorityOrder = {
+
+  critical: 0,
+
+  warning: 1,
+
+  suggestion: 2,
+
+  tip: 3,
+
+};
+
+insights.sort(
+
+  (a, b) =>
+
+    priorityOrder[a.priority] -
+
+    priorityOrder[b.priority],
+
+);
+
   return insights;
 
 }
