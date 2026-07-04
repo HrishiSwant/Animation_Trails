@@ -1,6 +1,7 @@
 import "./WorkspaceDashboard.css";
 
 import useDashboard from "../../../hooks/dashboard/useDashboard";
+import useDashboardPreferences from "../../../hooks/dashboard/useDashboardPreferences";
 
 import DashboardOverview from "./DashboardOverview";
 import DashboardQuickActions from "./DashboardQuickActions";
@@ -25,6 +26,7 @@ import DashboardPreferences from "./DashboardPreferences/DashboardPreferences";
 import FavoriteWidgets from "./FavoriteWidgets/FavoriteWidgets";
 import WidgetSection from "./WidgetSection/WidgetSection";
 
+
 export default function WorkspaceDashboard({
 
   setCurrentTool,
@@ -37,9 +39,15 @@ export default function WorkspaceDashboard({
 
     useDashboard();
 
+  const {
+
+  preferences,
+
+} = useDashboardPreferences();
+
   return (
 
-    <div className="workspace-dashboard">
+    <div className={`workspace-dashboard dashboard-theme-${preferences.theme}`}>
 
       {/* ==========================
           PAGE HEADER
