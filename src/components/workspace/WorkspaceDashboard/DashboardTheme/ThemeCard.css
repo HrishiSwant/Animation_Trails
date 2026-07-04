@@ -1,0 +1,29 @@
+.theme-card{
+
+    padding:18px;
+
+    border-radius:14px;
+
+    border:1px solid var(--color-border);
+
+    background:var(--color-surface);
+
+    cursor:pointer;
+
+    transition:.25s;
+
+}
+
+.theme-card:hover{
+
+    transform:translateY(-2px);
+
+}
+
+.theme-card.active{
+
+    border-color:var(--color-primary);
+
+    background:rgba(59,130,246,.12);
+
+}
