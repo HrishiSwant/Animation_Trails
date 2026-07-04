@@ -1,0 +1,63 @@
+.widget-section{
+
+    margin:40px 0;
+
+}
+
+.widget-section-header{
+
+    width:100%;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:14px;
+
+    background:none;
+
+    border:none;
+
+    cursor:pointer;
+
+    padding:0;
+
+    margin-bottom:20px;
+
+    color:var(--color-text);
+
+}
+
+.widget-section-header h2{
+
+    margin:0;
+
+    font-size:24px;
+
+}
+
+.widget-section-body{
+
+    animation:widgetExpand .25s ease;
+
+}
+
+@keyframes widgetExpand{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(-8px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:none;
+
+    }
+
+}
