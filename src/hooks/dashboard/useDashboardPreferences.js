@@ -8,6 +8,8 @@ const DEFAULTS = {
 
   favoriteWidgets: [],
 
+  collapsedWidgets: {},
+
   widgets: {
 
     overview: true,
@@ -126,6 +128,26 @@ export default function useDashboardPreferences() {
 
   }
 
+  function toggleCollapsedWidget(id) {
+
+  setPreferences(previous => ({
+
+    ...previous,
+
+    collapsedWidgets: {
+
+      ...previous.collapsedWidgets,
+
+      [id]:
+
+        !previous.collapsedWidgets[id],
+
+    },
+
+  }));
+
+}
+
   function toggleFavoriteWidget(id) {
 
     setPreferences(previous => {
@@ -183,6 +205,8 @@ export default function useDashboardPreferences() {
     toggleWidget,
 
     toggleFavoriteWidget,
+
+    toggleCollapsedWidget,
 
     setDensity,
 
