@@ -5,10 +5,14 @@ import useDashboard from "../../../hooks/dashboard/useDashboard";
 import DashboardOverview from "./DashboardOverview";
 import DashboardQuickActions from "./DashboardQuickActions";
 import DashboardStats from "./DashboardStats";
+
 import WorkspaceCard from "./WorkspaceCard";
+
 import ActiveWorkspaceSummary from "./ActiveWorkspaceSummary";
 import WorkspaceHealth from "./WorkspaceHealth";
+
 import WorkspaceInsights from "./WorkspaceInsights/WorkspaceInsights";
+import FavoriteProjects from "./FavoriteProjects/FavoriteProjects";
 
 export default function WorkspaceDashboard({
 
@@ -47,6 +51,16 @@ export default function WorkspaceDashboard({
       </div>
 
       {/* ==========================
+          ACTIVE WORKSPACE
+      ========================== */}
+
+      <ActiveWorkspaceSummary
+
+        project={dashboard.activeProject}
+
+      />
+
+      {/* ==========================
           WORKSPACE OVERVIEW
       ========================== */}
 
@@ -56,28 +70,27 @@ export default function WorkspaceDashboard({
 
       />
 
+      {/* ==========================
+          WORKSPACE HEALTH
+      ========================== */}
+
       <WorkspaceHealth
 
-  health={dashboard.health}
+        health={dashboard.health}
 
-/>
-
-      <ActiveWorkspaceSummary
-
-  project={dashboard.activeProject}
-
-/>
+      />
 
       {/* ==========================
-          PROJECT WIDGETS
+          WORKSPACE INSIGHTS
       ========================== */}
-<DashboardOverview
 
-  overview={dashboard.overview}
+      <WorkspaceInsights />
 
-/>
+      {/* ==========================
+          FAVORITE PROJECTS
+      ========================== */}
 
-    
+      <FavoriteProjects />
 
       {/* ==========================
           QUICK ACTIONS
