@@ -1,0 +1,45 @@
+.favorite-widgets{
+
+    margin:40px 0;
+
+}
+
+.favorite-widgets-header{
+
+    margin-bottom:20px;
+
+}
+
+.favorite-widgets-header p{
+
+    margin-top:6px;
+
+    color:var(--color-text-secondary);
+
+}
+
+.favorite-widgets-grid{
+
+    display:grid;
+
+    grid-template-columns:
+
+        repeat(auto-fit,minmax(220px,1fr));
+
+    gap:18px;
+
+}
+
+.favorite-widgets-empty{
+
+    padding:26px;
+
+    text-align:center;
+
+    border:2px dashed var(--color-border);
+
+    border-radius:16px;
+
+    background:var(--color-surface);
+
+}
