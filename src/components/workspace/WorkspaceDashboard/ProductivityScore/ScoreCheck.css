@@ -1,0 +1,27 @@
+.score-check{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    margin-bottom:10px;
+
+}
+
+.score-check-pass{
+
+    color:#10B981;
+
+    font-weight:700;
+
+}
+
+.score-check-fail{
+
+    color:#EF4444;
+
+    font-weight:700;
+
+}
