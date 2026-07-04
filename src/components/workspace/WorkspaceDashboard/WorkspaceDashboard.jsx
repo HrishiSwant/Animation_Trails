@@ -23,6 +23,7 @@ import DashboardSummary from "./DashboardSummary/DashboardSummary";
 import ProductivityRecommendations from "./ProductivityRecommendations/ProductivityRecommendations";
 import DashboardPreferences from "./DashboardPreferences/DashboardPreferences";
 import FavoriteWidgets from "./FavoriteWidgets/FavoriteWidgets";
+import WidgetSection from "./WidgetSection/WidgetSection";
 
 export default function WorkspaceDashboard({
 
