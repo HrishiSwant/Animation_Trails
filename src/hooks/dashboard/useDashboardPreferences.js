@@ -44,19 +44,53 @@ export default function useDashboardPreferences() {
 
     useState(() => {
 
-      const saved =
+      try {
 
-        localStorage.getItem(
+        const saved =
 
-          STORAGE_KEY,
+          localStorage.getItem(
 
-        );
+            STORAGE_KEY,
 
-      return saved
+          );
 
-        ? JSON.parse(saved)
+        if (!saved) {
 
-        : DEFAULTS;
+          return DEFAULTS;
+
+        }
+
+        const parsed =
+
+          JSON.parse(saved);
+
+        return {
+
+          ...DEFAULTS,
+
+          ...parsed,
+
+          favoriteWidgets:
+
+            parsed.favoriteWidgets || [],
+
+          widgets: {
+
+            ...DEFAULTS.widgets,
+
+            ...(parsed.widgets || {}),
+
+          },
+
+        };
+
+      }
+
+      catch {
+
+        return DEFAULTS;
+
+      }
 
     });
 
@@ -94,37 +128,41 @@ export default function useDashboardPreferences() {
 
   function toggleFavoriteWidget(id) {
 
-  setPreferences(previous => {
+    setPreferences(previous => {
 
-    const exists =
+      const favorites =
 
-      previous.favoriteWidgets.includes(id);
+        previous.favoriteWidgets || [];
 
-    return {
+      const exists =
 
-      ...previous,
+        favorites.includes(id);
 
-      favoriteWidgets: exists
+      return {
 
-        ? previous.favoriteWidgets.filter(
+        ...previous,
 
-            item => item !== id,
+        favoriteWidgets: exists
 
-          )
+          ? favorites.filter(
 
-        : [
+              item => item !== id,
 
-            ...previous.favoriteWidgets,
+            )
 
-            id,
+          : [
 
-          ],
+              ...favorites,
 
-    };
+              id,
 
-  });
+            ],
 
-}
+      };
+
+    });
+
+  }
 
   function setDensity(value) {
 
