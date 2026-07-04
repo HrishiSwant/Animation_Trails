@@ -6,6 +6,8 @@ const DEFAULTS = {
 
   density: "comfortable",
 
+  theme: "default",
+
   favoriteWidgets: [],
 
   collapsedWidgets: {},
@@ -152,6 +154,18 @@ export default function useDashboardPreferences() {
 
 }
 
+  function setTheme(theme) {
+
+    setPreferences(previous => ({
+
+        ...previous,
+
+        theme,
+
+    }));
+
+}
+
   function toggleFavoriteWidget(id) {
 
     setPreferences(previous => {
@@ -213,6 +227,8 @@ export default function useDashboardPreferences() {
     toggleCollapsedWidget,
 
     setDensity,
+
+    setTheme,
 
   };
 
