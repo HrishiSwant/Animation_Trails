@@ -48,6 +48,61 @@ export default function WorkspaceDashboard({
 
 } = useDashboardPreferences();
 
+  const widgets = {
+
+  overview: (
+    <DashboardOverview
+      overview={dashboard.overview}
+    />
+  ),
+
+  health: (
+    <WidgetSection
+      id="health"
+      title="Workspace Health"
+    >
+      <WorkspaceHealth
+        health={dashboard.health}
+      />
+    </WidgetSection>
+  ),
+
+  insights: <WorkspaceInsights />,
+
+  favorites: <FavoriteProjects />,
+
+  recent: <RecentProjects />,
+
+  continueWorking: (
+    <ContinueWorking />
+  ),
+
+  todaysActivity: (
+    <TodaysActivity />
+  ),
+
+  productivity: (
+    <ProductivityScore />
+  ),
+
+  weekly: (
+    <WeeklyActivity />
+  ),
+
+  streak: (
+    <WorkspaceStreak />
+  ),
+
+  summary: (
+    <DashboardSummary />
+  ),
+
+  recommendations: (
+    <ProductivityRecommendations />
+  ),
+
+};
+
   return (
 
     <div className={`workspace-dashboard dashboard-theme-${preferences.theme}`}>
@@ -80,93 +135,6 @@ export default function WorkspaceDashboard({
 
       <RecentWidgets />
 
-      {/* ==========================
-          WORKSPACE OVERVIEW
-      ========================== */}
-
-      <DashboardOverview
-
-        overview={dashboard.overview}
-
-      />
-
-      {/* ==========================
-          WORKSPACE HEALTH
-      ========================== */}
-
-      <WidgetSection
-
-        id="health"
-
-        title="Workspace Health">
-
-        <WorkspaceHealth
-
-          health={dashboard.health}
-
-          />
-
-        </WidgetSection>
-
-      {/* ==========================
-          WORKSPACE INSIGHTS
-      ========================== */}
-
-      <WorkspaceInsights />
-
-      {/* ==========================
-          FAVORITE PROJECTS
-      ========================== */}
-
-      <FavoriteProjects />
-
-      {/* ==========================
-          RECENT PROJECTS
-      ========================== */}
-
-      <RecentProjects />
-
-      {/* ==========================
-          ContinueWorking
-      ========================== */}
-
-      <ContinueWorking />
-
-      {/* ==========================
-          TodaysActivity
-      ========================== */}
-
-      <TodaysActivity />
-
-      {/* ==========================
-          ProductivityScore
-      ========================== */}
-      
-      <ProductivityScore />
-
-      {/* ==========================
-          WeeklyActivity
-      ========================== */}
-      
-      <WeeklyActivity />
-
-      {/* ==========================
-          WorkspaceStreak 
-      ========================== */}
-      
-      <WorkspaceStreak />
-
-      {/* ==========================
-          DashboardSummary 
-      ========================== */}
-
-      <DashboardSummary />
-
-      {/* ==========================
-          ProductivityRecommendations 
-      ========================== */}
-
-      <ProductivityRecommendations />
 
       {/* ==========================
           DashboardPreferences 
@@ -223,6 +191,36 @@ export default function WorkspaceDashboard({
         </button>
 
       </div>
+
+            {/* ==========================
+          dashboard-widget-area
+      ========================== */}
+
+      <div className="dashboard-widget-area">
+
+  {
+
+    preferences.widgetOrder.map(
+
+      id => (
+
+        <WidgetContainer
+
+          key={id}
+
+        >
+
+          {widgets[id]}
+
+        </WidgetContainer>
+
+      )
+
+    )
+
+  }
+
+</div>
 
       {/* ==========================
           MODULES
