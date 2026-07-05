@@ -10,6 +10,8 @@ const DEFAULTS = {
 
   favoriteWidgets: [],
 
+  recentWidgets: [],
+
   collapsedWidgets: {},
 
   widgets: {
@@ -134,6 +136,38 @@ export default function useDashboardPreferences() {
 
   }
 
+  function registerWidgetUsage(id) {
+
+  setPreferences(previous => {
+
+    const history =
+
+      previous.recentWidgets || [];
+
+    const updated = [
+
+      id,
+
+      ...history.filter(
+
+        widget => widget !== id,
+
+      ),
+
+    ].slice(0, 6);
+
+    return {
+
+      ...previous,
+
+      recentWidgets: updated,
+
+    };
+
+  });
+
+}
+
   function toggleCollapsedWidget(id) {
 
   setPreferences(previous => ({
@@ -225,6 +259,8 @@ export default function useDashboardPreferences() {
     toggleFavoriteWidget,
 
     toggleCollapsedWidget,
+
+    registerWidgetUsage,
 
     setDensity,
 
