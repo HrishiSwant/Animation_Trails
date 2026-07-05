@@ -28,7 +28,7 @@ import WidgetSection from "./WidgetSection/WidgetSection";
 import DashboardTheme from "./DashboardTheme/DashboardTheme";
 import DashboardWelcome from "./DashboardWelcome/DashboardWelcome";
 import RecentWidgets from "./RecentWidgets/RecentWidgets";
-
+import RecentWidgets from "./WidgetContainer/WidgetContainer";
 
 export default function WorkspaceDashboard({
 
