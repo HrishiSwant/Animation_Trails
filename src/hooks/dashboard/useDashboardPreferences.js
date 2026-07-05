@@ -4,6 +4,8 @@ const STORAGE_KEY = "dashboard-preferences";
 
 const DEFAULTS = {
 
+  version: 1,
+
   density: "comfortable",
 
   theme: "default",
@@ -76,21 +78,25 @@ export default function useDashboardPreferences() {
 
           ...parsed,
 
+          widgets: {
+
+             ...DEFAULTS.widgets,
+
+             ...(parsed.widgets || {}),
+
+        },
+
           favoriteWidgets:
 
             parsed.favoriteWidgets || [],
 
+          recentWidgets:
+
+             parsed.recentWidgets || []
+
            collapsedWidgets:
 
              parsed.collapsedWidgets || {},
-
-          widgets: {
-
-            ...DEFAULTS.widgets,
-
-            ...(parsed.widgets || {}),
-
-          },
 
         };
 
@@ -136,6 +142,16 @@ export default function useDashboardPreferences() {
 
   }
 
+  function resetPreferences() {
+
+  setPreferences(
+
+    DEFAULTS,
+
+  );
+
+}
+
   function registerWidgetUsage(id) {
 
   setPreferences(previous => {
@@ -165,6 +181,50 @@ export default function useDashboardPreferences() {
     };
 
   });
+
+}
+  
+  function exportPreferences() {
+
+  return JSON.stringify(
+
+    preferences,
+
+    null,
+
+    2,
+
+  );
+
+}
+
+  function importPreferences(data) {
+
+  try {
+
+    const parsed =
+
+      JSON.parse(data);
+
+    setPreferences({
+
+      ...DEFAULTS,
+
+      ...parsed,
+
+    });
+
+  }
+
+  catch {
+
+    console.error(
+
+      "Invalid dashboard preferences.",
+
+    );
+
+  }
 
 }
 
@@ -265,6 +325,12 @@ export default function useDashboardPreferences() {
     setDensity,
 
     setTheme,
+
+    resetPreferences,
+
+    exportPreferences,
+
+    importPreferences,
 
   };
 
