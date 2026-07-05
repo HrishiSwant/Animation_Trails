@@ -1,0 +1,25 @@
+.recent-widget-card{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    padding:16px;
+
+    border-radius:14px;
+
+    background:var(--dashboard-surface,var(--color-surface));
+
+    border:1px solid var(--color-border);
+
+    transition:.25s;
+
+}
+
+.recent-widget-card:hover{
+
+    transform:translateY(-2px);
+
+}
