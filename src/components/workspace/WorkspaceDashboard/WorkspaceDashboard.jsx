@@ -26,6 +26,7 @@ import DashboardPreferences from "./DashboardPreferences/DashboardPreferences";
 import FavoriteWidgets from "./FavoriteWidgets/FavoriteWidgets";
 import WidgetSection from "./WidgetSection/WidgetSection";
 import DashboardTheme from "./DashboardTheme/DashboardTheme";
+import DashboardWelcome from "./DashboardWelcome/DashboardWelcome";
 
 
 export default function WorkspaceDashboard({
@@ -54,21 +55,7 @@ export default function WorkspaceDashboard({
           PAGE HEADER
       ========================== */}
 
-      <div className="dashboard-header">
-
-        <h1>
-
-          Workspace
-
-        </h1>
-
-        <p>
-
-          Your personal creative operating system.
-
-        </p>
-
-      </div>
+      <DashboardWelcome />
 
       {/* ==========================
           ACTIVE WORKSPACE
