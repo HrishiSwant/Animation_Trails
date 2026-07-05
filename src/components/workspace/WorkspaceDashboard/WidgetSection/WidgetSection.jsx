@@ -1,5 +1,9 @@
 import "./WidgetSection.css";
 
+import {
+  useEffect,
+} from "react";
+
 import useDashboardPreferences from "../../../../hooks/dashboard/useDashboardPreferences";
 
 export default function WidgetSection({
@@ -18,11 +22,31 @@ export default function WidgetSection({
 
     toggleCollapsedWidget,
 
+    registerWidgetUsage,
+
   } = useDashboardPreferences();
 
   const collapsed =
 
-    preferences.collapsedWidgets?.[id];
+    preferences.collapsedWidgets?.[id] || false;
+
+  useEffect(() => {
+
+    if (!collapsed) {
+
+      registerWidgetUsage(id);
+
+    }
+
+  }, [
+
+    collapsed,
+
+    id,
+
+    registerWidgetUsage,
+
+  ]);
 
   return (
 
