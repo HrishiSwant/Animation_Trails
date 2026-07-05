@@ -1,0 +1,15 @@
+.widget-container{
+
+    margin-bottom:32px;
+
+    transition:.25s;
+
+}
+
+.widget-container:active{
+
+    opacity:.65;
+
+    cursor:grabbing;
+
+}
