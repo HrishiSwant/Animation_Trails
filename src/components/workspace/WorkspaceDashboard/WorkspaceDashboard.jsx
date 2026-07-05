@@ -27,6 +27,7 @@ import FavoriteWidgets from "./FavoriteWidgets/FavoriteWidgets";
 import WidgetSection from "./WidgetSection/WidgetSection";
 import DashboardTheme from "./DashboardTheme/DashboardTheme";
 import DashboardWelcome from "./DashboardWelcome/DashboardWelcome";
+import RecentWidgets from "./RecentWidgets/RecentWidgets";
 
 
 export default function WorkspaceDashboard({
@@ -72,6 +73,12 @@ export default function WorkspaceDashboard({
       ========================== */}
       
       <FavoriteWidgets />
+
+      {/* ==========================
+          RecentWidgets
+      ========================== */}
+
+      <RecentWidgets />
 
       {/* ==========================
           WORKSPACE OVERVIEW
