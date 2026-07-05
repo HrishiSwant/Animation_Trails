@@ -224,7 +224,7 @@ export default function useDashboardPreferences() {
 
         parsed.favoriteWidgets || [],
 
-      recentWidgets
+      recentWidgets:
 
       parsed.recentWidgets || [],
 
