@@ -92,7 +92,7 @@ export default function useDashboardPreferences() {
 
           recentWidgets:
 
-             parsed.recentWidgets || []
+             parsed.recentWidgets || [],
 
            collapsedWidgets:
 
@@ -211,6 +211,26 @@ export default function useDashboardPreferences() {
       ...DEFAULTS,
 
       ...parsed,
+
+       widgets: {
+
+         ...DEFAULTS.widgets,
+
+         ...(parsed.widgets || {}),
+
+         },
+
+      favoriteWidgets:
+
+        parsed.favoriteWidgets || [],
+
+      recentWidgets
+
+      parsed.recentWidgets || [],
+
+      collapsedWidgets:
+
+    parsed.collapsedWidgets || {},    
 
     });
 
