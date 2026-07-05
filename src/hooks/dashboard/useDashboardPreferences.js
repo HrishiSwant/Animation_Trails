@@ -16,6 +16,34 @@ const DEFAULTS = {
 
   collapsedWidgets: {},
 
+  widgetOrder: [
+
+  "overview",
+
+  "health",
+
+  "insights",
+
+  "favorites",
+
+  "recent",
+
+  "continueWorking",
+
+  "todaysActivity",
+
+  "productivity",
+
+  "weekly",
+
+  "streak",
+
+  "summary",
+
+  "recommendations",
+
+],
+
   widgets: {
 
     overview: true,
@@ -98,6 +126,12 @@ export default function useDashboardPreferences() {
 
              parsed.collapsedWidgets || {},
 
+          widgetOrder:
+
+            parsed.widgetOrder ||
+
+            DEFAULTS.widgetOrder,
+
         };
 
       }
@@ -141,6 +175,54 @@ export default function useDashboardPreferences() {
     }));
 
   }
+
+  function moveWidget(
+
+  from,
+
+  to,
+
+) {
+
+  setPreferences(previous => {
+
+    const order = [
+
+      ...previous.widgetOrder,
+
+    ];
+
+    const [item] =
+
+      order.splice(
+
+        from,
+
+        1,
+
+      );
+
+    order.splice(
+
+      to,
+
+      0,
+
+      item,
+
+    );
+
+    return {
+
+      ...previous,
+
+      widgetOrder: order,
+
+    };
+
+  });
+
+}
 
   function resetPreferences() {
 
@@ -351,6 +433,8 @@ export default function useDashboardPreferences() {
     exportPreferences,
 
     importPreferences,
+
+    moveWidget,
 
   };
 
