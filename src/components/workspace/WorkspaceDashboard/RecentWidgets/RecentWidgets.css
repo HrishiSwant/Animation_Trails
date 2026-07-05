@@ -1,0 +1,45 @@
+.recent-widgets{
+
+    margin:40px 0;
+
+}
+
+.recent-widgets-header{
+
+    margin-bottom:20px;
+
+}
+
+.recent-widgets-header p{
+
+    margin-top:6px;
+
+    color:var(--color-text-secondary);
+
+}
+
+.recent-widgets-grid{
+
+    display:grid;
+
+    grid-template-columns:
+
+        repeat(auto-fit,minmax(220px,1fr));
+
+    gap:18px;
+
+}
+
+.recent-widgets-empty{
+
+    padding:24px;
+
+    text-align:center;
+
+    border-radius:16px;
+
+    border:1px dashed var(--color-border);
+
+    background:var(--dashboard-surface,var(--color-surface));
+
+}
