@@ -1,0 +1,17 @@
+.notes-status-bar{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    padding:14px 20px;
+
+    border-top:1px solid var(--color-border);
+
+    background:var(--color-surface);
+
+    color:var(--color-text-secondary);
+
+    font-size:var(--font-sm);
+
+}
