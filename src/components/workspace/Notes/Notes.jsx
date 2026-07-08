@@ -1,54 +1,109 @@
 import { useEffect, useState } from "react";
+
 import "./Notes.css";
 
 import NotesSidebar from "./NotesSidebar";
+import NotesEditor from "./Editor/NotesEditor";
+
 import StorageManager from "../../../core/storage/StorageManager";
 import StorageKeys from "../../../core/storage/StorageKeys";
 
 export default function Notes() {
 
+  /*
+  ==========================
+      NOTES STATE
+  ==========================
+  */
+
   const [notes, setNotes] = useState(() => {
 
     const saved = StorageManager.load(
-      StorageKeys.NOTES
-      );
+      StorageKeys.NOTES,
+    );
 
-    return saved || [
-          {
-            id: Date.now(),
-            title: "Welcome",
-            content: "",
-            createdAt: new Date().toISOString(),
-            updatedAt: new Date().toISOString(),
-            favorite: false,
-            pinned: false,
-            tags: [],
-            color: "default",
-          },
-        ];
+    return (
+      saved || [
+        {
+          id: Date.now(),
+
+          title: "Welcome",
+
+          content: "",
+
+          createdAt:
+            new Date().toISOString(),
+
+          updatedAt:
+            new Date().toISOString(),
+
+          favorite: false,
+
+          pinned: false,
+
+          tags: [],
+
+          color: "default",
+
+        },
+      ]
+    );
 
   });
 
-  const [selectedId, setSelectedId] = useState(notes[0].id);
+  const [selectedId, setSelectedId] =
+    useState(notes[0].id);
 
-  const [search, setSearch] = useState("");
+  const [search, setSearch] =
+    useState("");
+
+  /*
+  ==========================
+      STORAGE
+  ==========================
+  */
 
   useEffect(() => {
 
     StorageManager.save(
+
       StorageKeys.NOTES,
-      notes
-      );
+
+      notes,
+
+    );
 
   }, [notes]);
 
+  /*
+  ==========================
+      CURRENT NOTE
+  ==========================
+  */
+
   const selectedNote =
-    notes.find((note) => note.id === selectedId) ||
+
+    notes.find(
+
+      note =>
+
+        note.id === selectedId,
+
+    ) ||
+
     notes[0];
+
+  /*
+  ==========================
+      NOTE ACTIONS
+  ==========================
+  */
 
   function createNote() {
 
-    const now = new Date().toISOString();
+    const now =
+
+      new Date().toISOString();
 
     const newNote = {
 
@@ -72,37 +127,76 @@ export default function Notes() {
 
     };
 
-    setNotes([newNote, ...notes]);
+    setNotes([
 
-    setSelectedId(newNote.id);
+      newNote,
+
+      ...notes,
+
+    ]);
+
+    setSelectedId(
+
+      newNote.id,
+
+    );
 
   }
 
   function deleteNote(id) {
 
-    if (notes.length === 1) return;
+    if (
 
-    const updated = notes.filter(
-      (note) => note.id !== id
-    );
+      notes.length === 1
+
+    )
+
+      return;
+
+    const updated =
+
+      notes.filter(
+
+        note =>
+
+          note.id !== id,
+
+      );
 
     setNotes(updated);
 
-    setSelectedId(updated[0].id);
+    setSelectedId(
+
+      updated[0].id,
+
+    );
 
   }
 
   function toggleFavorite(id) {
 
     setNotes(
-      notes.map((note) =>
-        note.id === id
-          ? {
-              ...note,
-              favorite: !note.favorite,
-            }
-          : note
-      )
+
+      notes.map(
+
+        note =>
+
+          note.id === id
+
+            ? {
+
+                ...note,
+
+                favorite:
+
+                  !note.favorite,
+
+              }
+
+            : note,
+
+      ),
+
     );
 
   }
@@ -110,14 +204,27 @@ export default function Notes() {
   function togglePinned(id) {
 
     setNotes(
-      notes.map((note) =>
-        note.id === id
-          ? {
-              ...note,
-              pinned: !note.pinned,
-            }
-          : note
-      )
+
+      notes.map(
+
+        note =>
+
+          note.id === id
+
+            ? {
+
+                ...note,
+
+                pinned:
+
+                  !note.pinned,
+
+              }
+
+            : note,
+
+      ),
+
     );
 
   }
@@ -125,15 +232,29 @@ export default function Notes() {
   function updateTitle(value) {
 
     setNotes(
-      notes.map((note) =>
-        note.id === selectedId
-          ? {
-              ...note,
-              title: value,
-              updatedAt: new Date().toISOString(),
-            }
-          : note
-      )
+
+      notes.map(
+
+        note =>
+
+          note.id === selectedId
+
+            ? {
+
+                ...note,
+
+                title: value,
+
+                updatedAt:
+
+                  new Date().toISOString(),
+
+              }
+
+            : note,
+
+      ),
+
     );
 
   }
@@ -141,26 +262,60 @@ export default function Notes() {
   function updateContent(value) {
 
     setNotes(
-      notes.map((note) =>
-        note.id === selectedId
-          ? {
-              ...note,
-              content: value,
-              updatedAt: new Date().toISOString(),
-            }
-          : note
-      )
+
+      notes.map(
+
+        note =>
+
+          note.id === selectedId
+
+            ? {
+
+                ...note,
+
+                content: value,
+
+                updatedAt:
+
+                  new Date().toISOString(),
+
+              }
+
+            : note,
+
+      ),
+
     );
 
   }
 
-  const wordCount = selectedNote.content
-    .trim()
-    .split(/\s+/)
-    .filter(Boolean).length;
+  /*
+  ==========================
+      FUTURE MODULES
+  ==========================
 
-  const characterCount =
-    selectedNote.content.length;
+  D-6.2
+      Text Formatting
+
+  D-6.3
+      Typography
+
+  D-6.4
+      Colors
+
+  D-6.5
+      Lists
+
+  D-6.6
+      Images
+
+  D-6.7
+      Tables
+
+  D-6.8
+      Export
+
+  */
 
   return (
 
@@ -172,77 +327,63 @@ export default function Notes() {
 
         selectedId={selectedId}
 
-        setSelectedId={setSelectedId}
+        setSelectedId={
+
+          setSelectedId
+
+        }
 
         search={search}
 
-        setSearch={setSearch}
+        setSearch={
 
-        createNote={createNote}
+          setSearch
 
-        deleteNote={deleteNote}
+        }
 
-        toggleFavorite={toggleFavorite}
+        createNote={
 
-        togglePinned={togglePinned}
+          createNote
+
+        }
+
+        deleteNote={
+
+          deleteNote
+
+        }
+
+        toggleFavorite={
+
+          toggleFavorite
+
+        }
+
+        togglePinned={
+
+          togglePinned
+
+        }
 
       />
 
-      <div className="editor">
+      <NotesEditor
 
-        <input
+        note={selectedNote}
 
-          className="note-title-input"
+        updateTitle={
 
-          value={selectedNote.title}
+          updateTitle
 
-          onChange={(e) =>
-            updateTitle(e.target.value)
-          }
+        }
 
-          placeholder="Title"
+        updateContent={
 
-        />
+          updateContent
 
-        <textarea
+        }
 
-          value={selectedNote.content}
-
-          onChange={(e) =>
-            updateContent(e.target.value)
-          }
-
-          placeholder="Start writing..."
-
-        />
-
-        <div className="editor-footer">
-
-          <span>
-
-            📅 Updated{" "}
-
-            {new Date(
-              selectedNote.updatedAt
-            ).toLocaleString()}
-
-          </span>
-
-          <span>
-
-            📝 {wordCount} words
-
-          </span>
-
-          <span>
-
-            🔤 {characterCount} characters
-
-          </span>
-
-        </div>
-
-      </div>
+      />
 
     </div>
 
