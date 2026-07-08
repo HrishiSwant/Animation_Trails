@@ -1,12 +1,13 @@
 import "./NotesEditor.css";
 
+import NotesToolbar from "./NotesToolbar";
+import NotesStatusBar from "./NotesStatusBar";
+
 export default function NotesEditor({
 
   note,
 
   updateTitle,
-
-  updateContent,
 
 }) {
 
@@ -30,11 +31,15 @@ export default function NotesEditor({
 
       />
 
-      <div className="notes-editor-placeholder">
+      <NotesToolbar />
 
-        D-6.1 Editor Foundation
+      <div className="notes-editor-body">
+
+        Editor Foundation
 
       </div>
+
+      <NotesStatusBar />
 
     </div>
 
